@@ -1,4 +1,4 @@
-RabbitMQ-Client/node_modules
-RabbitMQ-Client/server.js
-RabbitMQ-Client/package.json
-RabbitMQ-BackEnd/node_modules
+/RabbitMQ-Client/node_modules
+/RabbitMQ-Client/server.js
+/RabbitMQ-Client/package.json
+/RabbitMQ-BackEnd/node_modules
