@@ -1,5 +1,10 @@
 <div class="panel-padding panel-body signup-login-form__extra-panel-body first">
 
+    <div uib-alert ng-repeat="alert in registeralerts" ng-class="'alert-' + (alert.type || 'warning')" dismiss-on-timeout=5000 close="closeRegisterAlert($index)"
+        role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="margin-right:5px"></span> 
+        {{alert.msg}}
+    </div>
 
     <div class="social-buttons" ng-hide="showSignupForm">
         <!--continue with facebook button-->
@@ -47,14 +52,14 @@
 
 
     <div ng-show="showSignupForm" class="text-center social-links">
-        <button type="button" class="btn btn-default backbuttonSignup" aria-label="Left Align" style="float: left;padding: 0;border: 0;" ng-click="back()">
+        <button type="button" class="btn btn-default backbuttonSignup" aria-label="Left Align" style="float: left;padding: 0;border: 0;"
+            ng-click="back()">
             <span style="font-size: 20px;color: #ff5a5f;" class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
-        </button>
-        Sign up with
+        </button> Sign up with
         <form action="/oauth_connect?from=facebook_email_signup&amp;service=facebook" method="POST" class="inline-form">
             <button class="button-as-link" name="button" type="submit">Facebook</button>
             <input type="hidden" name="authenticity_token" value="V4$.airbnb.com$8L_B87z64z0$H6CNEKyBiTuZO_-JVVOm4cEv0CYmbVNlUf4Vx1mYrbE=">
-        </form> 
+        </form>
         or
         <form action="/oauth_connect?from=google_email_signup&amp;service=google" method="POST" class="inline-form">
             <button class="js-google-auth button-as-link" name="button" type="submit">Google</button>
@@ -91,12 +96,13 @@
                 <input id="from" name="from" type="hidden" value="email_signup">
                 <input id="referral_signup_default_redirect" name="referral_signup_default_redirect" type="hidden" value="false">
                 <div class="control-group space-1" id="inputFirst">
-                    <input type="text" name="user[first_name]" id="signup_first_name" placeholder="First name" required ng-model="registerUser.firstname" class="decorative-input" value="">
+                    <input type="text" name="user[first_name]" id="signup_first_name" placeholder="First name" required ng-model="registerUser.firstname"
+                        class="decorative-input" value="">
                 </div>
 
                 <div class="control-group space-1" id="inputLast">
-                    <input type="text" name="user[last_name]" id="signup_last_name" placeholder="Last name" required ng-model="registerUser.lastname" class="decorative-input inspectletIgnore"
-                        value="">
+                    <input type="text" name="user[last_name]" id="signup_last_name" placeholder="Last name" required ng-model="registerUser.lastname"
+                        class="decorative-input inspectletIgnore" value="">
                 </div>
 
                 <div class="control-group space-1" id="inputEmail">
@@ -106,8 +112,8 @@
 
                 <div class="control-group space-1" id="inputPassword">
                     <input type="password" class="empty_field_to_prevent_auto_fill">
-                    <input type="password" id="user_password" data-hook="user_password" required ng-model="registerUser.password" name="user[password]" placeholder="Create a Password"
-                        class="decorative-input inspectletIgnore">
+                    <input type="password" id="user_password" data-hook="user_password" required ng-model="registerUser.password" name="user[password]"
+                        placeholder="Create a Password" class="decorative-input inspectletIgnore">
                     <div data-hook="password-strength" class="password-strength hide"></div>
                 </div>
 
@@ -338,7 +344,7 @@
             </div>
         </form>
 
-        <div  id="tos_outside" class="space-top-3">
+        <div id="tos_outside" class="space-top-3">
             <div>
                 <div>
                     <small>
@@ -360,6 +366,6 @@
         <a href="/login?" class="modal-link link-to-login-in-signup btn btn-default signup-login-form__btn-rausch-border signup-login-form__btn-font-normal signup-login-form__switch-button"
             data-modal-href="/login_modal?" data-modal-type="login">
             Log in
-        </a> 
+        </a>
     </div>
 </div>

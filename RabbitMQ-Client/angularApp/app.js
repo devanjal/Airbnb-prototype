@@ -71,7 +71,7 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
             animation: true,
             templateUrl: 'signupmodal.html',
             controller: 'signupController',
-            windowClass:"signupmodal",
+            windowClass: "signupmodal",
             resolve: {
 
             }
@@ -83,7 +83,7 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
             animation: true,
             templateUrl: 'loginmodal.html',
             controller: 'loginController',
-            windowClass:"loginmodal",
+            windowClass: "loginmodal",
             resolve: {
 
             }
@@ -91,23 +91,50 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
     };
 }]);
 
-app.controller('signupController', function ($scope, $uibModalInstance) {
+app.controller('signupController', function ($scope, $uibModalInstance, $http) {
 
     debugger
+    $scope.registeralerts = [];
     $scope.showSignupForm = false;
-    $scope.registerUser ={};
-    $scope.signup = function(){
+    $scope.registerUser = {};
+    $scope.signup = function () {
         debugger
         $scope.showSignupForm = true;
     }
 
-    $scope.back= function(){
+    $scope.back = function () {
         $scope.showSignupForm = false;
     }
+    
+    $scope.closeRegisterAlert = function (index) {
+        $scope.registeralerts.splice(index, 1);
+    }
 
-    $scope.register = function(){
+    $scope.register = function () {
         debugger
         console.log($scope.registerUser);
+
+        $http.post("/users/register", $scope.registerUser)
+            .success(function (data) {
+                debugger
+                console.log(data);
+                if (data.error) {
+                    // $scope.error = true;
+                    $scope.registeralerts = [{ type: 'danger', msg: data.error }];
+
+                } else if (data.errors) {
+                    // $scope.error = true;
+                    $scope.alerts = [data.errors.message];
+
+                }
+                else if (data.status) {
+                    $scope.registeralerts = [{ type: 'success', msg: "Successfully Registered" }];
+                    $scope.registerUser = {};
+                }
+            })
+            .error(function (err) {
+
+            })
     }
 
 });

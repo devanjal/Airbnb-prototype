@@ -2,7 +2,7 @@
 var amqp = require('amqp')
     , util = require('util');
 
-var login = require('./services/login');
+var login = require('./services/signup');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 process.on('SIGINT', function() {
@@ -12,7 +12,7 @@ process.on('close', function() {
     //connectionpool.closedbconnection();
 });
 cnn.on('ready', function(){
-    console.log("listening on login_queue");
+    console.log("listening to all queues");
     cnn.queue('register_queue', function(q){
         q.subscribe(function(message, headers, deliveryInfo, m){
             login.handle_signup(message, function(err,res){

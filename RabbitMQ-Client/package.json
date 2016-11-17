@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/devanjal/Airbnb-prototype/tree/Nishank#readme",
   "dependencies": {
+    "amqp": "^0.2.6",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
