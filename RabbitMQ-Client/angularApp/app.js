@@ -93,6 +93,23 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
 
 app.controller('signupController', function ($scope, $uibModalInstance) {
 
+    debugger
+    $scope.showSignupForm = false;
+    $scope.registerUser ={};
+    $scope.signup = function(){
+        debugger
+        $scope.showSignupForm = true;
+    }
+
+    $scope.back= function(){
+        $scope.showSignupForm = false;
+    }
+
+    $scope.register = function(){
+        debugger
+        console.log($scope.registerUser);
+    }
+
 });
 app.controller('loginController', function ($scope, $uibModalInstance) {
 
