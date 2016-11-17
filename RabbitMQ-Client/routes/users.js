@@ -7,7 +7,12 @@ router.post('/', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
   console.log(JSON.stringify(req.body));
-  var msg_payload  = {firstname: req.body.firstname, lastname:req.body.lastname,email:req.body.email,password:req.body.password,logintime:new Date().toDateString()};
+  //birthday_day 2
+  //birthday_month 2
+  //birthday_year 2016
+  var dob = req.body.birthday_month + "/" + req.body.birthday_day + "/"+req.body.birthday_year;
+  //var date = new Date(dob);
+  var msg_payload  = {firstname: req.body.firstname, lastname:req.body.lastname,email:req.body.email,password:req.body.password,birthdate:dob};
   mq_client.make_request('register_queue',msg_payload, function(err,results){
     if(err){
       return done(err);

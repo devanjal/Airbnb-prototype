@@ -3,6 +3,7 @@ var bcrypt = require('bcryptjs');
 
 function handle_signup(msg, callback){
 	var res = {};
+	console.log('handle signup');
 	connectionpool.getConnection(function(err,connection){
 		if(err){
 			res.code = 401;
@@ -13,8 +14,8 @@ function handle_signup(msg, callback){
 		const saltRounds = 10;
 		bcrypt.genSalt(saltRounds, function(err, salt) {
 			bcrypt.hash(msg.password, salt, function(err, hash) {
-				var post  = {firstname: msg.firstname, lastname:msg.lastname,email:msg.email,password:hash};
-				var query = connection.query('INSERT INTO testuserdetails SET ?', post, function(err, result) {
+				var post  = {firstname: msg.firstname, lastname:msg.lastname,email:msg.email,password:hash,birthdate:msg.birthdate};
+				var query = connection.query('INSERT INTO users SET ?', post, function(err, result) {
 					// Neat!
 					if(err)
 					{
@@ -25,7 +26,7 @@ function handle_signup(msg, callback){
 						connectionpool.releaseSQLConnection(connection);
 						return;
 					}
-					res.code = 200;
+										res.code = 200;
 					res.value = "Registration Success";
 					callback(null, res);
 					connectionpool.releaseSQLConnection(connection);

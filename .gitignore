@@ -3,3 +3,4 @@ RabbitMQ-Client/node_modules/*
 RabbitMQ-Client/server.js
 RabbitMQ-BackEnd/package.json
 RabbitMQ-Client/package.json
+.idea
