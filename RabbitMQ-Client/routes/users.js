@@ -1,47 +1,25 @@
 var express = require('express');
 var router = express.Router();
-var mq_client = require('../rpc/client');
-router.post('/', function (req, res, next) {
-  res.send('respond with a resource');
+var passport = require('passport');
+//require('./passport')(passport);
+
+router.post("/",function(req,res){
+	console.log("req: " + JSON.stringify(req.body));
 });
 
-router.post('/register', function (req, res, next) {
-  console.log(JSON.stringify(req.body));
-  //birthday_day 2
-  //birthday_month 2
-  //birthday_year 2016
-  var dob = req.body.birthday_month + "/" + req.body.birthday_day + "/" + req.body.birthday_year;
-  //var date = new Date(dob);
-  var msg_payload = { firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, birthdate: dob };
-  
-  mq_client.make_request('register_queue', msg_payload, function (err, results) {
-      console.log(results);
-      if (err) {
-          console.log(err);
-          return;
-      }
-
-      if (results.code == 200) {
-        res.send({ 'status': "success" });
-        res.end();
-      }
-      else if (results.code == 401) {
-        res.send({ 'error': results.value });
-        res.end();
-      }
-
-    // else {
-    //   if (results.code == 200) {
-    //     console.log('response from server');
-    //     //to do redirect to some page
-    //     res.send("Resistration success");
-    //   }
-    //   else {
-    //     console.log("Invalid signup... record duplication");
-    //     res.send("Resistration failure");
-    //     return done(null, false);
-    //   }
-    // }
-  });
+router.post('/login', function(req, res,next) {
+	console.log("inside /users/login req: " + JSON.stringify(req.body));
+	 passport.authenticate('login', function(err, user, info) {
+	        if(err) {
+	        	console.log(err);
+	            res.send(err);
+	        }
+	        if(!user) {
+	        	console.log("Invalid credentials");
+	            res.send({err:'Invalid username or password'});
+	        }else{
+	        	res.send({status:"success"});
+	        }
+	 })(req,res,next);
 });
 module.exports = router;
