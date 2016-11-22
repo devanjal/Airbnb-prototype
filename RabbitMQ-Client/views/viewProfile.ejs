@@ -1,0 +1,92 @@
+
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+ <title></title>
+</head>
+
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+        src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<!-- Loading the AngularJS file from /public/angularJS folder -->
+<script src="angularjs/checkprofile.js"></script>
+<body ng-app="checkProfile" ng-controller="checkProfile">
+<div class="flash-container"></div>
+
+<main id="site-content" role="main">
+
+
+ <div id="recommendation_container" class="clearfix container">
+ </div>
+
+
+
+ <div class="page-container page-container-responsive space-top-4 space-8">
+  <div class="row">
+   <div class="col-lg-3 col-md-4 hide-sm">
+    <div id="user" class="space-4 ">
+     <div>
+      <div class="space-2" id="user-media-container">
+       <div id="slideshow" class="slideshow">
+        <!--<div class="slideshow-preload"></div>-->
+        <ul>
+         <li>
+          <img alt="Devanjal" class="img-responsive" height="225" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Devanjal" width="225" />
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="panel space-4">
+     <div class="panel-header">
+      Verified info
+     </div>
+     <div class="panel-body">
+      <ul class="list-unstyled space-3">
+       No verifications yet
+      </ul>
+
+      <a href="https://www.airbnb.com/users/edit_verification/104264202">
+       Add Verifications
+      </a>
+     </div>
+    </div>
+
+
+   </div>
+
+   <div class="col-lg-9 col-md-8 col-sm-12">
+    <div class="row space-4">
+     <div class="col-sm-4 show-sm">
+      <!--<div class="media-photo media-photo-block media-round">-->
+       <!--<img alt="Devanjal" class="img-responsive" height="225" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Devanjal" width="225" />-->
+      <!--</div>-->
+     </div>
+     <div class="col-sm-8 col-md-12 col-lg-12">
+      <h1>
+       Hey, I’m {{first_name}}!
+      </h1>
+      <div class="h5 space-top-2">
+       <a href="/s/San-Jose--CA" class="link-reset">{{location}}</a>
+       &middot;
+       <span class="text-normal">
+              Member since November 2016
+            </span>
+      </div>
+
+     </div>
+    </div>
+    </div>
+   </div>
+  </div>
+ </main>
+</body>
+</html>

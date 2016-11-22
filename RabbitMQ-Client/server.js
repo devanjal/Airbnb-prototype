@@ -6,17 +6,25 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var compression = require('compression');
-
-var expressSession = require('express-session');
+// var mongo = require("./mongo");
+var mongoURL = "mongodb://localhost:27017/ebay";
+var session = require('express-session');
 var http = require('http');
 
 var users = require('./routes/users');
+var profile=require('./routes/profile')
 
 var app = express();
 
-
+app.use(session({
+  secret: 'kotia_just_chill',
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(compression());
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(favicon(__dirname + '/public/airbnb-favicon.ico'));
@@ -27,10 +35,15 @@ app.use(cookieParser());
 
 app.use(serveStatic(__dirname + '/public', { 'maxAge': '1d' }));
 
-app.use(serveStatic(path.join(__dirname, 'views')));
+//app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
 app.use('/users', users);
+app.get('/profile',profile.profile);
+app.get('/viewProfile',profile.viewProfile);
+app.get('/checkProfile',profile.checkProfile);
+app.get('/getProfile',profile.getProfile);
+app.post('/profile',profile.setProfile);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
