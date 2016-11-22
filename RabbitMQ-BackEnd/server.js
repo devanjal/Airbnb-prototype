@@ -27,14 +27,28 @@ cnn.on('ready', function(){
     });
     cnn.queue('profile_queue',function(q){
         q.subscribe(function(message, headers, deliveryInfo, m){
-          //  util.log(util.format( deliveryInfo.routingKey, message));
-           // util.log("Message: "+JSON.stringify(message));
-         //   util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-
             switch(message.type)
             {
                 case 'profile':
                     profile.setProfile(message,function(err,res){
+                        cnn.publish(m.replyTo, res, {
+                            contentType:'application/json',
+                            contentEncoding:'utf-8',
+                            correlationId:m.correlationId
+                        });
+                    });
+                    break;
+                case 'viewprofile':
+                    profile.getProfile(message,function(err,res){
+                        cnn.publish(m.replyTo, res, {
+                            contentType:'application/json',
+                            contentEncoding:'utf-8',
+                            correlationId:m.correlationId
+                        });
+                    });
+                    break;
+                case 'checkprofile':
+                    profile.checkProfile(message,function(err,res){
                         cnn.publish(m.replyTo, res, {
                             contentType:'application/json',
                             contentEncoding:'utf-8',

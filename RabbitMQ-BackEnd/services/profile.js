@@ -8,39 +8,41 @@ exports.profile = function(req, res){
 
 
 };
-exports.getProfile=function(req,res){
-    var insert_items='SELECT * FROM user';
+exports.getProfile=function(msg,callback){
+   // console.log("ques m aa rha h"+msg.first_name)
+    var res = {};
+
+    var insert_items='SELECT * FROM user where user_id='+msg.user_id+'';
     mysql.fetchData(insert_items,function(err,result){
         if(err){
             console.log(err);
+            res.code = "401";
+            res.err=err;
+            callback(null,res);
         }
         else{
-            var first_name= result[0].first_name;
-            var last_name= result[0].last_name;
-            var user_id=result[0].user_id;
-            var email=result[0].email;
-            var month=result[0].month;
-            var day=result[0].day;
-            var year=result[0].year;
-            console.log(user_id);
-           //var sess= req.session;
-           // var x =sess.first_name;
-            //x=first_name;
-          req.session.first_name=first_name;
-            req.session.user_id=user_id;
+            res.code = "200";
+            //res.result=result;
+            res.first_name= result[0].first_name;
+            res.last_name= result[0].last_name;
+            res.user_id=result[0].user_id;
+            res.email=result[0].email;
+            res.gender=result[0].gender;
+            res.phone=result[0].phone;
+            res.currency=result[0].currency;
+            res.location=result[0].location;
+            res.language=result[0].language;
+            res.birthday=result[0].birthday;
+            res.about=result[0].about;
+            console.log()
+            callback(null,res);
 
-            var json_response={first_name:first_name,last_name:last_name,email:email,month:month,day:day,year:year};
-            // res.send(result);
-            res.send(json_response);
-           // console.log(x);
         }});
 };
 exports.setProfile=function(msg,callback){
     console.log("ques m aa rha h"+msg.first_name)
     var res = {};
-    //var sess= req.session;
     var first_name=msg.first_name;
-   // var age =req.body.age;
     var phone =msg.phone;
     var language =msg.language;
     var gender =msg.gender;
@@ -48,12 +50,7 @@ exports.setProfile=function(msg,callback){
     var last_name=msg.last_name;
     var email=msg.email;
     var about=msg.about;
-   // console.log("ques m aa rha h"+msg.first_name)
-    // var month=req.body.month;
-    // var year=req.body.year;
-    // var day=req.body.day;
     var currency =msg.currency;
-    //console.log(req.body);
    var setProfile='update user set first_name="'+first_name+'",last_name="'+last_name+'",' +
        'email="'+email+'", language="'+language+'",currency="'+currency+'",location="'+location+'",' +
        'gender="'+gender+'", phone="'+phone+'", birthday="'+msg.month+'/'+msg.day+'/'+msg.year+'",about="'+about+'" where user_id="'+msg.user_id+'"';
@@ -68,6 +65,7 @@ exports.setProfile=function(msg,callback){
             // callback(null,res);
             // var json_response={"error" : err, "statuscode":401};
             // res.send(json_response);
+            callback(null,res);
         }
         else{
             res.code = "200";
@@ -84,40 +82,37 @@ exports.setProfile=function(msg,callback){
             // //var json_response=result;
             // res.send(json_response);
 
-
+            callback(null,res);
         }
-        callback(null,res);
+
     });
 
 };
 exports.viewProfile=function(req,res){
     res.render('viewprofile');
 };
-exports.checkProfile=function(req,res){
+exports.checkProfile=function(msg,callback){
+    // console.log("ques m aa rha h"+msg.first_name)
+    var res = {};
+
     var insert_items='SELECT * FROM user';
     mysql.fetchData(insert_items,function(err,result){
         if(err){
             console.log(err);
+            res.code="401"
+            res.err=err;
+            callback(null,res);
         }
         else{
-            var first_name= result[0].first_name;
-            var last_name= result[0].last_name;
-            var user_id=result[0].user_id;
-            var email=result[0].email;
-            var month=result[0].month;
-            var day=result[0].day;
-            var year=result[0].year;
-            var location=result[0].location;
-            console.log(user_id);
-            //var sess= req.session;
-            // var x =sess.first_name;
-            //x=first_name;
-            req.session.first_name=first_name;
-            req.session.user_id=user_id;
+            res.code="200";
+            res.first_name= result[0].first_name;
+            res.join_date= result[0].join_date;
+            res.location=result[0].location;
 
-            var json_response={first_name:first_name,last_name:last_name,email:email,month:month,day:day,year:year,location:location}
-            // res.send(result);
-            res.send(json_response);
-            // console.log(x);
+         //   var json_response={first_name: first_name,location:location, join_date:join_date};
+            callback(null,res);
+            // // res.send(result);
+            // res.send(json_response);
+            // // console.log(x);
         }});
 };
