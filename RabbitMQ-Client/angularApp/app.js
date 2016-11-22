@@ -10,17 +10,57 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
         positionX: 'center',
         positionY: 'top'
     });
-
+    // become-a-host
+    // /host
+    // become-a-host/location
+    //become-a-host/category
     $stateProvider
         .state("/", {
             url: '/',
             templateUrl: 'default/default.html'
         })
-        // .state("SignIn", {
-        //     url: '/SignIn',
-        //     templateUrl: 'signin-register/signin.html',
-        //     controllerUrl: "signin-register/signinController"
-        // })
+        .state("host", {
+            url: '/host',
+            templateUrl: 'hostPage/hostpage.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host", {
+            url: '/become-a-host',
+            templateUrl: 'hostPage/become_a_host.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.category", {
+            url: '/category',
+            templateUrl: 'hostPage/category.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.location", {
+            url: '/location',
+            templateUrl: 'hostPage/location.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.bedrooms", {
+            url: '/bedrooms',
+            templateUrl: 'hostPage/bedrooms.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.photos", {
+            url: '/photos',
+            templateUrl: 'hostPage/photos.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.description", {
+            url: '/description',
+            templateUrl: 'hostPage/description.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.choose-pricing-mode", {
+            url: '/choose-pricing-mode',
+            templateUrl: 'hostPage/choose-pricing-mode.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        
+        // become-a-host.
         // .state("Register", {
         //     url: '/Register',
         //     templateUrl: 'signin-register/signin.html',
@@ -66,6 +106,35 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
 
 app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal) {
 
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        debugger
+        if(toState.name.indexOf("become-a-host.")>-1){
+            $scope.hideFooter = true;
+        }else{
+            $scope.hideFooter = false;
+        }
+    });
+
+    $scope.checkStatus = function () {
+        debugger
+        if (window.sessionStorage.login_status === "true") {
+            $scope.loginStatus = true;
+            $scope.user = JSON.parse(window.sessionStorage.user_info);
+            // $scope.user_firstname
+        } else {
+            window.sessionStorage.login_status = "false";
+            $scope.loginStatus = false;
+            // $http.get("users/getInfo")
+            // .success(function (data) {
+            //     debugger
+
+            // })
+            // .error(function (err) {
+
+            // })
+        }
+    }
+
     $scope.openSignup = function () {
         var modalInstance = $uibModal.open({
             animation: true,
@@ -89,9 +158,24 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
             }
         });
     };
+
+    $scope.logout = function () {
+        window.sessionStorage.login_status = "false";
+        delete window.sessionStorage.user;
+        window.location.reload();
+        // $http.get("/users/logout")
+        // .success(function (data) {
+        //     debugger
+
+
+        // })
+        // .error(function (err) {
+
+        // })
+    }
 }]);
 
-app.controller('signupController', function ($scope, $uibModalInstance, $http) {
+app.controller('signupController', function ($scope, $uibModalInstance, $http, $uibModal) {
 
     debugger
     $scope.registeralerts = [];
@@ -105,7 +189,7 @@ app.controller('signupController', function ($scope, $uibModalInstance, $http) {
     $scope.back = function () {
         $scope.showSignupForm = false;
     }
-    
+
     $scope.closeRegisterAlert = function (index) {
         $scope.registeralerts.splice(index, 1);
     }
@@ -135,9 +219,66 @@ app.controller('signupController', function ($scope, $uibModalInstance, $http) {
             .error(function (err) {
 
             })
+    };
+
+    $scope.openLogin = function () {
+        $uibModalInstance.dismiss('close');
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'loginmodal.html',
+            controller: 'loginController',
+            windowClass: "loginmodal",
+            resolve: {
+
+            }
+        });
+
     }
 
 });
-app.controller('loginController', function ($scope, $uibModalInstance) {
+app.controller('loginController', function ($scope, $uibModalInstance, $http, $uibModal) {
+    debugger
+
+    $scope.loginalerts = [];
+
+    $scope.closeLoginAlert = function (index) {
+        $scope.loginalerts.splice(index, 1);
+    }
+
+    $scope.login = function () {
+        debugger
+        $http.post("/users/login", $scope.user)
+            .success(function (data) {
+                debugger
+                if (data.status === "success") {
+                    $uibModalInstance.dismiss('close');
+                    window.sessionStorage.login_status = "true";
+                    window.sessionStorage.user_info = JSON.stringify(data.user);
+                    window.location.reload();
+                    // $scope.$parent.loginStatus = true;
+                    // $state.go('/');
+                } else {
+                    $scope.loginalerts = [{ type: 'danger', msg: data.error }];
+                }
+            })
+            .error(function (err) {
+
+            })
+    }
+
+    $scope.openSignup = function () {
+        $uibModalInstance.dismiss('close');
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'signupmodal.html',
+            controller: 'signupController',
+            windowClass: "signupmodal",
+            resolve: {
+
+            }
+        });
+    }
+
+
 
 });

@@ -1,4 +1,8 @@
 <div class="panel-padding panel-body signup-login-form__extra-panel-body first login-modal-content-js">
+    <div uib-alert ng-repeat="alert in loginalerts" ng-class="'alert-' + (alert.type || 'warning')" dismiss-on-timeout=5000
+        close="closeLoginAlert($index)" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="margin-right:5px"></span> {{alert.msg}}
+    </div>
     <form accept-charset="UTF-8" action="/oauth_connect?from=facebook_login&amp;service=facebook" method="post">
         <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="V4$.airbnb.com$8L_B87z64z0$H6CNEKyBiTuZO_-JVVOm4cEv0CYmbVNlUf4Vx1mYrbE="></div>
         <button class="btn icon-btn btn-block signup-login-form__btn-xl btn-large space-1 btn-facebook js-facebook-auth" name="button"
@@ -46,19 +50,22 @@
         <hr style="    margin: -25px auto 10px;">
     </div>
 
-    <form accept-charset="UTF-8" action="/authenticate" class="login-form " data-action="Signin" method="post">
-        <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="V4$.airbnb.com$8L_B87z64z0$H6CNEKyBiTuZO_-JVVOm4cEv0CYmbVNlUf4Vx1mYrbE="></div>
+    <form class="login-form " method="post" ng-submit="login()">
+        <div style="margin:0;padding:0;display:inline">
+            <input name="utf8" type="hidden" value="✓" />
+            <input name="authenticity_token" type="hidden" value="V4$.airbnb.com$8L_B87z64z0$H6CNEKyBiTuZO_-JVVOm4cEv0CYmbVNlUf4Vx1mYrbE="
+            />
+        </div>
         <input id="from" name="from" type="hidden" value="email_login">
         <input id="airlock_id" name="airlock_id" type="hidden" value="">
 
-
-
-
         <div class="control-group space-1">
-            <input class="decorative-input inspectletIgnore" id="signin_email" name="email" placeholder="Email Address" type="email">
+            <input class="decorative-input inspectletIgnore" ng-model="user.username" id="signin_email" name="email" placeholder="Email Address"
+                type="email" required>
         </div>
         <div class="control-group space-2">
-            <input class="decorative-input inspectletIgnore" id="signin_password" name="password" placeholder="Password" type="password">
+            <input class="decorative-input inspectletIgnore" ng-model="user.password" id="signin_password" name="password" placeholder="Password"
+                type="password" required>
         </div>
 
         <div class="clearfix space-1">
@@ -79,9 +86,9 @@
         <div class="signup-login-form__switch-copy">
             Don’t have an account?
         </div>
-        <a href="/signup_login?" class="modal-link link-to-signup-in-login btn btn-default signup-login-form__btn-rausch-border signup-login-form__switch-button signup-login-form__btn-font-normal"
-            data-modal-href="/signup_modal?" data-modal-type="signup">
+        <a href="#" class="modal-link link-to-signup-in-login btn btn-default signup-login-form__btn-rausch-border signup-login-form__switch-button signup-login-form__btn-font-normal"
+            ng-click="openSignup()">
               Sign up
-        </a> 
+        </a>
     </div>
 </div>

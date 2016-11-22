@@ -1,5 +1,5 @@
 var arrayOfConnection= [];
-
+console.log("connection pool");
 function createConnection()
 {
 	var mysql      = require('mysql');
@@ -17,6 +17,7 @@ for(var i=0;i<100;i++){
 }
 exports.getConnection = function(callback)
 {
+	console.log("getting connection");
 	var connection = arrayOfConnection.pop();
     //pop fails will create new connection
 	if(connection == undefined)

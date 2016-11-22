@@ -9,6 +9,8 @@ var compression = require('compression');
 
 var expressSession = require('express-session');
 var http = require('http');
+var passport = require('passport');
+require('./routes/passport')(passport);
 
 var users = require('./routes/users');
 
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
 
 app.use(serveStatic(__dirname + '/public', { 'maxAge': '1d' }));
 
