@@ -1,29 +1,47 @@
-/*Top Css*/
 div#lys-redesign-div
 {
     min-height: calc(100vh - 62px);
     position: relative;
     box-sizing: border-box;
 }
-.full-backdrop
+.left-backdrop
 {
-    width: 100%;
+    width: 50%;
+    padding-left: 91.2px;
+    box-sizing: content-box;
     background-color: #fff;
+    left: 0;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
 }
-.full-backdrop, .right-backdrop, .left-backdrop
+.right-backdrop--with-bg
 {
+    background-color: #fafafa;
+}
+.right-backdrop
+{
+    left: 50%;
+    margin-left: 91.2px;
+    right: 0;
     z-index: -1;
     position: fixed;
     top: 0;
     bottom: 0;
 }
-
-
-/*Middle Css*/
 .list-your-space__progress .list-your-space__content
 {
     padding-top: 71px;
 }
+.list-your-space__content .centered-content
+{
+    max-width: 912px;
+    margin: 0 auto;
+}
+
+/*Middle Css*/
 .main-panel-container
 {
     padding-bottom: 102px;
