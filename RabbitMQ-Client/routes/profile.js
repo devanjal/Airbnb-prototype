@@ -66,7 +66,7 @@ exports.setProfile=function(req,res){
        'gender="'+gender+'", phone="'+phone+'" where user_id="'+req.session.user_id+'"';
     console.log(setProfile);
     var msg_payload = {"type":"profile","first_name":first_name,"last_name":last_name,"phone":phone,"language":language,
-        "gender":gender,"location":location,"currency":currency, "user_id":req.session.user_id, "email":email};
+        "gender":gender,"location":location,"currency":currency,"month":month,"year":year,"day":day, "user_id":req.session.user_id, "email":email};
 
     //console.log("POST Request for signup :"+name +" "+newUserEmail+" "+newUserPassword);
 

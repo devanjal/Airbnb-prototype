@@ -29,7 +29,7 @@ exports.getProfile=function(req,res){
           req.session.first_name=first_name;
             req.session.user_id=user_id;
 
-            var json_response={first_name:first_name,last_name:last_name,email:email,month:month,day:day,year:year}
+            var json_response={first_name:first_name,last_name:last_name,email:email,month:month,day:day,year:year};
             // res.send(result);
             res.send(json_response);
            // console.log(x);
@@ -55,7 +55,7 @@ exports.setProfile=function(msg,callback){
     //console.log(req.body);
    var setProfile='update user set first_name="'+first_name+'",last_name="'+last_name+'",' +
        'email="'+email+'", language="'+language+'",currency="'+currency+'",location="'+location+'",' +
-       'gender="'+gender+'", phone="'+phone+'" where user_id="'+msg.user_id+'"';
+       'gender="'+gender+'", phone="'+phone+'", birthday="'+msg.month+'/'+msg.day+'/'+msg.year+'" where user_id="'+msg.user_id+'"';
     console.log(setProfile);
     mysql.fetchData(setProfile,function(err,result){
         if(err){
