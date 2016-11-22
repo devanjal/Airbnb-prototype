@@ -47,6 +47,7 @@ exports.setProfile=function(msg,callback){
     var location =msg.location;
     var last_name=msg.last_name;
     var email=msg.email;
+    var about=msg.about;
    // console.log("ques m aa rha h"+msg.first_name)
     // var month=req.body.month;
     // var year=req.body.year;
@@ -55,7 +56,7 @@ exports.setProfile=function(msg,callback){
     //console.log(req.body);
    var setProfile='update user set first_name="'+first_name+'",last_name="'+last_name+'",' +
        'email="'+email+'", language="'+language+'",currency="'+currency+'",location="'+location+'",' +
-       'gender="'+gender+'", phone="'+phone+'", birthday="'+msg.month+'/'+msg.day+'/'+msg.year+'" where user_id="'+msg.user_id+'"';
+       'gender="'+gender+'", phone="'+phone+'", birthday="'+msg.month+'/'+msg.day+'/'+msg.year+'",about="'+about+'" where user_id="'+msg.user_id+'"';
     console.log(setProfile);
     mysql.fetchData(setProfile,function(err,result){
         if(err){

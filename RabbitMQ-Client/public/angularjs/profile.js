@@ -16,6 +16,7 @@ profile.controller('profile', function($scope, $http,$window) {
         $scope.location=data.location;
         $scope.language=data.language;
         $scope.birthday=data.birthday;
+        $scope.about=data.about;
 
        // alert($scope.x);
     });
@@ -33,10 +34,9 @@ profile.controller('profile', function($scope, $http,$window) {
                 "month":$scope.month,
                 "year":$scope.year,
                 "day":$scope.day,
-               // "first_name":$scope.first_name,
-                //"last_name":$scope.last_name,
                 "email":$scope.email,
-                "location":$scope.location
+                "location":$scope.location,
+                "about":$scope.about
 
 
             }

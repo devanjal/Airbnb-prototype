@@ -31,7 +31,8 @@ exports.getProfile=function(req,res){
             var month=values[0];
             var day=values[1];
             var year=values[2];
-            console.log(month);
+            var about=result[0].about;
+            console.log(about);
            //var sess= req.session;
            // var x =sess.first_name;
             //x=first_name;
@@ -39,7 +40,7 @@ exports.getProfile=function(req,res){
             req.session.user_id=user_id;
 
             var json_response={first_name:first_name,last_name:last_name,email:email,month:month,day:day,
-                year:year,gender:gender, location:location,phone:phone,currency:currency,language:language};
+                year:year,gender:gender, location:location,phone:phone,currency:currency,language:language,about:about};
             // res.send(result);
             console.log("JAAAAAASSSSSOOOOONNNNN"+json_response);
             res.send(json_response);
@@ -60,13 +61,14 @@ exports.setProfile=function(req,res){
     var year=req.body.year;
     var day=req.body.day;
     var currency =req.body.currency;
-    console.log(req.body);
+    var about=req.body.about;
+    //console.log(req.body);
    var setProfile='update user set first_name="'+first_name+'",last_name="'+last_name+'",' +
        'email="'+email+'", language="'+language+'",currency="'+currency+'",location="'+location+'",' +
        'gender="'+gender+'", phone="'+phone+'" where user_id="'+req.session.user_id+'"';
     console.log(setProfile);
     var msg_payload = {"type":"profile","first_name":first_name,"last_name":last_name,"phone":phone,"language":language,
-        "gender":gender,"location":location,"currency":currency,"month":month,"year":year,"day":day, "user_id":req.session.user_id, "email":email};
+        "gender":gender,"location":location,"currency":currency,"month":month,"year":year,"day":day, "about":about, "user_id":req.session.user_id, "email":email};
 
     //console.log("POST Request for signup :"+name +" "+newUserEmail+" "+newUserPassword);
 
