@@ -4,22 +4,25 @@ div#lys-redesign-div
     position: relative;
     box-sizing: border-box;
 }
-div.left-backdrop
+.left-backdrop
 {
     width: 50%;
     padding-left: 91.2px;
     box-sizing: content-box;
-    background-color:#fff;
-    left:0;
+    background-color: #fff;
+    left: 0;
     z-index: -1;
     position: fixed;
-    top:0;
-    bottom:0;
-}
+    top: 0;
+    bottom: 0;
 
-div.right-backdrop.hide-sm.bg-white.right-backdrop--with-bg
+}
+.right-backdrop--with-bg
 {
     background-color: #fafafa;
+}
+.right-backdrop
+{
     left: 50%;
     margin-left: 91.2px;
     right: 0;
@@ -27,59 +30,139 @@ div.right-backdrop.hide-sm.bg-white.right-backdrop--with-bg
     position: fixed;
     top: 0;
     bottom: 0;
-    box-sizing: border-box;
 }
-div.list-your-space__content
+.list-your-space__progress .list-your-space__content
 {
     padding-top: 71px;
-    box-sizing: border-box;
 }
-div.centered-content.clearfix
+.list-your-space__content .centered-content
 {
     max-width: 912px;
     margin: 0 auto;
-    box-sizing: border-box;
 }
-div.main-panel-container.no-padding-h.bg-white.main-panel-outer-half.clearfix
+.main-panel-outer-half
 {
     width: 60%;
     float: left;
+}
+.main-panel-container
+{
     padding-bottom: 102px;
     position: relative;
-    padding-left:0;
-    padding-right:0;
+}
+.no-padding-h
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+.bg-white
+{
     background-color: #fff;
 }
-div.main-panel.main-panel-padding.main-panel-progress.pull-right.main-panel-inner-half.space-sm-8
+.main-panel-inner-half
 {
     max-width: 544px;
     width: 100%;
-    padding: 30px;
-    font-size: 18px;
-    float: right;
-    box-sizing: border-box;
 }
-div.panel--no-border.panel-title
+.main-panel-padding
+{
+    padding: 30px;
+}
+.main-panel
+{
+    font-size: 18px;
+}
+.pull-right
+{
+    float: right;
+}
+.panel--no-border
 {
     border: 0;
-    padding: 30px 0;
-    box-sizing: border-box;
 }
-div.no-margin-padding
+.panel-title
+{
+    padding: 30px 0;
+}
+h3, .h3
+{
+    font-size: 24px;
+    font-weight: normal;
+}
+h3.no-margin-padding
 {
     margin:0;
     padding:0;
 }
-div.block-radio-button
+.block-radio-button
 {
     margin-top: 0;
     max-width: 320px;
 }
-select#house-type
+.block-radio-button:first-of-type .block-radio-button__panel
+{
+    border-radius: 3px 3px 0 0;
+}
+.block-radio-button:not(:last-of-type) .block-radio-button__panel
+{
+    border-bottom: 0;
+}
+.block-radio-button__panel
+{
+    padding: 20px 15px 20px 20px;
+}
+.no-margin-h
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+.btn .icon.icon-with-label
+{
+    margin-right: 20px;
+}
+.block-radio-button__label
+{
+    font-weight: normal;
+    font-size: 18px;
+    max-width: 88%;
+    text-align: left;
+}
+input[type="radio"]
+{
+    height: 24px;
+    width: 24px;
+    vertical-align: middle;
+    border-radius: 1.25em;
+    position: relative;
+    margin-bottom: -0.25em;
+    margin-right: 5px;
+}
+.text-normal
+{
+    font-weight: normal;
+    margin: 0;
+}
+select
+{
+    transition: border-color 0.2s;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #484848;
+}
+.select-jumbo
+{
+    width: 100%;
+    max-width: 320px;
+}
+.select-jumbo select
 {
     height: 63px;
     font-size: 18px;
     padding: 20px;
+}
+#house-type
+{
     display: block;
     width: 100%;
     transition: border-color 0.2s;
@@ -89,6 +172,7 @@ select#house-type
     color: #484848;
     line-height: normal;
 }
+/**/
 div.main-panel__actions-wrapper
 {
     position: fixed;
