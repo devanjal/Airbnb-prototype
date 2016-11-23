@@ -17,7 +17,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
     $stateProvider
         .state("/", {
             url: '/',
-            templateUrl: 'default/default.html'
+            templateUrl: 'default/default.html',
+            controllerUrl: "default/defaultController"
         })
         .state("host", {
             url: '/host',
@@ -59,6 +60,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/choose-pricing-mode.html',
             controllerUrl: "hostPage/hostController"
         })
+        .state("search", {
+            url: '/search',
+            templateUrl: 'searchPage/searchPage.html',
+            controllerUrl: "searchPage/searchController"
+        });        
         
         // become-a-host.
         // .state("Register", {

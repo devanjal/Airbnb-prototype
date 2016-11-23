@@ -610,15 +610,13 @@
     background-color: #fff7e5;
     border-color: #ffb400
 }
-.GuestPickerTrigger .GuestPickerTrigger__icon.icon {
+.GuestPickerTrigger .GuestPickerTrigger__button .dropdown-icon svg {
     position: absolute;
-    right: 0;
-    top: 34%;
-    padding-right: 0.65em;
-    font-size: 12px;
-    margin: 0;
-    pointer-events: none;
-    color: #767676
+    top: 0;
+    bottom: 0;
+    right: 15px;
+    margin: auto;
+    pointer-events: none
 }
 .GuestPicker {
     background: #fff;
@@ -711,6 +709,18 @@
     color: #2d2d2d;
     text-decoration: underline;
     cursor: pointer
+}
+.modal-search-wrapper--sm .GuestPicker {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: 0;
+    border-right: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+.modal-search-wrapper--sm .GuestPickerRow {
+    border-bottom: 0
 }
 .airbnb-header {
     padding: 0 20px;
@@ -1499,7 +1509,6 @@ body.has-smart-banner.p1-header-view .airbnb-header .nav-animate-cover {
     clear: both;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     padding: 32px 23px;
     position: absolute;
     top: 0;
@@ -1844,7 +1853,9 @@ body.has-smart-banner.p1-header-view .airbnb-header .nav-animate-cover {
     line-height: 1;
     padding: 3px 6px 3px 5.5px;
     font-size: 14px;
-    min-width: 22.5px
+    min-width: 22.5px;
+    background: #008489;
+    border: 1px solid #008489
 }
 .simple-header .airbnb-header .logged-out li,
 .simple-header .airbnb-header .user-item .value_name,
@@ -2442,7 +2453,6 @@ body.fixed-header .airbnb-header {
     z-index: 3
 }
 body.slideout {
-    position: fixed;
     height: 100%;
     width: 100%
 }
@@ -2541,7 +2551,7 @@ body.slideout .airbnb-header .header--sm .nav--sm .nav-content--sm {
 }
 .belo-container .icon,
 .icon-host-referral-gift {
-    color: #ff5a5f;
+    color: #ff5a5f
 }
 .simple-header .comp-become-a-host__link,
 .simple-header .belo-container .icon,
@@ -2642,7 +2652,8 @@ body.has-epcot-header .airbnb-header .regular-header .search-bar #icon-drawer-se
     font-size: 18px;
     width: 18px;
     position: absolute;
-    margin: 22px 0 0 24px
+    margin: 22px 0 0 24px;
+    top: 0
 }
 body.has-epcot-header .airbnb-header .regular-header .search-bar #header-search-form {
     vertical-align: top;
@@ -2651,7 +2662,7 @@ body.has-epcot-header .airbnb-header .regular-header .search-bar #header-search-
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 22px 10px 20px 52px
+    padding: 22px 10px 18px 52px
 }
 body.has-epcot-header .airbnb-header .header--sm {
     width: 100%;
@@ -2966,7 +2977,8 @@ body.p1-header-view.has_scrolled_below_fold.has-smart-banner .smart-banner {
     color: #888
 }
 #search-modal--sm input:focus,
-#search-modal--sm select:focus {
+#search-modal--sm select:focus,
+#search-modal--sm .GuestPickerTrigger__button:focus {
     border-bottom-color: #00a699
 }
 #search-modal--sm .guest-label .guest-label__text.highlight {
@@ -2981,6 +2993,11 @@ body.p1-header-view.has_scrolled_below_fold.has-smart-banner .smart-banner {
     bottom: 0;
     padding: 24px;
     border-top: 1px solid #dce0e0;
+    width: 100%
+}
+.search-modal-open {
+    position: fixed;
+    height: 100%;
     width: 100%
 }
 .search-modal-open .pac-container {

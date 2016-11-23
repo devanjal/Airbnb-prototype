@@ -62,8 +62,8 @@
                                                 </strong>
                                                 <div class="h3 landing__subtitle-width">Set the scene</div>
                                                 <div class="landing__step-content-subtitle">Photos, short description, title</div>
-                                                
-                                                <span ng-show="firstStepStatus === 'complete'" ng-hide="secondStepStatus === 'complete'" class="" style="transition-delay:0ms;display:inline-block;"> 
+                                                <!--ng-hide="secondStepStatus === 'complete'"-->
+                                                <span ng-show="firstStepStatus === 'complete' && secondStepStatus === 'incomplete' " class="" style="transition-delay:0ms;display:inline-block;"> 
                                                     <a class="" href="#" ui-sref=".photos">
                                                         <button class="btn btn-babu space-top-1 text-large">
                                                             <span>Continue</span>

@@ -17,7 +17,7 @@ for(var i=0;i<100;i++){
 }
 exports.getConnection = function(callback)
 {
-	console.log("getting connection");
+	// console.log("getting connection");
 	var connection = arrayOfConnection.pop();
     //pop fails will create new connection
 	if(connection == undefined)

@@ -9,7 +9,7 @@ function handle_request(msg, callback) {
     var res = {};
 
     connectionpool.getConnection(function (err, connection) {
-        console.log("inside connection");
+        // console.log("inside connection");
         if (err) {
             res.code = 401;
             res.value = "DB Connection Failure";
@@ -23,7 +23,10 @@ function handle_request(msg, callback) {
         var query = connection.query("SELECT * FROM `users` WHERE `email` = ?", [username], function (err, rows) {
             console.log(rows);
             if (err) {
-                console.log("Error in login " + err);
+                console.log("Error in login ");
+                console.log(err);
+                res.code = 401;
+                res.value = err;
                 callback(null, res);
                 connectionpool.releaseSQLConnection(connection);
             } else if (rows.length>0) {
