@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../public/css/airbnb.css">
     <link rel="stylesheet" href="../public/css/airbnb2.css">
     <title>Profile - Airbnb</title>
-</head>
-<body class="with-new-header has-epcot-header">
-    <div class="subnav hide-print">
+</head>-->
+<div class="with-new-header has-epcot-header" ng-controller="profileController">
+    <div class="subnav hide-print" style="margin-top: -10px;margin-left: -100px;margin-right: -100px;">
         <div class="page-container-responsive">
             <ul class="subnav-list">
                 <li>
@@ -20,7 +20,7 @@
                     <a id="your-trips-item" class="subnav-item" href="#" aria-selected="false">Your Trips</a>
                 </li>
                 <li>
-                    <a id="user-profile-item" class="subnav-item" href="#" aria-selected="false">Profile</a>
+                    <a id="user-profile-item" aria-selected="true" class="subnav-item" href="#" aria-selected="false">Profile</a>
                 </li>
                 <li>
                     <a id="account-item" class="subnav-item" href="#" aria-selected="false">Account</a>
@@ -28,7 +28,11 @@
             </ul>
         </div>
     </div>
-    <div id="notification-area"></div>
-    <div class="page-container-responsive space-top-4 space-4"></div>
-</body>
-</html>
+    <div ui-view>
+
+    </div>
+</div>
+    <!--<div id="notification-area"></div>
+    <div class="page-container-responsive space-top-4 space-4"></div>-->
+<!--</body>
+</html>-->

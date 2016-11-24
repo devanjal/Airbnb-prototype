@@ -64,7 +64,29 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             url: '/search',
             templateUrl: 'searchPage/searchPage.html',
             controllerUrl: "searchPage/searchController"
-        });        
+        })
+        .state("users", {
+            url: '/users',
+            templateUrl: 'profile/users.html',
+            controllerUrl: "profile/profileController"
+        })
+        .state("users.edit", {
+            url: '/edit',
+            templateUrl: 'profile/editprofile.html',
+            controllerUrl: "profile/profileController"
+        })
+        .state("users.edit.media", {
+            url: '/media',
+            templateUrl: 'profile/photo.html',
+            controllerUrl: "profile/profileController"
+        })
+        .state("users.show", {
+            url: '/show',
+            templateUrl: 'profile/viewprofile.html',
+            controllerUrl: "profile/profileController"
+        })
+        
+        ;        
         
         // become-a-host.
         // .state("Register", {
