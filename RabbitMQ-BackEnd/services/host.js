@@ -41,8 +41,8 @@ function becomehost_step2(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET title = ?, description = ?, availability = ? where hostid = ?',
-            [msg.title,msg.description,msg.availability,msg.hostid],
+            'UPDATE properties SET title = ?, description = ?, availability = ? where propertyid = ?',
+            [msg.title,msg.description,msg.availability,msg.propertyid],
             function (err, result) {
                 if (err)
                 {
@@ -57,7 +57,8 @@ function becomehost_step2(msg, callback){
                 post.hostid = msg.hostid;
                 post.images = msg.filenames;
                 var connection = connectionpool.getdbconnection();
-                connection.collection('properties').insertOne(post, function(err, result) {
+                connection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames,$sort:{bidplaced:-1}}}} , {upsert:true},function(err, result) {
+                //connection.collection('properties').insertOne(post, function(err, result) {
                     if(err) {
                         console.log(err);
                         res.code = 400;
@@ -90,8 +91,8 @@ function becomehost_step3(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET bid = ?, price = ?, noticeneeded = ? Where hostid = ?',
-            [msg.bid,msg.price,msg.noticeneeded,msg.hostid],
+            'UPDATE properties SET bid = ?, price = ?, noticeneeded = ? Where propertyid = ?',
+            [msg.bid,msg.price,msg.noticeneeded,msg.propertyid],
             function (err, result) {
                 if (err)
                 {
