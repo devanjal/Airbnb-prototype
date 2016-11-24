@@ -3214,31 +3214,7 @@ input[type="radio"]:focus,
 input[type="checkbox"]:focus {
     border-color: #484848
 }
-.invalid[type="text"],
-.invalid[type="password"],
-.invalid[type="search"],
-.invalid[type="email"],
-.invalid[type="url"],
-.invalid[type="number"],
-.invalid[type="tel"],
-textarea.invalid,
-select.invalid,
-input.invalid[type="radio"],
-input.invalid[type="checkbox"],
-[type="text"]:invalid,
-[type="password"]:invalid,
-[type="search"]:invalid,
-[type="email"]:invalid,
-[type="url"]:invalid,
-[type="number"]:invalid,
-[type="tel"]:invalid,
-textarea:invalid,
-select:invalid,
-input[type="radio"]:invalid,
-input[type="checkbox"]:invalid {
-    border-color: #ffb400;
-    background-color: #fff8e5
-}
+
 .valid[type="text"],
 .valid[type="password"],
 .valid[type="search"],
