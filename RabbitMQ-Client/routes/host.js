@@ -23,8 +23,8 @@ router.post('/', function(req, res, next) {
 router.post('/becomehost1', function(req, res, next) {
     console.log('become host');
     var payload = {};
-    //payload.hostid = req.session.userid;
-    payload.hostid = 1;
+    payload.hostid = req.session.userid;
+    //payload.hostid = 1;
     payload.category = req.body.category;
     //payload.propertykind = req.body.propertykind;
     payload.quantity = parseInt(req.body.quantity);
@@ -62,8 +62,8 @@ router.post('/becomehost2', function(req, res, next) {
             return res.end("Error uploading file.");
         }
         var payload = {};
-        //payload.hostid = req.session.userid;
-        payload.hostid = 1;
+        payload.hostid = req.session.userid;
+        //payload.hostid = 1;
         payload.title = req.body.title;
         payload.description = req.body.description;
         payload.availability = new Date(req.body.availability)
@@ -95,8 +95,8 @@ router.post('/becomehost2', function(req, res, next) {
 });
 router.post('/becomehost3', function(req, res, next) {
     var payload = {};
-   // payload.hostid = req.session.userid;
-    payload.hostid = 1;
+    payload.hostid = req.session.userid;
+    //payload.hostid = 1;
     payload.bid = req.body.bid;
     payload.price = parseFloat(req.body.price);
     //payload.propertykind = req.body.propertykind;
@@ -121,7 +121,9 @@ router.post('/becomehost3', function(req, res, next) {
     });
 });
 router.post('/publish', function(req, res, next) {
-    mq_client.make_request('publishproperty',{}, function(err,results){
+    var payload = {};
+    payload.propertyid = req.body.propertyid;
+    mq_client.make_request('publishproperty',payload, function(err,results){
         if(err){
             return done(err);
         }

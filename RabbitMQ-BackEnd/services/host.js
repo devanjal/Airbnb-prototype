@@ -125,8 +125,8 @@ function publishproperty(msg, callback){
         }
 
         connection.query(
-            'UPDATE properties SET published = ?',
-            ['true'],
+            'UPDATE properties SET published = ? where propertyid = ?',
+            ['true',msg.propertyid],
             function (err, result) {
                 if (err)
                 {
