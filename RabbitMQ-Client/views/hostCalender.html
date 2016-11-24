@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/css/calender.css">
+    <link rel="stylesheet" href="../public/css/airbnb.css">
+    <link rel="stylesheet" href="../public/css/airbnb2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../angularApp/angular.js"></script>
+    <script src="../angularApp/calender.js"></script>
+    <title>Edit Calender for your Airbnb Listing</title>
+</head>
+<body>
+    <div id="lys-redesign-div">
+        <div class="bg-white list-your-space__progress">
+            <div class="full-backdrop">
+
+            </div>
+            <div class="list-your-space__content">
+                <div class="centered-content clearfix">
+                    <div class="main-panel-container no-padding-h bg-white col-sm-12 no-padding-h" tabindex="-1">
+
+
+                        <div class="main-panel main-panel-padding main-panel-progress col-sm-12 main-panel-inner-full space-sm-8">
+                            <div class="day-picker-container large-calendar">
+                                <div class="large-calendar-title row no-margin-padding va-container va-container-v va-container-h">
+                                    <div class="va-middle">
+                                        <h3 class="no-margin-padding">
+                                            <span>Update your calendar</span>
+                                        </h3>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="help-panel__floating-container">
+                                            <span class="tooltip-popup__transition-container">
+                                                <div class="help-panel--collapsed help-panel__bulb-img-bubble">
+                                                    <div class="help-panel__bulb-img img-center">
+
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row no-margin-padding va-container va-container-h va-container-v">
+
+                                </div>
+                                <div class="space-4">
+
+                                </div>
+
+
+                                <div ng-app="calendarApp" ng-controller="DatepickerCtrl" class="outerdiv">
+                                    <pre>Selected date is:  <em>{{dt | date:'fullDate' }}</em>
+                                    </pre>
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <h4>Select from Date</h4>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" style="display: inline-block;width: 100%; padding: 0;" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" ng-click="open1()">
+                                                            <i class="fa fa-calendar">
+
+                                                            </i>
+                                                        </button>
+                                                    </span>
+                                            </p>
+                                        </div>
+
+
+
+                                        <div class="col-md-6">
+                                            <h4>Select to Date</h4>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" style="display: inline-flex; width: 100%; padding: 0;" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open2()">
+                                                        <i class="fa fa-calendar">
+
+                                                        </i>
+                                                    </button>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Date Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label>
+                                            <select class="form-control" ng-model="format" ng-options="f for f in formats">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+                                    <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
+                                    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+                                    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="main-panel__actions-wrapper">
+                            <div class="centered-content clearfix">
+                                <div class="bg-white main-panel-outer-half clearfix shadowed">
+                                    <div class="no-margin-padding__sm main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8">
+                                        <div class="divider hide-sm">
+
+                                        </div>
+                                        <div class="row no-margin-padding__sm">
+                                            <div class="main-panel__actions col-sm-12 no-margin-padding__sm">
+                                                <div>
+                                                    <a class="btn-progress-back link-icon va-container va-container-v pull-left text-gray link--accessibility-outline" href="#">
+                                                            <span class="icon hide-sm">
+
+                                                            </span>
+                                                            <span class="va-middle">
+                                                                <h5 class="text-normal">
+                                                                    <span>Back</span>
+                                                                </h5>
+                                                            </span>
+                                                    </a>
+                                                    <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
+                                                        <div class="btn-progress-next__text">
+                                                            <span>Next</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
