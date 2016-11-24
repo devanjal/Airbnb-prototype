@@ -42,7 +42,7 @@ function becomehost_step2(msg, callback){
         }
         connection.query(
             'UPDATE properties SET title = ?, description = ?, availability = ? where propertyid = ?',
-            [msg.title,msg.description,msg.availability,msg.propertyid],
+            [msg.title,msg.description,new Date(msg.availability),msg.propertyid],
             function (err, result) {
                 if (err)
                 {
@@ -56,18 +56,21 @@ function becomehost_step2(msg, callback){
                 var post = {};
                 post.hostid = msg.hostid;
                 post.images = msg.filenames;
-                var connection = connectionpool.getdbconnection();
-                connection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames,$sort:{bidplaced:-1}}}} , {upsert:true},function(err, result) {
+
+                var mongoconnection = connectionpool.getdbconnection();
+                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames,$sort:{bidplaced:-1}}}} , {upsert:true},function(err, result) {
                 //connection.collection('properties').insertOne(post, function(err, result) {
                     if(err) {
                         console.log(err);
                         res.code = 400;
                         res.value = err;
+                        connectionpool.releaseSQLConnection(connection);
                         callback(null, res);
                         return;
                     }
                     res.code = 200;
                     res.value = "Step2 updated";
+                    connectionpool.releaseSQLConnection(connection);
                     callback(null, res);
                 });
                 //res.code = 200;
@@ -75,7 +78,7 @@ function becomehost_step2(msg, callback){
                 //callback(null, res);
 
                 //--
-                connectionpool.releaseSQLConnection(connection);
+
                 //--
             });
     });
