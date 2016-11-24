@@ -31,6 +31,7 @@ app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
 app.use('/users', users);
+app.use('/host', host);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
