@@ -11,6 +11,7 @@ exports.getProfile=function(req,res){
     var msg_payload = {"type":"viewprofile","user_id":1}//req.session.user_id};
 
     mq_client.make_request('profile_queue',msg_payload,function(err,results){
+        //console.log("errrrrrrr"+results.first_name);
 
         if(err){
             throw err;

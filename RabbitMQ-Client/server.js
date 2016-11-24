@@ -12,7 +12,8 @@ var session = require('express-session');
 var http = require('http');
 
 var users = require('./routes/users');
-var profile=require('./routes/profile')
+var profile=require('./routes/profile');
+var bill=require('./routes/bill');
 
 var app = express();
 
@@ -43,7 +44,9 @@ app.get('/profile',profile.profile);
 app.get('/viewProfile',profile.viewProfile);
 app.get('/checkProfile',profile.checkProfile);
 app.get('/getProfile',profile.getProfile);
+app.post('/getBill',bill.getBill);
 app.post('/profile',profile.setProfile);
+app.post('/billGen',bill.bill_gen);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

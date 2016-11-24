@@ -71,17 +71,6 @@ exports.setProfile=function(msg,callback){
             res.code = "200";
             res.result=result;
             console.log(res.code)
-            // res._id=user._id;
-            // res.first_name=user.first_name;
-            // res.last_name=user.last_name;
-            // res.user_id=user.user_id;
-            // res.devanjal=user.last_login;
-            // console.log(res._id);
-
-            // var json_response={"result" : result, "statuscode":200};
-            // //var json_response=result;
-            // res.send(json_response);
-
             callback(null,res);
         }
 
