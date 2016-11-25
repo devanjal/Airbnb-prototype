@@ -1,17 +1,19 @@
-var ejs=require('ejs');
-var session = require('express-session');
-var mysql= require('./mysql');
+var express = require('express');
+var router = express.Router();
+//var ejs=require('ejs');
+//var session = require('express-session');
+//var mysql= require('./mysql');
 var mq_client = require('../rpc/client');
-exports.profile = function(req, res){
+router.get('/profile' ,function(req, res){
    // res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
       res.render('profile');
-};
-exports.getProfile=function(req,res){
+});
+router.get('/getProfile',function(req,res){
     var insert_items='SELECT * FROM user';
-    var msg_payload = {"type":"viewprofile","user_id":1}//req.session.user_id};
+    var msg_payload = {"type":"viewprofile","user_id":req.session.user_id};
 
     mq_client.make_request('profile_queue',msg_payload,function(err,results){
-        //console.log("errrrrrrr"+results.first_name);
+
 
         if(err){
             throw err;
@@ -47,8 +49,8 @@ exports.getProfile=function(req,res){
             }
         }
     });
-};
-exports.setProfile=function(req,res){
+});
+router.post('/updateProfile',function(req,res){
 
     var first_name=req.body.first_name;
     var phone =req.body.phone;
@@ -63,10 +65,7 @@ exports.setProfile=function(req,res){
     var currency =req.body.currency;
     var about=req.body.about;
     //console.log(req.body);
-   var setProfile='update user set first_name="'+first_name+'",last_name="'+last_name+'",' +
-       'email="'+email+'", language="'+language+'",currency="'+currency+'",location="'+location+'",' +
-       'gender="'+gender+'", phone="'+phone+'" where user_id="'+req.session.user_id+'"';
-    console.log(setProfile);
+   // console.log(setProfile);
     var msg_payload = {"type":"profile","first_name":first_name,"last_name":last_name,"phone":phone,"language":language,
         "gender":gender,"location":location,"currency":currency,"month":month,"year":year,"day":day, "about":about, "user_id":req.session.user_id, "email":email};
 
@@ -89,11 +88,11 @@ exports.setProfile=function(req,res){
     });
 
 
-};
-exports.viewProfile=function(req,res){
+});
+router.get('/viewProfile',function(req,res){
     res.render('viewprofile');
-};
-exports.checkProfile=function(req,res){
+});
+router.get('/fetchProfile',function(req,res){
     var msg_payload = {"type":"checkprofile"}//req.session.user_id};
 
     mq_client.make_request('profile_queue',msg_payload,function(err,results){
@@ -118,4 +117,5 @@ exports.checkProfile=function(req,res){
             }
         }
     });
-};
+});
+module.exports=router;
