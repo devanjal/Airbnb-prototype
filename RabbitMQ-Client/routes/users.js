@@ -46,6 +46,7 @@ router.post('/login', function (req, res, next) {
 			delete user.password;
 			console.log("user info");
 			console.log(user);
+			req.session.user = user;
 			res.send({ status: "success",user:user });
 		}
 	})(req, res, next);

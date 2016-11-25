@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var compression = require('compression');
 
-var expressSession = require('express-session');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
 var http = require('http');
 var passport = require('passport');
 require('./routes/passport')(passport);
@@ -33,6 +35,17 @@ app.use(serveStatic(__dirname + '/public', { 'maxAge': '1d' }));
 app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
+
+app.use(session({
+    secret: 'cmpe273_airbnb',
+    resave: false,
+    saveUninitialized: true,
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
+    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds163397.mlab.com:63397/airbnb_mongo' })
+}));
+
+
 app.use('/users', users);
 
 // catch 404 and forward to error handler

@@ -101,20 +101,20 @@
                                     <div class="text-gray btn increment-btn__label increment-jumbo increment-btn__label--with-increment-btns" tabindex="0" role="textbox">
                                         <div class="increment-btn__border-container-label text-truncated">
                                             <span class="text-muted">
-                                                        <span>1 guest</span>
+                                                        <span>{{quantity + ' guest'}}</span>
                                             </span>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-jumbo increment-btn__decrementer" disabled="" aria-label="minus 1">
-                                                <div class="increment-btn__border-container-decrementer">
+                                    <button type="button" class="btn btn-jumbo increment-btn__decrementer" ng-click="decrementQuantity()" ng-disabled="!activeDecrement" aria-label="minus 1">
+                                        <div class="increment-btn__border-container-decrementer">
 
-                                                </div>
-                                            </button>
+                                        </div>
+                                    </button>
 
-                                    <button type="button" class="btn btn-jumbo increment-btn__incrementer increment-btn__incrementer" aria-label="plus 1">
+                                    <button type="button" ng-click="incrementQuantity()" class="btn btn-jumbo increment-btn__incrementer increment-btn__incrementer" aria-label="plus 1">
 
-                                            </button>
+                                    </button>
 
                                 </div>
 
