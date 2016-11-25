@@ -9,7 +9,7 @@ var compression = require('compression');
 
 var expressSession = require('express-session');
 var http = require('http');
-
+var become_host = require('./routes/become_host');
 var users = require('./routes/users');
 
 var app = express();
@@ -31,7 +31,7 @@ app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
 app.use('/users', users);
-app.use('/host', host);
+app.use('/become_host', become_host);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

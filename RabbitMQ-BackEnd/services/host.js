@@ -21,13 +21,27 @@ function becomehost_step1(msg, callback){
                     connectionpool.releaseSQLConnection(connection);
                     return;
                 }
-
-                res.code = 200;
-                res.value = "Step1 succeeded";
-                callback(null, res);
-                connectionpool.releaseSQLConnection(connection);
-            }
-        );
+                connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
+                    if (!err)
+                    {
+                        console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
+                        connectionpool.releaseSQLConnection(connection);
+                        res.code = 200;
+                        res.property_id = rows[0].propertyid;
+                        res.value = "Step1 succeeded";
+                        callback(null, res);
+                        //res.send(rows);
+                    }
+                    else
+                    {
+                        console.log('Error while performing Query.');
+                        res.code = 401;
+                        res.value = "Step1 failed";
+                        callback(null, res);
+                        connectionpool.releaseSQLConnection(connection);
+                    }
+                });
+            });
     });
 };
 function becomehost_step2(msg, callback){
@@ -41,12 +55,12 @@ function becomehost_step2(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET title = ?, description = ?, availability = ? where propertyid = ?',
-            [msg.title,msg.description,new Date(msg.availability),msg.propertyid],
+            'UPDATE properties SET title = ?, description = ? where propertyid = ?',
+            [msg.title,msg.description,msg.propertyid],
             function (err, result) {
                 if (err)
                 {
-                    console.log(err);
+                    //console.log(err);
                     res.code = 401;
                     res.value = "Step2 failed";
                     callback(null, res);
@@ -94,8 +108,8 @@ function becomehost_step3(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET bid = ?, price = ?, noticeneeded = ? Where propertyid = ?',
-            [msg.bid,msg.price,msg.noticeneeded,msg.propertyid],
+            'UPDATE properties SET bid = ?, price = ?, availability_from = ?,availability_to = ? Where propertyid = ?',
+            [msg.bid_price,msg.price,new Date(msg.availability_from),new Date(msg.availability_to),msg.propertyid],
             function (err, result) {
                 if (err)
                 {

@@ -1,6 +1,3 @@
-/**
- * Created by Venkatesh on 11/21/2016.
- */
 var express = require('express');
 var router = express.Router();
 var mq_client = require('../rpc/client');
@@ -20,13 +17,11 @@ router.post('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-router.post('/becomehost1', function(req, res, next) {
+router.post('/step1', function(req, res, next) {
     console.log('become host');
     var payload = {};
-    //payload.hostid = req.session.userid;
-    payload.hostid = 1;
+    payload.hostid = req.session.user_id;
     payload.category = req.body.category;
-    //payload.propertykind = req.body.propertykind;
     payload.quantity = parseInt(req.body.quantity);
     payload.address = req.body.address;
     payload.city = req.body.city;
@@ -42,19 +37,17 @@ router.post('/becomehost1', function(req, res, next) {
         else
         {
             if(results.code == 200){
-                console.log('response from server');
-                //to do redirect to some page
-                res.send("values updated  successfully");
+                req.session.property_id = results.property_id;
+                res.send({status:'success'});
             }
             else {
                 console.log("Invalid signup... record duplication");
-                res.send("value updation failed");
+                res.send({status:'error',error:"value updation failed"});
             }
         }
     });
 });
-router.post('/becomehost2', function(req, res, next) {
-
+router.post('/step2', function(req, res, next) {
     upload(req,res,function(err) {
         console.log(req.body);
         console.log(req.files);
@@ -62,13 +55,10 @@ router.post('/becomehost2', function(req, res, next) {
             return res.end("Error uploading file.");
         }
         var payload = {};
-        //payload.hostid = req.session.userid;
-        payload.hostid = 1;
-        //payload.propertyid = req.body.propertyid;
-        payload.propertyid = 2;
+        payload.hostid = req.session.user_id;
+        payload.propertyid = req.session.property_id;
         payload.title = req.body.title;
         payload.description = req.body.description;
-        payload.availability = new Date(req.body.availability)
         payload.filenames = [];
         for(i = 0; i < req.files.length; i++)
         {
@@ -83,29 +73,24 @@ router.post('/becomehost2', function(req, res, next) {
                 if(results.code == 200){
                     console.log('response from server');
                     //to do redirect to some page
-                    res.end("values updated  successfully");
+                    res.send({status:'success'});
                 }
                 else {
-                    console.log("Invalid signup... record duplication");
-                    res.end("value updation failed");
+                    res.send({status:'error',error:"value updation failed"});
                 }
             }
         });
-        //res.end("File is uploaded");
     });
 
 });
-router.post('/becomehost3', function(req, res, next) {
+router.post('/step3', function(req, res, next) {
     var payload = {};
-   // payload.hostid = req.session.userid;
-    payload.hostid = 1;
-    //payload.propertyid = req.body.propertyid;
-    payload.propertyid = 2;
-    payload.bid = req.body.bid;
+    payload.hostid = req.session.user_id;
+    payload.propertyid = req.session.property_id;
+    payload.bid_price = parseFloat(req.body.bid_price);
     payload.price = parseFloat(req.body.price);
-    //payload.propertykind = req.body.propertykind;
-    console.log(req.body.noticeneeded);
-    payload.noticeneeded = parseInt(req.body.noticeneeded);
+    payload.availability_from = new Date(req.body.availability_from);
+    payload.availability_to = new Date(req.body.availability_to);
     mq_client.make_request('becomehost3',payload, function(err,results){
         if(err){
             return done(err);
@@ -115,19 +100,17 @@ router.post('/becomehost3', function(req, res, next) {
             if(results.code == 200){
                 console.log('response from server');
                 //to do redirect to some page
-                res.send("values updated  successfully");
+                res.send({status:'success'});
             }
             else {
-                console.log("Invalid signup... record duplication");
-                res.send("value updation failed");
+                res.send({status:'error',error:"value updation failed"});
             }
         }
     });
 });
 router.post('/publish', function(req, res, next) {
     var payload = {};
-    //payload.propertyid = req.body.propertyid;
-    payload.propertyid = 2;
+    payload.propertyid = req.session.property_id;
     mq_client.make_request('publishproperty',payload, function(err,results){
         if(err){
             return done(err);
@@ -135,13 +118,9 @@ router.post('/publish', function(req, res, next) {
         else
         {
             if(results.code == 200){
-                console.log('response from server');
-                //to do redirect to some page
-                res.send("values updated  successfully");
-            }
+                res.send({status:'success'});            }
             else {
-                console.log("Invalid signup... record duplication");
-                res.send("value updation failed");
+                res.send({status:'error',error:'profile was not published'});
             }
         }
     });
