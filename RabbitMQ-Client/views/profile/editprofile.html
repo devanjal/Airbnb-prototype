@@ -216,25 +216,25 @@
 				<div id="panel-border">
 					<div id="panel_head">Required</div>
 					<br><label class="text-right col-sm-3">First Name</label>
-					<input type="text" class="inputfield"="" ng-model="first_name"><br>
+					<input type="text" class="inputfield"="" ng-model="user_info.firstname"><br>
 					<label class="text-right col-sm-3">Last Name</label>
-					<input type="text" name="" ng-model="last_name">
+					<input type="text" name="" ng-model="user_info.lastname">
 					<p>This is only shared once you have a confirmed booking with another Airbnb user.</p><br>
 					<label class="text-right col-sm-3">I Am
 						<i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private">
 						</i>
 					</label>
-					<select ng-model="gender">
-						<option>Gender</option>
-						<option>Male</option>
-						<option>Female</option>
-						<option>Other</option>
+					<select ng-model="user_info.gender">
+						<option value="">Gender</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Other">Other</option>
 					</select>
 					<p>We use this data for analysis and never share it with other users.</p><br>
 					<label class="text-right col-sm-3">Birth Date
 						<i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
 					</label>
-					<select ng-model="month" style="float:left;margin-right:5px">
+					<select ng-model="birthday[0]" style="float:left;margin-right:5px">
 						<option value="1">January</option>
 						<option value="2">February</option>
 						<option value="3">March</option>
@@ -248,7 +248,7 @@
 						<option value="11">November</option>
 						<option value="12">December</option>
 					</select>
-					<select ng-model="day">
+					<select ng-model="birthday[1]">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -281,7 +281,7 @@
 						<option value="30">30</option>
 						<option value="31">31</option>
 					</select>
-					<select ng-model="year">
+					<select ng-model="birthday[2]">
 						<option value="1998">1998</option>
 						<option value="1997">1997</option>
 						<option value="1996">1996</option>
@@ -372,17 +372,17 @@
 					<label class="text-right col-sm-3">Email Address
 						<i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
 					</label>
-					<input type="text" name="" ng-model="email">
+					<input type="text" name="" ng-model="user_info.email">
 					<p>We won’t share your private email address with other Airbnb users. Learn more.</p><br>
 					<label class="text-right col-sm-3">Phone Number
 						<i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
 					</label>
-					<input type="telephone" name="" style="width:160px"/>
+					<input type="telephone" name="" ng-model="user_info.phonenumber" style="width:160px"/>
 					<!-- No phone number entered -->
 					<!-- <div>Add a phone number</div> -->
 					<p>This is only shared once you have a confirmed booking with another Airbnb user. This is how we can all get in touch.</p><br>
 					<label class="text-right col-sm-3">Preferred Language</label>
-					<select ng-model="language">
+					<select ng-model="user_info.language">
 						<option value="id">Bahasa Indonesia</option>
 						<option value="ms">Bahasa Melayu</option>
 						<option value="ca">Català</option>
@@ -412,7 +412,7 @@
 					</select>
 					<p>We'll send you messages in this language.</p><br>
 					<label class="text-right col-sm-3">Preferred Currency</label>
-					<select ng-model="currency">
+					<select ng-model="user_info.currency">
 						<option value="AED">AED</option>
 						<option value="ARS">ARS</option>
 						<option value="AUD">AUD</option>
@@ -460,16 +460,16 @@
 					</select>
 					<p>We’ll show you prices in this currency.</p><br>
 					<label class="text-right col-sm-3">Where You Live</label>
-					<input type="text" name="" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" ng-model="location"><br>
+					<input type="text" name="" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" ng-model="user_info.location"><br>
 					<label class="text-right col-sm-3">Describe Yourself</label>
-					<textarea cols="40" id="user_profile_info_about" name="user_profile_info[about]" rows="5"></textarea>
+					<textarea ng-model="user_info.description" cols="40" id="user_profile_info_about" name="user_profile_info[about]" rows="5"></textarea>
 					<p>Airbnb is built on relationships. Help other people get to know you.</p>
 					<p>Tell them about the things you like: What are 5 things you can’t live without? Share your favorite travel destinations,
 						books, movies, shows, music, food.</p>
 					<p>Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Airbnb hosting?</p>
 					<p>Tell them about you: Do you have a life motto?</p>
 				</div>				
-				<input type="button" id="btn-save" class="btn btn-primary btn-large" value="Save" />
+				<input type="button" ng-click="updateProfile()" id="btn-save" class="btn btn-primary btn-large" value="Save" />
 			</form>
 		</div>
 		</div>

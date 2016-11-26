@@ -11,8 +11,6 @@ function handle_request(msg, callback) {
 			callback(null, res);
 			return;
 		}
-		
-		
 		var passwordHash = bcrypt.hashSync(msg.password, bcrypt.genSaltSync(10),null);
 		console.log("passwordHash: "+passwordHash);
 

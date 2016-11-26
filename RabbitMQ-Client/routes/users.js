@@ -3,8 +3,35 @@ var router = express.Router();
 var passport = require('passport');
 var mq_client = require('../rpc/client');
 
-router.post("/", function (req, res) {
+router.get("/profile", function (req, res) {
 	console.log("req: " + JSON.stringify(req.body));
+	var user_id = req.session.user.id;
+	var msg_payload = { "id": user_id };
+	mq_client.make_request('userInfo_queue', msg_payload, function (err, results) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		console.log("inside make_request get user info");
+		console.log(results);
+		res.send(results);
+		res.end();
+	});
+});
+
+router.post("/update_profile", function (req, res) {
+	console.log(JSON.stringify(req.body));
+	var msg_payload = req.body;
+	mq_client.make_request('updateUserProfile_queue', msg_payload, function (err, results) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		console.log("inside make_request get user info");
+		console.log(results);
+		res.send(results);
+		res.end();
+	});
 });
 
 router.post('/register', function (req, res, next) {
@@ -47,7 +74,7 @@ router.post('/login', function (req, res, next) {
 			console.log("user info");
 			console.log(user);
 			req.session.user = user;
-			res.send({ status: "success",user:user });
+			res.send({ status: "success", user: user });
 		}
 	})(req, res, next);
 });
