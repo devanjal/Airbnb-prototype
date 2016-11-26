@@ -11,8 +11,11 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 var http = require('http');
+
 var passport = require('passport');
 require('./routes/passport')(passport);
+
+var become_host = require('./routes/become_host');
 
 var users = require('./routes/users');
 
@@ -47,6 +50,7 @@ app.use(session({
 
 
 app.use('/users', users);
+app.use('/become_host', become_host);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

@@ -1,4 +1,4 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification']);
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload']);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider) {
 
     NotificationProvider.setOptions({
@@ -43,14 +43,30 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/photos.html',
             controllerUrl: "hostPage/hostController"
         })
+
         .state("become-a-host.description", {
             url: '/description',
             templateUrl: 'hostPage/description.html',
             controllerUrl: "hostPage/hostController"
         })
+        .state("become-a-host.calendar", {
+            url: '/calendar',
+            templateUrl: 'hostPage/hostCalendar.html',
+            controllerUrl: "hostPage/hostController"
+        })
         .state("become-a-host.choose-pricing-mode", {
             url: '/choose-pricing-mode',
             templateUrl: 'hostPage/choose-pricing-mode.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.price", {
+            url: '/price',
+            templateUrl: 'hostPage/fixedPrice.html',
+            controllerUrl: "hostPage/hostController"
+        })
+        .state("become-a-host.publish", {
+            url: '/publish',
+            templateUrl: 'hostPage/readyToPublish.html',
             controllerUrl: "hostPage/hostController"
         })
         .state("search", {
