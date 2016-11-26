@@ -3,17 +3,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
 
     NotificationProvider.setOptions({
         delay: 2000,
-        // startTop: 20,
-        // startRight: 10,
-        // verticalSpacing: 20,
-        // horizontalSpacing: 20,
         positionX: 'center',
         positionY: 'top'
     });
-    // become-a-host
-    // /host
-    // become-a-host/location
-    //become-a-host/category
+
     $stateProvider
         .state("/", {
             url: '/',

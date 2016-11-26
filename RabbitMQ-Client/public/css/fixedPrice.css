@@ -1,3 +1,4 @@
+/*Top Css*/
 div#lys-redesign-div
 {
     min-height: calc(100vh - 62px);
@@ -41,7 +42,7 @@ div#lys-redesign-div
     margin: 0 auto;
 }
 
-/*Middle Css*/
+/*middle Css*/
 .main-panel-container
 {
     padding-bottom: 102px;
@@ -52,147 +53,14 @@ div#lys-redesign-div
     padding-left: 0;
     padding-right: 0;
 }
-.main-panel-inner-full
-{
-    width: 100%;
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
-}
 .main-panel-padding
 {
     padding: 30px;
-}
-.main-panel
-{
     font-size: 18px;
 }
-.col-sm-12
-{
-    position: relative;
-    min-height: 1px;
-}
-.panel--no-border
-{
-    border: 0;
-    padding: 30px 0;
-}
-h3.no-margin-padding
-{
-    margin: 0;
-    padding: 0;
-    font-size: 24px;
-    font-weight: normal;
-}
-.extend-margin-h
-{
-    margin-left: -15px;
-    margin-right: -15px;
-}
-.space-4
-{
-    margin-bottom: 24px;
-}
-.photo-list__container
-{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-}
-.help-panel__floating-container
-{
-    position: absolute;
-    z-index: 103;
-    top: 48px;
-    right: 26px;
-}
-.help-panel__bulb-img-bubble
-{
-    position: relative;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    padding-top: 8px;
-    border: 0;
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.08),0 2px 2px rgba(0,0,0,0.04);
-    background-color: white;
-}
-.help-panel__bulb-img
-{
-    margin-bottom: 14px;
-    background-repeat: no-repeat;
-    background-image: url(https://a0.muscache.com/airbnb/static/list_your_space/tip-icon-73f3ef1d10a9545bfd15fd266803da48.png);
-    width: 22px;
-    height: 31px;
-}
-.img-center
-{
-    margin: auto;
-    background-position: center;
-}
-.no-margin-h
-{
-    margin-left: 0;
-    margin-right: 0;
-}
-input
-{
-    line-height: normal;
-    font-size: inherit;
-    margin: 0;
-}
-.input-file
-{
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-.label--no-margin-padding
-{
-    margin: 0;
-    padding: 0;
-}
-label
-{
-    display: block;
-    line-height: normal;
-}
-.panel-body
-{
-    position: relative;
-    margin: 0;
-    padding: 20px;
-}
-.panel-body.photos__empty-frame
-{
-
-    border-radius: 6px;
-    height: 400px;
-    cursor: pointer;
-}
-.img__upload-photos-ghosts
-{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url(https://a2.muscache.com/airbnb/static/list_your_space/upload-photos-ghosts-21da2dc0ca06d8f7637a453783a27720.png);
-    width: 100%;
-    height: 100%;
-}
-.img__icon-plus-grey
-{
-    background-repeat: no-repeat;
-    background-image: url(https://a1.muscache.com/airbnb/static/list_your_space/plus-large-l-grey-06817361303b0edd0f31cf4dbdd47b81.png);
-    width: 28px;
-    height: 28px;
-}
-
 
 /*Bottom Css*/
-div.main-panel__actions-wrapper
+.main-panel__actions-wrapper
 {
     position: fixed;
     z-index: 111;
@@ -200,13 +68,13 @@ div.main-panel__actions-wrapper
     bottom: 0;
     width: 100%;
 }
-div.centered-content
+.centered-content
 {
     max-width: 912px;
     margin: 0 auto;
 }
 
-div.main-panel-outer-half
+.main-panel-outer-half
 {
     width: 60%;
     float: left;
@@ -219,6 +87,70 @@ div.main-panel-inner-half
 div.pull-right
 {
     float: right;
+}
+.panel--no-border
+{
+    border: 0;
+}
+.panel-title
+{
+    padding: 30px 0;
+}
+h3.no-margin-padding
+{
+    margin: 0;
+    padding: 0;
+}
+.text-normal
+{
+    font-weight: normal;
+    margin: 0;
+}
+.increment-btn
+{
+    width: 100%;
+    max-width: 320px;
+
+}
+.no-padding
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+.increment-jumbo
+{
+    font-size: 18px;
+}
+.text-truncated
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.increment-btn__border-container-label
+{
+    padding: 12px 20px;
+    height: 52px;
+}
+.increment-btn__border-container-label span
+{
+    overflow: hidden;
+    display: inline;
+    max-width: 162px;
+}
+.select
+{
+    position: relative;
+    vertical-align: bottom;
+}
+.select-jumbo
+{
+    width: 100%;
+    max-width: 320px;
+}
+.select-large
+{
+    font-size: 16px;
 }
 
 div.divider
@@ -316,12 +248,4 @@ div.help-panel__text
     font-size: 16px;
     line-height: 150%;
     color: #767676;
-}
-
-div.tip-address-img
-{
-    background-repeat: no-repeat;
-    background-image: url(https://a2.muscache.com/airbnb/static/list_your_space/tip-address-3a85eca55833a5cee81d0c8df157d89d.png);
-    width: 93px;
-    height: 93px;
 }

@@ -1,31 +1,14 @@
+/*Top Css*/
 div#lys-redesign-div
 {
     min-height: calc(100vh - 62px);
     position: relative;
     box-sizing: border-box;
 }
-.left-backdrop
+.full-backdrop
 {
-    width: 50%;
-    padding-left: 91.2px;
-    box-sizing: content-box;
+    width: 100%;
     background-color: #fff;
-    left: 0;
-    z-index: -1;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-
-}
-.right-backdrop--with-bg
-{
-    background-color: #fafafa;
-}
-.right-backdrop
-{
-    left: 50%;
-    margin-left: 91.2px;
-    right: 0;
     z-index: -1;
     position: fixed;
     top: 0;
@@ -35,13 +18,6 @@ div#lys-redesign-div
 {
     padding-top: 71px;
 }
-.list-your-space__content .centered-content
-{
-    max-width: 912px;
-    margin: 0 auto;
-}
-
-/*Middle Css*/
 .main-panel-container
 {
     padding-bottom: 102px;
@@ -67,44 +43,44 @@ div#lys-redesign-div
 {
     font-size: 18px;
 }
-.col-sm-12
+.outerdiv
+{
+    font-family: "Circular", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+}
+.day-picker-container
 {
     position: relative;
-    min-height: 1px;
+    display: block;
 }
-.panel--no-border
+.day-picker-container.large-calendar
 {
-    border: 0;
-    padding: 30px 0;
+    width: 600px;
+    margin: auto 10px;
 }
-h3.no-margin-padding
+.day-picker-container .large-calendar-title
+{
+    height: 50px;
+}
+.input-group
+{
+    display: inline-flex;
+}
+
+.no-margin-padding
 {
     margin: 0;
     padding: 0;
-    font-size: 24px;
-    font-weight: normal;
 }
-.extend-margin-h
+.day-picker-container.large-calendar .help-panel__floating-container
 {
-    margin-left: -15px;
-    margin-right: -15px;
-}
-.space-4
-{
-    margin-bottom: 24px;
-}
-.photo-list__container
-{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
+    top: 0;
+    right: 0;
 }
 .help-panel__floating-container
 {
     position: absolute;
     z-index: 103;
-    top: 48px;
-    right: 26px;
 }
 .help-panel__bulb-img-bubble
 {
@@ -115,8 +91,6 @@ h3.no-margin-padding
     padding-top: 8px;
     border: 0;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.08),0 2px 2px rgba(0,0,0,0.04);
-    background-color: white;
 }
 .help-panel__bulb-img
 {
@@ -131,64 +105,20 @@ h3.no-margin-padding
     margin: auto;
     background-position: center;
 }
-.no-margin-h
-{
-    margin-left: 0;
-    margin-right: 0;
-}
-input
-{
-    line-height: normal;
-    font-size: inherit;
-    margin: 0;
-}
-.input-file
-{
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-.label--no-margin-padding
-{
-    margin: 0;
-    padding: 0;
-}
-label
-{
-    display: block;
-    line-height: normal;
-}
-.panel-body
-{
-    position: relative;
-    margin: 0;
-    padding: 20px;
-}
-.panel-body.photos__empty-frame
-{
 
-    border-radius: 6px;
-    height: 400px;
-    cursor: pointer;
+
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
 }
-.img__upload-photos-ghosts
-{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url(https://a2.muscache.com/airbnb/static/list_your_space/upload-photos-ghosts-21da2dc0ca06d8f7637a453783a27720.png);
-    width: 100%;
-    height: 100%;
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
 }
-.img__icon-plus-grey
-{
-    background-repeat: no-repeat;
-    background-image: url(https://a1.muscache.com/airbnb/static/list_your_space/plus-large-l-grey-06817361303b0edd0f31cf4dbdd47b81.png);
-    width: 28px;
-    height: 28px;
-}
+
 
 
 /*Bottom Css*/
@@ -200,7 +130,7 @@ div.main-panel__actions-wrapper
     bottom: 0;
     width: 100%;
 }
-div.centered-content
+.centered-content
 {
     max-width: 912px;
     margin: 0 auto;
@@ -208,12 +138,12 @@ div.centered-content
 
 div.main-panel-outer-half
 {
-    width: 60%;
+    width: 73%;
     float: left;
 }
 div.main-panel-inner-half
 {
-    max-width: 544px;
+    max-width: 660px;
     width: 100%;
 }
 div.pull-right
@@ -316,12 +246,4 @@ div.help-panel__text
     font-size: 16px;
     line-height: 150%;
     color: #767676;
-}
-
-div.tip-address-img
-{
-    background-repeat: no-repeat;
-    background-image: url(https://a2.muscache.com/airbnb/static/list_your_space/tip-address-3a85eca55833a5cee81d0c8df157d89d.png);
-    width: 93px;
-    height: 93px;
 }
