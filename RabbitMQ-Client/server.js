@@ -18,12 +18,13 @@ require('./routes/passport')(passport);
 var become_host = require('./routes/become_host');
 
 var users = require('./routes/users');
+var bill = require('./routes/bill');
 
 var app = express();
 
 
 app.use(compression());
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
 app.use(favicon(__dirname + '/public/airbnb-favicon.ico'));
@@ -51,6 +52,7 @@ app.use(session({
 
 app.use('/users', users);
 app.use('/become_host', become_host);
+app.use('/bill',bill);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

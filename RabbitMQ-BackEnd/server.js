@@ -8,6 +8,8 @@ var host = require('./services/host');
 
 var user = require("./services/user");
 
+var bill = require('./services/bill');
+
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
 
 cnn.on('ready', function () {
@@ -43,6 +45,7 @@ cnn.on('ready', function () {
     });
 
     cnn.queue('login_queue', function (q) {
+        console.log("login_queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
             util.log(util.format(deliveryInfo.routingKey, message));
             util.log("Message: " + JSON.stringify(message));
@@ -107,6 +110,19 @@ cnn.on('ready', function () {
     cnn.queue('publishproperty', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             host.publishproperty(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('createBillQueue', function (q) {
+        console.log("create bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.createBill(message, function (err, res) {
+                console.log("inside create bill queue");
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
