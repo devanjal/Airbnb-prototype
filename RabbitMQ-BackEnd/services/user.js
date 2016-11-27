@@ -15,6 +15,7 @@ function get_profile_request(msg, callback) {
             } else if (rows.length > 0) {
                 res.code = 200;
                 res.user = rows[0];
+                res.user.profile_image = "images/upload_5a0641f031acebfe76f478dd2ac75929";
                 delete res.user.password;
                 connectionpool.releaseSQLConnection(connection);
                 callback(null, res);

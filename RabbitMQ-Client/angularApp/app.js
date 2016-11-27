@@ -151,7 +151,7 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
             $scope.hideFooter = false;
         }
     });
-
+    $scope.profileImage_icon = "https://a2.muscache.com/defaults/user_pic-50x50.png?v=2";
     $scope.checkStatus = function () {
         debugger
         if (window.sessionStorage.login_status === "true") {
