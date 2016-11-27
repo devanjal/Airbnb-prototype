@@ -26,7 +26,7 @@ function handle_request(msg, callback) {
                 console.log("Error in login ");
                 console.log(err);
                 res.code = 401;
-                res.value = err;
+                res.value = err.code;
                 callback(null, res);
                 connectionpool.releaseSQLConnection(connection);
             } else if (rows.length>0) {

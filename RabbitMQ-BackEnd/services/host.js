@@ -68,12 +68,12 @@ function becomehost_step2(msg, callback){
                     connectionpool.releaseSQLConnection(connection);
                     return;
                 }
-                var post = {};
-                post.hostid = msg.hostid;
-                post.images = msg.filenames;
+                // var post = {};
+                // post.hostid = msg.hostid;
+                // post.images = msg.filenames;
 
                 var mongoconnection = connectionpool.getdbconnection();
-                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames,$sort:{bidplaced:-1}}}} , {upsert:true},function(err, result) {
+                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}},hostid:msg.hostid} , {upsert:true},function(err, result) {
                 //connection.collection('properties').insertOne(post, function(err, result) {
                     if(err) {
                         console.log(err);
