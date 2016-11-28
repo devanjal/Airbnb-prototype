@@ -37,12 +37,23 @@ function handle_request(msg, callback) {
                     res.code = 200;
                     res.value = "Login Success";
                     res.user = rows[0];
+                    connection.query(
+                        'UPDATE users SET logintime = ? Where email = ?',
+                        [new Date().toISOString(), username],
+                        function (err, result) {
+                            if (err)
+                            {
+                                console.log('unable to update login time');
+                            }
+                            connectionpool.releaseSQLConnection(connection);
+                        });
                 } else {
                     console.log("wrong password");
                     res.code = 401;
                     res.value = "Wrong password";
+                    connectionpool.releaseSQLConnection(connection);
                 }
-                connectionpool.releaseSQLConnection(connection);
+
                 callback(null, res);
             }
             else {
@@ -55,5 +66,32 @@ function handle_request(msg, callback) {
         });
     });
 }
-
+function handle_logout(msg, callback) {
+    var res = {};
+    console.log('handle_logout');
+    connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            console.log('Error connecting to Db');
+            return;
+        }
+        connection.query(
+            'UPDATE users SET logouttime = ? Where email = ?',
+            [new Date().toISOString(), msg.email],
+            function (err, result) {
+                if (err)
+                {
+                    connectionpool.releaseSQLConnection(connection);
+                    res.code = 401;
+                    callback(null, res);
+                    return;
+                }
+                res.code = 200;
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            }
+        );
+    });
+}
 exports.handle_request = handle_request;
+exports.handle_logout = handle_logout;

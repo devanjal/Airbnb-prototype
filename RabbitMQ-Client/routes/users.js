@@ -78,4 +78,23 @@ router.post('/login', function (req, res, next) {
 		}
 	})(req, res, next);
 });
+router.post('/logout', function (req, res, next) {
+	console.log("inside /users/logout req: " + JSON.stringify(req.body));
+	mq_client.make_request('logout_queue', req.session.user, function (err, results) {
+		console.log(results);
+		if (err) {
+			console.log(err);
+			return;
+		}
+		if (results.code == 200) {
+			res.send({ 'status': "success" });
+			res.end();
+		}
+		else if (results.code == 401) {
+			res.send({ 'error': results.value });
+			res.end();
+		}
+		req.session.destroy();
+	});
+});
 module.exports = router;

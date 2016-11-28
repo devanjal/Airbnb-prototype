@@ -16,7 +16,7 @@ var passport = require('passport');
 require('./routes/passport')(passport);
 
 var become_host = require('./routes/become_host');
-
+var admin = require('./routes/admin');
 var users = require('./routes/users');
 
 var app = express();
@@ -51,6 +51,7 @@ app.use(session({
 
 app.use('/users', users);
 app.use('/become_host', become_host);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
