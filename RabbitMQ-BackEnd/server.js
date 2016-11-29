@@ -10,6 +10,18 @@ var user = require("./services/user");
 
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
 
+var connectionpool = require("./config/connectionpool");
+
+process.on("SIGINT",function(){
+    console.log("inside sigint process");
+    connectionpool.closedbconnection();
+});
+
+process.on("close",function(){  
+    console.log("inside close process");
+    connectionpool.closedbconnection();
+});
+
 cnn.on('ready', function () {
 
     console.log("listening to all queues");

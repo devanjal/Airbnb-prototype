@@ -99,6 +99,7 @@ router.post('/login', function (req, res, next) {
 			console.log("user info");
 			console.log(user);
 			req.session.user = user;
+			// delete req.session.user;
 			res.send({ status: "success", user: user });
 		}
 	})(req, res, next);

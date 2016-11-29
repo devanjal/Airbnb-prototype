@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 
 function becomehost_step1(msg, callback){
     var res = {};
