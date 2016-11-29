@@ -69,8 +69,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/readyToPublish.html',
             controllerUrl: "hostPage/hostController"
         })
-        .state("search", {
-            url: '/search',
+        .state("searchQuery", {
+            url: '/search?location',
             templateUrl: 'searchPage/searchPage.html',
             controllerUrl: "searchPage/searchController"
         })

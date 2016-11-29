@@ -72,7 +72,11 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
                     $scope.profileImage = data.user.profile_image;
                     $scope.$parent.$parent.profileImage_icon = data.user.profile_image;
                 } else if (data.code === 401) {
-                    Notification.error(data.valule);
+                    if(data.value.code){
+                        Notification.error(data.valule.code);
+                    }else{
+                        Notification.error(data.valule);
+                    }
                 }
             })
             .error(function (err) {

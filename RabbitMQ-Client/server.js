@@ -6,17 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var compression = require('compression');
-
+var mongodb = require('mongodb');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
-var http = require('http');
 
 var passport = require('passport');
 require('./routes/passport')(passport);
 
 var become_host = require('./routes/become_host');
-
 var users = require('./routes/users');
 
 var app = express();
@@ -45,7 +42,7 @@ app.use(session({
     saveUninitialized: true,
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
-    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds163397.mlab.com:63397/airbnb_mongo' })
+    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo' })
 }));
 
 
