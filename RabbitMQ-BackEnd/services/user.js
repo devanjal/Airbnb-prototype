@@ -12,6 +12,7 @@ function get_profile_request(msg, callback) {
                 console.log(err);
                 res.code = 401;
                 res.value = err;
+                // { [Error: Cannot enqueue Query after fatal error.] code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR', fatal: false }
                 callback(null, res);
                 connectionpool.releaseSQLConnection(connection);
             } else if (rows.length > 0) {
