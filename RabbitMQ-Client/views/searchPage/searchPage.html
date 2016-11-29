@@ -1,22 +1,57 @@
-<div class="container-fluid">
+
+<div class="container-fluid" ng-controller="searchController" ng-init="initMap()">
     <div class="row" style="margin-top:50px">
       <div class="col-md-7" style="overflow-y: auto !important;">
-          <div class="row">
-              <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 5px;">
-                <div class="col-md-3 filter-section-header-dates" style="padding:10px;">
-                  <span>Dates</span>
-                </div>
-                <div class="col-md-3">
-                  <input type="text" name="checkin"  class="checkin ui-datepicker-target" placeholder="Check in"></div>
-                <div class="col-md-3">
-                  <input type="text" name="Check out" placeholder="Check out"></div>
-                <div class="col-md-3"><input type="text" name="1 guest"></div>
+              <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
+
+                    <div class="col-md-3 text-center-sm text-center-md space-sm-1 sectionLabel_rcr7sj" style="padding: 10px 0px;">
+                        <div>
+                            <span>Dates</span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3" style="padding: 0;padding-right: 5px;">
+                        <input type="text" ng-model="checkin" class="form-control" ng-click="open1()" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
+                               datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Check-in"/>
+
+                    </div>
+                    <div class="col-md-3" style="padding: 0;padding-right: 5px;">
+                        <input type="text" ng-model="checkout" class="form-control" ng-click="open2()" uib-datepicker-popup is-open="popup2.opened"
+                               datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="Check out"/>
+                    </div>
+                    <div class="col-md-3" style="padding: 0;padding-right: 5px;">
+                        <select id="how-many-guests" class="GuestInput" aria-label="Number of guests" name="guests" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0">
+                            <option selected="" value="1" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$1">1 Guest</option>
+                            <option value="2" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$2">2 Guests</option>
+                            <option value="3" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$3">3 Guests</option>
+                            <option value="4" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$4">4 Guests</option>
+                            <option value="5" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$5">5 Guests</option>
+                            <option value="6" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$6">6 Guests</option>
+                            <option value="7" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$7">7 Guests</option>
+                            <option value="8" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$8">8 Guests</option>
+                            <option value="9" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$9">9 Guests</option>
+                            <option value="10" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$10">10 Guests</option>
+                            <option value="11" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$11">11 Guests</option>
+                            <option value="12" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$12">12 Guests</option>
+                            <option value="13" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$13">13 Guests</option>
+                            <option value="14" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$14">14 Guests</option>
+                            <option value="15" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$15">15 Guests</option>
+                            <option value="16" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$16">16+ Guests</option>
+                        </select>
+
+                    </div>
+
               </div>
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
 
-                <div class="col-md-3 filter-section-header-room-types" style="padding:15px 0px;">
-                  <span>Room Type</span>
-                  <i class="icon icon-question hide-sm hide-md"></i>
+                <div class="col-md-3 text-center-sm text-center-md space-sm-1 sectionLabel_rcr7sj" style="padding:15px 0px;">
+                    <div>
+                        <span>Room Type</span>
+                        <span> </span>
+                        <span>
+                            <i class="icon icon-question hide-sm hide-md"></i>
+                        </span>
+                    </div>
                 </div>
                   <div class="col-md-3" style="padding:0px;padding-right:5px">
                     <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark">
@@ -29,7 +64,7 @@
                           </div>
                           <div class="col-md-2 facet-checkbox__input-col">
                             <input type="checkbox" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -1px;" />
-                            </div>
+                          </div>
                       </div>
                   </label>
                 </div>
@@ -67,156 +102,161 @@
                 </div>
               </div>
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
-                <div class="col-md-3 filter-section-header-price" style="padding:15px;">
+                <div class="col-md-3 filter-section-header-price" style="padding: 10px 0px;">
                   <span>Price Range</span>
                 </div>
                 <div class="p2-slider-new">
                 </div>
               </div>
-              <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 15px;">
+              <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
                 <div class="row">
-                  <div class="col-md-3" style="padding-top:10px;">
+                  <div class="col-md-3" style="padding:10px 0px;">
                     <i class="icon icon-instant-book icon-beach h4"></i>
                     <span>Instant Book</span>
                   </div>
-                  <div class="col-md-9">
-                    <div class="row row-condensed ib_p2_filter">
-                      <div class="pull-right text_padding">
-                        <label class="toggle toggle--color-babu">
-                          <input type="checkbox" class="toggle__checkbox">
-                          <div class="toggle__track"></div>
-                          <div class="toggle__handle"><span>Off</span></div>
-                        </label>
-                      </div>
-                    </div>
+                  <div class="col-md-7">
                       <div class="button_padding">
-                        <span>Listings you can book without waiting for host approval. </span>
+                          <span>Listings you can book without waiting for host approval. </span>
                       </div>
+                  </div>
+                    <div class="col-md-2">
+
+                        <div class="row row-condensed ib_p2_filter">
+                          <div class="pull-right text_padding">
+                            <label class="toggle toggle--color-babu">
+                              <input type="checkbox" class="toggle__checkbox">
+                              <div class="toggle__track"></div>
+                              <div class="toggle__handle"><span>Off</span></div>
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+
                     </div>
                   </div>
-                </div>
-              <div class="col-md-12" style="padding :10px 15px;">
-                <div class="row">
-                  <div class="col-md-1">
-                    <button type="button" class="btn">
-                      <span>Filters</span>
-                    </button>
+              <div class="col-md-12" style="padding :10px 0px;">
+                  <div class="row">
+                      <div class="col-md-1">
+                          <button type="button" class="btn">
+                              <span>Filters</span>
+                          </button>
+                      </div>
+                      <div class="col-md-6"></div>
+                      <div class="col-md-5">Some dynamic text</div>
                   </div>
-                  <div class="col-md-6"></div>
-                  <div class="col-md-5">Some dynamic text</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 pricing-disclaimer text-muted">
-                    <i class="icon icon-currency-usd"></i>
-                    <span>Additional Fees apply. Taxes may be added.</span>
+                  <div class="row">
+                      <div class="col-md-12 pricing-disclaimer text-muted">
+                          <i class="icon icon-currency-usd"></i>
+                          <span>Additional Fees apply. Taxes may be added.</span>
+                      </div>
                   </div>
-                </div>
               </div>
-              <div class="search-results">
-                <div class="outer-listings-container space-2">
+          <div class="col-md-12 search-results" style="padding: 10px 0px;">
+              <div class="outer-listings-container space-2">
                   <div lass="listings-container">
-                    <div class="row">
-                      <div class="listing-card-wrapper col-sm-12 space-2 col-md-6">
-                        <div class="listing" >
-                          <div class="panel-image listing-img listing-img-hide-carousel-controls">
-                            <div>
-                              <a href="/rooms/9996469" class="media-photo media-cover">
-                                <div class="listing-img-container media-cover text-center">
-                                  <img src="https://a2.muscache.com/im/pictures/dee960f9-3379-477a-91f6-ad95867fcd2d.jpg?aki_policy=x_medium" alt="Cozy bedroom in Santa Clara CA">
-                                </div>
-                              </a>
-                              <div class="slideshow-controls">
-                                <button class="target-prev target-control block-link">
-                                  <i class="icon icon-chevron-left icon-size-2 icon-white"></i>
-                                </button>
-                                <button class="target-next target-control block-link">
-                                  <i class="icon icon-chevron-right icon-size-2 icon-white"></i>
-                                </button>
-                              </div>
-                              <a href="/rooms/9996469">
-                                <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
-                                  <div class="price-label">
-                                    <span>
-                                      <sup class="currency-prefix">$</sup>
-                                      <span class="price-amount">Price</span>
-                                      <span> </span>
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- one more div has to be inserted -->
-                              <div class="panel-overlay-top-right wl-social-connection-panel">
-                                <span class="rich-toggle wish_list_button wishlist-button not_saved">
-                                  <input type="checkbox">
-                                  <label class="hide-sm">
-                                    <i name="heart" size="2" color="true-rausch" class="icon icon-heart icon-true-rausch icon-size-2 rich-toggle-checked"></i>
-                                    <i name="heart" size="2" class="icon icon-heart icon-size-2 wishlist-heart-unchecked rich-toggle-unchecked"></i>
-                                    <i name="heart-alt" size="2" color="white" class="icon icon-heart-alt icon-white icon-size-2"></i>
-                                  </label>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="panel-body panel-card-section">
-                            <div class="media">
-                                <a href="#" class="pull-right media-photo-badge card-profile-picture card-profile-picture-offset" rel="nofollow">
-                                  <div class="media-photo media-round">
-                                    <img src="" alt="Carlos"></img>
-                                  </div>
-
-                                </a>
-                                <h3 title="Cozy Bedroom in santa clara ca" class="h5 listing-name text-truncate space-top-1">
-                                  <a href="#" class="text-normal">
-                                    <span class="listing-name--display">ABCD</span>
-                                  </a>
-                                </h3>
-                                <a href="#" class="text-normal link-reset">
-                                  <div class="text-muted listing-location text-truncate">
-                                    <div>
-                                      <span class="listing-card-room-type">Entire Home/ Apt </span>
-                                      <span>.</span>
-                                      <span class="person-capacity hide-md">
-                                        <span >2 guests</span>
-                                      </span>
-                                        <span>.</span>
-                                      <span>
-                                        <small>
-                                          <div class="star-rating-wrapper">
-
+                      <div class="row">
+                          <div class="listing-card-wrapper col-sm-12 space-2 col-md-6">
+                              <div class="listing">
+                                  <div class="panel-image listing-img listing-img-hide-carousel-controls">
+                                      <div>
+                                          <a href="/rooms/9996469" class="media-photo media-cover" target="">
+                                              <div class="listing-img-container media-cover text-center">
+                                                  <img class="img-responsive-height" src="https://a2.muscache.com/im/pictures/dee960f9-3379-477a-91f6-ad95867fcd2d.jpg?aki_policy=x_medium" alt="Cozy bedroom in Santa Clara CA">
+                                              </div>
+                                          </a>
+                                          <div class="slideshow-controls">
+                                              <button class="target-prev target-control block-link">
+                                                  <i class="icon icon-chevron-left icon-size-2 icon-white"></i>
+                                              </button>
+                                              <button class="target-next target-control block-link">
+                                                  <i class="icon icon-chevron-right icon-size-2 icon-white"></i>
+                                              </button>
                                           </div>
-                                        </small>
-                                      </span>
-
-
-                                    </div>
-
+                                          <a href="/rooms/9996469">
+                                              <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
+                                                  <div class="price-label">
+                                                    <span>
+                                                      <sup class="currency-prefix">$</sup>
+                                                      <span class="price-amount">Price</span>
+                                                      <span> </span>
+                                                    </span>
+                                                  </div>
+                                              </div>
+                                          </a>
+                                          <!-- one more div has to be inserted -->
+                                          <div class="panel-overlay-top-right wl-social-connection-panel">
+                                             <span class="rich-toggle wish_list_button wishlist-button not_saved" style="display:block;width:32px;height:32px;">
+                                                <input type="checkbox">
+                                                  <label class="hide-sm">
+                                                    <i name="heart" size="2" color="true-rausch" class="icon icon-heart icon-true-rausch icon-size-2 rich-toggle-checked"></i>
+                                                    <i name="heart" size="2" class="icon icon-heart icon-size-2 wishlist-heart-unchecked rich-toggle-unchecked"></i>
+                                                    <i name="heart-alt" size="2" color="white" class="icon icon-heart-alt icon-white icon-size-2"></i>
+                                                  </label>
+                                             </span>
+                                          </div>
+                                      </div>
                                   </div>
-                                </a>
-                            </div>
+                                  <div class="panel-body panel-card-section">
+                                      <div class="media">
+                                          <a href="#" class="pull-right media-photo-badge card-profile-picture card-profile-picture-offset" rel="nofollow">
+                                              <div class="media-photo media-round">
+                                                  <img src="image.jpg" alt="Carlos">
+                                              </div>
+
+                                          </a>
+                                          <h3 title="Cozy Bedroom in santa clara ca" class="h5 listing-name text-truncate space-top-1">
+                                              <a ui-sref="individualProperty" class="text-normal">
+                                                  <span class="listing-name--display">ABCD</span>
+                                              </a>
+                                          </h3>
+                                          <a href="#" class="text-normal link-reset">
+                                              <div class="text-muted listing-location text-truncate">
+                                                  <div class>
+                                                      <span class="listing-card-room-type">Entire Home/ Apt </span>
+                                                      <span>.</span>
+                                                      <span class="person-capacity hide-md">
+                                                          <span >2 guests</span>
+                                                        </span>
+                                                      <span>.</span>
+                                                      <span>
+                                                        <small>
+                                                          <div class="star-rating-wrapper">
+
+                                                          </div>
+                                                        </small>
+                                                      </span>
+
+
+                                                  </div>
+
+                                              </div>
+                                          </a>
+                                      </div>
+                                  </div>
+                              </div><!-- end of listing -->
                           </div>
-                        </div><!-- end of listing -->
                       </div>
-                    </div>
                   </div>
+
+              </div>
+
+          </div>
+      </div>
+        <div class="col-md-5 map">
+            <div style="height:100%;" class="search-results-map">
+                <div class="map-canvas">
+
+
+                            <div id="map"></div>
+
 
                 </div>
 
-              </div>
-          </div>
-        </div>
-    <div class="col-md-5 map">
-      <div style="height:100%;" class="search-results-map">
-        <div class="map-canvas">
-          <div style="height: 100%; width: 100%; position: relative; background-color: rgb(164, 221, 245); overflow: hidden;">
-            <div class style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
             </div>
-          </div>
         </div>
-        <div></div>
-      </div>
+
+
     </div>
-  </div>
 </div>
 
-<!--</body>
-</html>-->
+

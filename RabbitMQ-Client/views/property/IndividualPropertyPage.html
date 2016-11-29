@@ -373,8 +373,8 @@ font-weight: 700 !important;
 }
 
 </style>
-</head>
-<body>
+
+<div  ng-controller="propertyController">
 
 <div class="subnav-container">
   <div class="subnav book-it show-md" data-sticky="true" data-transition-at="#details">
@@ -482,12 +482,12 @@ font-weight: 700 !important;
               <img class="carousel-image img-responsive-height" src="https://a2.muscache.com/im/pictures/29408211/aeec261c_original.jpg?aki_policy=x_large" alt="NEW Memory Foam mattress, new sheets and pillows!">
               <img class="carousel-image img-responsive-height" src="https://a2.muscache.com/im/pictures/29408211/aeec261c_original.jpg?aki_policy=x_large" >
             </div>
-            <div class="hero__view-photos">
-              <a href="#myModal">
-                <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
-                  <span>View Photos</span>
-                </button>
-              </a>
+              <div class="hero__view-photos">
+              <button type="button" ng-click="openGallery();" class="btn" data-toggle="modal" data-target="#myModal">
+                <span>View Photos</span>
+
+              </button>
+            <ng-image-gallery images="images" methods="methods" on-open="opened();" on-close="closed();"></ng-image-gallery>
             </div>
           </span>
         </div>
@@ -525,16 +525,10 @@ font-weight: 700 !important;
                                       </div>
                                       <div class="show-lg-inline-block show-md-inline-block show-sm">
                                         <a href="#reviews" class="link-reset">
-                                          <div class="star-rating-wrapper" ng-controller="RatingDemoCtrl">
+                                          <div class="star-rating-wrapper">
                                             <div class="star-rating">
                                               <div class="foreground">
-                                                <span>
-
-                                                    <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-
-
-                                                </span>
-
+                                                    <span uib-rating ng-model="rate" max="max" read-only="isReadonly" aria-labelledby="default-rating"></span>
                                               </div>
                                             </div>
                                           </div>
@@ -1032,6 +1026,7 @@ font-weight: 700 !important;
                                   </span>
                                   <div class="" style="display:inline-block;">
                                     <!-- div for the review stars -->
+                                    <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
                                   </div>
                                 </h4>
                               </div>
@@ -1327,22 +1322,8 @@ font-weight: 700 !important;
 
     </div>
 </div>
-
-<div class="portfolio-modal modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="close-modal">
-        <div class="lr">
-          <div class="rl"></div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row"></div>
-      </div>
-
-    </div>
-  </div>
 </div>
+
 
     <script>
     angular.module('ui.bootstrap.demo',['ui.bootstrap']).controller('RatingDemoCtrl', function ($scope,$uibModal) {
@@ -1353,5 +1334,4 @@ font-weight: 700 !important;
     </script>
 
 
-</body>
-</html>
+

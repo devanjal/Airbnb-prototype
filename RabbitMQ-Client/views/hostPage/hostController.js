@@ -7,7 +7,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
     $scope.photos = [];
     $scope.activeDecrement = false;
     $scope.continue = function () {
-        debugger
+        //debugger
         if (window.sessionStorage.login_status === "false" || window.sessionStorage.login_status === undefined) {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -23,7 +23,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
         }
     };
 //--calendar functions-----------------
-    $scope.format='MM-dd-yyyy'
+    $scope.format='MM-dd-yyyy';
     $scope.dateOptions = {
         dateDisabled: disabled,
         formatYear: 'yy',

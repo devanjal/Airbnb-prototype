@@ -1,4 +1,5 @@
-<div class="default" style="padding-top: 48px !important;height:800px">
+
+<div class="default" style="padding-top: 48px !important;height:800px" ng-controller="defaultController">
     <div class="row" style="margin: 0;">
         <h1 style="width:75% !important;">
             <span class="livethere">Live there.</span> Book unique homes and experience a city like a local.
@@ -14,9 +15,16 @@
             <div class="col-xl-12 col-md-4" style="border-right:1px solid lightgray;padding-bottom: 5px;">
                 <label>When</label>
                 <div class="row">
+
                     <div class="col-md-5">
-                        <input type="text" class="form-control" ng-model="checkin" placeholder="Check In" required />
+                        <p class="input-group" >
+                        <input type="text" ng-model="checkin" class="form-control" ng-click="open1()" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
+                               datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Check-in"/>
+                        </p>
+
                     </div>
+
+
                     <div class="col-md-2">
                         <svg class="rightarrow" viewBox="0 0 1000 1000" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.1.1.0.1.0">
                             <path d="M694.4 242.4l249.1 249.1c11 11 11 21 0 32L694.4 772.7c-5 5-10 7-16 7s-11-2-16-7c-11-11-11-21 0-32l210.1-210.1H67.1c-13 0-23-10-23-23s10-23 23-23h805.4L662.4 274.5c-21-21.1 11-53.1 32-32.1z"
@@ -24,10 +32,15 @@
                         </svg>
                     </div>
                     <div class="col-md-5" style="padding-left: 0;">
-                        <input type="text" class="form-control" ng-model="checkout" placeholder="Check Out" required />
+                        <p class="input-group" >
+                            <input type="text" ng-model="checkout" class="form-control" ng-click="open2()" uib-datepicker-popup is-open="popup2.opened"
+                                   datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="Check out"/>
+                        </p>
+
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-12 col-md-4" style="padding-bottom: 5px;">
                 <div class="row">
                     <div class="col-md-7">
@@ -53,7 +66,7 @@
                         <svg class="downarrow" viewBox="0 0 18 18" style="fill:currentColor;height:12px;width:12px;display:block;" data-reactid=".fqyp72lce8.1.0.1.0.0.0.0.2.1.1"><path d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z" data-reactid=".fqyp72lce8.1.0.1.0.0.0.0.2.1.1.0"></path></svg>
                     </div>
                     <div class="col-md-5" style="padding-top: 14px;">
-                        <button type="submit" ui-sref="search" class="btn btn-primary searchbtn">Search</button>
+                        <button type="submit" ui-sref="searchQuery({location: SanJoseCA})" class="btn btn-primary searchbtn" ">Search</button>
                     </div>
                 </div>
             </div>

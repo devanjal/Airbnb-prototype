@@ -1,11 +1,20 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload']);
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider) {
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload', 'thatisuday.ng-image-gallery']);
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider','ngImageGalleryOptsProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
 
     NotificationProvider.setOptions({
         delay: 2000,
         positionX: 'center',
         positionY: 'top'
     });
+
+    ngImageGalleryOptsProvider.setOpts({
+        thumbnails  :   false,
+        inline      :   false,
+        imgBubbles  :   false,
+        bgClose     :   true,
+        bubbles     :   true,
+        imgAnim 	: 	'fadeup',
+     });
 
     $stateProvider
         .state("/", {
@@ -94,6 +103,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'profile/viewprofile.html',
             controllerUrl: "profile/profileController"
         })
+        .state("individualProperty",{
+            url:'/property',
+            templateUrl:'property/IndividualPropertyPage.html',
+            controllerUrl: "property/propertyController"
+
+
+        })
         
         ;        
         
@@ -144,7 +160,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
 app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal) {
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        debugger
+        //debugger
         if(toState.name.indexOf("become-a-host.")>-1){
             $scope.hideFooter = true;
         }else{
@@ -153,7 +169,7 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
     });
     $scope.profileImage_icon = "https://a2.muscache.com/defaults/user_pic-50x50.png?v=2";
     $scope.checkStatus = function () {
-        debugger
+        //debugger
         if (window.sessionStorage.login_status === "true") {
             $scope.loginStatus = true;
             $scope.user = JSON.parse(window.sessionStorage.user_info);
@@ -214,12 +230,12 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
 
 app.controller('signupController', function ($scope, $uibModalInstance, $http, $uibModal) {
 
-    debugger
+    //debugger
     $scope.registeralerts = [];
     $scope.showSignupForm = false;
     $scope.registerUser = {};
     $scope.signup = function () {
-        debugger
+        //debugger
         $scope.showSignupForm = true;
     }
 
@@ -274,7 +290,7 @@ app.controller('signupController', function ($scope, $uibModalInstance, $http, $
 
 });
 app.controller('loginController', function ($scope, $uibModalInstance, $http, $uibModal) {
-    debugger
+    //debugger
 
     $scope.loginalerts = [];
 
@@ -283,10 +299,10 @@ app.controller('loginController', function ($scope, $uibModalInstance, $http, $u
     }
 
     $scope.login = function () {
-        debugger
+        //debugger
         $http.post("/users/login", $scope.user)
             .success(function (data) {
-                debugger
+                //debugger
                 if (data.status === "success") {
                     $uibModalInstance.dismiss('close');
                     window.sessionStorage.login_status = "true";
