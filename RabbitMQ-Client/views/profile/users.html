@@ -3,7 +3,7 @@
         <div class="page-container-responsive">
             <ul class="subnav-list">
                 <li ng-repeat="menu in profile_menus">
-                    <a ng-click="selectMenu($index)" aria-selected="{{$index == selected}}" ng-class="{'active': $index == selected}" id="{{menu.id}}" class="subnav-item" href="#" aria-selected="false">{{menu.name}}</a>
+                    <a ng-click="selectMenu($index)" ui-sref="{{menu.link}}" aria-selected="{{$index == selected}}" ng-class="{'active': $index == selected}" id="{{menu.id}}" class="subnav-item" href="#" aria-selected="false">{{menu.name}}</a>
                 </li>
                 <!--<li>
                     <a id="rooms-item" class="subnav-item cohosting-ml-tooltip-trigger" href="#" aria-selected="false">Your Listing</a>

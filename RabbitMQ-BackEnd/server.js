@@ -23,7 +23,6 @@ process.on("close",function(){
 });
 
 cnn.on('ready', function () {
-
     console.log("listening to all queues");
 
     cnn.queue('userInfo_queue', function (q) {

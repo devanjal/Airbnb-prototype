@@ -94,8 +94,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'profile/viewprofile.html',
             controllerUrl: "profile/profileController"
         })
-        
-        ;        
+        .state("users.listings", {
+            url: '/listings',
+            templateUrl: 'profile/listing.html',
+            controllerUrl: "profile/profileController"
+        });        
         
         // become-a-host.
         // .state("Register", {

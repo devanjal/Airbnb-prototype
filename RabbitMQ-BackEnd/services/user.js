@@ -1,4 +1,6 @@
+
 var connectionpool = require('../config/connectionpool');
+
 function get_profile_request(msg, callback) {
     var res = {};
     console.log('get user info');
@@ -50,6 +52,7 @@ function update_profile_request(msg, callback) {
                     res.code = 401;
                     res.value = err.code;
  			    }
+
                 console.log(result);
                 if (result) {
                     res.code = 200;

@@ -2,23 +2,28 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
     $scope.profile_menus = [
         {
             name: "Dashboard",
-            id: "dashboard-item"
+            id: "dashboard-item",
+            link:"users"
         },
         {
             name: "Your Listing",
-            id: "rooms-item"
+            id: "rooms-item",
+            link:"users.listings"
         },
         {
             name: "Your Trips",
-            id: "your-trips-item"
+            id: "your-trips-item",
+            link:"users"
         },
         {
             name: "Profile",
-            id: "user-profile-item"
+            id: "user-profile-item",
+            link:"users"
         },
         {
             name: "Account",
-            id: "account-item"
+            id: "account-item",
+            link:"users"
         }
     ];
 

@@ -1,2 +1,9 @@
 RabbitMQ-BackEnd/node_modules/*
+<<<<<<< HEAD
 RabbitMQ-Client/node_modules/*
+=======
+RabbitMQ-Client/node_modules/*
+RabbitMQ-BackEnd/package.json
+RabbitMQ-Client/package.json
+.idea/*
+>>>>>>> origin/Nikhil
