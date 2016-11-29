@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var mq_client = require('../rpc/client');
+var formidable = require('formidable');
+var fs = require('fs');
 
 router.get("/profile", function (req, res) {
 	console.log("req: " + JSON.stringify(req.body));
@@ -16,6 +18,29 @@ router.get("/profile", function (req, res) {
 		console.log(results);
 		res.send(results);
 		res.end();
+	});
+});
+
+router.post("/upload_profile_pic", function (req, res) {
+	var form = new formidable.IncomingForm();
+	form.uploadDir = "./public/images";
+	form.parse(req, function (err, fields, files) {
+		var profile_image = files.file;
+		var payload = {};
+		payload.hostid = req.session.user.id;
+		console.log(profile_image.path.substring(7));
+		payload.profile_image = profile_image.path.substring(7);
+
+		mq_client.make_request('user_profile_image_queue', payload, function (err, results) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			console.log("inside make_request get user info");
+			console.log(results);
+			res.send(results);
+			res.end();
+		});
 	});
 });
 
@@ -94,7 +119,7 @@ router.post('/logout', function (req, res, next) {
 			res.send({ 'error': results.value });
 			res.end();
 		}
-		req.session.destroy();
+		delete req.session.user;
 	});
 });
 module.exports = router;

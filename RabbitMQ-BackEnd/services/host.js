@@ -21,6 +21,8 @@ function becomehost_step1(msg, callback){
                     connectionpool.releaseSQLConnection(connection);
                     return;
                 }
+
+                console.log(result.insertId);
                 connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
                     if (!err)
                     {
@@ -56,8 +58,8 @@ function becomehost_step2(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET title = ?, description = ? where propertyid = ?',
-            [msg.title,msg.description,msg.propertyid],
+            'UPDATE properties SET title = ?, description = ?,published = ? where propertyid = ?',
+            [msg.title,msg.description,'step2',msg.propertyid],
             function (err, result) {
                 if (err)
                 {
@@ -73,7 +75,7 @@ function becomehost_step2(msg, callback){
                 // post.images = msg.filenames;
 
                 var mongoconnection = connectionpool.getdbconnection();
-                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}},hostid:msg.hostid} , {upsert:true},function(err, result) {
+                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}},$set:{hostid:msg.hostid}}, {upsert:true},function(err, result) {
                 //connection.collection('properties').insertOne(post, function(err, result) {
                     if(err) {
                         console.log(err);
@@ -102,8 +104,8 @@ function becomehost_step3(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET bid_price = ?, price = ?, availability_from = ?,availability_to = ? Where propertyid = ?',
-            [msg.bid_price,msg.price,new Date(msg.availability_from),new Date(msg.availability_to),msg.propertyid],
+            'UPDATE properties SET bid_price = ?, price = ?, availability_from = ?,availability_to = ?,published = ? Where propertyid = ?',
+            [msg.bid_price,msg.price,new Date(msg.availability_from),new Date(msg.availability_to),'step3',msg.propertyid],
             function (err, result) {
                 if (err)
                 {
@@ -159,7 +161,35 @@ function publishproperty(msg, callback){
             });
     });
 };
+
+function postuserreview(msg, callback){
+    var res = {};
+    console.log(JSON.stringify(msg));
+    var mongoconnection = connectionpool.getdbconnection();
+    var review = {};
+    review.text = msg.text;
+    review.date = new date();
+    review.hostid = msg.hostid;
+    review.hostname = msg.hostname ;
+   /* mongoconnection.collection('properties').update({id:msg.userid},{$push:{reviews:{$each:[{review.text,}]}},$set:{hostid:msg.hostid}}, {upsert:true},function(err, result) {
+        if(err) {
+            console.log(err);
+            res.code = 400;
+            res.value = err;
+            connectionpool.releaseSQLConnection(connection);
+            callback(null, res);
+            return;
+        }
+        res.code = 200;
+        res.value = "Step2 updated";
+        connectionpool.releaseSQLConnection(connection);
+        callback(null, res);
+    });*/
+};
+
 exports.becomehost_queue1 = becomehost_step1;
 exports.becomehost_queue2 = becomehost_step2;
 exports.becomehost_queue3 = becomehost_step3;
 exports.publishproperty = publishproperty;
+
+exports.postuserreview = postuserreview;
