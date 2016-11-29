@@ -24,7 +24,7 @@ router.post('/createBill',function(req,res){
         }
     });
 });
-router.get('/get',function (req,res) {
+router.get('/getBill',function (req,res) {
 
     var payload={};
     payload.user_id=req.session.user_id;
