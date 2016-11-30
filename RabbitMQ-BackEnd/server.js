@@ -144,4 +144,17 @@ cnn.on('ready', function () {
             });
         });
     });
+    cnn.queue('deleteBillQueue', function (q) {
+        console.log("Delete bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.deleteBill(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
 });

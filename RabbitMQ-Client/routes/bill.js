@@ -46,4 +46,24 @@ router.get('/getBill',function (req,res) {
     });
 
 });
+router.post('/deleteBill',function (req, res) {
+   var payload={};
+    payload.bill_id=req.body.bill_id;
+    payload.user_id=req.body.user_id; //Have to change it to session
+    mq_client.make_request('deleteBillQueue', payload, function(err,results){
+        if(err){
+            return done(err);
+        }
+        else
+        {
+            if(results.code == 200){
+                //   console.log(results);
+                res.send({status:'success', result:results.result});
+            }
+            else {
+                res.send({status:'error',error:"Bill Deletion Failed"});
+            }
+        }
+    });
+});
 module.exports = router;
