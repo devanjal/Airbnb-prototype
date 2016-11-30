@@ -46,6 +46,26 @@ router.get('/getBill',function (req,res) {
     });
 
 });
+router.post('/getById',function (req,res) {
+    var payload=req.body;
+    //payload.user_id=req.session.user_id;
+    console.log("Getting the bills by Bill ID");
+    mq_client.make_request('BillIDQueue', payload, function(err,results){
+        if(err){
+            return done(err);
+        }
+        else
+        {
+            if(results.code == 200){
+                //   console.log(results);
+                res.send({status:'success', result:results.result});
+            }
+            else {
+                res.send({status:'error',error:"Get bills Failed"});
+            }
+        }
+    });
+});
 router.post('/deleteBill',function (req, res) {
    var payload={};
     payload.bill_id=req.body.bill_id;
