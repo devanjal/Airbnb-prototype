@@ -163,4 +163,15 @@ cnn.on('ready', function () {
             });
         });
     });
+    cnn.queue('searchbycity', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            property.searchbycity(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
 });

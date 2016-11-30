@@ -88,13 +88,15 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
         }
         else if($stateParams.location !== undefined && $stateParams.checkout == undefined && $stateParams.checkin == undefined){
             $http({
-                url:"/property/searchbyuserid",
+                url:"/property/searchbycity",
                 method:"post",
                 data:{
-
+                    city:$stateParams.location
                 }
             }).success(function(data){
-                console.log("I m in success of searchbyuserid angular");
+                console.log("I m in success of searchbycity angular");
+                $scope.propertyList=data.value;
+                //console.log(data.value[0].propertyid);
 
             })
         }

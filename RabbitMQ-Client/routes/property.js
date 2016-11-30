@@ -129,4 +129,29 @@ router.post('/searchAllProperties', function(req, res, next) {
     });
 });
 
+router.post('/searchbycity', function(req, res, next) {
+    console.log('search by city');
+
+    var payload = {};
+    //payload.userid = req.session.user.id;
+    payload.city = req.body.city;
+
+    mq_client.make_request('searchbycity',payload, function(err,results){
+        if(err){
+            return done(err);
+        }
+        else
+        {
+            if(results.code == 200){
+                res.send(results);
+            }
+            else {
+                console.log("Invalid signup... record duplication");
+                res.send({status:'error',error:"value updation failed"});
+            }
+        }
+    });
+});
+
+
 module.exports = router;
