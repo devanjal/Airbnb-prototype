@@ -70,6 +70,59 @@ function gettoprevenue(msg, callback){
     });
 };
 
+function gethostrequests(msg, callback){
+    var res = {};
+    var query = "";
+       connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            'select id,userid,firstname,lastname,email from users where id in (select hostid from properties group by hostid) and usertype = ?',
+            ['user'],
+            function (err, rows,fields) {
+                if (err)
+                {
+                    res.code = 401;
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                var arr = [];
+                for(var i=0;i<rows.length;i++) {
+                    arr.push(rows[i].id);
+                }
+                var mongoconnection = connectionpool.getdbconnection();
+                mongoconnection.collection('users').find({id:{$in:arr}}).toArray(function(err, result) {
+                    if (err) {
+                        console.log(err);
+                        res.code = 400;
+                        res.value = err;
+                        connectionpool.releaseSQLConnection(connection);
+                        callback(null, res);
+                        return;
+                    }
+                    res.mongoval = result;
+                    connectionpool.releaseSQLConnection(connection);
+                    for(var i=0;i<rows.length;i++){
+                        rows[i].profile_image = [];
+                        for(var j=0;j<result.length; j++){
+                            if(rows[i].id==result[j].id){
+                                rows[i].profile_image = result[j].profile_image;
+                            }
+                        }
+                    }
+                    res.code = 200;
+                    res.value = rows;
+                    callback(null, res);
+                });
+            });
+    });
+};
 exports.approvehost = approvehost;
 exports.gettoprevenue = gettoprevenue;
-//exports.gethostrequests = gethostrequests;
+exports.gethostrequests = gethostrequests;

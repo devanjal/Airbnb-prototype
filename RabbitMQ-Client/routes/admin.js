@@ -51,7 +51,8 @@ router.post('/gethostrequests', function (req, res) {
             return;
         }
         if(results.code == 200){
-            res.send(results);
+            //delete results.value.password;
+            res.send(results.value);
         }
         else {
             res.send({status:'error',error:"Unable to fetch data"});

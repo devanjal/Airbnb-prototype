@@ -22,27 +22,32 @@ function becomehost_step1(msg, callback){
                     return;
                 }
 
-                console.log(result.insertId);
-                connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
-                    if (!err)
-                    {
-                        console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
-                        connectionpool.releaseSQLConnection(connection);
-                        res.code = 200;
-                        res.property_id = rows[0].propertyid;
-                        res.value = "Step1 succeeded";
-                        callback(null, res);
-                        //res.send(rows);
-                    }
-                    else
-                    {
-                        console.log('Error while performing Query.');
-                        res.code = 401;
-                        res.value = "Step1 failed";
-                        callback(null, res);
-                        connectionpool.releaseSQLConnection(connection);
-                    }
-                });
+                //console.log();
+                res.property_id = result.insertId;
+                console.log('prop id' + res.property_id);
+                res.code = 200;
+                res.value = "Step1 succeeded";
+                callback(null, res);
+                /*connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
+             if (!err)
+             {
+             console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
+             connectionpool.releaseSQLConnection(connection);
+             res.code = 200;
+             res.property_id = rows[0].propertyid;
+             res.value = "Step1 succeeded";
+             callback(null, res);
+             //res.send(rows);
+             }
+             else
+             {
+             console.log('Error while performing Query.');
+             res.code = 401;
+             res.value = "Step1 failed";
+             callback(null, res);
+             connectionpool.releaseSQLConnection(connection);
+             }
+             });*/
             });
     });
 };
