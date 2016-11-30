@@ -184,7 +184,7 @@ function minErr(module, ErrorConstructor) {
 
 var REGEX_STRING_REGEXP = /^\/(.+)\/([a-z]*)$/;
 
-// The name of a form control's ValidityState property.
+// The name of a form control's ValidityState propertyPage.
 // This is used so that it's possible for internal tests to create mock ValidityStates.
 var VALIDITY_STATE_PROPERTY = 'validity';
 
@@ -234,7 +234,7 @@ var
     uid               = 0;
 
 /**
- * documentMode is an IE-only property
+ * documentMode is an IE-only propertyPage
  * http://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
  */
 msie = window.document.documentMode;
@@ -277,7 +277,7 @@ function isArrayLike(obj) {
  * @description
  * Invokes the `iterator` function once for each item in `obj` collection, which can be either an
  * object or an array. The `iterator` function is invoked with `iterator(value, key, obj)`, where `value`
- * is the value of an object property or an array element, `key` is the object property key or
+ * is the value of an object propertyPage or an array element, `key` is the object propertyPage key or
  * array element index and obj is the `obj` itself. Specifying a `context` for the function is optional.
  *
  * It is worth noting that `.forEach` does not iterate over inherited properties because it filters
@@ -2103,7 +2103,7 @@ function setupModuleLoader(window) {
           _runBlocks: runBlocks,
 
           /**
-           * @ngdoc property
+           * @ngdoc propertyPage
            * @name angular.Module#requires
            * @module ng
            *
@@ -2114,7 +2114,7 @@ function setupModuleLoader(window) {
           requires: requires,
 
           /**
-           * @ngdoc property
+           * @ngdoc propertyPage
            * @name angular.Module#name
            * @module ng
            *
@@ -2729,7 +2729,7 @@ function publishExternalAPI(angular) {
  * - [`clone()`](http://api.jquery.com/clone/)
  * - [`contents()`](http://api.jquery.com/contents/)
  * - [`css()`](http://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`.
- *   As a setter, does not convert numbers to strings or append 'px', and also does not have automatic property prefixing.
+ *   As a setter, does not convert numbers to strings or append 'px', and also does not have automatic propertyPage prefixing.
  * - [`data()`](http://api.jquery.com/data/)
  * - [`detach()`](http://api.jquery.com/detach/)
  * - [`empty()`](http://api.jquery.com/empty/)
@@ -3769,7 +3769,7 @@ function $$jqLiteProvider() {
  *  string is string
  *  number is number as string
  *  object is either result of calling $$hashKey function on the object or uniquely generated id,
- *         that is also assigned to the $$hashKey property of the object.
+ *         that is also assigned to the $$hashKey propertyPage of the object.
  *
  * @param obj
  * @returns {string} hash string such that the same input will have the same hash string.
@@ -4020,7 +4020,7 @@ function annotate(fn, strictDi, name) {
  * argument names.
  *
  * ## `$inject` Annotation
- * By adding an `$inject` property onto a function the injection parameters can be specified.
+ * By adding an `$inject` propertyPage onto a function the injection parameters can be specified.
  *
  * ## Inline
  * As an array of injection names, where the last item in the array is the function to call.
@@ -4108,9 +4108,9 @@ function annotate(fn, strictDi, name) {
  * This method does not work with code minification / obfuscation. For this reason the following
  * annotation strategies are supported.
  *
- * # The `$inject` property
+ * # The `$inject` propertyPage
  *
- * If a function has an `$inject` property and its value is an array of strings, then the strings
+ * If a function has an `$inject` propertyPage and its value is an array of strings, then the strings
  * represent names of services to be injected into the function.
  * ```js
  *   // Given
@@ -4126,7 +4126,7 @@ function annotate(fn, strictDi, name) {
  *
  * # The array notation
  *
- * It is often desirable to inline Injected functions and that's when setting the `$inject` property
+ * It is often desirable to inline Injected functions and that's when setting the `$inject` propertyPage
  * is very inconvenient. In these situations using the array notation to specify the dependencies in
  * a way that survives minification is a better choice:
  *
@@ -4178,14 +4178,14 @@ function annotate(fn, strictDi, name) {
  * An Angular **service** is a singleton object created by a **service factory**.  These **service
  * factories** are functions which, in turn, are created by a **service provider**.
  * The **service providers** are constructor functions. When instantiated they must contain a
- * property called `$get`, which holds the **service factory** function.
+ * propertyPage called `$get`, which holds the **service factory** function.
  *
  * When you request a service, the {@link auto.$injector $injector} is responsible for finding the
  * correct **service provider**, instantiating it and then calling its `$get` **service factory**
  * function to get the instance of the **service**.
  *
  * Often services have no configuration options and there is no need to add methods to the service
- * provider.  The provider will be no more than a constructor function with a `$get` property. For
+ * provider.  The provider will be no more than a constructor function with a `$get` propertyPage. For
  * these cases the {@link auto.$provide $provide} service has additional helper methods to register
  * services without specifying a provider.
  *
@@ -4196,10 +4196,10 @@ function annotate(fn, strictDi, name) {
  * * {@link auto.$provide#value value(name, obj)} - registers a value/object that can only be accessed by
  *     services, not providers.
  * * {@link auto.$provide#factory factory(name, fn)} - registers a service **factory function**
- *     that will be wrapped in a **service provider** object, whose `$get` property will contain the
+ *     that will be wrapped in a **service provider** object, whose `$get` propertyPage will contain the
  *     given factory function.
  * * {@link auto.$provide#service service(name, Fn)} - registers a **constructor function**
- *     that will be wrapped in a **service provider** object, whose `$get` property will instantiate
+ *     that will be wrapped in a **service provider** object, whose `$get` propertyPage will instantiate
  *      a new object using the given constructor function.
  * * {@link auto.$provide#decorator decorator(name, decorFn)} - registers a **decorator function** that
  *      will be able to modify or replace the implementation of another service.
@@ -4309,7 +4309,7 @@ function annotate(fn, strictDi, name) {
  * @description
  *
  * Register a **service factory**, which will be called to return the service instance.
- * This is short for registering a service where its provider consists of only a `$get` property,
+ * This is short for registering a service where its provider consists of only a `$get` propertyPage,
  * which is the given service factory function.
  * You should use {@link auto.$provide#factory $provide.factory(getFn)} if you do not need to
  * configure your service in a provider.
@@ -4344,7 +4344,7 @@ function annotate(fn, strictDi, name) {
  *
  * Register a **service constructor**, which will be invoked with `new` to create the service
  * instance.
- * This is short for registering a service where its provider's `$get` property is a factory
+ * This is short for registering a service where its provider's `$get` propertyPage is a factory
  * function that returns an instance instantiated by the injector from the service constructor
  * function.
  *
@@ -4398,7 +4398,7 @@ function annotate(fn, strictDi, name) {
  *
  * Register a **value service** with the {@link auto.$injector $injector}, such as a string, a
  * number, an array, an object or a function. This is short for registering a service where its
- * provider's `$get` property is a factory function that takes no arguments and returns the **value
+ * provider's `$get` propertyPage is a factory function that takes no arguments and returns the **value
  * service**. That also means it is not possible to inject other services into a value service.
  *
  * Value services are similar to constant services, except that they cannot be injected into a
@@ -5046,7 +5046,7 @@ function splitClasses(classes) {
     classes = classes.split(' ');
   }
 
-  // Use createMap() to prevent class assumptions involving property names in
+  // Use createMap() to prevent class assumptions involving propertyPage names in
   // Object.prototype
   var obj = createMap();
   forEach(classes, function(klass) {
@@ -7708,12 +7708,12 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       var controller = directive.controller;
       var controllerAs = directive.controllerAs;
       if (!controller) {
-        // There is no controller, there may or may not be a controllerAs property
+        // There is no controller, there may or may not be a controllerAs propertyPage
         throw $compileMinErr('noctrl',
               "Cannot bind to controller without directive '{0}'s controller.",
               directiveName);
       } else if (!identifierForController(controller, controllerAs)) {
-        // There is a controller, but no identifier or controllerAs property
+        // There is a controller, but no identifier or controllerAs propertyPage
         throw $compileMinErr('noident',
               "Cannot bind to controller without identifier for directive '{0}'.",
               directiveName);
@@ -7842,7 +7842,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *    - `transclude` – `{boolean=}` – whether {@link $compile#transclusion content transclusion} is enabled.
    *      Disabled by default.
    *    - `require` - `{Object<string, string>=}` - requires the controllers of other directives and binds them to
-   *      this component's controller. The object keys specify the property names under which the required
+   *      this component's controller. The object keys specify the propertyPage names under which the required
    *      controllers (object values) will be bound. See {@link ng.$compile#-require- `require`}.
    *    - `$...` – additional properties to attach to the directive factory function and the controller
    *      constructor function. (This is used by the component router to annotate)
@@ -8018,7 +8018,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * binding information and a reference to the current scope on to DOM elements.
    * If enabled, the compiler will add the following to DOM elements that have been bound to the scope
    * * `ng-binding` CSS class
-   * * `$binding` data property containing an array of the binding expressions
+   * * `$binding` data propertyPage containing an array of the binding expressions
    *
    * You may want to disable this in production for a significant performance boost. See
    * {@link guide/production#disabling-debug-data Disabling Debug Data} for more.
@@ -8987,8 +8987,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
             // In the versions of V8 prior to Chrome 50, the document fragment that is created
             // in the `replaceWith` function is improperly garbage collected despite still
-            // being referenced by the `parentNode` property of all of the child nodes.  By adding
-            // a reference to the fragment via a different property, we can avoid that incorrect
+            // being referenced by the `parentNode` propertyPage of all of the child nodes.  By adding
+            // a reference to the fragment via a different propertyPage, we can avoid that incorrect
             // behavior.
             // TODO: remove this line after Chrome 50 has been released
             $template[0].$$parentNode = $template[0].parentNode;
@@ -9566,7 +9566,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         // Check if we already set this attribute in the loop above.
         // `dst` will never contain hasOwnProperty as DOM parser won't let it.
         // You will get an "InvalidCharacterError: DOM Exception 5" error if you
-        // have an attribute like "has-own-property" or "data-has-own-property", etc.
+        // have an attribute like "has-own-propertyPage" or "data-has-own-propertyPage", etc.
         if (!dst.hasOwnProperty(key) && key.charAt(0) !== '$') {
           dst[key] = value;
 
@@ -10071,7 +10071,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             changes = {};
             onChangesQueue.push(triggerOnChangesHook);
           }
-          // If the has been a change on this property already then we need to reuse the previous value
+          // If the has been a change on this propertyPage already then we need to reuse the previous value
           if (changes[key]) {
             previousValue = changes[key].previousValue;
           }
@@ -10129,7 +10129,7 @@ function directiveNormalize(name) {
  */
 
 /**
- * @ngdoc property
+ * @ngdoc propertyPage
  * @name $compile.directive.Attributes#$attr
  *
  * @description
@@ -10147,9 +10147,9 @@ function directiveNormalize(name) {
  * Set DOM element attribute value.
  *
  *
- * @param {string} name Normalized element attribute name of the property to modify. The name is
+ * @param {string} name Normalized element attribute name of the propertyPage to modify. The name is
  *          reverse-translated using the {@link ng.$compile.directive.Attributes#$attr $attr}
- *          property to the original name.
+ *          propertyPage to the original name.
  * @param {string} value Value to set the attribute to. The value can be an interpolated string.
  */
 
@@ -10286,8 +10286,8 @@ function $ControllerProvider() {
      *    * if $controllerProvider#allowGlobals, check `window[constructor]` on the global
      *      `window` object (not recommended)
      *
-     *    The string can use the `controller as property` syntax, where the controller instance is published
-     *    as the specified property on the `scope`; the `scope` must be injected into `locals` param for this
+     *    The string can use the `controller as propertyPage` syntax, where the controller instance is published
+     *    as the specified propertyPage on the `scope`; the `scope` must be injected into `locals` param for this
      *    to work correctly.
      *
      * @param {Object} locals Injection locals for Controller.
@@ -10562,7 +10562,7 @@ function $HttpParamSerializerJQLikeProvider() {
    * jQuery's [`param()`](http://api.jquery.com/jquery.param/) method logic.
    * The serializer will also sort the params alphabetically.
    *
-   * To use it for serializing `$http` request parameters, set it as the `paramSerializer` property:
+   * To use it for serializing `$http` request parameters, set it as the `paramSerializer` propertyPage:
    *
    * ```js
    * $http({
@@ -10743,7 +10743,7 @@ function isSuccess(status) {
  * */
 function $HttpProvider() {
   /**
-   * @ngdoc property
+   * @ngdoc propertyPage
    * @name $httpProvider#defaults
    * @description
    *
@@ -10852,7 +10852,7 @@ function $HttpProvider() {
   };
 
   /**
-   * @ngdoc property
+   * @ngdoc propertyPage
    * @name $httpProvider#interceptors
    * @description
    *
@@ -11677,11 +11677,11 @@ function $HttpProvider() {
     createShortMethodsWithData('post', 'put', 'patch');
 
         /**
-         * @ngdoc property
+         * @ngdoc propertyPage
          * @name $http#defaults
          *
          * @description
-         * Runtime equivalent of the `$httpProvider.defaults` property. Allows configuration of
+         * Runtime equivalent of the `$httpProvider.defaults` propertyPage. Allows configuration of
          * default headers, withCredentials as well as request and response transformations.
          *
          * See "Setting HTTP Headers" and "Transforming Requests and Responses" sections above.
@@ -12891,7 +12891,7 @@ function LocationHtml5Url(appBase, appBaseNoFile, basePrefix) {
   };
 
   /**
-   * Compose url and update `absUrl` property
+   * Compose url and update `absUrl` propertyPage
    * @private
    */
   this.$$compose = function() {
@@ -13023,7 +13023,7 @@ function LocationHashbangUrl(appBase, appBaseNoFile, hashPrefix) {
   };
 
   /**
-   * Compose hashbang url and update `absUrl` property
+   * Compose hashbang url and update `absUrl` propertyPage
    * @private
    */
   this.$$compose = function() {
@@ -13298,14 +13298,14 @@ var locationPrototype = {
    * as duplicate search parameters in the url.
    *
    * @param {(string|Number|Array<string>|boolean)=} paramValue If `search` is a string or number, then `paramValue`
-   * will override only a single search property.
+   * will override only a single search propertyPage.
    *
-   * If `paramValue` is an array, it will override the property of the `search` component of
+   * If `paramValue` is an array, it will override the propertyPage of the `search` component of
    * `$location` specified via the first argument.
    *
-   * If `paramValue` is `null`, the property specified via the first argument will be deleted.
+   * If `paramValue` is `null`, the propertyPage specified via the first argument will be deleted.
    *
-   * If `paramValue` is `true`, the property specified via the first argument will be added with no
+   * If `paramValue` is `true`, the propertyPage specified via the first argument will be added with no
    * value nor trailing equal sign.
    *
    * @return {Object} If called with no arguments returns the parsed `search` object. If called with
@@ -13991,7 +13991,7 @@ function getStringValue(name) {
   // TypeError: Cannot convert object to primitive value
   //
   // For performance reasons, we don't catch this error here and allow it to propagate up the call
-  // stack. Note that you'll get the same error in JavaScript if you try to access a property using
+  // stack. Note that you'll get the same error in JavaScript if you try to access a propertyPage using
   // such a 'broken' object as a key.
   return name + '';
 }
@@ -16895,7 +16895,7 @@ function $RootScopeProvider() {
     }
 
     /**
-     * @ngdoc property
+     * @ngdoc propertyPage
      * @name $rootScope.Scope#$id
      *
      * @description
@@ -16903,7 +16903,7 @@ function $RootScopeProvider() {
      */
 
      /**
-      * @ngdoc property
+      * @ngdoc propertyPage
       * @name $rootScope.Scope#$parent
       *
       * @description
@@ -16911,7 +16911,7 @@ function $RootScopeProvider() {
       */
 
       /**
-       * @ngdoc property
+       * @ngdoc propertyPage
        * @name $rootScope.Scope#$root
        *
        * @description
@@ -16975,8 +16975,8 @@ function $RootScopeProvider() {
         }
 
         // When the new scope is not isolated or we inherit from `this`, and
-        // the parent scope is destroyed, the property `$$destroyed` is inherited
-        // prototypically. In all other cases, this property needs to be set
+        // the parent scope is destroyed, the propertyPage `$$destroyed` is inherited
+        // prototypically. In all other cases, this propertyPage needs to be set
         // when the parent scope is destroyed.
         // The listener needs to be added after the parent is set
         if (isolate || parent != this) child.$on('$destroy', destroyChildScope);
@@ -17838,7 +17838,7 @@ function $RootScopeProvider() {
        *   - `targetScope` - `{Scope}`: the scope on which the event was `$emit`-ed or
        *     `$broadcast`-ed.
        *   - `currentScope` - `{Scope}`: the scope that is currently handling the event. Once the
-       *     event propagates through the scope hierarchy, this property is set to null.
+       *     event propagates through the scope hierarchy, this propertyPage is set to null.
        *   - `name` - `{string}`: name of the event.
        *   - `stopPropagation` - `{function=}`: calling `stopPropagation` function will cancel
        *     further event propagation (available only for events that were `$emit`-ed).
@@ -19250,9 +19250,9 @@ function $SceProvider() {
  * @requires $window
  * @requires $document
  *
- * @property {boolean} history Does the browser support html5 history api ?
- * @property {boolean} transitions Does the browser support CSS transition events ?
- * @property {boolean} animations Does the browser support CSS animation events ?
+ * @propertyPage {boolean} history Does the browser support html5 history api ?
+ * @propertyPage {boolean} transitions Does the browser support CSS transition events ?
+ * @propertyPage {boolean} animations Does the browser support CSS animation events ?
  *
  * @description
  * This is very simple implementation of testing browser's features.
@@ -19390,7 +19390,7 @@ function $TemplateRequestProvider() {
    *
    * @return {Promise} a promise for the HTTP response data of the given URL.
    *
-   * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
+   * @propertyPage {number} totalPendingRequests total amount of pending template requests being downloaded.
    */
   this.$get = ['$templateCache', '$http', '$q', '$sce', function($templateCache, $http, $q, $sce) {
 
@@ -19668,7 +19668,7 @@ var originUrl = urlResolve(window.location.href);
  *
  * Implementation Notes for non-IE browsers
  * ----------------------------------------
- * Assigning a URL to the href property of an anchor DOM node, even one attached to the DOM,
+ * Assigning a URL to the href propertyPage of an anchor DOM node, even one attached to the DOM,
  * results both in the normalizing and parsing of the URL.  Normalizing means that a relative
  * URL will be resolved into an absolute URL in the context of the application document.
  * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
@@ -22280,7 +22280,7 @@ forEach(['src', 'srcset', 'href'], function(attrName) {
 
           // on IE, if "ng:src" directive declaration is used and "src" attribute doesn't exist
           // then calling element.setAttribute('src', 'foo') doesn't do anything, so we need
-          // to set the property as well to achieve the desired effect.
+          // to set the propertyPage as well to achieve the desired effect.
           // we use attr[attrName] value since $set can sanitize the url.
           if (msie && propName) element.prop(propName, attr[name]);
         });
@@ -22310,14 +22310,14 @@ function nullFormRenameControl(control, name) {
  * @ngdoc type
  * @name form.FormController
  *
- * @property {boolean} $pristine True if user has not interacted with the form yet.
- * @property {boolean} $dirty True if user has already interacted with the form.
- * @property {boolean} $valid True if all of the containing forms and controls are valid.
- * @property {boolean} $invalid True if at least one containing control or form is invalid.
- * @property {boolean} $pending True if at least one containing control or form is pending.
- * @property {boolean} $submitted True if user has submitted the form even if its invalid.
+ * @propertyPage {boolean} $pristine True if user has not interacted with the form yet.
+ * @propertyPage {boolean} $dirty True if user has already interacted with the form.
+ * @propertyPage {boolean} $valid True if all of the containing forms and controls are valid.
+ * @propertyPage {boolean} $invalid True if at least one containing control or form is invalid.
+ * @propertyPage {boolean} $pending True if at least one containing control or form is pending.
+ * @propertyPage {boolean} $submitted True if user has submitted the form even if its invalid.
  *
- * @property {Object} $error Is an object hash, containing references to controls or
+ * @propertyPage {Object} $error Is an object hash, containing references to controls or
  *  forms with failing validators, where:
  *
  *  - keys are validation tokens (error names),
@@ -24957,7 +24957,7 @@ function classDirective(name, selector) {
         }
 
         function digestClassCounts(classes, count) {
-          // Use createMap() to prevent class assumptions involving property
+          // Use createMap() to prevent class assumptions involving propertyPage
           // names in Object.prototype
           var classCounts = element.data('$classCounts') || createMap();
           var classesToUpdate = [];
@@ -27227,7 +27227,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Since `ng-model` does not do a deep watch, `$render()` is only invoked if the values of
    * `$modelValue` and `$viewValue` are actually different from their previous values. If `$modelValue`
    * or `$viewValue` are objects (rather than a string or number) then `$render()` will not be
-   * invoked if you only change a property on the objects.
+   * invoked if you only change a propertyPage on the objects.
    */
   this.$render = noop;
 
@@ -27726,7 +27726,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * However, custom controls might also pass objects to this method. In this case, we should make
    * a copy of the object before passing it to `$setViewValue`. This is because `ngModel` does not
    * perform a deep watch of objects, it only looks for a change of identity. If you only change
-   * the property of the object then ngModel will not realize that the object has changed and
+   * the propertyPage of the object then ngModel will not realize that the object has changed and
    * will not invoke the `$parsers` and `$validators` pipelines. For this reason, you should
    * not change properties of the copy once it has been passed to `$setViewValue`.
    * Otherwise you may cause the model value on the scope to change incorrectly.
@@ -31161,7 +31161,7 @@ var selectDirective = function() {
           return array;
         };
 
-        // Write value now needs to set the selected property of each matching option
+        // Write value now needs to set the selected propertyPage of each matching option
         selectCtrl.writeValue = function writeMultipleValue(value) {
           var items = new HashMap(value);
           forEach(element.find('option'), function(option) {

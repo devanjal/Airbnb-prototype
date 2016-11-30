@@ -1,5 +1,5 @@
 
-<div class="container-fluid" ng-controller="searchController" ng-init="initMap()">
+<div class="container-fluid" ng-controller="searchController" ng-init="fetchData()">
     <div class="row" style="margin-top:50px">
       <div class="col-md-7" style="overflow-y: auto !important;">
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
@@ -154,14 +154,14 @@
           <div class="col-md-12 search-results" style="padding: 10px 0px;">
               <div class="outer-listings-container space-2">
                   <div lass="listings-container">
-                      <div class="row">
-                          <div class="listing-card-wrapper col-sm-12 space-2 col-md-6">
+                      <div class="row" >
+                          <div class="listing-card-wrapper col-sm-12 space-2 col-md-6" ng-repeat="property in propertyList">
                               <div class="listing">
                                   <div class="panel-image listing-img listing-img-hide-carousel-controls">
                                       <div>
                                           <a href="/rooms/9996469" class="media-photo media-cover" target="">
                                               <div class="listing-img-container media-cover text-center">
-                                                  <img class="img-responsive-height" src="https://a2.muscache.com/im/pictures/dee960f9-3379-477a-91f6-ad95867fcd2d.jpg?aki_policy=x_medium" alt="Cozy bedroom in Santa Clara CA">
+                                                  <img class="img-responsive-height" src="images/upload_5a0641f031acebfe76f478dd2ac75929" alt="Cozy bedroom in Santa Clara CA">
                                               </div>
                                           </a>
                                           <div class="slideshow-controls">
@@ -177,7 +177,7 @@
                                                   <div class="price-label">
                                                     <span>
                                                       <sup class="currency-prefix">$</sup>
-                                                      <span class="price-amount">Price</span>
+                                                      <span class="price-amount">{{property.price}}</span>
                                                       <span> </span>
                                                     </span>
                                                   </div>
@@ -204,18 +204,18 @@
                                               </div>
 
                                           </a>
-                                          <h3 title="Cozy Bedroom in santa clara ca" class="h5 listing-name text-truncate space-top-1">
-                                              <a ui-sref="individualProperty" class="text-normal">
-                                                  <span class="listing-name--display">ABCD</span>
+                                          <h3 title="{{property.title}}" class="h5 listing-name text-truncate space-top-1">
+                                              <a ui-sref="individualProperty({id : {{property.propertyid}}})" class="text-normal">
+                                                  <span class="listing-name--display">{{property.title}}</span>
                                               </a>
                                           </h3>
                                           <a href="#" class="text-normal link-reset">
                                               <div class="text-muted listing-location text-truncate">
                                                   <div class>
-                                                      <span class="listing-card-room-type">Entire Home/ Apt </span>
+                                                      <span class="listing-card-room-type">{{property.category}}</span>
                                                       <span>.</span>
                                                       <span class="person-capacity hide-md">
-                                                          <span >2 guests</span>
+                                                          <span >{{property.quantity}} guests</span>
                                                         </span>
                                                       <span>.</span>
                                                       <span>

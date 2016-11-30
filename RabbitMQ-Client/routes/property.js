@@ -35,7 +35,7 @@ router.post('/searchbypropertyid', function(req, res, next) {
 
     var payload = {};
     //payload.userid = req.session.user.id;
-    payload.propertyid = 1;
+    payload.propertyid = req.body.id;
 
     mq_client.make_request('searchbypropertyid',payload, function(err,results){
         if(err){
@@ -106,11 +106,11 @@ router.post('/searchbyquery', function(req, res, next) {
 });
 
 router.post('/searchAllProperties', function(req, res, next) {
-    console.log('search by all property');
+    console.log('search all property');
 
     var payload = {};
     //payload.userid = req.session.user.id;
-    payload.propertyid = 1;
+    //payload.propertyid = 1;
 
     mq_client.make_request('searchAllProperties',payload, function(err,results){
         if(err){

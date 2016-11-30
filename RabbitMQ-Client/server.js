@@ -47,7 +47,7 @@ app.use(session({
     saveUninitialized: true,
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
-    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds163397.mlab.com:63397/airbnb_mongo' })
+    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo' })
 }));
 
 

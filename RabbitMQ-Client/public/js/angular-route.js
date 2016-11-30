@@ -83,7 +83,7 @@ function $RouteProvider(){
    *    - `template` – `{string=|function()=}` – html template as a string or a function that
    *      returns an html template as a string which should be used by {@link
    *      ngRoute.directive:ngView ngView} or {@link ng.directive:ngInclude ngInclude} directives.
-   *      This property takes precedence over `templateUrl`.
+   *      This propertyPage takes precedence over `templateUrl`.
    *
    *      If `template` is a function, it will be called with the following parameters:
    *
@@ -377,7 +377,7 @@ function $RouteProvider(){
      * Broadcasted before a route change. At this  point the route services starts
      * resolving all of the dependencies needed for the route change to occur.
      * Typically this involves fetching the view template as well as any dependencies
-     * defined in `resolve` route property. Once  all of the dependencies are resolved
+     * defined in `resolve` route propertyPage. Once  all of the dependencies are resolved
      * `$routeChangeSuccess` is fired.
      *
      * @param {Object} angularEvent Synthetic event object.
@@ -419,7 +419,7 @@ function $RouteProvider(){
      * @eventType broadcast on root scope
      * @description
      *
-     * The `reloadOnSearch` property has been set to false, and we are reusing the same
+     * The `reloadOnSearch` propertyPage has been set to false, and we are reusing the same
      * instance of the Controller.
      */
 

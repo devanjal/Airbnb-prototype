@@ -78,8 +78,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/readyToPublish.html',
             controllerUrl: "hostPage/hostController"
         })
-        .state("search", {
-            url: '/search',
+        .state("searchQuery", {
+            url: '/search?location&checkout&checkin&guests',
             templateUrl: 'searchPage/searchPage.html',
             controllerUrl: "searchPage/searchController"
         })
@@ -104,9 +104,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             controllerUrl: "profile/profileController"
         })
         .state("individualProperty",{
-            url:'/property',
-            templateUrl:'property/IndividualPropertyPage.html',
-            controllerUrl: "property/propertyController"
+            url:'/property?id',
+            templateUrl:'propertyPage/IndividualPropertyPage.html',
+            controllerUrl: "propertyPage/propertyController"
 
 
         })

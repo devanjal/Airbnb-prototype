@@ -14,7 +14,7 @@ function searchbypropertyid(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties WHERE propertyid=?',[msg.propertyid],
+            'SELECT * from properties as p, users as u WHERE u.id=p.hostid and p.propertyid=?',[msg.propertyid],
             function(err, rows, fields) {
 
                 if (err)
@@ -28,6 +28,7 @@ function searchbypropertyid(msg, callback){
                 }
                 // res.code = 200;
                 res.value = rows;
+                console.log("This is value of rows:--" + rows);
                 var mongoconnection = connectionpool.getdbconnection();
                 mongoconnection.collection('properties').find({propertyid:msg.propertyid}).toArray(function(err, result) {
                     //connection.collection('properties').insertOne(post, function(err, result) {
@@ -122,7 +123,7 @@ function searchAllProperties(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties',function(err, rows, fields) {
+            'SELECT * from properties as p, users as u where u.id=p.hostid', function(err, rows, fields) {
 
                 if (err)
                 {
@@ -169,16 +170,10 @@ function searchAllProperties(msg, callback){
                         }
                     }
                     callback(null, res);
-
                 });
-
-
-
             });
-
     });
 }
-
 
 function searchbyquery(msg, callback){
     var res = {};

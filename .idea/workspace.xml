@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2bbecb6-7efb-4471-a047-6a2a451c200f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/emp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/calender.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/emp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/hostAngular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/angularjs/emp.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/server.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/routes/become_host.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/routes/become_host.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/server.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/IndividualPropertyPage.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/IndividualPropertyPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostController.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/index.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchPage.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchPage.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -88,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="default.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="68" column="87" lean-forward="false" selection-start-line="68" selection-start-column="87" selection-end-line="68" selection-end-column="87" />
+            <state relative-caret-position="429">
+              <caret line="73" column="15" lean-forward="true" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -120,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="searchController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="76">
+              <caret line="35" column="71" lean-forward="true" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -169,8 +155,8 @@
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/property/IndividualPropertyPage.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/routes/host.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/property/propertyController.js" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js" />
       </list>
     </option>
   </component>
@@ -185,8 +171,10 @@
     <handled-path value="$PROJECT_DIR$/RabbitMQ-Client/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1364" />
-    <option name="height" value="726" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -368,7 +356,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../cmpe273 project - Copy/Airbnb-prototype" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -460,18 +448,18 @@
       <option name="presentableId" value="Default" />
       <updated>1480228892785</updated>
       <workItem from="1480228897890" duration="543000" />
-      <workItem from="1480229470023" duration="58148000" />
+      <workItem from="1480229470023" duration="59307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58691000" />
+    <option name="totallyTimeSpent" value="59850000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1364" height="726" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25339368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.203125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288364" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -757,14 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -799,11 +779,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="68" column="87" lean-forward="false" selection-start-line="68" selection-start-column="87" selection-end-line="68" selection-end-column="87" />
+        <state relative-caret-position="429">
+          <caret line="73" column="15" lean-forward="true" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="35" column="71" lean-forward="true" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
