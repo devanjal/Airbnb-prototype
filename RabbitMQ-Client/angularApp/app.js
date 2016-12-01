@@ -1,4 +1,4 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload', 'thatisuday.ng-image-gallery']);
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload', 'thatisuday.ng-image-gallery', 'ngAutocomplete']);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider','ngImageGalleryOptsProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
 
     NotificationProvider.setOptions({

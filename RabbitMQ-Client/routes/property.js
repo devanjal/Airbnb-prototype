@@ -135,6 +135,7 @@ router.post('/searchbycity', function(req, res, next) {
     var payload = {};
     //payload.userid = req.session.user.id;
     payload.city = req.body.city;
+    payload.state=req.body.state;
 
     mq_client.make_request('searchbycity',payload, function(err,results){
         if(err){

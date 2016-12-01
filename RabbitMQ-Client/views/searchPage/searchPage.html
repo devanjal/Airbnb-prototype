@@ -20,7 +20,7 @@
                                datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="Check out"/>
                     </div>
                     <div class="col-md-3" style="padding: 0;padding-right: 5px;">
-                        <select id="how-many-guests" class="GuestInput" aria-label="Number of guests" name="guests" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0">
+                        <!--<select id="how-many-guests" class="GuestInput" aria-label="Number of guests" name="guests" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0">
                             <option selected="" value="1" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$1">1 Guest</option>
                             <option value="2" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$2">2 Guests</option>
                             <option value="3" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$3">3 Guests</option>
@@ -37,12 +37,14 @@
                             <option value="14" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$14">14 Guests</option>
                             <option value="15" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$15">15 Guests</option>
                             <option value="16" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$16">16+ Guests</option>
+                        </select>-->
+                        <select ng-model="dropdownDefault" ng-options="item for item in dropdown1">
                         </select>
 
                     </div>
 
               </div>
-              <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
+              <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;" >
 
                 <div class="col-md-3 text-center-sm text-center-md space-sm-1 sectionLabel_rcr7sj" style="padding:15px 0px;">
                     <div>
@@ -53,53 +55,55 @@
                         </span>
                     </div>
                 </div>
-                  <div class="col-md-3" style="padding:0px;padding-right:5px">
-                    <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark">
+
+                <div class="col-md-3" style="padding:0px;padding-right:5px">
+                    <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark" style="background-color:#dce0e0;">
                       <div class="row" style="margin: 0;">
-                          <div class="col-md-2 facet-checkbox__icon-col">
+                          <div class="col-md-2 facet-checkbox__icon-col" style="padding-left: 5px;">
                             <i class="icon h5 icon-entire-place"></i>
                           </div>
-                          <div class="col-md-8" style="padding:0px;text-align: center;">
+                          <div class="col-md-8" style="padding:0px;/* text-align: center; */">
                             <span>Entire Home</span>
                           </div>
-                          <div class="col-md-2 facet-checkbox__input-col">
-                            <input type="checkbox" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -1px;" />
+                          <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
+                              <input type="checkbox" ng-model="entirehome" ng-changed="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
                           </div>
                       </div>
                   </label>
                 </div>
                 <div class="col-md-3" style="padding:0px 5px">
-                  <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark">
+                  <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark" style="background-color:#dce0e0;">
                     <div class="row" style="margin: 0;">
-                        <div class="col-md-2 facet-checkbox__icon-col">
+                        <div class="col-md-2 facet-checkbox__icon-col" style="padding-left: 5px;">
                           <i class="icon h5 icon-private-room"></i>
                         </div>
-                        <div class="col-md-8" style="padding:0px;text-align: center;">
+                        <div class="col-md-8" style="padding:0px;">
                           <span>Private Room</span>
                         </div>
                         
-                        <div class="col-md-2 facet-checkbox__input-col">
-                          <input type="checkbox" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -1px;"/>
+                        <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
+                          <input type="checkbox" ng-model="privateRoom"  ng-changed="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
                 </div>
                 <div class="col-md-3" style="padding:0px;padding-left:5px">
-                  <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark">
+                  <label class="checkbox facet-checkbox facet-checkbox--room-type panel panel-dark" style="background-color:#dce0e0;">
                     <div class="row" style="margin: 0;">
-                        <div class="col-md-2 facet-checkbox__icon-col">
+                        <div class="col-md-2 facet-checkbox__icon-col" style="padding-left: 5px;">
                           <i class="icon h5 icon-shared-room"></i>
                         </div>
-                        <div class="col-md-8" style="padding:0px;text-align: center;">
+                        <div class="col-md-8" style="padding:0px;">
                           <span>Shared Room</span>
                         </div>
                         
-                        <div class="col-md-2 facet-checkbox__input-col">
-                          <input type="checkbox" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -1px;"/>
+                        <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
+                          <input type="checkbox" ng-model="shared_room_checkbox" ng-changed="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
                 </div>
+
               </div>
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
                 <div class="col-md-3 filter-section-header-price" style="padding: 10px 0px;">
@@ -200,7 +204,7 @@
                                       <div class="media">
                                           <a href="#" class="pull-right media-photo-badge card-profile-picture card-profile-picture-offset" rel="nofollow">
                                               <div class="media-photo media-round">
-                                                  <img src="image.jpg" alt="Carlos">
+                                                  <img src="images/upload_5a0641f031acebfe76f478dd2ac75929" alt="Carlos">
                                               </div>
 
                                           </a>

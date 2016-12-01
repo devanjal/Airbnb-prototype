@@ -463,9 +463,9 @@ font-weight: 700 !important;
       <div>
         <div id="photos" class="with-photos with-modal">
           <span class="cover-photo">
-            <img class="hide" alt width="0" src="https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=large" srcset="https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=large 639w,https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=xx_large 1440w">
+            <img class="hide" alt width="0" src="{{propertyDetails.images[0]}}" srcset="https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=large 639w,https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=xx_large 1440w">
             <span class="cover-img-container">
-              <div class="cover-img" style="background-image:url(https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=xx_large);">
+              <div class="cover-img" style="background-image:url({{propertyDetails.images[0]}});">
                 <div class="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label show-sm">
                   <div>
                     <span class="h3 text-contrast price-amount">
@@ -544,7 +544,7 @@ font-weight: 700 !important;
                             <div class="host-profile-md-lg ">
                               <div class="media-photo-badge">
                                 <a href="#host-profile"class="media-photo media-round">
-                                  <img alt="User Profile Image" title="Anushka" height="75" width="75" data-pin-nopin="true" src="https://a2.muscache.com/im/pictures/ece785d1-036c-44f0-9fb4-cd513d4d58ec.jpg?aki_policy=profile_x_medium">
+                                  <img alt="User Profile Image" title="{{propertyDetails.firstname}}" height="75" width="75" data-pin-nopin="true" src="">
                                 </a>
                               </div>
                             </div>
@@ -773,7 +773,7 @@ font-weight: 700 !important;
                                   <table class="table">
                                     <tr class="price-item">
                                       <th class="price-item__header hide-border-top">
-                                        <span>$199 x 1 night</span>
+                                        <span>${{propertyDetails.price}} x 1 night</span>
                                         <span>&nbsp;</span>
                                       </th>
                                       <td class="text-right price-item__price hide-border-top">
@@ -862,17 +862,14 @@ font-weight: 700 !important;
                     </h4>
                     <div>
                       <p class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff">
-                        <span>My place has views to the beach and is a quick walk to downtown Santa Cruz and the beach. You’ll love my place because of the nearby entertainment and its location and fireplace!  Nice big frontporch!
-
-                        No smoking, no pets and no loud music after 9 pm.
-
-                        No wifi available</span>
+                        <span>{{propertyDetails.propertydescription}}</span>
                       </p>
                     </div>
                     <div class="row row-condensed">
                       <div class="contact-host-div col-12 space-top-2 space-2">
                         <div>
                           <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">
+                            <a href="#host-profile">
                               <span>Contact Host</span>
                             </a>
                           </span>
@@ -1126,7 +1123,7 @@ font-weight: 700 !important;
                                         <div class="show-inline-block va-middle space-top-2 space-2">
                                           <div class="media-photo-badge">
                                             <a class="media-photo media-round" href="/users/show/102123136">
-                                              <img alt="User Profile Image" src="https://a2.muscache.com/im/pictures/639b1482-8a0c-41a0-90a3-0920a7531c8d.jpg?aki_policy=profile_x_medium" title="Jameson" width="48" height="48">
+                                              <img alt="User Profile Image" src="" title="{{propertyDetails.firstname}}" width="48" height="48">
                                             </a>
                                           </div>
                                         </div>

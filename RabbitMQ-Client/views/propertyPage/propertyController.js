@@ -1,22 +1,9 @@
 app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal','$stateParams', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, $stateParams) {
-            $scope.images = [
-                {
-                    title : 'This is amazing photo of nature',
-                    alt : 'amazing nature photo',
-                    url : "images/upload_5a0641f031acebfe76f478dd2ac75929"
-                    // url : 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793_960_720.jpg',
 
-                   //
-                },
-                {
-                    url : 'https://pixabay.com/static/uploads/photo/2016/06/10/22/25/ortler-1449018_960_720.jpg'
-                }
-
-            ];
             $scope.methods = {};
 
             $scope.openGallery = function(){
-                console.log("I came in open gallery function()");
+                //console.log("I came in open gallery function()");
                 $scope.methods.open();
             };
 
@@ -88,10 +75,33 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
                         //console.log(data.value.title);
                         console.log(data.value[0].title);
                        $scope.propertyDetails = data.value[0];
+                       console.log(data.value[0].images);
+                       //console.log("this is value of tempImages:"+tempimages);
+
+                      for(var i=0;i<data.value[0].images.length;i++){
+                           var temp=new Array();
+                           temp.push(data.value[0].images[i]);
+
+                       }
+
+                      // $scope.images=data.value[0].images;
+                        $scope.images = [
+                            {
+
+                                url : temp[0]
+                                // url : 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793_960_720.jpg',
+
+                                //
+                            },
+                            {
+                                url : temp[1]
+                            }
+
+                        ];
 
 
 
-                    })
+                    });
 
 
             };
