@@ -6,7 +6,7 @@ router.post('/createBill',function(req,res){
 
     var payload = {};
     payload.b=req.body;
-    payload.user_id=req.body.user_id;// session
+    payload.user_id=req.session.user_id;// session
     console.log("before que");
 
     mq_client.make_request('createBillQueue', payload, function(err,results){
