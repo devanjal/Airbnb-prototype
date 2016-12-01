@@ -35,6 +35,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use(serveStatic(__dirname + '/public', { 'maxAge': '1d' }));
+app.use(serveStatic(__dirname + '/node_modules', { 'maxAge': '1d' }));
 
 app.use(serveStatic(path.join(__dirname, 'views')));
 

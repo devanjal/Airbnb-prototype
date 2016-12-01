@@ -41,8 +41,8 @@ router.post('/gettoprevenue', function (req, res) {
     });
 });
 
-router.post('/gethostrequests', function (req, res) {
-    var user_id = req.body.hostid;
+router.get('/gethostrequests', function (req, res) {
+    //var user_id = req.body.hostid;
     //var user_id = 15;
     var msg_payload = {  };
     mq_client.make_request('gethostrequests', msg_payload, function (err, results) {
