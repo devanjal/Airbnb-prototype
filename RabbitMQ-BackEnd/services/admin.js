@@ -28,7 +28,35 @@ function approvehost(msg, callback){
     });
 };
 
-    function gettoprevenue(msg, callback){
+function rejecthost(msg, callback){
+    var res = {};
+    connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            'delete  from properties where hostid = ? and published = ?',
+            [msg.id,'true'],
+            function (err, result) {
+                if (err)
+                {
+                    res.code = 401;
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                res.code = 200;
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            });
+    });
+};
+
+function gettoprevenue(msg, callback){
     var res = {};
     var query = "";
     if(msg.type == 'property')
@@ -124,5 +152,6 @@ function gethostrequests(msg, callback){
     });
 };
 exports.approvehost = approvehost;
+exports.rejecthost = rejecthost;
 exports.gettoprevenue = gettoprevenue;
 exports.gethostrequests = gethostrequests;

@@ -145,6 +145,17 @@ cnn.on('ready', function () {
             });
         });
     });
+    cnn.queue('reject_host', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            admin.rejecthost(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
     cnn.queue('gettoprevenue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.gettoprevenue(message, function (err, res) {

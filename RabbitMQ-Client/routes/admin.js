@@ -24,6 +24,24 @@ router.post('/approvehost', function (req, res) {
         }
     });
 });
+router.post('/rejecthost', function (req, res) {
+    var user_id = req.body.hostid;
+    console.log(user_id);
+    //var user_id = 15;
+    var msg_payload = { "id": parseInt(user_id) };
+    mq_client.make_request('reject_host', msg_payload, function (err, results) {
+        if (err) {
+            res.send({status:'error'});
+            return;
+        }
+        if(results.code == 200){
+            res.send({status:'success'});
+        }
+        else {
+            res.send({status:'error',error:"value updation failed"});
+        }
+    });
+});
 router.post('/gettoprevenue', function (req, res) {
     var type = req.body.type;
     //var user_id = 15;

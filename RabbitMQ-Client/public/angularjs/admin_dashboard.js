@@ -266,4 +266,34 @@ app.controller('adminDashboardController', function ($scope, $http, $window) {
             // $scope.myWelcome = response.statusText;
         });
     }
+    $scope.rejecthost = function(id){
+        console.log(id)
+        var obj = {hostid:id};
+        $http({
+            method : "POST",
+            url : "http://localhost:80/admin/rejecthost",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: obj
+        }).then(function mySucces(response) {
+            $http({
+                method : "GET",
+                url : "http://localhost:80/admin/gethostrequests",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            }).then(function mySucces(response) {
+
+                // $window.alert("sdfsdfsdf");
+                $scope.hostDetails = response.data;
+                //$scope.logintime = response.data.logintime;
+            }, function myError(response) {
+                // $scope.myWelcome = response.statusText;
+            });
+        }, function myError(response) {
+            // $scope.myWelcome = response.statusText;
+        });
+    }
 });
