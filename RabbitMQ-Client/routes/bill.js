@@ -6,7 +6,7 @@ router.post('/createBill',function(req,res){
 
     var payload = {};
     payload.b=req.body;
-    payload.user_id=req.session.user_id;
+    payload.user_id=req.body.user_id;// session
     console.log("before que");
 
     mq_client.make_request('createBillQueue', payload, function(err,results){
@@ -24,12 +24,13 @@ router.post('/createBill',function(req,res){
         }
     });
 });
-router.get('/getBill',function (req,res) {
+router.get('/getBillByUid',function (req,res) {
 
     var payload={};
-    payload.user_id=req.session.user_id;
-    console.log("Getting the bills");
-    mq_client.make_request('getBillQueue', payload, function(err,results){
+    //payload.user_id=req.session.user_id;
+    payload.user_id=1;
+    console.log("Getting the bills"+payload.user_id);
+    mq_client.make_request('getBillUidQueue', payload, function(err,results){
         if(err){
             return done(err);
         }
@@ -46,7 +47,29 @@ router.get('/getBill',function (req,res) {
     });
 
 });
-router.post('/getById',function (req,res) {
+router.get('/getBillByHid',function (req,res) {
+
+    var payload={};
+    payload.user_id=12;
+    console.log("Getting the bills");
+    mq_client.make_request('getBillHidQueue', payload, function(err,results){
+        if(err){
+            return done(err);
+        }
+        else
+        {
+            if(results.code == 200){
+                //   console.log(results);
+                res.send({status:'success', result:results.result});
+            }
+            else {
+                res.send({status:'error',error:"Get bills Failed"});
+            }
+        }
+    });
+
+});
+router.post('/getByBillId',function (req,res) {
     var payload=req.body;
     //payload.user_id=req.session.user_id;
     console.log("Getting the bills by Bill ID");
