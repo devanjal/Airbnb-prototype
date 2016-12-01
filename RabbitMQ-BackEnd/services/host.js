@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 
 function becomehost_step1(msg, callback){
     var res = {};
@@ -13,35 +13,37 @@ function becomehost_step1(msg, callback){
         }
 
         var query = connection.query('INSERT INTO properties SET ?', msg , function (err, result) {
-            if (err) {
-                console.log(err);
-                res.code = 401;
-                res.value = "Step1 failed";
-                callback(null, res);
-                connectionpool.releaseSQLConnection(connection);
-                return;
-            }
-            connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
-                if (!err)
-                {
-                    console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
-                    connectionpool.releaseSQLConnection(connection);
-                    res.code = 200;
-                    res.property_id = rows[0].propertyid;
-                    res.value = "Step1 succeeded";
-                    callback(null, res);
-                    //res.send(rows);
-                }
-                else
-                {
-                    console.log('Error while performing Query.');
+
+                if (err) {
+                    console.log(err);
                     res.code = 401;
                     res.value = "Step1 failed";
                     callback(null, res);
                     connectionpool.releaseSQLConnection(connection);
+
+                    return;
                 }
+                connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
+                    if (!err)
+                    {
+                        console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
+                        connectionpool.releaseSQLConnection(connection);
+                        res.code = 200;
+                        res.property_id = rows[0].propertyid;
+                        res.value = "Step1 succeeded";
+                        callback(null, res);
+                        //res.send(rows);
+                    }
+                    else
+                    {
+                        console.log('Error while performing Query.');
+                        res.code = 401;
+                        res.value = "Step1 failed";
+                        callback(null, res);
+                        connectionpool.releaseSQLConnection(connection);
+                    }
+                });
             });
-        });
     });
 };
 function becomehost_step2(msg, callback){
@@ -74,7 +76,8 @@ function becomehost_step2(msg, callback){
 
                 var mongoconnection = connectionpool.getdbconnection();
                 mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}}, $set:{hostid : msg.hostid}} , {upsert:true},function(err, result) {
-                    //connection.collection('properties').insertOne(post, function(err, result) {
+
+
                     if(err) {
                         console.log(err);
                         res.code = 400;

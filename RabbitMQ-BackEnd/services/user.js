@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 function get_profile_request(msg, callback) {
     var res = {};
     console.log('get user info');

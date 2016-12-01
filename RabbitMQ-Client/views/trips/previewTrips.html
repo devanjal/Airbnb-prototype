@@ -1,0 +1,81 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<link rel="stylesheet" href="../../public/css/airbnb.css">-->
+    <!--<link rel="stylesheet" href="../../public/css/airbnb2.css">-->
+    <!--<title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+    <div class="page-container-responsive space-top-4 space-4">
+        <div class="row">
+
+            <div class="col-md-4 space-sm-3">
+                <div id="map" style="width: 445px; height: 600px;"></div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-6">
+                <div class="suspension-container">
+                    <div class="panel space-4">
+                        <div class="panel-header active-panel-header">
+                            <div class="active-panel-padding">Here's your upcoming trip</div>
+                        </div>
+                        <ul class="list-unstyled list-layout">
+                            <li class="listing panel-body">
+                                <div class="row row-table">
+                                    <div class="col-lg-10">
+                                    <span class="h4">
+                                        <span>{{trips.title}}</span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="row row-table">
+                                    <div class="col-lg-10 text-muted text-normal space-top-2">Location: {{trips.address}}</div>
+                                </div>
+                                <div class="row row-table">
+                                    <div class=" col-lg-10 text-muted text-grey space-top-1 last-modified-date">
+                                        <span>Price: {{trips.price}}</span>
+                                    </div>
+                                </div>
+                                <div class="row row-table">
+                                    <div class="col-lg-10 text-grey space-top-1 last-modified-date">
+                                        <label>Number of guests: {{trips.quantity}} </label>
+                                    </div>
+                                </div>
+                                <div class="row row-table">
+                                    <div class="col-lg-10 text-grey space-top-1 last-modified-date">
+                                        <label><h5>Booking From: {{trips.fromdate}} </h5></label>
+                                    </div>
+                                </div>
+                                <div class="row row-table">
+                                    <div class="col-lg-10 text-grey space-top-1 last-modified-date">
+                                        <label><h5>Booking Till: {{trips.todate}} </h5></label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function initMap() {
+                    var uluru = {lat: -25.363, lng: 131.044};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 4,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
+                }
+
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK3e0M46Nzcp8hOuvA7sOHSGc1tQsYrfU&callback=initMap">
+            </script>
+        </div>
+    </div>
+
+<!--</body>-->
+<!--</html>-->

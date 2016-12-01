@@ -15,18 +15,40 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/angular-ui-notification.min.css">
     <link rel="stylesheet" href="css/airbnb.css">
     <link rel="stylesheet" href="css/airbnb2.css">
+     <link rel="stylesheet" href="css/airbnb3.css">
+    <link rel="stylesheet" href="css/airbnb4.css">
+    <link rel="stylesheet" href="css/host.css">
+    <link rel="stylesheet" href="css/hostAddress.css">
+    <link rel="stylesheet" href="css/hostPhotos.css">
+    <link rel="stylesheet" href="css/hostDescription.css">
+    <link rel="stylesheet" href="css/pricing.css">
+    <link rel="stylesheet" href="css/newHost.css">
+    <link rel="stylesheet" href="css/hostReadyToPublish.css">
+    <!--<link rel="stylesheet" href="css/map_search-4d61a7252e5810494d5afef7f7834607.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .modal-container,.modal {
+        .modal-container,
+        .modal {
             background-color: rgba(0, 0, 0, 0.45)
         }
-        .modal-content{    margin: 0px 75px;}
-           .signupmodal .modal-dialog { padding-top: 65px;}
-           .loginmodal .modal-dialog { padding-top: 25px;}
+        
+        .modal-content {
+            margin: 0px 75px;
+        }
+        
+        .signupmodal .modal-dialog {
+            padding-top: 65px;
+        }
+        
+        .loginmodal .modal-dialog {
+            padding-top: 25px;
+        }
+        
         .navbar-default {
             background-color: transparent;
             border-color: transparent;
@@ -38,17 +60,21 @@
             display: block;
             margin-top: 12px;
         }
-
-        .backbuttonSignup:focus, .backbuttonSignup:active, .backbuttonSignup:active:focus{
+        
+        .backbuttonSignup:focus,
+        .backbuttonSignup:active,
+        .backbuttonSignup:active:focus {
             background-color: transparent;
             border-color: transparent;
         }
         
-        .backbuttonSignup span:focus, .backbuttonSignup span:active, .backbuttonSignup span:active:focus{
+        .backbuttonSignup span:focus,
+        .backbuttonSignup span:active,
+        .backbuttonSignup span:active:focus {
             background-color: transparent;
             border-color: transparent;
         }
-
+        
         .navbar-header .hdr-btn {
             padding: 0px 19px;
             display: block;
@@ -62,12 +88,12 @@
         
         .navbar-right li {
             height: inherit;
-            padding: 0 19px;
+            margin: 0 15px;
         }
         
         .navbar-right li a {
             display: block;
-            color: #484848 !important;
+            color: black !important;
             line-height: 61px;
             padding: 0;
         }
@@ -160,10 +186,42 @@
             min-width: 106px;
             float: right !important;
         }
+        
+        .user-icon {
+            height: 30px;
+            width: 30px;
+            top: 10px;
+            border-color: #c4c4c4;
+            background-position: 50% 7px;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAoCAMAAAChHKjRAAAAQlBMV…%2FwXYH2LBOd725swpBUkYY9CS0bbdhHmRj8olmS0b%2BAPxxJJ70mSPrkAAAAAElFTkSuQmCC);
+            -webkit-background-size: 18px 20px;
+            -moz-background-size: 18px 20px;
+            -o-background-size: 18px 20px;
+            background-size: 18px 20px;
+            background-repeat: no-repeat;
+            position: relative;
+            vertical-align: baseline;
+            background-color: transparent;
+        }
+        
+        .user-icon img {
+            height: 26px;
+            width: 26px;
+            vertical-align: top;
+        }
+        
+        .usericon:hover>.dropdown-menu {
+            display: block !important;
+        }
+        .dropdown-menu a{
+            border-bottom: 1px solid lightgray;
+            line-height: normal !important;
+            padding: 19px !important;
+        }
     </style>
 </head>
 
-<body ng-app="airbnb" ng-controller="indexController">
+<body ng-app="airbnb" ng-controller="indexController" ng-init="checkStatus()">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -182,16 +240,77 @@
             <div id="navbar" class="navbar-collapse collapse" style="padding: 0;">
                 <ul class="nav navbar-nav navbar-right" style="height: 61px;line-height: 61px;">
                     <li>
-                        <a href="#" style="padding-right: 10px;">Become a Host</a>
+                        <a href="#" ui-sref="host" style="padding-right: 10px;">Become a Host</a>
+                    </li>
+                    <li ng-show="loginStatus">
+                        <a href="#" style="padding-right: 4px;">Trips</a>
+                    </li>
+                    <li ng-show="loginStatus">
+                        <a href="#" style="padding-right: 4px;">Messages</a>
                     </li>
                     <li>
                         <a href="#" style="padding-right: 4px;">Help</a>
                     </li>
-                    <li>
+                    <li ng-hide="loginStatus">
                         <a href="#" style="cursor:pointer" ng-click="openSignup()">Sign Up</a>
                     </li>
-                    <li>
+                    <li ng-hide="loginStatus">
                         <a href="#" ng-click="openLogin()" style="padding-right: 15px; cursor:pointer">Log In </a>
+                    </li>
+                    <li ng-show="loginStatus" uib-dropdown class="usericon" style="margin-right: 30px;">
+                        <a ui-sref="users" uib-dropdown-toggle class="no-crawl hdr-btn link-reset header-avatar-trigger needsclick" rel="nofollow" href="#">
+                            <span class="value_name margin-right--tiny hide-md">{{user.firstname}}</span>
+                            <div class="user-icon media-photo media-round user-profile-image header-icon icon-profile-alt-gray">
+                                <img width="28" height="28" ng-src="{{profileImage_icon}}" alt="">
+                            </div>
+                        </a>
+                        <div style="padding: 0px 20px;right: -10px;" uib-dropdown-menu class="panel tooltip-top-right drop-down-menu avatar-tooltip--new">
+                            <a href="/trips" class="js-your-trips-item panel-body link-reset hover-item no-crawl hide">
+                                <div class="hover-item__content">
+                                    Your Trips
+                                </div>
+                            </a>
+                            <a href="/city-hosts?source=hdr" class="hide city-host-button-md panel-body link-reset hover-item">
+                                <div class="hover-item__content">
+                                    City Hosts
+                                    <img class="beta-badge" src="https://a0.muscache.com/airbnb/static/magical_trips/guest/beta-badge-56a0d5bc185adfe79992a46991964070.png"
+                                        alt="Beta" height="18">
+                                </div>
+                            </a>
+                            <a href="/wishlists/my" class="js-wishlists-item panel-body link-reset hover-item no-crawl hide">
+                                <div class="hover-item__content">
+                                    Wish Lists
+                                </div>
+                            </a>
+                            <a href="#" ui-sref="users.edit" class=" panel-body link-reset hover-item no-crawl">
+                                <div class="hover-item__content">
+                                    Edit Profile
+                                </div>
+                            </a>
+                            <a href="/invite?r=3" class="travel-credit-item panel-body link-reset hover-item">
+                                <div class="hover-item__content">Travel Credit</div>
+                            </a>
+                            <a href="/gift?s=nav" class="gift-card-item panel-body link-reset hover-item">
+                                <div class="hover-item__content">
+                                    Gift Cards
+                                </div>
+                            </a>
+                            <a href="/users/notifications" class=" panel-body link-reset hover-item no-crawl">
+                                <div class="hover-item__content">
+                                    Account Settings
+                                </div>
+                            </a>
+                            <a href="/business-travel?s=nav" class="business-travel  panel-body link-reset hover-item">
+                                <div class="hover-item__content">
+                                    Business Travel
+                                </div>
+                            </a>
+                            <a href="#" ng-click="logout()" class=" panel-body link-reset hover-item no-crawl">
+                                <div class="hover-item__content">
+                                    Log Out
+                                </div>
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -200,11 +319,10 @@
     </nav>
 
 
-    <div ui-view style="max-width: 1080px !important;margin: 0 auto !important;position: relative !important;min-height:1000px"></div>
+    <div ui-view style="max-width: 1080px !important;margin: 0 auto !important;position: relative !important;"></div>
 
-    <div id="footer" class="container-brand-light footer-surround footer-container">
-        <footer class="page-container-responsive footer-container" role="contentinfo">
-
+    <!--<div  id="footer" class="container-brand-light footer-surround footer-container">-->
+        <footer ng-hide="hideFooter" class="page-container-responsive footer-container" role="contentinfo">
             <div class="row row-condensed">
                 <div class="language-curr-picker col-md-2">
                     <div class="clearfix">
@@ -332,7 +450,7 @@
             </div>
         </footer>
 
-    </div>
+    <!--</div>-->
 
 
     <script src="js/angular.js" type="text/javascript"></script>
@@ -341,9 +459,14 @@
     <script src="js/ui-bootstrap-tpls-2.2.0.min.js" type="text/javascript"></script>
     <script src="js/angular-ui-router.min.js" type="text/javascript"></script>
     <script src="js/angular-ui-notification.min.js"></script>
+    <script src="js/ng-file-upload-shim.min.js"></script>
+    <script src="js/ng-file-upload.min.js"></script>
+    
     <script src="app.js" type="text/javascript"></script>
+    <script src="hostPage/hostController.js" type="text/javascript"></script>
+    <script src="searchPage/searchController.js" type="text/javascript"></script>
+    <script src="default/defaultController.js" type="text/javascript"></script>
+    <script src="profile/profileController.js" type="text/javascript"></script>
+    <script src="trips/tripController.js" type="text/javascript"></script>
 </body>
-
-
-
 </html>

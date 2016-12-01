@@ -1,9 +1,9 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 var bcrypt = require('bcryptjs');
 
-function handle_signup(msg, callback) {
+function handle_request(msg, callback) {
 	var res = {};
-	console.log('handle signup');
+	console.log('handle request registeration');
 	connectionpool.getConnection(function (err, connection) {
 		if (err) {
 			res.code = 401;
@@ -11,28 +11,27 @@ function handle_signup(msg, callback) {
 			callback(null, res);
 			return;
 		}
-		const saltRounds = 10;
-		bcrypt.genSalt(saltRounds, function (err, salt) {
-			bcrypt.hash(msg.password, salt, function (err, hash) {
-				var post = { firstname: msg.firstname, lastname: msg.lastname, email: msg.email, password: hash, birthdate: msg.birthdate };
-				var query = connection.query('INSERT INTO users SET ?', post, function (err, result) {
-					// Neat!
-					if (err) {
-						res.code = 401;
-						res.value = "User name already exists.";
-						callback(null, res);
-						console.log(err);
-						connectionpool.releaseSQLConnection(connection);
-						return;
-					}
-					res.code = 200;
-					res.value = "Successfully Registered";
-					callback(null, res);
-					connectionpool.releaseSQLConnection(connection);
-				});
-			});
+		var passwordHash = bcrypt.hashSync(msg.password, bcrypt.genSaltSync(10),null);
+		console.log("passwordHash: "+passwordHash);
+
+		var post = { firstname: msg.firstname, lastname: msg.lastname, email: msg.email, password: passwordHash, birthdate: msg.birthdate };
+		var query = connection.query('INSERT INTO users SET ?', post, function (err, result) {
+			// Neat!
+			if (err) {
+				res.code = 401;
+				res.value = "User name already exists.";
+				callback(null, res);
+				console.log(err);
+				connectionpool.releaseSQLConnection(connection);
+				return;
+			}
+			res.code = 200;
+			res.value = "Successfully Registered";
+			callback(null, res);
+			connectionpool.releaseSQLConnection(connection);
 		});
 	});
+
 };
 
-exports.handle_signup = handle_signup;
+exports.handle_request = handle_request;

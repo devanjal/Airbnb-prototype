@@ -7,10 +7,19 @@ var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var compression = require('compression');
 
-var expressSession = require('express-session');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
 var http = require('http');
 
+var passport = require('passport');
+require('./routes/passport')(passport);
+
+var become_host = require('./routes/become_host');
+
 var users = require('./routes/users');
+
+var trips = require('./routes/trips');
 
 var app = express();
 
@@ -24,13 +33,27 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
 
 app.use(serveStatic(__dirname + '/public', { 'maxAge': '1d' }));
 
 app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
+
+app.use(session({
+    secret: 'cmpe273_airbnb',
+    resave: false,
+    saveUninitialized: true,
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
+    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo' })
+}));
+
+
 app.use('/users', users);
+app.use('/become_host', become_host);
+app.use('/users/trips', trips);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

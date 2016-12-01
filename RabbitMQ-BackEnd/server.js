@@ -3,15 +3,23 @@ var amqp = require('amqp')
 
 var login = require('./services/login');
 var signup = require('./services/signup');
-
 var host = require('./services/host');
-
 var user = require("./services/user");
-
+var trip = require("./services/trip");
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
+var connectionpool = require("./config/connectionpool");
+
+process.on("SIGINT",function(){
+    console.log("inside sigint process");
+    connectionpool.closedbconnection();
+});
+
+process.on("close",function(){  
+    console.log("inside close process");
+    connectionpool.closedbconnection();
+});
 
 cnn.on('ready', function () {
-
     console.log("listening to all queues");
 
     cnn.queue('userInfo_queue', function (q) {
@@ -107,6 +115,39 @@ cnn.on('ready', function () {
     cnn.queue('publishproperty', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             host.publishproperty(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('tripqueue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.editTrip(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('tripqueueuser', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.getTripByUserId(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('tripqueuehost', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.getTripByHostId(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',

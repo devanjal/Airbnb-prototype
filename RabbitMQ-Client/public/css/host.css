@@ -174,8 +174,8 @@ div.container.container-middle5
 
 div.container.container-middle6
 {
-  margin-left: 10em;
-  margin-right: 10em;
+  /*margin-left: 10em;
+  margin-right: 10em;*/
   margin-bottom: 5em;
 }
 
@@ -264,8 +264,8 @@ div.landing-width.bg-white.row.row-condensed.list-your-space__landing-content
 
 div.landing__left-col-content
 {
-  margin: 58px 93.5px 100px 100px;
-  max-width: 470px;
+  margin: 58px 93.5px 100px 0px;
+  /*max-width: 470px;*/
   box-sizing: border-box;
   font-size: 16px;
 }
