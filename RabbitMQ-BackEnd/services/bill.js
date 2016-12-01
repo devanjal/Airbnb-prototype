@@ -109,7 +109,7 @@ function getByBillId(msg,callback) {
         }
         var bill_id=msg.bill_id;
         // var post = { user_id: msg.user_id, host_id: msg.b.host_id, property_id: msg.b.property_id, from_date: msg.b.from_date, to_date: msg.b.to_date, category:msg.b.category, location:msg.b.location, no_of_guest:msg.b.no_of_guest,security_deposite:msg.b.security_deposite, amount:msg.b.amount, date:Date() ,user_flag:1,host_flag: 1 };
-        var query = connection.query('SELECT *FROM bill where bill_id = ?', [bill_id], function (err, result) {
+        var query = connection.query('select * from bill inner join properties on bill.property_id=properties.propertyid inner join users on bill.user_id=users.id where bill.bill_id= ?', [bill_id], function (err, result) {
             if (err) {
                 res.code = 401;
                 res.value = "Bill not found error";

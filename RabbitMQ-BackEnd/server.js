@@ -160,7 +160,7 @@ cnn.on('ready', function () {
     cnn.queue('BillIDQueue', function (q) {
      //   console.log("IN Bill ID queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
-            bill.getById(message, function (err, res) {
+            bill.getByBillId(message, function (err, res) {
                 console.log("inside create bill queue");
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
