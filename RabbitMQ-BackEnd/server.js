@@ -8,7 +8,7 @@ var host = require('./services/host');
 
 var user = require("./services/user");
 var admin = require('./services/admin');
-
+var review = require('./services/review');
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
 
 cnn.on('ready', function () {
@@ -183,6 +183,41 @@ cnn.on('ready', function () {
     cnn.queue('gethostrequests', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.gethostrequests(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('makeuserreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            review.makeuserreview(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('makehostreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            review.makehostreview(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('makepropertyreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+
+            review.makepropertyreview(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
