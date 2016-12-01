@@ -41,6 +41,7 @@ app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
 
+
 app.use(session({
     secret: 'cmpe273_airbnb',
     resave: false,
@@ -50,12 +51,18 @@ app.use(session({
     store: new MongoStore({ url:'mongodb://localhost:27017/airbnb' /*'mongodb://root:cmpe273@ds163397.mlab.com:63397/airbnb_mongo'*/ })
 }));
 
+app.get('/adminpage',function(req,res)
+{
+    res.render('admin',{ err: '' });
+});
+app.engine('html',require('ejs').renderFile);
+app.set('views', __dirname + '\\views');
+app.set('view engine','ejs');
 
 app.use('/users', users);
 app.use('/become_host', become_host);
 app.use('/admin', admin);
 app.use('/review', review);
-
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');

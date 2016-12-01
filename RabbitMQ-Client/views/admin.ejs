@@ -91,7 +91,7 @@
             <div class="container-fluid" style="background-color: #FFFFFF">
                 <ul>
                     <li style="float: right">
-                        <a href="#"><br>
+                        <a href="localhost"><br>
                             Log out
                         </a>
                     </li>
@@ -108,8 +108,20 @@
                 <h2 style="color: #FF5A5F; padding-left: 20px">Welcome <strong>Airbnb Admin </strong>Dashboard</h2><br>
                 <img src="https://a0.muscache.com/airbnb/static/about/resources/people-places-love-94cddf9b9359b374bda6e7a4d1fbf313.png"
                      style="width:300px;height:200px;margin-left:35%"/>
-                <div class = "mychart">
+                <h2 style="color: #FF5A5F; padding-left: 20px">Top 10 revenue by property </h2><br>
+               <div class = "mychart">
                     <canvas  id="bar"   width="800" class="chart chart-bar" chart-options="options" chart-data="data" chart-labels="labels" > chart-series="series"
+                    </canvas>
+                </div>
+
+                <h2 style="color: #FF5A5F; padding-left: 20px">Top 10 revenue by city </h2><br>
+                <div class = "mychart">
+                    <canvas  id="citybar"   width="800" class="chart chart-bar" chart-options="options" chart-data="citydata" chart-labels="citylabels" > chart-series="cityseries"
+                    </canvas>
+                </div>
+                <h2 style="color: #FF5A5F; padding-left: 20px">Top 10 revenue by host</h2><br>
+                <div class = "mychart">
+                    <canvas  id="hostbar"   width="800" class="chart chart-bar" chart-options="options" chart-data="hostdata" chart-labels="hostlabels" > chart-series="hostseries"
                     </canvas>
                 </div>
             </div>
@@ -133,8 +145,8 @@
                             <td style="padding-left:80px"> {{hostdetails.firstname}} {{hostdetails.lastname}}
                                 <br>{{hostdetails.email}}
                                 <br>
-                                <button type="button" class="btn btn-info">Approve</button>
-                                <button type="button" class="btn btn-danger"  style="margin-left:30px">Decline</button>
+                                <button type="button" class="btn btn-info" ng-click="approvehost(hostdetails.id)">Approve</button>
+                                <button type="button" class="btn btn-danger" ng-click="rejecthost(hostdetails.id)"  style="margin-left:30px">Decline</button>
                             </td>
 
                         </tr>
@@ -208,7 +220,7 @@
 
 <script src="js/light-bootstrap-dashboard.js"></script>
 -->
-<script src="admin_dashboard.js"></script>
+<script src="http://localhost:80/angularjs/admin_dashboard.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
