@@ -1,4 +1,4 @@
-<div class="default" style="padding-top: 48px !important;height:800px">
+<div class="default" style="padding-top: 48px !important;height:800px" ng-controller="defaultController">
     <div class="row" style="margin: 0;">
         <h1 style="width:75% !important;">
             <span class="livethere">Live there.</span> Book unique homes and experience a city like a local.
@@ -53,7 +53,7 @@
                         <svg class="downarrow" viewBox="0 0 18 18" style="fill:currentColor;height:12px;width:12px;display:block;" data-reactid=".fqyp72lce8.1.0.1.0.0.0.0.2.1.1"><path d="M16.291 4.295a1 1 0 1 1 1.414 1.415l-8 7.995a1 1 0 0 1-1.414 0l-8-7.995a1 1 0 1 1 1.414-1.415l7.293 7.29 7.293-7.29z" data-reactid=".fqyp72lce8.1.0.1.0.0.0.0.2.1.1.0"></path></svg>
                     </div>
                     <div class="col-md-5" style="padding-top: 14px;">
-                        <button type="submit" ui-sref="searchQuery({location: 'San Jose CA'})" class="btn btn-primary searchbtn">Search</button>
+                        <button type="submit" ui-sref="searchQuery({location: where,checkin:checkin,checkout:checkout})" class="btn btn-primary searchbtn">Search</button>
                     </div>
                 </div>
             </div>
