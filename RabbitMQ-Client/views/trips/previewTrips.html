@@ -25,31 +25,31 @@
                                 <div class="row row-table">
                                     <div class="col-lg-10">
                                     <span class="h4">
-                                        <span>{{trips.title}}</span>
+                                        <span>{{trip.title}}</span>
                                     </span>
                                     </div>
                                 </div>
                                 <div class="row row-table">
-                                    <div class="col-lg-10 text-muted text-normal space-top-2">Location: {{trips.address}}</div>
+                                    <div class="col-lg-10 text-muted text-normal space-top-2">Location: {{trip.address}}, {{trip.city}} {{trip.state}} {{trip.zipcode}}</div>
                                 </div>
                                 <div class="row row-table">
                                     <div class=" col-lg-10 text-muted text-grey space-top-1 last-modified-date">
-                                        <span>Price: {{trips.price}}</span>
+                                        <span>Price: {{trip.price}}</span>
                                     </div>
                                 </div>
                                 <div class="row row-table">
                                     <div class="col-lg-10 text-grey space-top-1 last-modified-date">
-                                        <label>Number of guests: {{trips.quantity}} </label>
+                                        <label>Number of guests: {{trip.quantity}} </label>
                                     </div>
                                 </div>
                                 <div class="row row-table">
                                     <div class="col-lg-10 text-grey space-top-1 last-modified-date">
-                                        <label><h5>Booking From: {{trips.fromdate}} </h5></label>
+                                        <label><h5>Booking From: {{trip.fromdate}} </h5></label>
                                     </div>
                                 </div>
                                 <div class="row row-table">
                                     <div class="col-lg-10 text-grey space-top-1 last-modified-date">
-                                        <label><h5>Booking Till: {{trips.todate}} </h5></label>
+                                        <label><h5>Booking Till: {{trip.todate}} </h5></label>
                                     </div>
                                 </div>
                             </li>

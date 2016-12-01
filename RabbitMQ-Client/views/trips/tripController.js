@@ -1,12 +1,36 @@
-app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', 'Upload','Notification', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, Upload,Notification) {
-    $http({
-        method: 'GET',
-        url:'/'
-    }).success(function (response) {
-        alert(JSON.stringify(response));
-    }).error(function (err) {
-        alert('error');
-    });
+app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal','$window', 'Upload','Notification', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, Upload,Notification) {
+    $scope.getUserTrips = function () {
+        $http.get("/users/trips").success(function (response) {
+            alert(JSON.stringify(response));
+            $scope.pendingtrips = [];
+            $scope.usertrips = [];
+            if(response.code == 200) {
+                var resArray = response.data;
+                for(var i=0; i<resArray.length; i++) {
+                    if(resArray[i].tripstatus == "pending") {
+                        $scope.pendingtrips.push(resArray[i]);
+                    }else {
+                        $scope.usertrips.push(resArray[i]);
+                    }
+                }
+            }else if (response.code === 401) {
+
+            }
+        }).error(function (err) {
+            alert('error');
+        });
+    };
+
+    $scope.getPreview = function () {
+        $http.get("/gettripsbyuserid").success(function(response){
+                $state.go("users.trips.preview");
+            })
+            .error(function (err) {
+
+            });
+
+    }
+
     $scope.format='MM-dd-yyyy'
     $scope.dateOptions = {
         dateDisabled: disabled,
@@ -36,17 +60,6 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$r
     $scope.popup2 = {
         opened: false
     };
-    $scope.getPreview = function () {
-        $http({
-            method: GET,
-            url: '/gettripsbyuserid'
-        }).success(function(data){
-            $state.go("users.trips.preview");
-        })
-        .error(function (err) {
-            
-        });
-        
-    }
+
     
 }]);

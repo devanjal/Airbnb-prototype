@@ -2,95 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdeb5808-c55e-413b-976c-bd9f32ae2559" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_204a21dfc9dd265ddf8689154bce7a55" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_2321b4185a4d4ee518aefbd57a328cf5" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_48f05da2c0fb77c840bab0a4c94f7a6b" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_50ee85b9229164cb6f89f876130f60ab" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_5a0641f031acebfe76f478dd2ac75929" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_5b572230f52f01dd0c6261b2ded187a0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_a56f551863e84e77eb084d0cf7ae1c87" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_a6c39c20e6d6eaa0f8a5804b9001dbe6" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_b028b45774671b59b6e88521fd341c44" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_b2ace4edb4d913beb4e9b3c7518355d1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_c219a39b9d23e04ed237cb44435a2bdd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_e41016045e12ff20cb1383a0159a030e" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_f98339628faf564a7b7f9ffc2fdae888" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/upload_fac2a2b0dd5d0cc533479cec1c13a0ee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/images/user_pic-225x225.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/js/ng-file-upload-shim.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/js/ng-file-upload.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/routes/become_host.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/routes/passport.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/IndividualPropertyPage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/become_a_host.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/bedrooms.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/bidPrice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/choose-pricing-mode.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/fixedPrice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostCalendar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostController.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/location.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/photos.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/editprofile.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/photo.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/users.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/viewprofile.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchController.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/searchPage.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Airbnb-prototype.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/angular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/calender.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/emp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/hostAngular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/emp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/stylesheets/emp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/actualStep1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/afterHostNotLoggedIn.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/becomeHostStep2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/bidPrice.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/emp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/hostCalender.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/hostFixedPrice.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPhotos.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/propertyPricing.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/step2HostAddress.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/step2QuantityGuests.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/subHeaderHost.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/connectionpool.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/config/connectionpool.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/descriptionStep2.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/description.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/newHost.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostpage.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/readyToPublish.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/readyToPublish.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/server.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/host.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/host.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/login.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/signup.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/signup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/user.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/package.json" afterPath="$PROJECT_DIR$/RabbitMQ-Client/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb.css" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb2.css" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb3.css" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb3.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb4.css" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/css/airbnb4.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/public/css/host.css" afterPath="$PROJECT_DIR$/RabbitMQ-Client/public/css/host.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js" afterPath="$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/routes/trips.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/routes/trips.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/routes/users.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/routes/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/server.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/default/default.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/index.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/loginmodal.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/loginmodal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/signupmodal.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/signupmodal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/emp.txt" afterPath="$PROJECT_DIR$/emp.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/editprofile.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/editprofile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/editTrips.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/editTrips.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/previewTrips.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/previewTrips.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html" afterPath="$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html" />
     </list>
     <ignored path="Airbnb-prototype.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -114,8 +35,8 @@
       <file leaf-file-name="trips.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/routes/trips.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="246">
+              <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
               <folding>
                 <element signature="e#0#46#0" expanded="false" />
               </folding>
@@ -123,33 +44,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trip.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="77" column="37" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="37" />
+            <state relative-caret-position="272">
+              <caret line="469" column="37" selection-start-line="469" selection-start-column="23" selection-end-line="469" selection-end-column="37" />
               <folding>
-                <element signature="e#0#46#0" expanded="false" />
+                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#footer#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tripController.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js">
+      <file leaf-file-name="profileController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+            <state relative-caret-position="187">
+              <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usertrips.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="usertrips.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
+            <state relative-caret-position="118">
+              <caret line="88" column="95" selection-start-line="88" selection-start-column="95" selection-end-line="88" selection-end-column="95" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
               </folding>
@@ -157,12 +80,34 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="tripController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="138" column="27" selection-start-line="138" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+            <state relative-caret-position="229">
+              <caret line="158" column="28" selection-start-line="158" selection-start-column="15" selection-end-line="158" selection-end-column="28" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="trip.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="131" column="68" selection-start-line="131" selection-start-column="68" selection-end-line="131" selection-end-column="68" />
+              <folding>
+                <element signature="e#0#46#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -185,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/public/css/hostLocationMap.css" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/step3HostStart.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/hosttep3Start.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/public/css/step3.css" />
@@ -217,25 +161,26 @@
         <option value="$PROJECT_DIR$/RabbitMQ-BackEnd/services/user.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-BackEnd/config/connectionpool.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/routes/become_host.js" />
-        <option value="$PROJECT_DIR$/RabbitMQ-BackEnd/server.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/searchPage/editTrips.html" />
-        <option value="$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/usertrips.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostController.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/tripController.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/previewTrips.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/editTrips.html" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/previewTrips.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/index.html" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/editTrips.html" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/server.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/views/profile/users.html" />
-        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/profile/editprofile.html" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/server.js" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/previewTrips.html" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/editTrips.html" />
+        <option value="$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js" />
+        <option value="$PROJECT_DIR$/RabbitMQ-BackEnd/server.js" />
         <option value="$PROJECT_DIR$/RabbitMQ-Client/routes/trips.js" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html" />
+        <option value="$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js" />
       </list>
     </option>
   </component>
@@ -361,7 +306,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Airbnb-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Airbnb-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RabbitMQ-Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="default" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,24 +365,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="RabbitMQ-BackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Airbnb-prototype" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Airbnb-prototype" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RabbitMQ-BackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -535,23 +488,23 @@
       <workItem from="1480278285551" duration="2059000" />
       <workItem from="1480282262608" duration="156000" />
       <workItem from="1480389916925" duration="7287000" />
-      <workItem from="1480447680389" duration="39137000" />
+      <workItem from="1480447680389" duration="58677000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184627000" />
+    <option name="totallyTimeSpent" value="204167000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19568452" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25764894" sideWeight="0.50446427" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33977455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25764894" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -583,21 +536,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/public/css/fixedPrice.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="139" column="1" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/public/css/hostPhotos.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="189" column="17" selection-start-line="189" selection-start-column="17" selection-end-line="189" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/afterHostNotLoggedIn.html" />
     <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/public/css/host.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1592">
@@ -660,14 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="15" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,48 +670,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/editTrips.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#3;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#4;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#p#0;n#div#1;n#div#4;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/previewTrips.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/hostPage/hostController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="763">
           <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="462" column="52" selection-start-line="462" selection-start-column="52" selection-end-line="462" selection-end-column="52" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#footer#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -793,34 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="107" column="35" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -835,68 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="169" selection-start-line="0" selection-start-column="169" selection-end-line="0" selection-end-column="169" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="138" column="27" selection-start-line="138" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="77" column="37" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#46#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/routes/trips.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#46#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/signup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -905,11 +712,164 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1420">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/editprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2943">
+          <caret line="382" column="131" selection-start-line="382" selection-start-column="130" selection-end-line="382" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/photo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-935">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="469" column="37" selection-start-line="469" selection-start-column="23" selection-end-line="469" selection-end-column="37" />
+          <folding>
+            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#footer#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/default/defaultController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/viewprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="52" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/angularApp/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="109" column="49" selection-start-line="109" selection-start-column="49" selection-end-line="109" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/previewTrips.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="167" selection-start-line="32" selection-start-column="167" selection-end-line="32" selection-end-column="167" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/editTrips.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#3;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#4;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#p#0;n#div#1;n#div#4;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/routes/trips.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/tripController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        <state relative-caret-position="204">
+          <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="158" column="28" selection-start-line="158" selection-start-column="15" selection-end-line="158" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-BackEnd/services/trip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="131" column="68" selection-start-line="131" selection-start-column="68" selection-end-line="131" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/profile/profileController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Client/views/trips/usertrips.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="88" column="95" selection-start-line="88" selection-start-column="95" selection-end-line="88" selection-end-column="95" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

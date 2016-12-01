@@ -123,7 +123,7 @@ cnn.on('ready', function () {
             });
         });
     });
-    cnn.queue('tripqueue', function (q) {
+    cnn.queue('tripeditqueue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             trip.editTrip(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
@@ -136,6 +136,17 @@ cnn.on('ready', function () {
     });
     cnn.queue('tripqueueuser', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.getAllTripsByUserId(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('tripqueuebyuserid', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
             trip.getTripByUserId(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
@@ -147,7 +158,7 @@ cnn.on('ready', function () {
     });
     cnn.queue('tripqueuehost', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
-            trip.getTripByHostId(message, function (err, res) {
+            trip.getAllTripsByHostId(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
