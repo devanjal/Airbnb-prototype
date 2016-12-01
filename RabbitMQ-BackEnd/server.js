@@ -17,7 +17,7 @@ cnn.on('ready', function () {
     console.log("listening to all queues");
 
     cnn.queue('userInfo_queue', function (q) {
-       // console.log("userInfo_queue");
+        console.log("userInfo_queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
             util.log("Message: " + JSON.stringify(message));
             user.get_profile_request(message, function (err, res) {
@@ -31,7 +31,7 @@ cnn.on('ready', function () {
     });
 
     cnn.queue('updateUserProfile_queue', function (q) {
-       // console.log("updateUserProfile_queue");
+        console.log("updateUserProfile_queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
             util.log("Message: " + JSON.stringify(message));
             user.update_profile_request(message, function (err, res) {
@@ -45,7 +45,7 @@ cnn.on('ready', function () {
     });
 
     cnn.queue('login_queue', function (q) {
-      //  console.log("login_queue");
+        console.log("login_queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
             util.log(util.format(deliveryInfo.routingKey, message));
             util.log("Message: " + JSON.stringify(message));
@@ -119,7 +119,7 @@ cnn.on('ready', function () {
         });
     });
     cnn.queue('createBillQueue', function (q) {
-       // console.log("create bill queue");
+        console.log("create bill queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
             bill.createBill(message, function (err, res) {
                 console.log("inside create bill queue");

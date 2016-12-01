@@ -24,7 +24,7 @@ var app = express();
 
 
 app.use(compression());
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 
 app.use(logger('dev'));
 app.use(favicon(__dirname + '/public/airbnb-favicon.ico'));

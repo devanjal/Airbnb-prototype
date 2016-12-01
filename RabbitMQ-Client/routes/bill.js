@@ -27,9 +27,9 @@ router.post('/createBill',function(req,res){
 router.get('/getBillByUid',function (req,res) {
 
     var payload={};
-    //payload.user_id=req.session.user_id;
-    payload.user_id=1;
-    console.log("Getting the bills"+payload.user_id);
+    payload.user_id=req.session.user_id;
+   // payload.user_id=;
+   // console.log("Getting the bills"+payload.user_id);
     mq_client.make_request('getBillUidQueue', payload, function(err,results){
         if(err){
             return done(err);
@@ -50,7 +50,7 @@ router.get('/getBillByUid',function (req,res) {
 router.get('/getBillByHid',function (req,res) {
 
     var payload={};
-    payload.user_id=12;
+    payload.user_id=req.session.user_id;
     console.log("Getting the bills");
     mq_client.make_request('getBillHidQueue', payload, function(err,results){
         if(err){
