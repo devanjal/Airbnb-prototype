@@ -20,27 +20,8 @@
                                datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="Check out"/>
                     </div>
                     <div class="col-md-3" style="padding: 0;padding-right: 5px;">
-                        <!--<select id="how-many-guests" class="GuestInput" aria-label="Number of guests" name="guests" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0">
-                            <option selected="" value="1" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$1">1 Guest</option>
-                            <option value="2" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$2">2 Guests</option>
-                            <option value="3" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$3">3 Guests</option>
-                            <option value="4" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$4">4 Guests</option>
-                            <option value="5" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$5">5 Guests</option>
-                            <option value="6" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$6">6 Guests</option>
-                            <option value="7" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$7">7 Guests</option>
-                            <option value="8" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$8">8 Guests</option>
-                            <option value="9" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$9">9 Guests</option>
-                            <option value="10" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$10">10 Guests</option>
-                            <option value="11" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$11">11 Guests</option>
-                            <option value="12" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$12">12 Guests</option>
-                            <option value="13" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$13">13 Guests</option>
-                            <option value="14" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$14">14 Guests</option>
-                            <option value="15" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$15">15 Guests</option>
-                            <option value="16" data-reactid=".ldf3n0wrnk.1.0.1.0.0.0.0.2.1.0.$16">16+ Guests</option>
-                        </select>-->
                         <select ng-model="dropdownDefault" ng-options="item for item in dropdown1">
                         </select>
-
                     </div>
 
               </div>
@@ -66,7 +47,7 @@
                             <span>Entire Home</span>
                           </div>
                           <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                              <input type="checkbox" ng-model="entirehome" ng-changed="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
+                              <input type="checkbox" ng-model="entirehome" ng-click="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
                           </div>
                       </div>
                   </label>
@@ -82,7 +63,7 @@
                         </div>
                         
                         <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                          <input type="checkbox" ng-model="privateRoom"  ng-changed="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
+                          <input type="checkbox" ng-model="privateroom" ng-click="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
@@ -98,7 +79,7 @@
                         </div>
                         
                         <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                          <input type="checkbox" ng-model="shared_room_checkbox" ng-changed="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
+                          <input type="checkbox" ng-model="shared_room_checkbox" ng-click="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>

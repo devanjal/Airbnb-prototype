@@ -174,4 +174,16 @@ cnn.on('ready', function () {
             });
         });
     });
+
+    cnn.queue('searchbycategory', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            property.searchbycategory(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
 });

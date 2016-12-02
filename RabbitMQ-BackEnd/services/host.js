@@ -56,7 +56,7 @@ function becomehost_step2(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET title = ?, description = ? where propertyid = ?',
+            'UPDATE properties SET title = ?, propertydescription = ? where propertyid = ?',
             [msg.title,msg.description,msg.propertyid],
             function (err, result) {
                 if (err)
@@ -103,7 +103,7 @@ function becomehost_step3(msg, callback){
         }
         connection.query(
             'UPDATE properties SET bid_price = ?, price = ?, availability_from = ?,availability_to = ? Where propertyid = ?',
-            [msg.bid_price,msg.price,new Date(msg.availability_from),new Date(msg.availability_to),msg.propertyid],
+            [msg.bid_price,msg.price,msg.availability_from,msg.availability_to,msg.propertyid],
             function (err, result) {
                 if (err)
                 {
