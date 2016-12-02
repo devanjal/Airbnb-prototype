@@ -1,6 +1,17 @@
 app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', '$stateParams', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, $stateParams) {
 
     $scope.methods = {};
+    $scope.checkin;
+    $scope.checkout;
+    $scope.nights = 1;
+    $scope.guests=["1 guest"];
+    $scope.selected_guest = $scope.guests[0];
+// availability_from
+// :
+// "2016-12-02T08:00:00.000Z"
+// availability_to
+// :
+// "2016-12-09T08:00:00.000Z"
 
     $scope.openGallery = function () {
         //console.log("I came in open gallery function()");
@@ -24,19 +35,15 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
     $scope.max = 5;
     $scope.isReadonly = true;
     //calender functions
-    $scope.format = 'MM-dd-yyyy';
+    $scope.format = 'MM/dd/yyyy';
     $scope.dateOptions = {
-        dateDisabled: disabled,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(),
-        startingDay: 1
+        showWeeks: true
     };
-    function disabled(data) {
-        var date = data.date,
-            mode = data.mode;
-        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-    }
+
+    // var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
 
     $scope.open1 = function () {
         $scope.popup1.opened = true;
@@ -59,7 +66,22 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
 
     // debugger
     // console.log($stateParams.id);
-
+    $scope.getCheckInDate = function(check_in_date){
+        debugger
+        if($scope.checkout){
+            var oneDay = 24*60*60*1000;
+            $scope.nights = Math.round(Math.abs(($scope.checkout.getTime() - $scope.checkin.getTime())/(oneDay)));
+        }
+        console.log(check_in_date);
+    };
+    $scope.getCheckOutDate = function(check_out_date){
+        debugger
+        if($scope.checkin){
+            var oneDay = 24*60*60*1000;
+            $scope.nights = Math.round(Math.abs(($scope.checkout.getTime() - $scope.checkin.getTime())/(oneDay)));
+        }
+        console.log(check_out_date);
+    };
     $scope.fetchData = function () {
         debugger
         $http({
@@ -72,7 +94,12 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
             debugger
             
             $scope.propertyDetails = data.value[0];
-            
+            console.log(($scope.propertyDetails.availability_to).split("T"));
+            $scope.dateOptions.maxDate = new Date($scope.propertyDetails.availability_to);
+            $scope.dateOptions.minDate = new Date(($scope.propertyDetails.availability_from));
+            for(var i = 2;i<=$scope.propertyDetails.quantity;i++){
+                $scope.guests.push(i+" guest");
+            }
             
             var images = data.value[0].images;
             var tmpObj = {};

@@ -674,14 +674,19 @@ font-weight: 700 !important;
                                   <div class="row row-condensed">
                                     <div class="col-sm-6">
                                       <label class="book-it__label">Check in</label>
-                                      <input type="text" ng-model="checkin" class="form-control" ng-click="open1()" uib-datepicker-popup is-open="popup1.opened"
-                                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="mm/dd/yy"/>
+                                      <input type="text" ng-model="checkin" class="form-control" ng-click="open1()" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
+                                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" 
+                                             placeholder="MM/dd/yyyy" ng-change="getCheckInDate(checkin)"/>
                                       <span id="datespan-checkin-description" class="screen-reader-only">Enter your check in date in the format mm/dd/yyyy</span>
                                     </div>
                                     <div class="col-sm-6">
                                       <label class="book-it__label">Check Out</label>
-                                      <input type="text" ng-model="checkout" class="form-control" ng-click="open2()" uib-datepicker-popup is-open="popup2.opened"
-                                             datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="mm/dd/yy"/>
+                                      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-click="open2()"
+                                      ng-model="checkout" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" 
+                                      close-text="Close" alt-input-formats="altInputFormats" placeholder="MM/dd/yyyy" ng-change="getCheckOutDate(checkout)" />
+
+                                      <!--<input type="text" ng-model="checkout" class="form-control" ng-click="open2()" uib-datepicker-popup is-open="popup2.opened"
+                                             datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="mm/dd/yy"/>-->
                                     </div>
                                     <span class="screen-reader-only" id="datespan-checkout-description">Enter your check in date in the format mm/dd/yyyy</span>
                                   </div>
@@ -694,11 +699,12 @@ font-weight: 700 !important;
                                     <div class="GuestPickerTrigger">
                                       <button class="GuestPickerTrigger__button" type="button">
                                         <div class="guest-label">
-
-                                          <span class="guest-label__text guest-label__text-guests">
-                                            <span>1 guest</span>
-
-                                          </span>
+                                          <select style="border:0" ng-model="selected_guest" ng-options="guest for guest in guests">
+                                            </select>
+                                          <!--<span class="guest-label__text guest-label__text-guests">
+                                            
+                                            
+                                          </span>-->
                                         </div>
                                         <div class="dropdown-icon">
                                           <svg viewBox="0 0 18 18" style="fill:currentColor;height:12px;width:12px;display:block;">
@@ -773,12 +779,12 @@ font-weight: 700 !important;
                                   <table class="table">
                                     <tr class="price-item">
                                       <th class="price-item__header hide-border-top">
-                                        <span>${{propertyDetails.price}} x 1 night</span>
+                                        <span>${{propertyDetails.price}} x {{nights}} night</span>
                                         <span>&nbsp;</span>
                                       </th>
                                       <td class="text-right price-item__price hide-border-top">
                                         <div class>
-                                          <span>$199</span>
+                                          <span>${{propertyDetails.price*nights}}</span>
                                         </div>
                                       </td>
                                     </tr>
@@ -803,7 +809,7 @@ font-weight: 700 !important;
                                         <span>Total</span>
                                       </th>
                                       <td class="text-right">
-                                        <span>$223</span>
+                                        <span>${{propertyDetails.price*nights + 24}}</span>
                                       </td>
                                     </tr>
                                   </table>

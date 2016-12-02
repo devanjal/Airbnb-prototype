@@ -2607,7 +2607,7 @@ fieldset[disabled] .btn {
     margin-left: 4px
 }
 .btn {
-    padding: 7px 21px;
+    /*padding: 7px 21px;*/
     font-size: 14px
 }
 .btn .icon:first-child {
@@ -2690,10 +2690,7 @@ fieldset[disabled] .btn {
     border-color: #aaa;
     color: #484848
 }
-.active.btn,
-.btn:active {
-    background: #f2f2f2
-}
+
 .btn-primary {
     border-color: #ff5a5f;
     background-color: #ff5a5f;
