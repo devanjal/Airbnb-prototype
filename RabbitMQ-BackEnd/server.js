@@ -170,6 +170,19 @@ cnn.on('ready', function () {
             });
         });
     });
+    cnn.queue('BillDateQueue', function (q) {
+        //   console.log("IN Bill ID queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.searchByDate(message, function (err, res) {
+             //   console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
     cnn.queue('deleteBillQueue', function (q) {
    //     console.log("Delete bill queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {

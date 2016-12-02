@@ -110,4 +110,24 @@ router.post('/deleteBill',function (req, res) {
         }
     });
 });
+router.post('/searchByDate',function (req,res) {
+   var payload={};
+   payload=req.body;
+ //  payload.user_id=req.body.user_id;
+    mq_client.make_request('BillDateQueue', payload, function(err,results){
+        if(err){
+            return done(err);
+        }
+        else
+        {
+            if(results.code == 200){
+                //   console.log(results);
+                res.send({status:'success', result:results.result});
+            }
+            else {
+                res.send({status:'error',error:"Get bills by date Failed Failed"});
+            }
+        }
+    });
+});
 module.exports = router;

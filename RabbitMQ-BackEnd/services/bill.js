@@ -198,8 +198,42 @@ function deleteBill(msg,callback) {
         });
     });
 }
+function searchByDate(msg,callback) {
+    var res={};
+   // console.log("In Bill by id module");
+    // console.log(JSON.stringify(msg));
+
+    connectionpool.getConnection(function(err,connection) {
+        if (err) {
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        console.log(msg);
+        var date=new Date(msg.date);
+      // var user_id=msg.user_id;
+       var query = connection.query('select *from bill where date=?', [date], function (err, result) {
+            if (err) {
+                res.code = 401;
+                res.value = "Bill by Date not found error";
+                callback(null, res);
+                console.log(err);
+                connectionpool.releaseSQLConnection(connection);
+                return;
+            }
+            res.code = 200;
+            res.value = "Bill By Date Found";
+            res.result=result;
+            callback(null, res);
+            connectionpool.releaseSQLConnection(connection);
+        });
+    });
+}
 exports.createBill = createBill;
 exports.getBillByUid = getBillByUid;
 exports.getBillByHid = getBillByHid;
 exports.getByBillId = getByBillId;
+exports.searchByDate=searchByDate;
 exports.deleteBill=deleteBill;
