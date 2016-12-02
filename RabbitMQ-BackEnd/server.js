@@ -5,6 +5,7 @@ var login = require('./services/login');
 var signup = require('./services/signup');
 
 var host = require('./services/host');
+var property = require('./services/property');
 
 var user = require("./services/user");
 var admin = require('./services/admin');
@@ -13,12 +14,12 @@ var cnn = amqp.createConnection({ host: '127.0.0.1' });
 
 var connectionpool = require("./config/connectionpool");
 
-process.on("SIGINT",function(){
+process.on("SIGINT", function () {
     console.log("inside sigint process");
     connectionpool.closedbconnection();
 });
 
-process.on("close",function(){  
+process.on("close", function () {
     console.log("inside close process");
     connectionpool.closedbconnection();
 });
@@ -70,11 +71,11 @@ cnn.on('ready', function () {
             });
         });
     });
-   
+
 
     cnn.queue('logout_queue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
-           console.log("logout_queue");
+            console.log("logout_queue");
             login.handle_logout(message, function (err, res) {
                 console.log("handle_logout");
                 console.log("inside login_queue handle request");
@@ -145,9 +146,22 @@ cnn.on('ready', function () {
             });
         });
     });
+
     cnn.queue('approve_host', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.approvehost(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('searchbyuserid', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            property.searchbyuserid(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
@@ -168,6 +182,20 @@ cnn.on('ready', function () {
         });
     });
 
+    cnn.queue('searchbypropertyid', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            property.searchbypropertyid(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+
+                });
+            });
+        });
+    });
+
+
     cnn.queue('postuserreview', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             host.postuserreview(message, function (err, res) {
@@ -179,6 +207,19 @@ cnn.on('ready', function () {
             });
         });
     });
+
+    cnn.queue('searchbyquery', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            property.searchbyquery(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
     cnn.queue('user_profile_image_queue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             user.user_profile_image_queue(message, function (err, res) {
@@ -191,6 +232,20 @@ cnn.on('ready', function () {
         });
     });
 
+    cnn.queue('searchAllProperties', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            property.searchAllProperties(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+
+                });
+            });
+        });
+    });
+
+
     cnn.queue('gethostrequests', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.gethostrequests(message, function (err, res) {
@@ -198,6 +253,19 @@ cnn.on('ready', function () {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
                     correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('searchbycity', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            property.searchbycity(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+
                 });
             });
         });

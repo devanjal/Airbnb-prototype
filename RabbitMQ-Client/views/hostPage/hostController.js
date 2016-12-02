@@ -8,7 +8,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
     $scope.photos = [];
     $scope.activeDecrement = false;
     $scope.continue = function () {
-        // debugger
+
         if (window.sessionStorage.login_status === "false" || window.sessionStorage.login_status === undefined) {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -23,6 +23,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
             $state.go(".category");
         }
     };
+
 //--calendar functions------------------------------------------------------
     $scope.format='MM-dd-yyyy'
     $scope.dateOptions = {
@@ -84,7 +85,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
             if (data.status === "success") {
                 $scope.firstStepStatus = "complete";
                 $state.go('become-a-host');
-                // $scope.property = {};
+                // $scope.propertyPage = {};
             } else if (data.error) {
                 console.log(JSON.stringify(data));
             }
@@ -99,13 +100,13 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
             url: '/become_host/step2',
             fields: $scope.property,
             file: $scope.photos
-            // data: {files: $scope.photos, 'property': $scope.property}
+            // data: {files: $scope.photos, 'propertyPage': $scope.propertyPage}
         }).success(function (data) {
             if (data.status === "success") {
                 $scope.secondStepStatus = "complete";
                 $scope.firstStepStatus = "complete";
                 $state.go('become-a-host');
-                // $scope.property = {};
+                // $scope.propertyPage = {};
             } else if(data.error) {
                  Notification.error(data.error);
                 console.log(JSON.stringify(data));
@@ -128,7 +129,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
                 $scope.thirdStepStatus = "complete";
                 $state.go('become-a-host.publish');
 
-                // $scope.property = {};
+                // $scope.propertyPage = {};
             } else if (data.error) {
                 console.log(JSON.stringify(data));
             }
@@ -143,7 +144,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
         $http.post("/become_host/publish")
         .success(function (data) {
             if (data.status === "success") {
-                Notification.success("Your property has been successfully listed.");
+                Notification.success("Your propertyPage has been successfully listed.");
                 $state.go('users.show');
             } else if (data.error) {
                 console.log(JSON.stringify(data));

@@ -373,10 +373,10 @@ font-weight: 700 !important;
 }
 
 </style>
-</head>
-<body>
 
-<div class="subnav-container">
+<div  ng-controller="propertyController" ng-init="fetchData()">
+
+<div class="subnav-container" >
   <div class="subnav book-it show-md" data-sticky="true" data-transition-at="#details">
     <div class="page-container-responsive">
       <div clas="pull-left text-contrast subnav-element">
@@ -386,7 +386,7 @@ font-weight: 700 !important;
               <div>
                 <div>
                   <span class="h3 text-contrast price-amount">
-                    <span>$97</span>
+                    <span>${{property.price}}</span>
                   </span>
                   <span class="listing-price__per-night hide-sm">
                     <span>Per Night</span>
@@ -450,8 +450,8 @@ font-weight: 700 !important;
 </div>
 <div id="og_pro_photo_prompt" class="container"></div>
 <!-- here the code for the galery will come -->
-<div id="room">
-    <div>
+<div id="room" >
+    <div><!--ng-repeat="listing in propertyDetails"-->
       <div class="show-sm page-container-responsive header-listing-alert">
         <div class="row">
           <div class="col-sm-12"></div>
@@ -463,13 +463,13 @@ font-weight: 700 !important;
       <div>
         <div id="photos" class="with-photos with-modal">
           <span class="cover-photo">
-            <img class="hide" alt width="0" src="https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=large" srcset="https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=large 639w,https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=xx_large 1440w">
+            <img class="hide" alt width="0" src="{{propertyDetails.images[0]}}">
             <span class="cover-img-container">
-              <div class="cover-img" style="background-image:url(https://a1.muscache.com/im/pictures/29409018/2e2cf92c_original.jpg?aki_policy=xx_large);">
+              <div class="cover-img" style="background-image:url({{propertyDetails.images[0]}});">
                 <div class="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label show-sm">
                   <div>
                     <span class="h3 text-contrast price-amount">
-                      <span>$97</span>
+                      <span>${{propertyDetails.price}}</span>
                     </span>
                     <span class="listing-price__per-night hide-sm">
                       <span>Per night</span>
@@ -482,13 +482,13 @@ font-weight: 700 !important;
               <img class="carousel-image img-responsive-height" src="https://a2.muscache.com/im/pictures/29408211/aeec261c_original.jpg?aki_policy=x_large" alt="NEW Memory Foam mattress, new sheets and pillows!">
               <img class="carousel-image img-responsive-height" src="https://a2.muscache.com/im/pictures/29408211/aeec261c_original.jpg?aki_policy=x_large" >
             </div>
-            <div class="hero__view-photos">
-              <a href="#myModal">
-                <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
-                  <span>View Photos</span>
-                </button>
-              </a>
-            </div>
+              <div class="hero__view-photos">
+              <button type="button" ng-click="openGallery();" class="btn" data-toggle="modal" data-target="#myModal">
+                <span>View Photos</span>
+
+              </button>
+              <ng-image-gallery images="images" methods="methods" on-open="opened();" on-close="closed();"></ng-image-gallery>
+              </div>
           </span>
         </div>
       </div>
@@ -507,14 +507,14 @@ font-weight: 700 !important;
                           <div class="col-sm-10 col-md-9">
                             <span id="listing_name">
                               <div class="text_1lobov3-o_O-size_title2_1szkl8i-o_O-weight_bold_1lymmfr">
-                                <span>1 room unit w/ fireplace by beach(N)</span>
+                                <span>{{propertyDetails.title}}</span>
                               </div>
                             </span>
                             <div>
                               <div class="show-lg-inline-block show-md-inline-block show-sm address">
                                   <a href="#neighborhood" class="link-reset">
                                     <span class="text_1lobov3-o_O-size_small_h25x8d-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">
-                                      <span >Santa Cruz, CA, United States</span>
+                                      <span >{{propertyDetails.city}}, {{propertyDetails.state}}, {{propertyDetails.country}}</span>
                                     </span>
                                   </a>
                                   <div class="show-inline-block">
@@ -525,16 +525,10 @@ font-weight: 700 !important;
                                       </div>
                                       <div class="show-lg-inline-block show-md-inline-block show-sm">
                                         <a href="#reviews" class="link-reset">
-                                          <div class="star-rating-wrapper" ng-controller="RatingDemoCtrl">
+                                          <div class="star-rating-wrapper">
                                             <div class="star-rating">
-                                              <div class="foreground">
-                                                <span>
-
-                                                    <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-
-
-                                                </span>
-
+                                              <div >
+                                                    <span uib-rating ng-model="rate" max="max" read-only="isReadonly" aria-labelledby="default-rating"></span>
                                               </div>
                                             </div>
                                           </div>
@@ -550,7 +544,7 @@ font-weight: 700 !important;
                             <div class="host-profile-md-lg ">
                               <div class="media-photo-badge">
                                 <a href="#host-profile"class="media-photo media-round">
-                                  <img alt="User Profile Image" title="Anushka" height="75" width="75" data-pin-nopin="true" src="https://a2.muscache.com/im/pictures/ece785d1-036c-44f0-9fb4-cd513d4d58ec.jpg?aki_policy=profile_x_medium">
+                                  <img alt="User Profile Image" title="{{propertyDetails.firstname}}" height="75" width="75" data-pin-nopin="true" src="">
                                 </a>
                               </div>
                             </div>
@@ -558,7 +552,7 @@ font-weight: 700 !important;
                               <div>
                                 <a href="#host-profile" class="text-wrap">
                                   <p class="text_1lobov3-o_O-size_small_h25x8d-o_O-weight_light_1jo1qff">
-                                    <span>Jaymini</span>
+                                    <span>{{propertyDetails.firstname}}</span>
                                   </p>
                                 </a>
                               </div>
@@ -573,12 +567,12 @@ font-weight: 700 !important;
                               <div class="col-sm-3 hide-md hide-lg">
                                 <i class="icon icon-entire-place icon-size-2"></i>
                                 <br>
-                                <span>Entire home/apt</span>
+                                <span>{{propertyDetails.category}}</span>
                               </div>
                               <div class="col-sm-3 hide-md hide-lg">
                                 <i class="icon icon-group icon-size-2"></i>
                                 <br>
-                                <span>2 Guests</span>
+                                <span>{{propertyDetails.quantity}} guests</span>
                               </div>
                               <div class="col-sm-3 hide-md hide-lg">
                                 <i class="icon icon-rooms icon-size-2"></i>
@@ -593,12 +587,12 @@ font-weight: 700 !important;
                               <div class="hide-sm icon--small-margin">
                                 <i class="icon icon-entire-place icon-size-2"></i>
                                 <br>
-                                <span>Entire home/apt</span>
+                                <span>{{propertyDetails.category}}</span>
                               </div>
                               <div class="hide-sm icon--small-margin">
                                 <i class="icon icon-group icon-size-2"></i>
                                 <br>
-                                <span>2 Guests</span>
+                                <span>{{propertyDetails.quantity}} guests</span>
                               </div>
                               <div class="hide-sm icon--small-margin">
                                 <i class="icon icon-rooms icon-size-2"></i>
@@ -658,7 +652,7 @@ font-weight: 700 !important;
                               <div class="book-it__price-amount text-special">
                                 <span id="book-it-price-string">
                                   <span class="h3">
-                                    <span>$97</span>
+                                    <span>${{propertyDetails.price}}</span>
                                   </span>
                                 </span>
                               </div>
@@ -680,12 +674,14 @@ font-weight: 700 !important;
                                   <div class="row row-condensed">
                                     <div class="col-sm-6">
                                       <label class="book-it__label">Check in</label>
-                                      <input id="datespan-checkin" name="checkin" type="text" class="checkin ui-datepicker-target" placeholder="mm/dd/yyyy" >
+                                      <input type="text" ng-model="checkin" class="form-control" ng-click="open1()" uib-datepicker-popup is-open="popup1.opened"
+                                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="mm/dd/yy"/>
                                       <span id="datespan-checkin-description" class="screen-reader-only">Enter your check in date in the format mm/dd/yyyy</span>
                                     </div>
                                     <div class="col-sm-6">
                                       <label class="book-it__label">Check Out</label>
-                                      <input id="datespan-checkout" name="checkout" type="text" class="checkout ui-datepicker-target" placeholder="mm/dd/yyyy" >
+                                      <input type="text" ng-model="checkout" class="form-control" ng-click="open2()" uib-datepicker-popup is-open="popup2.opened"
+                                             datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="mm/dd/yy"/>
                                     </div>
                                     <span class="screen-reader-only" id="datespan-checkout-description">Enter your check in date in the format mm/dd/yyyy</span>
                                   </div>
@@ -698,8 +694,10 @@ font-weight: 700 !important;
                                     <div class="GuestPickerTrigger">
                                       <button class="GuestPickerTrigger__button" type="button">
                                         <div class="guest-label">
+
                                           <span class="guest-label__text guest-label__text-guests">
                                             <span>1 guest</span>
+
                                           </span>
                                         </div>
                                         <div class="dropdown-icon">
@@ -712,7 +710,7 @@ font-weight: 700 !important;
                                         <div class="GuestPicker hide">
                                           <div class="GuestPickerRow row row-condensed">
                                             <div class="col-sm-8 GuestPickerRow__label">
-                                              <strong>1 Adult</strong>
+                                              <strong aria-live="polite">1 Adult</strong>
                                             </div>
                                             <div class="col-sm-4 increment-btn-container">
                                               <div class="increment-btn">
@@ -775,7 +773,7 @@ font-weight: 700 !important;
                                   <table class="table">
                                     <tr class="price-item">
                                       <th class="price-item__header hide-border-top">
-                                        <span>$199 x 1 night</span>
+                                        <span>${{propertyDetails.price}} x 1 night</span>
                                         <span>&nbsp;</span>
                                       </th>
                                       <td class="text-right price-item__price hide-border-top">
@@ -823,7 +821,7 @@ font-weight: 700 !important;
                               </div>
                               <div class="hide">
                                 <button type="button" class="btn btn-primary btn-large btn-small btn-block">
-                                  <spna>Contact Host</span>
+                                  <span>Contact Host</span>
                                 </button>
                                 <div></div>
                               </div>
@@ -864,17 +862,14 @@ font-weight: 700 !important;
                     </h4>
                     <div>
                       <p class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff">
-                        <span>My place has views to the beach and is a quick walk to downtown Santa Cruz and the beach. You’ll love my place because of the nearby entertainment and its location and fireplace!  Nice big frontporch!
-
-                        No smoking, no pets and no loud music after 9 pm.
-
-                        No wifi available</span>
+                        <span>{{propertyDetails.propertydescription}}</span>
                       </p>
                     </div>
                     <div class="row row-condensed">
                       <div class="contact-host-div col-12 space-top-2 space-2">
                         <div>
                           <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">
+                            <a href="#host-profile">
                               <span>Contact Host</span>
                             </a>
                           </span>
@@ -1028,10 +1023,11 @@ font-weight: 700 !important;
                               <div class="va-bottom review-header-text">
                                 <h4 class="col-middle">
                                   <span class="title_n9n61p">
-                                    <span>{{}} reviews</span>
+                                    <span>{{je}}</span>
                                   </span>
                                   <div class="" style="display:inline-block;">
                                     <!-- div for the review stars -->
+                                    <span uib-rating ng-model="rate" max="max" read-only="isReadonly"></span>
                                   </div>
                                 </h4>
                               </div>
@@ -1127,7 +1123,7 @@ font-weight: 700 !important;
                                         <div class="show-inline-block va-middle space-top-2 space-2">
                                           <div class="media-photo-badge">
                                             <a class="media-photo media-round" href="/users/show/102123136">
-                                              <img alt="User Profile Image" src="https://a2.muscache.com/im/pictures/639b1482-8a0c-41a0-90a3-0920a7531c8d.jpg?aki_policy=profile_x_medium" title="Jameson" width="48" height="48">
+                                              <img alt="User Profile Image" src="" title="{{propertyDetails.firstname}}" width="48" height="48">
                                             </a>
                                           </div>
                                         </div>
@@ -1136,13 +1132,14 @@ font-weight: 700 !important;
                                             <div class="name">
                                               <a class="text-muted link-reset">
                                                 <p class="text_1lobov3-o_O-size_regular_1n7tijc">
-                                                  <span>{{Name}}</span>
+                                                  <span>{{propertyDetails.firstname}}</span>
                                                 </p>
                                               </a>
                                             </div>
                                             <div class="date">
                                               <p class="class="text_1lobov3-o_O-size_small_h25x8d-o_O-weight_light_1jo1qff"">
-                                                <span>{{ month n year of trip}}</span>
+                                                <span></span>
+                                              <!--{{ month n year of trip}}-->
                                               </p>
                                             </div>
                                           </div>
@@ -1231,13 +1228,13 @@ font-weight: 700 !important;
                       <div class="host-info pull-left">
                         <h4 class="title_n9n61p">
                           <a class="link-reset" href="/users/show/51871069">
-                            <span>Hosted by Suzana</span>
+                            <span>Hosted by {{propertyDetails.firstname}}</span>
                           </a>
                         </h4>
                         <div>
                           <div>
                             <span class="text_1lobov3-o_O-size_small_h25x8d-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">
-                              <span>San Jose, California, United States</span>
+                              <span>{{propertyDetails.city}}, {{propertyDetails.state}}, {{propertyDetails.country}}</span>
                               <span>.</span>
                               <span>Member since December 2015</span>
                             </span>
@@ -1289,7 +1286,7 @@ font-weight: 700 !important;
                         <div class="expandable-content expandable-content-long" style="">
                           <div>
                             <p class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff">
-                              <span>{{aboout host}}Welcome! I am a classical musician and a regular traveller. I want my guests to feel relaxed and at home whether they have come to San Jose for work or for pleasure. You have an independent entrance and privacy. Feel free to let me know how I can help make your stay as comfortable as possible. </span>
+                              <span>{{propertyDetails.description}}</span>
                             </p>
                           </div>
                           <div class="expandable-indicator"></div>
@@ -1327,31 +1324,8 @@ font-weight: 700 !important;
 
     </div>
 </div>
-
-<div class="portfolio-modal modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="close-modal">
-        <div class="lr">
-          <div class="rl"></div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row"></div>
-      </div>
-
-    </div>
-  </div>
 </div>
 
-    <script>
-    angular.module('ui.bootstrap.demo',['ui.bootstrap']).controller('RatingDemoCtrl', function ($scope,$uibModal) {
-    $scope.rate = 7;
-    $scope.max = 10;
-    $scope.isReadonly = false;
-    });
-    </script>
 
 
-</body>
-</html>
+

@@ -80,7 +80,7 @@ router.post('/step2', function(req, res) {
                 payload.filenames.push(property_images[index].path.substring(7));
             }
         }else{
-            console.log(property_images.name);
+            //console.log(property_images.name);
             payload.filenames.push(property_images.path.substring(7));
         }
         

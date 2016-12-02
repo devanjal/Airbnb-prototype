@@ -1,11 +1,19 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification', 'ngFileUpload']);
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider) {
-
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload', 'thatisuday.ng-image-gallery', 'ngAutocomplete']);
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider','ngImageGalleryOptsProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
     NotificationProvider.setOptions({
         delay: 2000,
         positionX: 'center',
         positionY: 'top'
     });
+
+    ngImageGalleryOptsProvider.setOpts({
+        thumbnails  :   false,
+        inline      :   false,
+        imgBubbles  :   false,
+        bgClose     :   true,
+        bubbles     :   true,
+        imgAnim 	: 	'fadeup',
+     });
 
     $stateProvider
         .state("/", {
@@ -70,7 +78,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             controllerUrl: "hostPage/hostController"
         })
         .state("searchQuery", {
-            url: '/search?location&checkin&checkout',
+            url: '/search?location&checkout&checkin&guests',
             templateUrl: 'searchPage/searchPage.html',
             controllerUrl: "searchPage/searchController"
         })
@@ -98,46 +106,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             url: '/listings',
             templateUrl: 'profile/listing.html',
             controllerUrl: "profile/profileController"
-        });
-
-    // become-a-host.
-    // .state("Register", {
-    //     url: '/Register',
-    //     templateUrl: 'signin-register/signin.html',
-    //     controllerUrl: "signin-register/signinController"
-    // })
-    // .state("MyAccount", {
-    //     url: '/MyAccount',
-    //     templateUrl: 'Profile/MyProfile.html',
-    //     controllerUrl: "Profile/profileController"
-    // })
-    // .state("Sell", {
-    //     url: '/Sell',
-    //     templateUrl: 'Sellitems/sell.html',
-    //     controllerUrl: "Sellitems/sellController"
-    // })
-    // .state("market", {
-    //     url: '/market?category',
-    //     templateUrl: 'eBayMarket/market.html',
-    //     controllerUrl: "eBayMarket/marketController"
-    // })
-    // .state("product", {
-    //     url: '/product?pid',
-    //     templateUrl: 'eBayProduct/product.html',
-    //     controllerUrl: "eBayProduct/productController"
-    // })
-    // .state("Cart", {
-    //     url: '/Cart',
-    //     templateUrl: 'eBayCart/cart.html',
-    //     controllerUrl: "eBayCart/cartController"
-    // })
-    // .state("checkout", {
-    //     url: '/checkout',
-    //     templateUrl: 'eBayCheckout/checkout.html',
-    //     controllerUrl: "eBayCheckout/checkoutController"
-    // })
-    ;
-
+        })
+        .state("individualProperty",{
+            url:'/property?id',
+            templateUrl:'propertyPage/IndividualPropertyPage.html',
+            controllerUrl: "propertyPage/propertyController"
+        })
+        // .state("adminPage", {
+        //     url: '/adminPage',
+        //     templateUrl: 'profile/listing.html',
+        //     controllerUrl: "profile/profileController"
+        // })
+        ;        
+    
     $urlRouterProvider.otherwise("/");
 
     $locationProvider.html5Mode(true);
@@ -154,6 +135,9 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
         } else {
             $scope.hideFooter = false;
         }
+        // if(toState.name==="adminPage"){
+        //     $scope.hideHeader = true;
+        // }
         // if (toState.name.search("users") >= 0) {
         //     if (!$scope.loginStatus) {
         //         window.location.href="/";
@@ -232,12 +216,12 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
 
 app.controller('signupController', function ($scope, $uibModalInstance, $http, $uibModal) {
 
-    debugger
+    //debugger
     $scope.registeralerts = [];
     $scope.showSignupForm = false;
     $scope.registerUser = {};
     $scope.signup = function () {
-        debugger
+        //debugger
         $scope.showSignupForm = true;
     }
 
@@ -292,7 +276,7 @@ app.controller('signupController', function ($scope, $uibModalInstance, $http, $
 
 });
 app.controller('loginController', function ($scope, $uibModalInstance, $http, $uibModal) {
-    debugger
+    //debugger
 
     $scope.loginalerts = [];
 
@@ -301,17 +285,17 @@ app.controller('loginController', function ($scope, $uibModalInstance, $http, $u
     }
 
     $scope.login = function () {
-        debugger
+        //debugger
         $http.post("/users/login", $scope.user)
             .success(function (data) {
-                debugger
+                //debugger
                 if (data.status === "success") {
                     $uibModalInstance.dismiss('close');
                     window.sessionStorage.login_status = "true";
                     // window.sessionStorage.user_info = JSON.stringify(data.user);
                     window.location.reload();
                     // $scope.$parent.loginStatus = true;
-                    // $state.go('/');
+                    // $state.go('/admin');
                 } else {
                     $scope.loginalerts = [{ type: 'danger', msg: data.error }];
                 }
