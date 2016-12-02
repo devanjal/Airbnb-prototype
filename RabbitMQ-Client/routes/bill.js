@@ -28,7 +28,7 @@ router.get('/getBillByUid',function (req,res) {
 
     var payload={};
     payload.user_id=req.session.user_id;
-   // payload.user_id=;
+    //payload.user_id=10;
    // console.log("Getting the bills"+payload.user_id);
     mq_client.make_request('getBillUidQueue', payload, function(err,results){
         if(err){
@@ -51,7 +51,8 @@ router.get('/getBillByHid',function (req,res) {
 
     var payload={};
     payload.user_id=req.session.user_id;
-    console.log("Getting the bills");
+  //  payload.user_id=11;
+    console.log("Getting the bills For host");
     mq_client.make_request('getBillHidQueue', payload, function(err,results){
         if(err){
             return done(err);
@@ -98,7 +99,7 @@ router.post('/deleteBill',function (req, res) {
             return done(err);
         }
         else
-        {
+        {   //console.log(results.code);
             if(results.code == 200){
                 //   console.log(results);
                 res.send({status:'success', result:results.result});

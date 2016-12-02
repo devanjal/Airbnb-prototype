@@ -49,7 +49,7 @@ function getBillByUid(msg,callback) {
         }
         var user_id=msg.user_id;
        // var post = { user_id: msg.user_id, host_id: msg.b.host_id, property_id: msg.b.property_id, from_date: msg.b.from_date, to_date: msg.b.to_date, category:msg.b.category, location:msg.b.location, no_of_guest:msg.b.no_of_guest,security_deposite:msg.b.security_deposite, amount:msg.b.amount, date:Date() ,user_flag:1,host_flag: 1 };
-        var query = connection.query('select bill.bill_id, bill.duration,bill.amount, properties.title from bill inner join properties where bill.user_id= ? and bill.property_id=properties.propertyid', [user_id], function (err, result) {
+        var query = connection.query('select bill.bill_id, bill.duration,bill.amount, properties.title from bill inner join properties where bill.user_id= ? and bill.property_id=properties.propertyid and user_flag=1', [user_id], function (err, result) {
             if (err) {
                 res.code = 401;
                 res.value = "Bill not found error";
@@ -78,7 +78,7 @@ function getBillByUid(msg,callback) {
         }
         var host_id=msg.user_id;
         // var post = { user_id: msg.user_id, host_id: msg.b.host_id, property_id: msg.b.property_id, from_date: msg.b.from_date, to_date: msg.b.to_date, category:msg.b.category, location:msg.b.location, no_of_guest:msg.b.no_of_guest,security_deposite:msg.b.security_deposite, amount:msg.b.amount, date:Date() ,user_flag:1,host_flag: 1 };
-        var query = connection.query('select bill.bill_id, bill.duration,bill.amount, properties.title from bill inner join properties where bill.host_id=? and bill.property_id=properties.propertyid', [host_id], function (err, result) {
+        var query = connection.query('select bill.bill_id, bill.duration,bill.amount, properties.title from bill inner join properties where bill.host_id=? and bill.property_id=properties.propertyid and host_flag=1', [host_id], function (err, result) {
             if (err) {
                 res.code = 401;
                 res.value = "Bill not found error";
@@ -130,7 +130,7 @@ function getByBillId(msg,callback) {
 function deleteBill(msg,callback) {
     var res={};
     //console.log(JSON.stringify(msg));
-    console.log("inside Deletion Module")
+    console.log("inside Deletion Module");
     connectionpool.getConnection(function(err,connection) {
         if (err) {
             connectionpool.releaseSQLConnection(connection);
@@ -141,6 +141,7 @@ function deleteBill(msg,callback) {
         }
         var user_id=msg.user_id;
         var bill_id=msg.bill_id;
+       // console.log(user_id)
         var query = connection.query('SELECT user_id, host_id FROM bill where bill_id = ?', [bill_id], function (err, result) {
             if (err) {
                 res.code = 401;
@@ -151,7 +152,7 @@ function deleteBill(msg,callback) {
                 return;
             }
             else {
-                console.log(result[0].user_id);
+                console.log("Hello"+result[0].user_id);
                 if(result[0].user_id==user_id){
                     console.log("In user Deletion");
                     var query1 = connection.query('UPDATE `bill` SET  user_flag = 0 Where bill_id = ?', [bill_id], function (err, result) {
@@ -182,7 +183,7 @@ function deleteBill(msg,callback) {
                             callback(null, res);
                             console.log(err);
                             connectionpool.releaseSQLConnection(connection);
-                            return;
+                      //      return;
                         }
                         else {
                             res.code = 200;
@@ -192,14 +193,6 @@ function deleteBill(msg,callback) {
                             connectionpool.releaseSQLConnection(connection);
                         }
                     });
-                }
-                else{
-                    res.code = 401;
-                    res.value = "error for host";
-                    callback(null, res);
-                    console.log(err);
-                    connectionpool.releaseSQLConnection(connection);
-                    return;
                 }
             }
         });
