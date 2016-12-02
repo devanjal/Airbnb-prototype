@@ -10,7 +10,7 @@
 <!--</head>-->
 <!--<body>-->
 
-<div class="page-container-responsive space-top-4 space-4">
+<div class="page-container-responsive space-top-4 space-4" ng-controller="tripController">
     <div class="row">
 
         <div class="col-md-4 space-sm-3">
@@ -28,16 +28,16 @@
                             <div class="row row-table">
                                 <div class="col-lg-10">
                                     <span class="h4">
-                                        <span>{{trip.title}}</span>
+                                        <span>{{editProperty.title}}</span>
                                     </span>
                                 </div>
                             </div>
                             <div class="row row-table">
-                                <div class="col-lg-10 text-muted text-normal space-top-2">Location: {{trip.address}}, {{trip.city}} {{trip.state}} {{trip.zipcode}}</div>
+                                <div class="col-lg-10 text-muted text-normal space-top-2">Location: {{editProperty.address}}, {{editProperty.city}} {{editProperty.state}} {{editProperty.zipcode}}</div>
                             </div>
                             <div class="row row-table">
                                 <div class=" col-lg-10 text-muted text-grey space-top-1 last-modified-date">
-                                    <span>Price: {{trip.price}}</span>
+                                    <span>Price: $ {{editProperty.price}}</span>
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                                     <label>Number of guests: </label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input ng-model="trips.quantity" type="text" class="form-control" style="display: inline; height: 50%" />
+                                    <input ng-model="editProperty.quantity" type="text" class="form-control" style="display: inline; height: 50%" />
                                 </div>
                             </div>
 
@@ -56,14 +56,15 @@
                                     <label><h5>Booking From: </h5></label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <p class="input-group" style="width: 70%;">
-                                        <input ng-model="from_date" style="height: 40px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
-                                               datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                                        <button style="height: 40px;" type="button" class="btn btn-default" ng-click="open1()">
+                                    <p class="input-group">
+                                        <input ng-model="editProperty.fromdate" style="height: 40px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
+                                               datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
+                                        <span class="input-group-btn">
+                                            <button style="height: 40px;" type="button" class="btn btn-default" ng-click="open1()">
                                             <i class="fa fa-calendar">
-
                                             </i>
-                                        </button>
+                                            </button>
+                                        </span>
                                     </p>
                                 </div>
                             </div>
@@ -72,38 +73,29 @@
                                     <label><h5>Booking Till: </h5></label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <p class="input-group" style="width: 80%;">
-                                        <input ng-model="to_date" style="height: 40px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened"
+                                    <p class="input-group">
+                                        <input ng-model="editProperty.todate" style="height: 40px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened"
                                                datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                        <button style="height: 40px;" type="button" class="btn btn-default" ng-click="open2()">
-                                            <i class="fa fa-calendar">
+                                        <span class="input-group-btn">
+                                            <button style="height: 40px;" type="button" class="btn btn-default" ng-click="open2()">
+                                                <i class="fa fa-calendar">
 
-                                            </i>
-                                        </button>
+                                                </i>
+                                            </button>
+                                        </span>
                                     </p>
                                 </div>
+                            </div>
+                            <div class="row row-table">
+                                <button type="submit" ng-click="edit()" class="btn btn__first-btn btn-primary" style="margin-left: 15px">
+                                    Submit
+                                </button>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK3e0M46Nzcp8hOuvA7sOHSGc1tQsYrfU&callback=initMap1">
-        </script>
-        <script>
-            function initMap1() {
-                var uluru = {lat: -25.363, lng: 131.044};
-                var map = new google.maps.Map(document.getElementById('map1'), {
-                    zoom: 4,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
     </div>
 </div>
 <!--</body>-->

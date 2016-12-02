@@ -96,18 +96,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
         })
         .state("users.trips", {
             url: '/trips',
-            templateUrl: 'trips/usertrips.html',
-            controllerUrl: "trips/tripController"
+            templateUrl: 'tripsPage/usertrips.html',
+            controllerUrl: "tripsPage/tripController"
         })
         .state("users.trips.edit", {
             url: '/edit',
-            templateUrl: 'trips/editTrips.html',
-            controllerUrl: "trips/tripController"
+            templateUrl: 'tripsPage/editTrips.html',
+            controllerUrl: "tripsPage/tripController"
         })
         .state("users.trips.preview", {
-            url: '/gettripsbyuserid',
-            templateUrl: 'trips/previewTrips.html',
-            controllerUrl: "trips/tripController"
+            url: '/preview',
+            templateUrl: 'tripsPage/previewTrips.html',
+            controllerUrl: "tripsPage/tripController"
         })
         
         ;        

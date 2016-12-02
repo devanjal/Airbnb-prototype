@@ -53,7 +53,7 @@ app.use(session({
 
 app.use('/users', users);
 app.use('/become_host', become_host);
-app.use('/users/trips', trips);
+app.use('/usertrips', trips);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
