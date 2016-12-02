@@ -138,7 +138,7 @@
                         <tr ng-repeat="hostdetails in hostDetails">
                             <td>
                                 <img alt="Varsha" class="img-responsive" height="225"
-                                     ng-src = "http://localhost:80/{{hostdetails.profile_image}}" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Varsha"
+                                     ng-src = "/{{hostdetails.profile_image}}" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Varsha"
                                      onerror="this.src='https://a2.muscache.com/defaults/user_pic-225x225.png?v=2';" width="100"/>
                             </td>
 
@@ -171,7 +171,7 @@
                     <tr ng-repeat="hostsearchresult in hostsearchresults">
                         <td>
                             <img alt="Varsha" class="img-responsive" height="225"
-                                 ng-src = "http://localhost:80/{{hostsearchresult.profileimage}}" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Varsha"
+                                 ng-src = "/{{hostsearchresult.profileimage}}" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Varsha"
                                  onerror="this.src='https://a2.muscache.com/defaults/user_pic-225x225.png?v=2';" width="100"/>
                         </td>
 
@@ -242,13 +242,13 @@
 
 <script src="js/light-bootstrap-dashboard.js"></script>
 -->
-<script src="http://localhost:80/angularjs/admin_dashboard.js"></script>
+<script src="/adminPage/admin_dashboard.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script src="http://localhost:80/chart.js/dist/Chart.min.js"></script>
+<script src="/chart.js/dist/Chart.min.js"></script>
 
-<script src="http://localhost:80/angular-chart.js/dist/angular-chart.min.js"></script>
+<script src="/angular-chart.js/dist/angular-chart.min.js"></script>
 
 <script type="text/javascript">
     document.getElementById("homescreen").style.display = "block";
