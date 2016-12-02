@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 
 function approvehost(msg, callback){
     var res = {};

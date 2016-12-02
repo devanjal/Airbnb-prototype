@@ -1,4 +1,5 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
+
 var bcrypt = require('bcryptjs');
 
 function handle_request(msg, callback) {
@@ -39,7 +40,7 @@ function handle_request(msg, callback) {
                     res.user = rows[0];
                     connection.query(
                         'UPDATE users SET logintime = ? Where email = ?',
-                        [new Date().toISOString(), username],
+                        [new Date().toString(), username],
                         function (err, result) {
                             if (err)
                             {
@@ -77,12 +78,13 @@ function handle_logout(msg, callback) {
         }
         connection.query(
             'UPDATE users SET logouttime = ? Where email = ?',
-            [new Date().toISOString(), msg.email],
+            [new Date().toString(), msg.email],
             function (err, result) {
                 if (err)
                 {
                     connectionpool.releaseSQLConnection(connection);
                     res.code = 401;
+                    res.value = err.code;
                     callback(null, res);
                     return;
                 }
@@ -95,3 +97,4 @@ function handle_logout(msg, callback) {
 }
 exports.handle_request = handle_request;
 exports.handle_logout = handle_logout;
+

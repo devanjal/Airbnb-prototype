@@ -3,7 +3,7 @@ var router = express.Router();
 var mq_client = require('../rpc/client');
 
 router.get('/', function (req, res) {
-    res.send('admin module is up');
+    res.send('host module is up');
 });
 
 router.post('/postuserreview', function (req, res) {
@@ -23,3 +23,22 @@ router.post('/postuserreview', function (req, res) {
         }
     });
 });
+
+router.post('/gethostbyarea', function (req, res) {
+    var location = req.body.location;
+    var msg_payload = { "location": location };
+    mq_client.make_request('gethostbyarea', msg_payload, function (err, results) {
+        if (err) {
+            res.send({status:'error'});
+            return;
+        }
+        if(results.code == 200){
+            res.send(results.value);
+        }
+        else {
+            res.send({status:'error',error:results.error});
+        }
+    });
+});
+
+module.exports = router;

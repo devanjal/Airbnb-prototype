@@ -8,8 +8,21 @@ var host = require('./services/host');
 
 var user = require("./services/user");
 var admin = require('./services/admin');
+var bill = require('./services/bill');
 var review = require('./services/review');
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
+
+var connectionpool = require("./config/connectionpool");
+
+process.on("SIGINT",function(){
+    console.log("inside sigint process");
+    connectionpool.closedbconnection();
+});
+
+process.on("close",function(){  
+    console.log("inside close process");
+    connectionpool.closedbconnection();
+});
 
 cnn.on('ready', function () {
 
@@ -229,6 +242,97 @@ cnn.on('ready', function () {
         q.subscribe(function (message, headers, deliveryInfo, m) {
 
             review.makepropertyreview(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    //gethostbyarea
+    cnn.queue('gethostbyarea', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+
+            host.gethostbyarea(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('createBillQueue', function (q) {
+        console.log("create bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.createBill(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('getBillUidQueue', function (q) {
+        console.log("IN bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.getBillByUid(message, function (err, res) {
+                console.log("inside UID bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('getBillHidQueue', function (q) {
+     //   console.log("IN bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.getBillByHid(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('BillIDQueue', function (q) {
+     //   console.log("IN Bill ID queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.getByBillId(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('BillDateQueue', function (q) {
+        //   console.log("IN Bill ID queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.searchByDate(message, function (err, res) {
+             //   console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('deleteBillQueue', function (q) {
+   //     console.log("Delete bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.deleteBill(message, function (err, res) {
+                console.log("inside create bill queue");
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',

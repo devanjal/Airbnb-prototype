@@ -93,6 +93,55 @@ app.controller('adminDashboardController', function ($scope, $http, $window) {
 
         }
     ];
+
+    $scope.hostsearchresults = [];
+    $scope.searchdate = new Date(2013, 9, 22);
+
+    $scope.visithostpage = function(id)
+    {
+        $window.alert('should go to host id page ' + id);
+    }
+    $scope.searchtext = '';
+    $scope.billsearchresults = [];
+    $scope.visitbillpage = function(id)
+    {
+        $window.alert(id)
+    }
+    $scope.searchbillbydate = function()
+    {
+        $http({
+            method : "POST",
+            url : "http://localhost:80/bill/searchByDate",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {date:$scope.searchdate}
+        }).then(function mySucces(response) {
+            $window.alert(JSON.stringify(response.data));
+            $scope.billsearchresults = response.data.result;
+        }, function myError(response) {
+            // $scope.myWelcome = response.statusText;
+        });
+        $window.alert(' searchbillbydate search bill by date test ' +  $scope.searchdate);
+    }
+    $scope.searchhost = function()
+    {
+        $http({
+            method : "POST",
+            url : "http://localhost:80/host/gethostbyarea",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {location:$scope.searchtext}
+        }).then(function mySucces(response) {
+            $scope.hostsearchresults = response.data;
+        }, function myError(response) {
+            // $scope.myWelcome = response.statusText;
+    });
+
+        $window.alert('should go to host id page ' + $scope.searchtext);
+
+    }
     $scope.options = {
         responsive: false,
         maintainAspectRatio: false,

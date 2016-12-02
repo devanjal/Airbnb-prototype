@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 var bcrypt = require('bcryptjs');
 
 function handle_request(msg, callback) {

@@ -7,18 +7,23 @@ var fs = require('fs');
 
 router.get("/profile", function (req, res) {
 	console.log("req: " + JSON.stringify(req.body));
-	var user_id = req.session.user.id;
-	var msg_payload = { "id": user_id };
-	mq_client.make_request('userInfo_queue', msg_payload, function (err, results) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		console.log("inside make_request get user info");
-		console.log(results);
-		res.send(results);
+	if (req.session.user) {
+		var user_id = req.session.user.id;
+		var msg_payload = { "id": user_id };
+		mq_client.make_request('userInfo_queue', msg_payload, function (err, results) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			console.log("inside make_request get user info");
+			console.log(results);
+			res.send(results);
+			res.end();
+		});
+	} else {
+		res.send({error:"notlogin"});
 		res.end();
-	});
+	}
 });
 
 router.post("/upload_profile_pic", function (req, res) {
@@ -38,6 +43,7 @@ router.post("/upload_profile_pic", function (req, res) {
 			}
 			console.log("inside make_request get user info");
 			console.log(results);
+			results.src = profile_image.path.substring(7);
 			res.send(results);
 			res.end();
 		});
@@ -99,11 +105,13 @@ router.post('/login', function (req, res, next) {
 			console.log("user info");
 			console.log(user);
 			req.session.user = user;
-			res.send({ status: "success", user: user });
+			// delete req.session.user;
+			// , user: user 
+			res.send({ status: "success"});
 		}
 	})(req, res, next);
 });
-router.post('/logout', function (req, res, next) {
+router.get('/logout', function (req, res, next) {
 	console.log("inside /users/logout req: " + JSON.stringify(req.body));
 	mq_client.make_request('logout_queue', req.session.user, function (err, results) {
 		console.log(results);
@@ -112,6 +120,8 @@ router.post('/logout', function (req, res, next) {
 			return;
 		}
 		if (results.code == 200) {
+			delete req.session.user;
+			console.log(req.session.user);
 			res.send({ 'status': "success" });
 			res.end();
 		}
@@ -119,7 +129,7 @@ router.post('/logout', function (req, res, next) {
 			res.send({ 'error': results.value });
 			res.end();
 		}
-		delete req.session.user;
+		
 	});
 });
 module.exports = router;

@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 
 function makeuserreview(msg, callback){
     var res = {};

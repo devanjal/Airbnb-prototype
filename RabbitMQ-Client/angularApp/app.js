@@ -1,4 +1,4 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload']);
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification', 'ngFileUpload']);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider) {
 
     NotificationProvider.setOptions({
@@ -69,8 +69,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/readyToPublish.html',
             controllerUrl: "hostPage/hostController"
         })
-        .state("search", {
-            url: '/search',
+        .state("searchQuery", {
+            url: '/search?location&checkin&checkout',
             templateUrl: 'searchPage/searchPage.html',
             controllerUrl: "searchPage/searchController"
         })
@@ -94,46 +94,49 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'profile/viewprofile.html',
             controllerUrl: "profile/profileController"
         })
-        
-        ;        
-        
-        // become-a-host.
-        // .state("Register", {
-        //     url: '/Register',
-        //     templateUrl: 'signin-register/signin.html',
-        //     controllerUrl: "signin-register/signinController"
-        // })
-        // .state("MyAccount", {
-        //     url: '/MyAccount',
-        //     templateUrl: 'Profile/MyProfile.html',
-        //     controllerUrl: "Profile/profileController"
-        // })
-        // .state("Sell", {
-        //     url: '/Sell',
-        //     templateUrl: 'Sellitems/sell.html',
-        //     controllerUrl: "Sellitems/sellController"
-        // })
-        // .state("market", {
-        //     url: '/market?category',
-        //     templateUrl: 'eBayMarket/market.html',
-        //     controllerUrl: "eBayMarket/marketController"
-        // })
-        // .state("product", {
-        //     url: '/product?pid',
-        //     templateUrl: 'eBayProduct/product.html',
-        //     controllerUrl: "eBayProduct/productController"
-        // })
-        // .state("Cart", {
-        //     url: '/Cart',
-        //     templateUrl: 'eBayCart/cart.html',
-        //     controllerUrl: "eBayCart/cartController"
-        // })
-        // .state("checkout", {
-        //     url: '/checkout',
-        //     templateUrl: 'eBayCheckout/checkout.html',
-        //     controllerUrl: "eBayCheckout/checkoutController"
-        // })
-        ;
+        .state("users.listings", {
+            url: '/listings',
+            templateUrl: 'profile/listing.html',
+            controllerUrl: "profile/profileController"
+        });
+
+    // become-a-host.
+    // .state("Register", {
+    //     url: '/Register',
+    //     templateUrl: 'signin-register/signin.html',
+    //     controllerUrl: "signin-register/signinController"
+    // })
+    // .state("MyAccount", {
+    //     url: '/MyAccount',
+    //     templateUrl: 'Profile/MyProfile.html',
+    //     controllerUrl: "Profile/profileController"
+    // })
+    // .state("Sell", {
+    //     url: '/Sell',
+    //     templateUrl: 'Sellitems/sell.html',
+    //     controllerUrl: "Sellitems/sellController"
+    // })
+    // .state("market", {
+    //     url: '/market?category',
+    //     templateUrl: 'eBayMarket/market.html',
+    //     controllerUrl: "eBayMarket/marketController"
+    // })
+    // .state("product", {
+    //     url: '/product?pid',
+    //     templateUrl: 'eBayProduct/product.html',
+    //     controllerUrl: "eBayProduct/productController"
+    // })
+    // .state("Cart", {
+    //     url: '/Cart',
+    //     templateUrl: 'eBayCart/cart.html',
+    //     controllerUrl: "eBayCart/cartController"
+    // })
+    // .state("checkout", {
+    //     url: '/checkout',
+    //     templateUrl: 'eBayCheckout/checkout.html',
+    //     controllerUrl: "eBayCheckout/checkoutController"
+    // })
+    ;
 
     $urlRouterProvider.otherwise("/");
 
@@ -141,36 +144,46 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
 
 }]);
 
-app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal) {
-
+app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', "Notification", function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, Notification) {
+    $scope.user = {};
+    $scope.loginStatus = false;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         debugger
-        if(toState.name.indexOf("become-a-host.")>-1){
+        if (toState.name.search("become-a-host.") > -1) {
             $scope.hideFooter = true;
-        }else{
+        } else {
             $scope.hideFooter = false;
         }
+        // if (toState.name.search("users") >= 0) {
+        //     if (!$scope.loginStatus) {
+        //         window.location.href="/";
+        //     }
+        // }
+
+
     });
     $scope.profileImage_icon = "https://a2.muscache.com/defaults/user_pic-50x50.png?v=2";
     $scope.checkStatus = function () {
         debugger
-        if (window.sessionStorage.login_status === "true") {
-            $scope.loginStatus = true;
-            $scope.user = JSON.parse(window.sessionStorage.user_info);
-            // $scope.user_firstname
-        } else {
-            window.sessionStorage.login_status = "false";
-            $scope.loginStatus = false;
-            // $http.get("users/getInfo")
-            // .success(function (data) {
-            //     debugger
+        $http.get("users/profile")
+            .success(function (data) {
+                debugger
+                if (data.code === 200) {
+                    // $scope.loginStatus = true;
+                    $scope.loginStatus = true;
+                    $scope.user = data.user;
+                    $scope.profileImage_icon = data.user.profile_image;
+                    // sessionStorage.user = JSON.stringify(data.user);
+                } else if (data.error) {
+                    $scope.loginStatus = false;
+                } else if (data.code === 401) {
+                    console.log(data.value);
+                }
+            })
+            .error(function (err) {
 
-            // })
-            // .error(function (err) {
-
-            // })
-        }
-    }
+            })
+    };
 
     $scope.openSignup = function () {
         var modalInstance = $uibModal.open({
@@ -198,17 +211,22 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
 
     $scope.logout = function () {
         window.sessionStorage.login_status = "false";
-        delete window.sessionStorage.user;
-        window.location.reload();
-        // $http.get("/users/logout")
-        // .success(function (data) {
-        //     debugger
+        console
+        $http.get("/users/logout")
+            .success(function (data) {
+                debugger
+                if (data.status === "success") {
+                    $scope.user = {};
+                    $scope.loginStatus = false;
+                    delete window.sessionStorage.user;
+                    window.location.href = "/";
+                } else if (data.error) {
+                    Notification.error(data.error);
+                }
+            })
+            .error(function (err) {
 
-
-        // })
-        // .error(function (err) {
-
-        // })
+            })
     }
 }]);
 
@@ -290,7 +308,7 @@ app.controller('loginController', function ($scope, $uibModalInstance, $http, $u
                 if (data.status === "success") {
                     $uibModalInstance.dismiss('close');
                     window.sessionStorage.login_status = "true";
-                    window.sessionStorage.user_info = JSON.stringify(data.user);
+                    // window.sessionStorage.user_info = JSON.stringify(data.user);
                     window.location.reload();
                     // $scope.$parent.loginStatus = true;
                     // $state.go('/');

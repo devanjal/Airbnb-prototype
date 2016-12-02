@@ -18,7 +18,9 @@ require('./routes/passport')(passport);
 var become_host = require('./routes/become_host');
 var admin = require('./routes/admin');
 var users = require('./routes/users');
+var host = require('./routes/host');
 var review = require('./routes/review');
+var bill = require('./routes/bill');
 
 var app = express();
 
@@ -48,21 +50,20 @@ app.use(session({
     saveUninitialized: true,
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
-    store: new MongoStore({ url:'mongodb://localhost:27017/airbnb' /*'mongodb://root:cmpe273@ds163397.mlab.com:63397/airbnb_mongo'*/ })
+    store: new MongoStore({ url: 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo' })
+
 }));
 
-app.get('/adminpage',function(req,res)
-{
-    res.render('admin',{ err: '' });
-});
-app.engine('html',require('ejs').renderFile);
+//app.engine('html',require('html').renderFile);
 app.set('views', __dirname + '\\views');
-app.set('view engine','ejs');
+//app.set('view engine','ejs');
 
 app.use('/users', users);
 app.use('/become_host', become_host);
 app.use('/admin', admin);
 app.use('/review', review);
+app.use('/host', host);
+app.use('/bill',bill);
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');

@@ -3,11 +3,12 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
     $scope.secondStepStatus = "incomplete";
     $scope.thirdStepStatus = "incomplete";
     $scope.property = {};
+    $scope.property.country = "US";
     $scope.quantity = 1;
     $scope.photos = [];
     $scope.activeDecrement = false;
     $scope.continue = function () {
-        debugger
+        // debugger
         if (window.sessionStorage.login_status === "false" || window.sessionStorage.login_status === undefined) {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -22,7 +23,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
             $state.go(".category");
         }
     };
-//--calendar functions-----------------
+//--calendar functions------------------------------------------------------
     $scope.format='MM-dd-yyyy'
     $scope.dateOptions = {
         dateDisabled: disabled,
@@ -52,7 +53,10 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
     $scope.popup2 = {
         opened: false
     };
-//-------------------------------------
+//--------------------------------------------------------------------------
+
+//uploading and deleting property images------------------------------------
+
     $scope.deletePhoto = function (index) {
         $scope.photos.splice(index, 1);
     }
@@ -70,7 +74,9 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
         }
         console.log(files);
     }
+//----------------------------------------------------------------------------
 
+//property listing functions--------------------------------------------------
     $scope.firststepFinish = function () {
         $scope.property.quantity = $scope.quantity;
         $http.post("/become_host/step1", $scope.property)
@@ -147,9 +153,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
             console.log(err);
         })
     };
-
-
-
+//----------------------------------------------------------------------------
 
     $scope.incrementQuantity = function () {
         $scope.quantity = $scope.quantity + 1;

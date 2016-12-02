@@ -1,4 +1,4 @@
-var connectionpool = require('./connectionpool');
+var connectionpool = require('../config/connectionpool');
 
 function becomehost_step1(msg, callback){
     var res = {};
@@ -63,22 +63,18 @@ function becomehost_step2(msg, callback){
             return;
         }
         connection.query(
-            'UPDATE properties SET title = ?, description = ?,published = ? where propertyid = ?',
+            'UPDATE properties SET title = ?, propertydescription = ?,published = ? where propertyid = ?',
             [msg.title,msg.description,'step2',msg.propertyid],
             function (err, result) {
                 if (err)
                 {
-                    //console.log(err);
+                    console.log(err);
                     res.code = 401;
                     res.value = "Step2 failed";
                     callback(null, res);
                     connectionpool.releaseSQLConnection(connection);
                     return;
                 }
-                // var post = {};
-                // post.hostid = msg.hostid;
-                // post.images = msg.filenames;
-
                 var mongoconnection = connectionpool.getdbconnection();
                 mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}},$set:{hostid:msg.hostid}}, {upsert:true},function(err, result) {
                 //connection.collection('properties').insertOne(post, function(err, result) {
@@ -167,34 +163,43 @@ function publishproperty(msg, callback){
     });
 };
 
-function postuserreview(msg, callback){
+function gethostbyarea(msg, callback){
     var res = {};
     console.log(JSON.stringify(msg));
-    var mongoconnection = connectionpool.getdbconnection();
-    var review = {};
-    review.text = msg.text;
-    review.date = new date();
-    review.hostid = msg.hostid;
-    review.hostname = msg.hostname ;
-   /* mongoconnection.collection('properties').update({id:msg.userid},{$push:{reviews:{$each:[{review.text,}]}},$set:{hostid:msg.hostid}}, {upsert:true},function(err, result) {
-        if(err) {
-            console.log(err);
-            res.code = 400;
-            res.value = err;
+    connectionpool.getConnection(function(err,connection) {
+        if (err) {
             connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
             callback(null, res);
             return;
         }
-        res.code = 200;
-        res.value = "Step2 updated";
-        connectionpool.releaseSQLConnection(connection);
-        callback(null, res);
-    });*/
+        connection.query('select * from users where location REGEXP ?',[msg.location] , function(err, rows, fields) {
+            if (!err)
+            {
+                console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
+                connectionpool.releaseSQLConnection(connection);
+                res.code = 200;
+                res.value = rows;
+                callback(null, res);
+
+            }
+            else
+            {
+                connectionpool.releaseSQLConnection(connection);
+                res.code = 401;
+                res.error = err;
+                callback(null, res);
+            }
+
+        });
+    });
 };
+
+
 
 exports.becomehost_queue1 = becomehost_step1;
 exports.becomehost_queue2 = becomehost_step2;
 exports.becomehost_queue3 = becomehost_step3;
 exports.publishproperty = publishproperty;
-
-exports.postuserreview = postuserreview;
+exports.gethostbyarea = gethostbyarea;
