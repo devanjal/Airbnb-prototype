@@ -37,7 +37,6 @@ function makehostreview(msg, callback){
     });
 };
 
-
 function makepropertyreview(msg, callback){
     var res = {};
 
