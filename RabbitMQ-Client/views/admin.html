@@ -147,6 +147,7 @@
                                 <br>
                                 <button type="button" class="btn btn-info" ng-click="approvehost(hostdetails.id)">Approve</button>
                                 <button type="button" class="btn btn-danger" ng-click="rejecthost(hostdetails.id)"  style="margin-left:30px">Decline</button>
+                                <button type="button" class="btn btn-success" ng-click="visithostpage(hostdetails.id)"  style="margin-left:30px">Visit Host</button>
                             </td>
 
                         </tr>
@@ -205,7 +206,7 @@
                                       src="https://openclipart.org/image/2400px/svg_to_png/204749/Found-Icons-in-HK-4-2014111931.png" title="Varsha"
                                      onerror="this.src='https://a2.muscache.com/defaults/user_pic-225x225.png?v=2';" width="100"/>
                             </td>
-                            <td style="padding-left:80px"> <br>Bill Id:{{billsearchresult.bill_id}}<br> Host Id:{{billsearchresult.host_id}}
+                            <td style="padding-left:80px"> <br>Bill Id:{{billsearchresult.bill_id}}<br> Host Id:{{billsearchresult.host_id}}<br>
                                 Property Id:{{billsearchresult.property_id}}<br>User Id:{{billsearchresult.user_id}}
                                 <br>
                                 <button type="button" class="btn btn-info" ng-click="visitbillpage(billsearchresult.bill_id)">get more info</button>
@@ -242,7 +243,7 @@
 
 <script src="js/light-bootstrap-dashboard.js"></script>
 -->
-<script src="/adminPage/admin_dashboard.js"></script>
+<script src="/adminPage/admin.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
