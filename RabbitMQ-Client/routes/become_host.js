@@ -31,7 +31,7 @@ router.post('/step1', function(req, res) {
     payload.state = req.body.state;
     payload.country = req.body.country;
     payload.zipcode = req.body.zip;
-    payload.published = 'false';
+    payload.published = 'step1';
 
     mq_client.make_request('becomehost1',payload, function(err,results){
         if(err){

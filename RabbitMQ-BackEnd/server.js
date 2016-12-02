@@ -7,6 +7,7 @@ var signup = require('./services/signup');
 var host = require('./services/host');
 
 var user = require("./services/user");
+var admin = require('./services/admin');
 
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
 
@@ -69,6 +70,24 @@ cnn.on('ready', function () {
             });
         });
     });
+   
+
+    cnn.queue('logout_queue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+           console.log("logout_queue");
+            login.handle_logout(message, function (err, res) {
+                console.log("handle_logout");
+                console.log("inside login_queue handle request");
+                //return index sent
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
 
     cnn.queue('register_queue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
@@ -118,6 +137,63 @@ cnn.on('ready', function () {
     cnn.queue('publishproperty', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             host.publishproperty(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('approve_host', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            admin.approvehost(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('gettoprevenue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            admin.gettoprevenue(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('postuserreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.postuserreview(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('user_profile_image_queue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            user.user_profile_image_queue(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('gethostrequests', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            admin.gethostrequests(message, function (err, res) {
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',

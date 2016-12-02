@@ -16,7 +16,6 @@ function handle_request(msg, callback) {
 
 		var post = { firstname: msg.firstname, lastname: msg.lastname, email: msg.email, password: passwordHash, birthdate: msg.birthdate };
 		var query = connection.query('INSERT INTO users SET ?', post, function (err, result) {
-			// Neat!
 			if (err) {
 				res.code = 401;
 				res.value = "User name already exists.";
@@ -31,7 +30,6 @@ function handle_request(msg, callback) {
 			connectionpool.releaseSQLConnection(connection);
 		});
 	});
-
 };
 
 exports.handle_request = handle_request;

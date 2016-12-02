@@ -3,27 +3,27 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
         {
             name: "Dashboard",
             id: "dashboard-item",
-            link:"users"
+            link: "users"
         },
         {
             name: "Your Listing",
             id: "rooms-item",
-            link:"users.listings"
+            link: "users.listings"
         },
         {
             name: "Your Trips",
             id: "your-trips-item",
-            link:"users"
+            link: "users.trip"
         },
         {
             name: "Profile",
             id: "user-profile-item",
-            link:"users"
+            link: "users"
         },
         {
             name: "Account",
             id: "account-item",
-            link:"users"
+            link: "users"
         }
     ];
 
@@ -52,14 +52,29 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
 
     $scope.selected = 3;
     $scope.selectedEditMenu = 0;
+
     $scope.selectMenu = function (index) {
         $scope.selected = index;
     };
+
     $scope.selectEditMenu = function (index) {
         $scope.selectedEditMenu = index;
     };
 
     $scope.getUser = function () {
+        debugger
+        
+        // $scope.user_info = $scope.$parent.user;
+        // $scope.birthday = $scope.user_info.birthdate.split("/");
+        // $scope.user_info.currency = "USD";
+        // $scope.user_info.language = "en";
+        // $scope.profileImage = $scope.user_info.profile_image;
+
+        // console.log($scope.$parent.user);
+        // console.log($scope.$parent.$parent.user);
+
+
+
         $http.get("/users/profile")
             .success(function (data) {
                 debugger
@@ -83,7 +98,7 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
 
             })
     };
-    $scope.profileImage = "images/user_pic-225x225.png";
+
     $scope.upload_profile_pic = function (file) {
         debugger
         if (file && file.length) {
@@ -92,21 +107,21 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
                 url: '/users/upload_profile_pic',
                 file: $scope.profileImage
             }).success(function (data) {
-                if (data.status === "success") {
-                    $scope.secondStepStatus = "complete";
-                    $scope.firstStepStatus = "complete";
-                    $state.go('become-a-host');
-                    // $scope.property = {};
+                if (data.code === 200) {
+                    Notification.success("Successfully updated the profile image.");
+                    $scope.$parent.$parent.profileImage_icon = data.src;
+                    $scope.user_info.profile_image = data.src;
                 } else if (data.error) {
                     Notification.error(data.error);
                     console.log(JSON.stringify(data));
                 }
             })
-            .error(function (err) {
-                console.log(err);
-            })
+                .error(function (err) {
+                    console.log(err);
+                })
         }
-    }
+    };
+
     $scope.updateProfile = function () {
         $scope.user_info.birthdate = $scope.birthday.join("/");
         $http.post("/users/update_profile", $scope.user_info)
@@ -114,10 +129,6 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
                 debugger
                 if (data.code === 200) {
                     Notification.success("Profile Updated Successfully.");
-                    // console.log(data.user);
-                    // $scope.user_info = data.user;
-                    // $scope.birthday = $scope.user_info.birthdate.split("/");
-
                 } else if (data.code === 401) {
                     Notification.error(data.valule);
                 }
@@ -125,5 +136,5 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
             .error(function (err) {
 
             })
-    }
+    };
 }]);

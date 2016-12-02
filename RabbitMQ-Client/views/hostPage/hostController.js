@@ -3,6 +3,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
     $scope.secondStepStatus = "incomplete";
     $scope.thirdStepStatus = "incomplete";
     $scope.property = {};
+    $scope.property.country = "US";
     $scope.quantity = 1;
     $scope.photos = [];
     $scope.activeDecrement = false;
