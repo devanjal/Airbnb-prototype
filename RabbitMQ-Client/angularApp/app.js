@@ -103,8 +103,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
         })
         .state("users.listings", {
             url: '/listings',
-            templateUrl: 'profile/listing.html',
-            controllerUrl: "profile/profileController"
+            templateUrl: 'listingPages/listing.html',
+            controllerUrl: "listingPages/listingController"
+        })
+        .state("users.listings.propert_requests", {
+            url: '/propert_requests',
+            templateUrl: 'listingPages/host_property_request.html',
+            controllerUrl: "listingPages/listingController"
         })
         .state("individualProperty",{
             url:'/property?id',

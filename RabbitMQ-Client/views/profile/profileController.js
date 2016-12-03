@@ -51,30 +51,28 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
             link: "/"
         },
     ]
+    $scope.listingMenus = [
+        {
+            name: "Your Listing",
+            link: "users.listings"
+        },
+        {
+            name: "Your Property Requests",
+            link: "users.listings.propert_requests"
+        },
+        {
+            name: "Reservation Requirements",
+            link: "#"
+        },
+    ];
+
+    $scope.selectedListingMenu = 0;
+    $scope.selectListingMenu = function (index) {
+        $scope.selectedListingMenu = index;
+    };
 
     $scope.selected = 3;
     $scope.selectedEditMenu = 0;
-
-    if ($state.current.name === "users.listings") {
-        debugger
-        $http.get("/property/searchbyuserid")
-            .success(function (data) {
-                debugger
-                if (data.code === 200) {
-                    $scope.listed_property = [];
-                    angular.forEach(data.value, function (value, key) {
-                        if (data.value[key].published === "true") {
-                            data.value[key].images = data.mongoval[key].images;
-                            $scope.listed_property.push(data.value[key]);
-                        }
-                    });
-                    // data.mongoval data.value
-                }
-            })
-            .error(function (err) {
-
-            })
-    }
 
     $scope.selectMenu = function (index) {
         $scope.selected = index;
@@ -86,18 +84,6 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
 
     $scope.getUser = function () {
         debugger
-
-        // $scope.user_info = $scope.$parent.user;
-        // $scope.birthday = $scope.user_info.birthdate.split("/");
-        // $scope.user_info.currency = "USD";
-        // $scope.user_info.language = "en";
-        // $scope.profileImage = $scope.user_info.profile_image;
-
-        // console.log($scope.$parent.user);
-        // console.log($scope.$parent.$parent.user);
-
-
-
         $http.get("/users/profile")
             .success(function (data) {
                 debugger

@@ -1,29 +1,24 @@
-<div class="page-container-responsive space-top-4 space-4">
+<div class="page-container-responsive space-top-4 space-4" ng-controller="listingController">
     <div class="row">
         <div class="col-md-3 space-sm-3">
             <ul class="sidenav-list">
-                <li>
-                    <a class="sidenav-item" href="#" aria-selected="true">Your Listing</a>
+                <li ng-repeat="menu in listingMenus">
+                    <a ng-click="selectListingMenu($index)" aria-selected="{{$index == selectedListingMenu}}" ng-class="{'active': $index == selectedListingMenu}" href="#" ui-sref="{{menu.link}}" aria-selected="true" class="sidenav-item">
+                        {{menu.name}}
+                    </a>
                 </li>
-                <li>
-                    <a class="sidenav-item" href="#">Your Reservations</a>
-                </li>
-                <li>
-                    <a class="sidenav-item" href="#">Reservation Requirements</a>
-                </li>
-
                 <div class="space-top-4 space-4">
                     <a ui-sref="become-a-host" class="btn btn-host" href="#">Add New Listings</a>
                 </div>
             </ul>
         </div>
 
-        <div class="col-md-9">
-            <div class="your-listings-flash-container"></div>
+        <div class="col-md-9" ng-controller="listingController">
+           <div ui-view>
             <div id="listings-container">
                 <div>
                     <div class="suspension-container">
-                        <div class="panel space-4">
+                        <!--<div class="panel space-4">
                             <div class="panel-header active-panel-header">
                                 <div class="active-panel-padding">In progress</div>
                             </div>
@@ -32,7 +27,7 @@
                                     <div class="row row-table">
                                         <i class="icon icon-size-1 icon-remove icon-remove-listing show-sm"></i>
                                         <div class="col-middle space-sm-2 space-top-sm-4 col-md-5 listing-photo">
-                                            <a href="#">                                                        <!-- manage your properties-->
+                                            <a href="#">                                                       
                                                 <div class="media-photo media-photo-block-lg">
                                                     <div class="media-cover text-center">
                                                         <img class="img-responsive-height" src="https://a2.muscache.com/im/pictures/24e0d819-a747-447f-95ab-6fb5ff2eec2d.jpg?aki_policy=small" >
@@ -78,11 +73,12 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                         <div class="panel space-4">
                             <div class="panel-header active-panel-header">
                                 <div class="active-panel-padding">Listed</div>
                             </div>
+                            <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="listed_property.length>0">No Property Listed. <br><br> Please click on "Add New Listings" to list your property.</h5>
                             <ul class="list-unstyled list-layout">
                                 <li ng-repeat="property in listed_property" class="listing panel-body">
                                     <div class="row row-table">
@@ -126,7 +122,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="panel space-4">
+                        <!--<div class="panel space-4">
                             <div class="panel-header active-panel-header">
                                 <div class="active-panel-padding">Unlisted</div>
                             </div>
@@ -134,7 +130,7 @@
                                 <li class="listing panel-body">
                                     <div class="row row-table">
                                         <div class="col-middle space-sm-2 space-top-sm-4 col-md-5 listing-photo">
-                                            <a href="#">                                                        <!-- manage your properties-->
+                                            <a href="#">                                                        
                                                 <div class="media-photo media-photo-block-lg">
                                                     <div class="media-cover text-center">
                                                         <img class="img-responsive-height" src="#" >
@@ -175,10 +171,11 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
+           </div>
         </div>
     </div>
 </div>

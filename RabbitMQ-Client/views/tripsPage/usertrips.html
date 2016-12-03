@@ -29,6 +29,7 @@
                                 <div class="panel-header active-panel-header">
                                     <div class="active-panel-padding">Requested Trips</div>
                                 </div>
+                                <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="pendingtrips.length>0">No Requested trips.</h5>
                                 <ul class="list-unstyled list-layout">
                                     <li class="listing panel-body" ng-repeat="trip in pendingtrips">
                                         <div class="row row-table">
@@ -88,6 +89,7 @@
                                 <div class="panel-header active-panel-header">
                                     <div class="active-panel-padding">Upcoming Trips</div>
                                 </div>
+                                <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="usertrips.length>0">No Upcoming trips.</h5>
                                 <ul class="list-unstyled list-layout">
                                     <li class="listing panel-body" ng-repeat="trip in usertrips">
                                         <div class="row row-table">

@@ -93,7 +93,7 @@ router.get('/getTripsByHostId', function (req, res) {
             console.log("Error in updating your trip "+err);
         }else {
             if (result.code == 200){
-                console.log("trip updated successfully");
+                console.log("getTrips by host id");
                 res.send(result);
             }else {
                 console.log("No trips to update");
