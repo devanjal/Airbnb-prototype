@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- head tag -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="shortcut icon" href="../../public/airbnb-favicon.ico" type="image/png">
+    <title>Bills - Airbnb</title>
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/airbnb.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/airbnb2.css">
+
+    <style type="text/css">
+        #panel-border {
+            margin-bottom: 24px;
+            border: 1px solid #dce0e0;
+            background-color: #fff;
+            border-radius: 0;
+            margin-left: 20px;
+        }
+
+        .panel-body {
+            border-top: none !important;
+        }
+    </style>
+
+</head>
+
+<!-- body tag -->
+
+<body ng-app="billListApp" ng-controller="billListController" class="with-new-header has-epcot-header touch">
+
+<div class="page-container-responsive space-top-4 space-4">
+    <div class="row" id="dashboard-content">
+
+        <div class="col-md-3 space-sm-4">
+            <div class="sidenav">
+                <a href="bill_list.html" class="btn btn-block space-top-4">Bill List</a>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+
+            <!-- Bill List -->
+            <div class="panel space-4">
+                <div class="panel-header">Your Bills</div>
+                <br>
+                <div class="panel-body photos-section">
+                    <table class="table">
+                        <tr ng-repeat="billDetail in billDetails">
+                            <th>{{billDetail.propertyName}}</th>
+                        </tr>
+                        <tr>
+                            <td >
+                                <br>Bill id :{{billDetail.bill_id}}
+                                <br>Duration : {{billDetail.duration}}
+                                <br>Total trip cost -  $ {{billDetail.finalAmount}}
+                                <br><br>
+                                <button type="button" id="btn-save" class="btn btn-primary btn-large" >View</button>
+                                <button type="button" class="btn btn-default-white-border btn-large" style="margin-left:20px">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <br>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
