@@ -1,4 +1,4 @@
-app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', '$stateParams', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, $stateParams) {
+app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', '$stateParams','Notification', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, $stateParams,Notification) {
 
     $scope.methods = {};
     $scope.checkin;
@@ -122,6 +122,28 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
             // ];
         });
     };
+
+    $scope.request_booking = function(){
+        $scope.booking = {};
+        $scope.booking.propertyid = $scope.propertyDetails.propertyid;
+        $scope.booking.hostid = $scope.propertyDetails.hostid;
+        $scope.booking.quantity = $scope.selected_guest;
+        $scope.booking.fromdate  = $scope.checkin;
+        $scope.booking.todate = $scope.checkout;
+
+        $http.post("/usertrips/create",$scope.booking)
+        .success(function(data){
+            debugger
+            if(data.code === 200){
+                Notification.success("Your request has been placed.");
+                $state.go("users.trips");
+            }
+        })
+        .error(function(err){
+            
+        })
+    }
+    
 }]);
 
 

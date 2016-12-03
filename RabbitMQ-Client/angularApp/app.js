@@ -51,7 +51,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/photos.html',
             controllerUrl: "hostPage/hostController"
         })
-
         .state("become-a-host.description", {
             url: '/description',
             templateUrl: 'hostPage/description.html',

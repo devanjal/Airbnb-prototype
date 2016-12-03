@@ -53,6 +53,27 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
     $scope.selected = 3;
     $scope.selectedEditMenu = 0;
 
+    if ($state.current.name === "users.listings") {
+        debugger
+        $http.get("/property/searchbyuserid")
+            .success(function (data) {
+                debugger
+                if (data.code === 200) {
+                    $scope.listed_property = [];
+                    angular.forEach(data.value, function (value, key) {
+                        if (data.value[key].published === "true") {
+                            data.value[key].images = data.mongoval[key].images;
+                            $scope.listed_property.push(data.value[key]);
+                        }
+                    });
+                    // data.mongoval data.value
+                }
+            })
+            .error(function (err) {
+
+            })
+    }
+
     $scope.selectMenu = function (index) {
         $scope.selected = index;
     };
@@ -63,7 +84,7 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
 
     $scope.getUser = function () {
         debugger
-        
+
         // $scope.user_info = $scope.$parent.user;
         // $scope.birthday = $scope.user_info.birthdate.split("/");
         // $scope.user_info.currency = "USD";
@@ -87,9 +108,9 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
                     $scope.profileImage = data.user.profile_image;
                     $scope.$parent.$parent.profileImage_icon = data.user.profile_image;
                 } else if (data.code === 401) {
-                    if(data.value.code){
+                    if (data.value.code) {
                         Notification.error(data.valule.code);
-                    }else{
+                    } else {
                         Notification.error(data.valule);
                     }
                 }

@@ -139,7 +139,7 @@ app.controller('hostController', ['$scope', '$http', 'ngProgress', '$state', '$r
         .success(function (data) {
             if (data.status === "success") {
                 Notification.success("Your propertyPage has been successfully listed.");
-                $state.go('users.show');
+                $state.go('users.listings');
             } else if (data.error) {
                 console.log(JSON.stringify(data));
             }

@@ -6,12 +6,12 @@ router.post('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-router.post('/searchbyuserid', function(req, res, next) {
+router.get('/searchbyuserid', function(req, res, next) {
+    console.log(req.session.user.id);
     console.log('search by user id');
-
     var payload = {};
     //payload.userid = req.session.user.id;
-    payload.userid = 12;
+    payload.userid = req.session.user.id;
 
     mq_client.make_request('searchbyuserid',payload, function(err,results){
         if(err){

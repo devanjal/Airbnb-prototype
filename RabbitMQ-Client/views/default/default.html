@@ -7,16 +7,16 @@
     <div class="row" style="border: 1px solid #ccc;border-radius: 4px;box-shadow: 0 1px 3px 0 #eee;margin:0;margin-top: 40px !important;">
         <form>
 
-            <div class="col-xl-12 col-md-4" style="border-right:1px solid lightgray; padding-bottom: 5px;">
+            <div class="col-xl-12 col-md-4" style="border-right:1px solid lightgray;">
                 <label>Where</label>
                 <input type="text" class="form-control" ng-autocomplete="results2" ng-model="where" placeholder="Destination, city, address" details="details2" options="options2" required />
             </div>
-            <div class="col-xl-12 col-md-4" style="border-right:1px solid lightgray;padding-bottom: 5px;">
+            <div class="col-xl-12 col-md-4" style="border-right:1px solid lightgray">
                 <label>When</label>
                 <div class="row">
 
                     <div class="col-md-5">
-                        <p class="input-group" >
+                        <p class="input-group" style="margin-bottom: 0;" >
                         <input type="text" ng-model="checkin" class="form-control" ng-click="open1()" uib-datepicker-popup is-open="popup1.opened"
                                datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Check-in"/>
                         </p>
@@ -31,7 +31,7 @@
                         </svg>
                     </div>
                     <div class="col-md-5" style="padding-left: 0;">
-                        <p class="input-group" >
+                        <p class="input-group" style="margin-bottom: 0;">
                             <input type="text" ng-model="checkout" class="form-control" ng-click="open2()" uib-datepicker-popup is-open="popup2.opened"
                                    datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="Check out"/>
                         </p>
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-12 col-md-4" style="padding-bottom: 5px;">
+            <div class="col-xl-12 col-md-4">
                 <div class="row">
                     <div class="col-md-7">
                         <label>Guests</label>

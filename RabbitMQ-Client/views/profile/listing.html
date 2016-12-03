@@ -84,13 +84,13 @@
                                 <div class="active-panel-padding">Listed</div>
                             </div>
                             <ul class="list-unstyled list-layout">
-                                <li class="listing panel-body">
+                                <li ng-repeat="property in listed_property" class="listing panel-body">
                                     <div class="row row-table">
                                         <div class="col-middle space-sm-2 space-top-sm-4 col-md-5 listing-photo">
                                             <a href="#">                                                        <!-- manage your properties-->
                                                 <div class="media-photo media-photo-block-lg">
-                                                    <div class="media-cover text-center">
-                                                        <img class="img-responsive-height" src="">
+                                                    <div class="media-cover text-center" style="position: relative;">
+                                                        <img style="height: 130px;width: 130px;" class="img-responsive-height" ngf-src="property.images[0]">
                                                     </div>
                                                 </div>
                                             </a>
