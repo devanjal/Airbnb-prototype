@@ -54,16 +54,28 @@
                 <div class="panel-header">Your Bills</div>
                 <br>
                 <div class="panel-body photos-section">
-                    <table class="table">
+                    <table>
                         <tr ng-repeat="billDetail in billDetails">
                             <th>{{billDetail.propertyName}}</th>
                         </tr>
                         <tr>
                             <td >
                                 <br>Bill id :{{billDetail.bill_id}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
                                 <br>Duration : {{billDetail.duration}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
                                 <br>Total trip cost -  $ {{billDetail.finalAmount}}
                                 <br><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
                                 <button type="button" id="btn-save" class="btn btn-primary btn-large" >View</button>
                                 <button type="button" class="btn btn-default-white-border btn-large" style="margin-left:20px">Delete</button>
                             </td>
