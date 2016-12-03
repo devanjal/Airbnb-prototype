@@ -100,9 +100,12 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$u
     };
     
     $scope.cancelTrip = function () {
-        $http.post("/usertrips/cancelTrip", this.trip.tripid)
+        $http.post("/usertrips/cancelTrip", this.trip)
             .success(function (data) {
-                
+                if(data.code === 200){
+                    Notification.success("Successfully cancelled your trip.");
+                    $state.go("users.trips");
+                }
             })
             .error(function (err) {
 

@@ -10,8 +10,8 @@ function createTrip(msg, callback){
            connectionpool.releaseSQLConnection(connection);
            return;
        }
-        connection.query('insert into `trips`(hostid, userid, propertyid, address, category, quantity, fromdate, todate, tripstatus) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                        [msg.hostid, msg.userid, msg.propertyid, msg.address, msg.category, msg.quantity, msg.from_date, msg.to_date, 'pending'], function (err, result) {
+        connection.query('insert into `trips`(hostid, userid, propertyid, quantity, fromdate, todate, tripstatus) values (?, ?, ?, ?, ?, ?)',
+                        [msg.hostid, msg.userid, msg.propertyid, msg.quantity, msg.fromdate, msg.todate, 'pending'], function (err, result) {
                 if(err){
                     console.log("Error in inserting to trips "+err);
                     connectionpool.releaseSQLConnection(connection);
@@ -91,6 +91,7 @@ function getAllTripsByUserId(msg, callback) {
 
 function getAllTripsByHostId(msg, callback) {
     var res = {};
+    console.log("trips by host id" + JSON.stringify(msg));
     connectionpool.getConnection(function (err, connection) {
         if(err){
             console.log("Error connecting to db" + err);
@@ -100,12 +101,14 @@ function getAllTripsByHostId(msg, callback) {
         connection.query('select t.tripid, t.quantity, t.fromdate, t.todate, t.tripstatus, p.category, p.address, p.city, p.state, p.country, p.zipcode, p.title, p.price from trips as t inner join properties as p where t.propertyid = p.propertyid and t.hostid = ?',
                         [msg.hostid],
             function (err, result) {
+
                 if(err){
                     console.log("Error in fetching user trips "+err);
                     connectionpool.releaseSQLConnection(connection);
                     res.code = 401;
                     res.value = err.code;
                 }else if (result) {
+                    console.log(result);
                     res.code = 200;
                     res.data = result;
                     res.status = "success";
