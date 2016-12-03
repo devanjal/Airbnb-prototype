@@ -1,5 +1,6 @@
 var connectionpool = require('./connectionpool');
-
+var redisClient = require('redis').createClient;
+var redis = redisClient(6379, 'localhost');
 function createBill(msg, callback){
     var res = {};
     var date1 = new Date(msg.b.from_date);
@@ -96,36 +97,61 @@ function getBillByUid(msg,callback) {
     });
 }
 function getByBillId(msg,callback) {
-    var res={};
+    var res = {};
+    var bill_id = msg.bill_id;
     console.log("In Bill by id module");
-   // console.log(JSON.stringify(msg));
-    connectionpool.getConnection(function(err,connection) {
-        if (err) {
-            connectionpool.releaseSQLConnection(connection);
-            res.code = 401;
-            res.value = "Error connecting to Db";
-            callback(null, res);
-            return;
-        }
-        var bill_id=msg.bill_id;
-        // var post = { user_id: msg.user_id, host_id: msg.b.host_id, property_id: msg.b.property_id, from_date: msg.b.from_date, to_date: msg.b.to_date, category:msg.b.category, location:msg.b.location, no_of_guest:msg.b.no_of_guest,security_deposite:msg.b.security_deposite, amount:msg.b.amount, date:Date() ,user_flag:1,host_flag: 1 };
-        var query = connection.query('select * from bill inner join properties on bill.property_id=properties.propertyid inner join users on bill.user_id=users.id where bill.bill_id= ?', [bill_id], function (err, result) {
-            if (err) {
-                res.code = 401;
-                res.value = "Bill not found error";
+    // console.log(JSON.stringify(msg));
+    redis.get(bill_id, function (error, reply) {
+        if (error) {
+            console.log("Inside Redis ERROR");
+            res.code = 500;
+            res.result = error;
+            res.value = "Error in redis";
+            callback(error, res);
+        } else {
+            if (reply) {
+                console.log("Inside Redis REPLY");
+                res.code = 200;
+                res.result = JSON.parse(reply);
+                res.value = "Found in redis";
                 callback(null, res);
-                console.log(err);
-                connectionpool.releaseSQLConnection(connection);
-                return;
+            } else {
+                connectionpool.getConnection(function (err, connection) {
+                    if (err) {
+                        connectionpool.releaseSQLConnection(connection);
+                        res.code = 401;
+                        res.value = "Error connecting to Db";
+                        callback(null, res);
+                        return;
+                    }
+
+                    // var post = { user_id: msg.user_id, host_id: msg.b.host_id, property_id: msg.b.property_id, from_date: msg.b.from_date, to_date: msg.b.to_date, category:msg.b.category, location:msg.b.location, no_of_guest:msg.b.no_of_guest,security_deposite:msg.b.security_deposite, amount:msg.b.amount, date:Date() ,user_flag:1,host_flag: 1 };
+                    var query = connection.query('select * from bill inner join properties on bill.property_id=properties.propertyid inner join users on bill.user_id=users.id where bill.bill_id= ?', [bill_id], function (err, result) {
+                        if (err) {
+                            res.code = 401;
+                            res.value = "Bill not found error";
+                            callback(null, res);
+                            console.log(err);
+                            connectionpool.releaseSQLConnection(connection);
+                            //return;
+                        }
+                        else {
+                            redis.set(bill_id,JSON.stringify(result), function () {
+                                console.log("inside Redis SET");
+                                res.code = 200;
+                                res.value = "Bill By id Found";
+                                res.result = result;
+                                callback(null, res);
+                                connectionpool.releaseSQLConnection(connection);
+                            });
+
+                        }
+                    });
+                });
             }
-            res.code = 200;
-            res.value = "Bill By id Found";
-            res.result=result;
-            callback(null, res);
-            connectionpool.releaseSQLConnection(connection);
-        });
-    });
-}
+        }
+    })
+};
 
 function deleteBill(msg,callback) {
     var res={};
