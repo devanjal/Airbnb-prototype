@@ -1,5 +1,4 @@
 var connectionpool = require('../config/connectionpool');
-
 var bcrypt = require('bcryptjs');
 
 function handle_request(msg, callback) {
@@ -60,13 +59,14 @@ function handle_request(msg, callback) {
             else {
                 console.log("no user found");
                 res.code = 401;
-                res.value = 'Username does not exist.'
+                res.value = 'Username does not exist.';
                 callback(null, res);
                 connectionpool.releaseSQLConnection(connection);
             }
         });
     });
 }
+
 function handle_logout(msg, callback) {
     var res = {};
     console.log('handle_logout');
@@ -97,4 +97,3 @@ function handle_logout(msg, callback) {
 }
 exports.handle_request = handle_request;
 exports.handle_logout = handle_logout;
-

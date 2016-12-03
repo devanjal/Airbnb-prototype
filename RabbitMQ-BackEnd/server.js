@@ -9,9 +9,8 @@ var property = require('./services/property');
 
 var user = require("./services/user");
 var admin = require('./services/admin');
-
+var trip = require("./services/trip");
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
-
 var connectionpool = require("./config/connectionpool");
 
 process.on("SIGINT", function () {
@@ -147,6 +146,7 @@ cnn.on('ready', function () {
         });
     });
 
+
     cnn.queue('approve_host', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.approvehost(message, function (err, res) {
@@ -159,6 +159,20 @@ cnn.on('ready', function () {
         });
     });
 
+    cnn.queue('tripEditQueue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.editTrip(message, function (err, res) {
+
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+
     cnn.queue('searchbyuserid', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             property.searchbyuserid(message, function (err, res) {
@@ -170,6 +184,19 @@ cnn.on('ready', function () {
             });
         });
     });
+
+    cnn.queue('createTripQueue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.createTrip(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
     cnn.queue('gettoprevenue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.gettoprevenue(message, function (err, res) {
@@ -182,9 +209,35 @@ cnn.on('ready', function () {
         });
     });
 
+    cnn.queue('allUserTripsQueue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.getAllTripsByUserId(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+
     cnn.queue('searchbypropertyid', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             property.searchbypropertyid(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('tripQueueByUserId', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.getTripByUserId(message, function (err, res) {
+
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
@@ -194,6 +247,7 @@ cnn.on('ready', function () {
             });
         });
     });
+
 
 
     cnn.queue('postuserreview', function (q) {
@@ -208,6 +262,20 @@ cnn.on('ready', function () {
         });
     });
 
+    cnn.queue('tripQueueHost', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.getAllTripsByHostId(message, function (err, res) {
+
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+
     cnn.queue('searchbyquery', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             property.searchbyquery(message, function (err, res) {
@@ -219,6 +287,20 @@ cnn.on('ready', function () {
             });
         });
     });
+
+    cnn.queue('cancelTripQueue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.cancelTrip(message, function (err, res) {
+
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
 
     cnn.queue('user_profile_image_queue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {

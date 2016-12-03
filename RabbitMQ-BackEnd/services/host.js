@@ -1,6 +1,5 @@
 var connectionpool = require('../config/connectionpool');
 
-
 function becomehost_step1(msg, callback){
     var res = {};
     console.log(JSON.stringify(msg));
@@ -16,7 +15,6 @@ function becomehost_step1(msg, callback){
         var query = connection.query('INSERT INTO properties SET ?', msg , function (err, result) {
                 if (err) {
                     console.log(err);
-
                     res.code = 401;
                     res.value = "Step1 failed";
                     callback(null, res);
@@ -58,13 +56,13 @@ function becomehost_step2(msg, callback){
                     connectionpool.releaseSQLConnection(connection);
                     return;
                 }
+
                 // var post = {};
                 // post.hostid = msg.hostid;
                 // post.images = msg.filenames;
 
                 var mongoconnection = connectionpool.getdbconnection();
                 mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}}, $set:{hostid : msg.hostid}} , {upsert:true},function(err, result) {
-
                     if(err) {
                         console.log(err);
                         res.code = 400;

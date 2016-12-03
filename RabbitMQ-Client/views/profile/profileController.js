@@ -4,16 +4,18 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
             name: "Dashboard",
             id: "dashboard-item",
             link: "users"
+
         },
         {
             name: "Your Listing",
             id: "rooms-item",
             link: "users.listings"
+
         },
         {
             name: "Your Trips",
             id: "your-trips-item",
-            link: "users.trip"
+            link: "users.trips"
         },
         {
             name: "Profile",
@@ -109,10 +111,11 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
                     $scope.$parent.$parent.profileImage_icon = data.user.profile_image;
                 } else if (data.code === 401) {
                     if (data.value.code) {
-                        Notification.error(data.valule.code);
+                        Notification.error(data.value.code);
                     } else {
-                        Notification.error(data.valule);
+                        Notification.error(data.value);
                     }
+
                 }
             })
             .error(function (err) {

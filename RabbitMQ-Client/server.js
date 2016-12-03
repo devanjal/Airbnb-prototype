@@ -21,6 +21,8 @@ var admin = require('./routes/admin');
 
 var users = require('./routes/users');
 
+var trips = require('./routes/trips');
+
 var app = express();
 
 
@@ -53,9 +55,13 @@ app.use(session({
 
 app.use('/users', users);
 app.use('/become_host', become_host);
+
 app.use('/admin', admin);
 app.use('/property', property);
 app.use('/host', host);
+
+app.use('/usertrips', trips);
+
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');

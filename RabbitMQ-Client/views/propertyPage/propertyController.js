@@ -127,7 +127,7 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
         $scope.booking = {};
         $scope.booking.propertyid = $scope.propertyDetails.propertyid;
         $scope.booking.hostid = $scope.propertyDetails.hostid;
-        $scope.booking.quantity = $scope.selected_guest;
+        $scope.booking.quantity = parseInt($scope.selected_guest.split(" ")[0]);
         $scope.booking.fromdate  = $scope.checkin;
         $scope.booking.todate = $scope.checkout;
 
@@ -137,6 +137,8 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
             if(data.code === 200){
                 Notification.success("Your request has been placed.");
                 $state.go("users.trips");
+            }else if(data.code === 401){
+                Notification.error(data.value);
             }
         })
         .error(function(err){

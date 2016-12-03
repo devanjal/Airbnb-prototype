@@ -111,12 +111,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl:'propertyPage/IndividualPropertyPage.html',
             controllerUrl: "propertyPage/propertyController"
         })
-        // .state("adminPage", {
-        //     url: '/adminPage',
-        //     templateUrl: 'profile/listing.html',
-        //     controllerUrl: "profile/profileController"
-        // })
-        ;        
+
+        .state("users.trips", {
+            url: '/trips',
+            templateUrl: 'tripsPage/usertrips.html',
+            controllerUrl: "tripsPage/tripController"
+        })
+        .state("users.trips.edit", {
+            url: '/edit?id',
+            templateUrl: 'tripsPage/editTrips.html',
+            controllerUrl: "tripsPage/tripController"
+        })
+        .state("users.trips.preview", {
+            url: '/preview?id',
+            templateUrl: 'tripsPage/previewTrips.html',
+            controllerUrl: "tripsPage/tripController"
+        }) ;        
     
     $urlRouterProvider.otherwise("/");
 
