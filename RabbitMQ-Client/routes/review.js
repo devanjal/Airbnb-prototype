@@ -4,7 +4,7 @@ var mq_client = require('../rpc/client');
 
 
 router.post('/makeuserreview', function(req, res) {
-    console.log('become host');
+
     var payload = {};
     console.log(JSON.stringify(req.body));
     payload.hostid = req.session.user.id;
@@ -31,7 +31,7 @@ router.post('/makeuserreview', function(req, res) {
 });
 
 router.post('/makehostreview', function(req, res) {
-    console.log('become host');
+
     var payload = {};
     console.log(JSON.stringify(req.body));
     payload.hostid = parseInt(req.body.host_id);
@@ -58,7 +58,7 @@ router.post('/makehostreview', function(req, res) {
 });
 
 router.post('/makepropertyreview', function(req, res) {
-    console.log('become host');
+
     var payload = {};
     console.log(JSON.stringify(req.body));
     payload.propertyid = parseInt(req.body.property_id);
