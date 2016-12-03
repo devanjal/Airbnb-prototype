@@ -109,46 +109,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'tripsPage/previewTrips.html',
             controllerUrl: "tripsPage/tripController"
         })
-    
         
-        ;        
-        
-        // become-a-host.
-        // .state("Register", {
-        //     url: '/Register',
-        //     templateUrl: 'signin-register/signin.html',
-        //     controllerUrl: "signin-register/signinController"
-        // })
-        // .state("MyAccount", {
-        //     url: '/MyAccount',
-        //     templateUrl: 'Profile/MyProfile.html',
-        //     controllerUrl: "Profile/profileController"
-        // })
-        // .state("Sell", {
-        //     url: '/Sell',
-        //     templateUrl: 'Sellitems/sell.html',
-        //     controllerUrl: "Sellitems/sellController"
-        // })
-        // .state("market", {
-        //     url: '/market?category',
-        //     templateUrl: 'eBayMarket/market.html',
-        //     controllerUrl: "eBayMarket/marketController"
-        // })
-        // .state("product", {
-        //     url: '/product?pid',
-        //     templateUrl: 'eBayProduct/product.html',
-        //     controllerUrl: "eBayProduct/productController"
-        // })
-        // .state("Cart", {
-        //     url: '/Cart',
-        //     templateUrl: 'eBayCart/cart.html',
-        //     controllerUrl: "eBayCart/cartController"
-        // })
-        // .state("checkout", {
-        //     url: '/checkout',
-        //     templateUrl: 'eBayCheckout/checkout.html',
-        //     controllerUrl: "eBayCheckout/checkoutController"
-        // })
         ;
 
     $urlRouterProvider.otherwise("/");
@@ -173,18 +134,9 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
         if (window.sessionStorage.login_status === "true") {
             $scope.loginStatus = true;
             $scope.user = JSON.parse(window.sessionStorage.user_info);
-            // $scope.user_firstname
         } else {
             window.sessionStorage.login_status = "false";
             $scope.loginStatus = false;
-            // $http.get("users/getInfo")
-            // .success(function (data) {
-            //     debugger
-
-            // })
-            // .error(function (err) {
-
-            // })
         }
     }
 
@@ -216,15 +168,6 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
         window.sessionStorage.login_status = "false";
         delete window.sessionStorage.user;
         window.location.reload();
-        // $http.get("/users/logout")
-        // .success(function (data) {
-        //     debugger
-
-
-        // })
-        // .error(function (err) {
-
-        // })
     }
 }]);
 

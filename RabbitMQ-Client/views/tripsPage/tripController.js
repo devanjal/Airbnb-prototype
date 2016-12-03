@@ -11,7 +11,7 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$u
                 for(var i=0; i<resArray.length; i++) {
                     if(resArray[i].tripstatus == "pending") {
                         $scope.pendingtrips.push(resArray[i]);
-                    }else {
+                    }else if(resArray[i].tripstatus == "approved"){
                         $scope.usertrips.push(resArray[i]);
                     }
                 }
