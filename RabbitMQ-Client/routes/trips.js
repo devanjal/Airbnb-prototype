@@ -24,21 +24,22 @@ router.get('/', function (req, res, next) {
 
 router.post('/create', function (req, res) {
     var msg_payload = {
-        hostid: req.session.user.id,
+        hostid: req.body.hostid,
         propertyid: req.body.propertyid,
-        userid: req.body.userid,
+        userid: req.session.user.id,
         quantity: req.body.quantity,
         fromdate: req.body.fromdate,
         todate: req.body.todate
     };
 
-    mq_client.make_request('createTripQueue', msg_payload, function (err, results) {
-        console.log(results);
+    mq_client.make_request('createTripQueue', msg_payload, function (err, result) {
+        console.log(result);
         if(err){
             console.log("Error in inserting trip data"+ err);
         }else {
-            if (results.code == 200){
+            if (result.code == 200){
                 console.log("trip created successfully");
+                res.send(result);
             }else {
                 console.log("No trips to add");
             }
@@ -47,26 +48,11 @@ router.post('/create', function (req, res) {
 });
 
 router.post('/edit', function (req, res) {
+    console.log("INSIDE edit")
     var msg_payload = { tripid: req.body.tripid, quantity: req.body.quantity, fromdate: req.body.fromdate, todate: req.body.todate};
-    mq_client.make_request('tripEditQueue', msg_payload, function (err, result) {
-        if(err){
-            console.log("Error in updating your trip "+err);
-        }else {
-            if (results.code == 200){
-                console.log("trip updated successfully");
-                res.send(result);
-            }else {
-                console.log("No trips to update");
-            }
-        }
-    });
-});
 
-router.get('/getTripByUserId/:tripID', function (req, res) {
-    console.log(req.params.tripID);
-    var msg_payload = {tripid: req.params.tripID, userid: req.session.user.id};
-    mq_client.make_request('tripQueueByUserId', msg_payload, function (err, result) {
-        console.log(result);
+    mq_client.make_request('tripEditQueue', msg_payload, function (err, result) {
+        console.log(JSON.stringify(msg_payload));
         if(err){
             console.log("Error in updating your trip "+err);
         }else {
@@ -80,13 +66,31 @@ router.get('/getTripByUserId/:tripID', function (req, res) {
     });
 });
 
+router.get('/getTripByUserId/:tripID', function (req, res) {
+    // console.log(req.params.tripID);
+    var msg_payload = {tripid: req.params.tripID, userid: req.session.user.id};
+    mq_client.make_request('tripQueueByUserId', msg_payload, function (err, result) {
+        // console.log(result);
+        if(err){
+            console.log("Error in fetching your trip "+err);
+        }else {
+            if (result.code == 200){
+                console.log("trip fetched successfully");
+                res.send(result);
+            }else {
+                console.log("No trips to fetch");
+            }
+        }
+    });
+});
+
 router.get('/getTripsByHostId', function (req, res) {
     var msg_payload = {hostid: req.session.user.id};
     mq_client.make_request('tripQueueHost', msg_payload, function (err, result) {
         if(err){
             console.log("Error in updating your trip "+err);
         }else {
-            if (results.code == 200){
+            if (result.code == 200){
                 console.log("trip updated successfully");
                 res.send(result);
             }else {
@@ -96,8 +100,20 @@ router.get('/getTripsByHostId', function (req, res) {
     });
 });
 
-router.get('/cancelTrip', function () {
-    
+router.post('/cancelTrip', function (req, res) {
+    var msg_payload = {tripid: req.body.tripid};
+    mq_client.make_request('cancelTripQueue', msg_payload, function (err, result) {
+        if(err){
+            console.log("Error in deleting the trip " +err);
+        }else {
+            if (result.code == 200){
+                console.log("trip canceled successfully");
+                res.send(result);
+            }else {
+                console.log("No trips to delete");
+            }
+        }
+    });
 });
 
 module.exports = router;

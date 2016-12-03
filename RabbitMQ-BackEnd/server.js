@@ -178,4 +178,15 @@ cnn.on('ready', function () {
             });
         });
     });
+    cnn.queue('cancelTripQueue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            trip.cancelTrip(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
 });

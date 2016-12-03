@@ -31,6 +31,8 @@ function createTrip(msg, callback){
 }
 
 function editTrip(msg, callback) {
+    console.log("editTrip");
+    console.log(JSON.stringify(msg));
     var res = {};
     connectionpool.getConnection(function (err, connection) {
         if(err){
@@ -145,8 +147,36 @@ function getTripByUserId(msg, callback) {
         });
     });
 }
+function cancelTrip(msg, callback) {
+    var res = {};
+    connectionpool.getConnection(function (err, connection) {
+        if(err){
+            console.log("Error connecting to db" + err);
+            connectionpool.releaseSQLConnection(connection);
+            return;
+        }
+        connection.query('Update `trips` set tripstatus=? where tripid=?',
+            ['canceled', msg.tripid],
+            function (err, result) {
+                if(err){
+                    console.log("Error in canceling user trip "+err);
+                    connectionpool.releaseSQLConnection(connection);
+                    res.code = 401;
+                    res.value = err.code;
+                }else if (result) {
+                    res.code = 200;
+                    res.status = "success";
+                } else {
+                    res.code = 401;
+                }
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            });
+    });
+}
 exports.getAllTripsByHostId = getAllTripsByHostId;
 exports.getAllTripsByUserId = getAllTripsByUserId;
 exports.getTripByUserId = getTripByUserId;
 exports.createTrip = createTrip;
 exports.editTrip = editTrip;
+exports.cancelTrip = cancelTrip;

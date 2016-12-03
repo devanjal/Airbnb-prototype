@@ -1,11 +1,6 @@
-app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal','$window', 'Upload','Notification', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, Upload,Notification) {
-    if(sessionStorage.property){
-        $scope.property = JSON.parse(sessionStorage.property);
-    }
-    if(sessionStorage.editProperty){
-        $scope.editProperty = JSON.parse(sessionStorage.editProperty);
-    }
-    $scope.getUserTrips = function () {
+app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$uibModal','Notification', function ($scope, $http, ngProgress, $state, $uibModal,Notification) {
+    // if($state)
+    if($state.current.name==="users.trips"){
         $http.get("/usertrips").success(function (response) {
             // alert(JSON.stringify(response));
             $scope.pendingtrips = [];
@@ -26,13 +21,30 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$r
         }).error(function (err) {
 
         });
-    };
-    $scope.getElementById("from")
+    }
+    else if($state.current.name==="users.trips.edit"){
+        console.log($state.params.id);
+        $http.get("/usertrips/getTripByUserId/"+$state.params.id)
+            .success(function(data){
+                debugger
+                if(data.code == 200){
+                    console.log(JSON.stringify(data));
+                    $scope.editProperty = data.data[0];
+                    $scope.checkinDate = new Date($scope.editProperty.fromdate.split("T")[0]);
+                    $scope.checkoutDate = new Date($scope.editProperty.todate.split("T")[0]);
+                    sessionStorage.editProperty = JSON.stringify($scope.editProperty);
+                    $state.go("users.trips.edit");
+                }else if(data.code == 401){
 
-    $scope.getPreview = function () {
-        debugger
-        //console.log(this.trip.tripid);
-        $http.get("/usertrips/getTripByUserId/"+this.trip.tripid)
+                }
+
+            })
+            .error(function (err) {
+
+            });
+    }else if($state.current.name==="users.trips.preview"){
+        console.log($state.params.id);
+        $http.get("/usertrips/getTripByUserId/"+$state.params.id)
             .success(function(data){
                 debugger
                 if(data.code == 200){
@@ -48,34 +60,38 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$r
             .error(function (err) {
 
             });
+    }
+    // if(sessionStorage.property){
+    //     $scope.property = JSON.parse(sessionStorage.property);
+    // }
+    // if(sessionStorage.editProperty){
+    //     $scope.editProperty = JSON.parse(sessionStorage.editProperty);
+    // }
+    // $scope.getUserTrips = function () {
+    //
+    // };
+    // $scope.getElementById("from")
 
-    };
-    $scope.goToEditTrip = function () {
-        $http.get("/usertrips/getTripByUserId/"+this.trip.tripid)
-            .success(function(data){
-                debugger
-                if(data.code == 200){
-                    console.log(JSON.stringify(data));
-                    $scope.editProperty = data.data[0];
-                    sessionStorage.editProperty = JSON.stringify($scope.editProperty);
-                    $state.go("users.trips.edit");
-                }else if(data.code == 401){
-
-                }
-
-            })
-            .error(function (err) {
-
-            });
-    };
+    // $scope.getPreview = function () {
+    //     debugger
+    //     //console.log(this.trip.tripid);
+    //
+    //
+    // };
+    // $scope.goToEditTrip = function () {
+    //
+    // };
     
-    $scope.edit = function () {
+    $scope.updateTrip = function () {
         var obj = {};
-        // obj.tripid = this
+        debugger
+        $scope.editProperty.todate = $scope.checkoutDate;
+        $scope.editProperty.fromdate = $scope.checkinDate;
         $http.post("/usertrips/edit", $scope.editProperty)
             .success(function (data) {
                 debugger
                  if(data.code === 200){
+                     Notification.success("Successfully updated your trip.");
                      $state.go("users.trips");
                  }
             }).error(function (err) {
@@ -84,22 +100,23 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$r
     };
     
     $scope.cancelTrip = function () {
-        
+        $http.post("/usertrips/cancelTrip", this.trip.tripid)
+            .success(function (data) {
+                
+            })
+            .error(function (err) {
+
+            })
     };
 
     $scope.format='MM-dd-yyyy'
     $scope.dateOptions = {
-        dateDisabled: disabled,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(),
         startingDay: 1
     };
-    function disabled(data) {
-        var date = data.date,
-            mode = data.mode;
-        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-    }
+
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;
