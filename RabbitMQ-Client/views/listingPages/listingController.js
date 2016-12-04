@@ -6,10 +6,23 @@ app.controller('listingController', ['$scope', '$http', 'ngProgress', '$state', 
                 debugger
                 if (data.code === 200) {
                     $scope.listed_property = [];
+                    $scope.inProgress_property = [];
                     angular.forEach(data.value, function (value, key) {
                         if (data.value[key].published === "true") {
                             data.value[key].images = data.mongoval[key].images;
                             $scope.listed_property.push(data.value[key]);
+                        }else{
+                            data.value[key].images = data.mongoval[key].images;
+                            if(data.value[key].published === "step1"){
+                                data.value[key].dynamic = 34;
+                            }
+                            if(data.value[key].published === "step2"){
+                                data.value[key].dynamic = 67;
+                            }
+                            if(data.value[key].published === "step3"){
+                                data.value[key].dynamic = 100;
+                            }
+                            $scope.inProgress_property.push(data.value[key]);
                         }
                     });
                     // data.mongoval data.value

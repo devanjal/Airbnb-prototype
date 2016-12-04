@@ -90,7 +90,7 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
             clickable: true,
         });
         google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.setContent("hi");
+            infoWindow.setContent("Hi");
             infoWindow.open(map, this);
         });
         google.maps.event.addListener(map, 'click', function () {
@@ -127,6 +127,7 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
                 $scope.propertyList = data.value;
                 $scope.addresses = ["676 S 9th Street, San Jose, CA, US", "135 Rio Robles E, San Jose, CA, US"];
                 geocoder = new google.maps.Geocoder();
+                var infoWindowContent = ["My name is","Nishank Singla"];
                 angular.forEach($scope.addresses, function (value, key) {
                     geocoder.geocode({ 'address': $scope.addresses[key] }, function (results, status) {
                         console.log(results);
@@ -136,6 +137,11 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
                                 map: map,
                                 position: results[0].geometry.location
                             });
+                            marker.addListener('click', function () {
+                                infoWindow.setContent(infoWindowContent[key]);
+                                 
+                                infoWindow.open(map, marker);
+                            })
                         } else {
                             alert('Geocode was not successful for the following reason: ' + status);
                         }

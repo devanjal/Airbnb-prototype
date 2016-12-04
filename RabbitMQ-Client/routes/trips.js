@@ -70,6 +70,7 @@ router.post('/edit', function (req, res) {
 
 router.get('/getTripByUserId/:tripID', function (req, res) {
     // console.log(req.params.tripID);
+    console.log(req.session.user.id);
     var msg_payload = {tripid: req.params.tripID, userid: req.session.user.id};
     mq_client.make_request('tripQueueByUserId', msg_payload, function (err, result) {
         // console.log(result);
