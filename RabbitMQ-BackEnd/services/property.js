@@ -191,7 +191,7 @@ function searchbyquery(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties as p, users as u WHERE u.id=p.hostid and p.published="true" and p.city=? and p.availability_from =? and p.availability_to =? and p.quantity =?',[msg.city, msg.dateFrom, msg.dateTo, msg.guests],
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true" and properties.city=? and properties.state=? and properties.availability_from = ? and properties.availability_to <= ? and properties.quantity=?',[msg.city, msg.state,new Date(msg.checkin), new Date(msg.checkout), msg.guests],
             function(err, rows, fields) {
                 if (err)
                 {
@@ -229,11 +229,7 @@ function searchbyquery(msg, callback){
                         }
                     }
                     callback(null, res);
-
                 });
-
-
-
             });
 
     });
@@ -253,7 +249,7 @@ function searchbycity(msg, callback){
         }
 
         connection.query(
-            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true" and properties.city=? and properties.state=? and properties.availability_from = ? and properties.availability_to >= ?',[msg.city, msg.state,msg.checkin, msg.checkout], function(err, rows, fields) {
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true" and properties.city=? and properties.state=?',[msg.city, msg.state], function(err, rows, fields) {
 
                 if (err)
                 {

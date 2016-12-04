@@ -96,20 +96,34 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
             }).success(function(data){
                 console.log("I m in success of searchAllProperties angular");
                 $scope.propertyList=data.value;
-                console.log(data);
-                console.log(data.value.length);
-                var tempaddress= [];
+                $scope.addresses= [];
                 for(var i=0;i<data.value.length;i++){
-                    tempaddress[i]=data.value[i].propertyaddress + ", " + data.value[i].city + ", " + data.value[i].state + ", " + data.value[i].country;
+                    $scope.addresses[i]=data.value[i].propertyaddress + ", " + data.value[i].city + ", " + data.value[i].state + ", " + data.value[i].country;
                 }
-                console.log("This is value of tempaddress:" + tempaddress);
-                initMap(tempaddress);
-
-
-
-            })
+                debugger
+                geocoder = new google.maps.Geocoder();
+                angular.forEach($scope.addresses, function (value, key) {
+                    geocoder.geocode({ 'address': $scope.addresses[key] }, function (results, status) {
+                        console.log(results);
+                        if (status == 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                            marker.addListener('click',function(){
+                                infoWindow.setContent("$"+($scope.propertyList[key].price).toString());
+                                infoWindow.open(map,marker);
+                            })
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                })
+            });
         }
-        else if($stateParams.location !== undefined && $stateParams.checkout !== undefined && $stateParams.checkin !== undefined){
+
+        else if($stateParams.location !== undefined && $stateParams.checkout == undefined && $stateParams.checkin == undefined){
 
             locationarr=$stateParams.location.split(", ");
 
@@ -119,8 +133,6 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
                 data:{
                     city:locationarr[0],
                     state:locationarr[1],
-                    checkin:$stateParams.checkin,
-                    checkout:$stateParams.checkout
                 }
             }).success(function(data){
                 console.log("I m in success of searchbycity angular");
@@ -148,7 +160,52 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
                             })
                         } else {
                             alert('Geocode was not successful for the following reason: ' + status);
-                            }
+                        }
+                    });
+                })
+            });
+        }
+        else if($stateParams.location !== undefined && $stateParams.checkout !== undefined && $stateParams.checkin !== undefined){
+
+            locationarr=$stateParams.location.split(", ");
+
+            $http({
+                url:"/property/searchbyquery",
+                method:"post",
+                data:{
+                    city:locationarr[0],
+                    state:locationarr[1],
+                    checkin:$stateParams.checkin,
+                    checkout:$stateParams.checkout,
+                    guests:$stateParams.guests
+                }
+            }).success(function(data){
+                console.log("I m in success of searchbycity angular");
+                $scope.propertyList=data.value;
+                $scope.addresses= [];
+
+
+                for(var i=0;i<data.value.length;i++){
+                    $scope.addresses[i]=data.value[i].propertyaddress + ", " + data.value[i].city + ", " + data.value[i].state + ", " + data.value[i].country;
+                }
+                debugger
+                geocoder = new google.maps.Geocoder();
+                angular.forEach($scope.addresses, function (value, key) {
+                    geocoder.geocode({ 'address': $scope.addresses[key] }, function (results, status) {
+                        console.log(results);
+                        if (status == 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                            marker.addListener('click',function(){
+                                infoWindow.setContent("$"+($scope.propertyList[key].price).toString());
+                                infoWindow.open(map,marker);
+                            })
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
                     });
                 })
             });
