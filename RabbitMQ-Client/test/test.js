@@ -6,11 +6,17 @@ var request = require('request')
 
 describe('airbnb test', function(){
 
-    it('shoud return the login page', function(done){
-        http.get('http://localhost:3000/', function(res) {
-            assert.equal(200, res.statusCode);
-            done();
-        })
+    it('reject user trip', function(done) {
+        request.post(
+            'http://localhost:80/host/approvetrips',
+            { form: { tripid:12 } },
+            function (error, response, body) {
+                console.log(JSON.stringify(body));
+                var ret = JSON.parse(body);
+                assert.equal('success', ret.status);
+                done();
+            }
+        );
     });
 
 
