@@ -1,5 +1,6 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload', 'thatisuday.ng-image-gallery', 'ngAutocomplete']);
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider','ngImageGalleryOptsProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification', 'ngFileUpload', 'thatisuday.ng-image-gallery', 'ngAutocomplete']);
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider', 'ngImageGalleryOptsProvider', function($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
+
     NotificationProvider.setOptions({
         delay: 2000,
         positionX: 'center',
@@ -7,13 +8,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
     });
 
     ngImageGalleryOptsProvider.setOpts({
-        thumbnails  :   false,
-        inline      :   false,
-        imgBubbles  :   false,
-        bgClose     :   true,
-        bubbles     :   true,
-        imgAnim 	: 	'fadeup',
-     });
+        thumbnails: false,
+        inline: false,
+        imgBubbles: false,
+        bgClose: true,
+        bubbles: true,
+        imgAnim: 'fadeup',
+    });
 
     $stateProvider
         .state("/", {
@@ -111,16 +112,25 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'listingPages/host_property_request.html',
             controllerUrl: "listingPages/listingController"
         })
-        .state("individualProperty",{
-            url:'/property?id',
-            templateUrl:'propertyPage/IndividualPropertyPage.html',
+        .state("individualProperty", {
+            url: '/property?id',
+            templateUrl: 'propertyPage/IndividualPropertyPage.html',
             controllerUrl: "propertyPage/propertyController"
         })
-
         .state("users.trips", {
             url: '/trips',
             templateUrl: 'tripsPage/usertrips.html',
             controllerUrl: "tripsPage/tripController"
+        })
+        .state("users.account", {
+            url: '/account',
+            templateUrl: 'bill/bill_list.html',
+            controllerUrl: "bill/billController"
+        })
+        .state("users.account.bill", {
+            url: '/bill?id',
+            templateUrl: 'bill/customer_receipt.html',
+            controllerUrl: "bill/billController"
         })
         .state("users.trips.edit", {
             url: '/edit?id',
@@ -131,40 +141,30 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             url: '/preview?id',
             templateUrl: 'tripsPage/previewTrips.html',
             controllerUrl: "tripsPage/tripController"
-        }) ;        
-    
+        });
+
     $urlRouterProvider.otherwise("/");
 
     $locationProvider.html5Mode(true);
 
 }]);
 
-app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', "Notification", function ($scope, $http, ngProgress, $state, $rootScope, $uibModal, Notification) {
+app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', "Notification", function($scope, $http, ngProgress, $state, $rootScope, $uibModal, Notification) {
     $scope.user = {};
     $scope.loginStatus = false;
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         debugger
         if (toState.name.search("become-a-host.") > -1) {
             $scope.hideFooter = true;
         } else {
             $scope.hideFooter = false;
         }
-        // if(toState.name==="adminPage"){
-        //     $scope.hideHeader = true;
-        // }
-        // if (toState.name.search("users") >= 0) {
-        //     if (!$scope.loginStatus) {
-        //         window.location.href="/";
-        //     }
-        // }
-
-
     });
     $scope.profileImage_icon = "https://a2.muscache.com/defaults/user_pic-50x50.png?v=2";
-    $scope.checkStatus = function () {
+    $scope.checkStatus = function() {
         debugger
         $http.get("users/profile")
-            .success(function (data) {
+            .success(function(data) {
                 debugger
                 if (data.code === 200) {
                     // $scope.loginStatus = true;
@@ -178,12 +178,12 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
                     console.log(data.value);
                 }
             })
-            .error(function (err) {
+            .error(function(err) {
 
             })
     };
 
-    $scope.openSignup = function () {
+    $scope.openSignup = function() {
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'signupmodal.html',
@@ -195,7 +195,7 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
         });
     };
 
-    $scope.openLogin = function () {
+    $scope.openLogin = function() {
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'loginmodal.html',
@@ -207,11 +207,11 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
         });
     };
 
-    $scope.logout = function () {
+    $scope.logout = function() {
         window.sessionStorage.login_status = "false";
         console
         $http.get("/users/logout")
-            .success(function (data) {
+            .success(function(data) {
                 debugger
                 if (data.status === "success") {
                     $scope.user = {};
@@ -222,37 +222,37 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
                     Notification.error(data.error);
                 }
             })
-            .error(function (err) {
+            .error(function(err) {
 
             })
     }
 }]);
 
-app.controller('signupController', function ($scope, $uibModalInstance, $http, $uibModal) {
+app.controller('signupController', function($scope, $uibModalInstance, $http, $uibModal) {
 
     //debugger
     $scope.registeralerts = [];
     $scope.showSignupForm = false;
     $scope.registerUser = {};
-    $scope.signup = function () {
+    $scope.signup = function() {
         //debugger
         $scope.showSignupForm = true;
     }
 
-    $scope.back = function () {
+    $scope.back = function() {
         $scope.showSignupForm = false;
     }
 
-    $scope.closeRegisterAlert = function (index) {
+    $scope.closeRegisterAlert = function(index) {
         $scope.registeralerts.splice(index, 1);
     }
 
-    $scope.register = function () {
+    $scope.register = function() {
         debugger
         console.log($scope.registerUser);
 
         $http.post("/users/register", $scope.registerUser)
-            .success(function (data) {
+            .success(function(data) {
                 debugger
                 console.log(data);
                 if (data.error) {
@@ -269,12 +269,12 @@ app.controller('signupController', function ($scope, $uibModalInstance, $http, $
                     $scope.registerUser = {};
                 }
             })
-            .error(function (err) {
+            .error(function(err) {
 
             })
     };
 
-    $scope.openLogin = function () {
+    $scope.openLogin = function() {
         $uibModalInstance.dismiss('close');
         var modalInstance = $uibModal.open({
             animation: true,
@@ -289,37 +289,42 @@ app.controller('signupController', function ($scope, $uibModalInstance, $http, $
     }
 
 });
-app.controller('loginController', function ($scope, $uibModalInstance, $http, $uibModal) {
+app.controller('loginController', function($scope, $uibModalInstance, $http, $uibModal) {
     //debugger
 
     $scope.loginalerts = [];
 
-    $scope.closeLoginAlert = function (index) {
+    $scope.closeLoginAlert = function(index) {
         $scope.loginalerts.splice(index, 1);
     }
 
-    $scope.login = function () {
+    $scope.login = function() {
         //debugger
-        $http.post("/users/login", $scope.user)
-            .success(function (data) {
-                //debugger
-                if (data.status === "success") {
-                    $uibModalInstance.dismiss('close');
-                    window.sessionStorage.login_status = "true";
-                    // window.sessionStorage.user_info = JSON.stringify(data.user);
-                    window.location.reload();
-                    // $scope.$parent.loginStatus = true;
-                    // $state.go('/admin');
-                } else {
-                    $scope.loginalerts = [{ type: 'danger', msg: data.error }];
-                }
-            })
-            .error(function (err) {
+        if ($scope.user.username === "admin@gmail.com") {
+            window.location.href = "/admin.html"
+            // window.location.href("/admin.html");
+        } else {
+            $http.post("/users/login", $scope.user)
+                .success(function(data) {
+                    //debugger
+                    if (data.status === "success") {
+                        $uibModalInstance.dismiss('close');
+                        window.sessionStorage.login_status = "true";
+                        // window.sessionStorage.user_info = JSON.stringify(data.user);
+                        window.location.reload();
+                        // $scope.$parent.loginStatus = true;
+                        // $state.go('/admin');
+                    } else {
+                        $scope.loginalerts = [{ type: 'danger', msg: data.error }];
+                    }
+                })
+                .error(function(err) {
 
-            })
+                })
+        }
     }
 
-    $scope.openSignup = function () {
+    $scope.openSignup = function() {
         $uibModalInstance.dismiss('close');
         var modalInstance = $uibModal.open({
             animation: true,

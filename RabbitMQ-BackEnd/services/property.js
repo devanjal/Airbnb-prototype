@@ -107,15 +107,15 @@ function searchbyuserid(msg, callback){
                     console.log(JSON.stringify(result));
                     res.code = 200;
                     res.mongoval = result;
-                    // for(var i=0;i<rows.length;i++){
-                    //     rows[i].images = [];
-                    //     for(var j=0;j<result.length; j++){
-                    //         if(rows[i].propertyid==result[j].propertyid){
-                    //             rows[i].images=result[j].images;
-                    //         }
-                    //     }
-                    // }
-                    //res.value = result;
+                    for(var i=0;i<rows.length;i++){
+                        rows[i].images = [];
+                        for(var j=0;j<result.length; j++){
+                            if(rows[i].propertyid==result[j].propertyid){
+                                rows[i].images=result[j].images;
+                            }
+                        }
+                    }
+                    res.value = rows;
                     connectionpool.releaseSQLConnection(connection);
                     callback(null, res);
                 });

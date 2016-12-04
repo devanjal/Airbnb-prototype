@@ -1,3 +1,4 @@
+
 app.controller('defaultController', ['$scope', '$http', 'ngProgress', '$state', '$rootScope', '$uibModal', function ($scope, $http, ngProgress, $state, $rootScope, $uibModal) {
     $scope.format='MM/dd/yyyy';
     $scope.dateOptions = {
@@ -33,5 +34,4 @@ app.controller('defaultController', ['$scope', '$http', 'ngProgress', '$state', 
         state:'ca',
         types: '(cities)'
     };    $scope.details2 = '';
-
 }]);

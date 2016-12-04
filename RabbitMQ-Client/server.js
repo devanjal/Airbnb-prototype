@@ -20,6 +20,9 @@ var host = require('./routes/host');
 var admin = require('./routes/admin');
 
 var users = require('./routes/users');
+var host = require('./routes/host');
+var review = require('./routes/review');
+var bill = require('./routes/bill');
 
 var trips = require('./routes/trips');
 
@@ -38,10 +41,12 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use(serveStatic(__dirname + '/public', { 'maxAge': '1d' }));
+app.use(serveStatic(__dirname + '/node_modules', { 'maxAge': '1d' }));
 
 app.use(serveStatic(path.join(__dirname, 'views')));
 
 app.use(serveStatic(path.join(__dirname, 'angularApp')));
+
 
 app.use(session({
     secret: 'cmpe273_airbnb',
@@ -52,13 +57,20 @@ app.use(session({
     store: new MongoStore({ url: 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo' })
 }));
 
+//app.engine('html',require('html').renderFile);
+app.set('views', __dirname + '\\views');
+//app.set('view engine','ejs');
 
 app.use('/users', users);
 app.use('/become_host', become_host);
 
 app.use('/admin', admin);
+
 app.use('/property', property);
 app.use('/host', host);
+app.use('/review', review);
+
+app.use('/bill',bill);
 
 app.use('/usertrips', trips);
 

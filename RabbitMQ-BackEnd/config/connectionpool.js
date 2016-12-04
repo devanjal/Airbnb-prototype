@@ -4,6 +4,7 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 //var mongoUrl = 'mongodb://localhost:27017/airbnb';
 var mongoUrl = 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo';
+
 var db;
 // Initialize connection once
 MongoClient.connect(mongoUrl, function(err, database) {

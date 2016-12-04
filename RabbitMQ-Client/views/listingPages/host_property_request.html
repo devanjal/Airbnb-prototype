@@ -16,9 +16,9 @@
         <div class="panel-header">Property Requests</div>
         <br>
         <div class="panel-body photos-section">
-            <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="acceptedPropertyList.length>0">No property requests.</h5>
+            <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="requestedPropertyList.length>0">No property requests.</h5>
             <ul class="list-unstyled list-layout">
-                <li class="listing panel-body" ng-repeat="propertyRequests in acceptedPropertyList">
+                <li class="listing panel-body" ng-repeat="propertyRequests in requestedPropertyList">
                     <h3>{{propertyRequests.title}}</h3>
                     User name: {{propertyRequests.user_name}}
                     <br>Location: {{propertyRequests.address}}<br> {{propertyRequests.city+" "+propertyRequests.state+" "+propertyRequests.zipcode}}
@@ -27,8 +27,8 @@
                     To: {{propertyRequests.todate.split("T")[0]}}
                     <br>Price: {{propertyRequests.price}}
                     <br><br>
-                    <button type="button" id="btn-save" class="btn btn-primary btn-large">Accept</button>
-                    <button type="button" class="btn btn-default-white-border btn-large" style="margin-left:20px">Decline
+                    <button type="button" id="btn-save" class="btn btn-primary btn-large" ng-click="acceptPropertyRequest(propertyRequests.tripid)">Accept</button>
+                    <button type="button" class="btn btn-default-white-border btn-large" ng-click="declinePropertyRequest(propertyRequests.tripid)" style="margin-left:20px">Decline
                     </button>
                 </li>
             </ul>
@@ -40,7 +40,7 @@
         <div class="panel-header">Property Accepted</div>
         <br>
         <div class="panel-body photos-section">
-            <!--<h5 style="margin-left: 20px;font-weight: normal;" ng-hide="listed_property.length>0">No Property Listed. <br><br> Please click on "Add New Listings" to list your property.</h5>-->
+            <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="acceptedPropertyList.length>0">No Property Listed. <br><br> Please click on "Add New Listings" to list your property.</h5>
             <ul class="list-unstyled list-layout">
                 <li class="listing panel-body" ng-repeat="propertyRequests in acceptedPropertyList">
                     <h3>{{propertyRequests.title}}</h3>

@@ -1,4 +1,5 @@
 var connectionpool = require('../config/connectionpool');
+
 var bcrypt = require('bcryptjs');
 
 function handle_request(msg, callback) {
@@ -97,3 +98,4 @@ function handle_logout(msg, callback) {
 }
 exports.handle_request = handle_request;
 exports.handle_logout = handle_logout;
+

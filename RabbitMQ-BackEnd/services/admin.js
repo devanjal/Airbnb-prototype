@@ -28,16 +28,44 @@ function approvehost(msg, callback){
     });
 };
 
+function rejecthost(msg, callback){
+    var res = {};
+    connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            'delete  from properties where hostid = ? and published = ?',
+            [msg.id,'true'],
+            function (err, result) {
+                if (err)
+                {
+                    res.code = 401;
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                res.code = 200;
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            });
+    });
+};
+
 function gettoprevenue(msg, callback){
     var res = {};
     var query = "";
     if(msg.type == 'property')
     {
-        query = 'select  property_id,location,properties.city,properties.title,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid  group by property_id order by netrevenue DESC limit 10';
+        query = 'select  property_id,properties.city,properties.title,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid  group by property_id order by netrevenue DESC limit 10';
     }
     else if(msg.type == 'city')
     {
-        query = 'select  city,location,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid  group by properties.city order by netrevenue DESC limit 10';
+        query = 'select  city,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid  group by properties.city order by netrevenue DESC limit 10';
     }
     else if(msg.type == 'host')
     {
@@ -109,7 +137,7 @@ function gethostrequests(msg, callback){
                     res.mongoval = result;
                     connectionpool.releaseSQLConnection(connection);
                     for(var i=0;i<rows.length;i++){
-                        rows[i].profile_image = [];
+                        rows[i].profile_image = "https://a2.muscache.com/defaults/user_pic-225x225.png?v=2";
                         for(var j=0;j<result.length; j++){
                             if(rows[i].id==result[j].id){
                                 rows[i].profile_image = result[j].profile_image;
@@ -124,5 +152,6 @@ function gethostrequests(msg, callback){
     });
 };
 exports.approvehost = approvehost;
+exports.rejecthost = rejecthost;
 exports.gettoprevenue = gettoprevenue;
 exports.gethostrequests = gethostrequests;

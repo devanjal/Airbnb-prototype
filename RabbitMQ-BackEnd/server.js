@@ -9,19 +9,33 @@ var property = require('./services/property');
 
 var user = require("./services/user");
 var admin = require('./services/admin');
+
 var trip = require("./services/trip");
+
+var bill = require('./services/bill');
+var review = require('./services/review');
+var scheduler = require('./services/scheduler');
+
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
 var connectionpool = require("./config/connectionpool");
 
-process.on("SIGINT", function () {
+
+// process.on("SIGINT", function () {
+
+// var connectionpool = require("./config/connectionpool");
+
+process.on("SIGINT",function(){
+
     console.log("inside sigint process");
     connectionpool.closedbconnection();
 });
+
 
 process.on("close", function () {
     console.log("inside close process");
     connectionpool.closedbconnection();
 });
+
 
 cnn.on('ready', function () {
     console.log("listening to all queues");
@@ -159,9 +173,23 @@ cnn.on('ready', function () {
         });
     });
 
+
     cnn.queue('tripEditQueue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             trip.editTrip(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+
+
+    cnn.queue('reject_host', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            admin.rejecthost(message, function (err, res) {
 
                 cnn.publish(m.replyTo, res, {
                     contentType: 'application/json',
@@ -171,6 +199,7 @@ cnn.on('ready', function () {
             });
         });
     });
+
 
 
     cnn.queue('searchbyuserid', function (q) {
@@ -196,6 +225,7 @@ cnn.on('ready', function () {
             });
         });
     });
+
 
     cnn.queue('gettoprevenue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
@@ -340,6 +370,7 @@ cnn.on('ready', function () {
         });
     });
 
+
     cnn.queue('searchbycity', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             property.searchbycity(message, function (err, res) {
@@ -351,5 +382,158 @@ cnn.on('ready', function () {
                 });
             });
         });
+    });
+
+    cnn.queue('makeuserreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            review.makeuserreview(message, function (err, res) {
+
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+
+                });
+            });
+        });
+    });
+    cnn.queue('makehostreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            review.makehostreview(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('makepropertyreview', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+
+            review.makepropertyreview(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    //gethostbyarea
+    cnn.queue('gethostbyarea', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+
+            host.gethostbyarea(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('createBillQueue', function (q) {
+        console.log("create bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.createBill(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('getBillUidQueue', function (q) {
+        console.log("IN bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.getBillByUid(message, function (err, res) {
+                console.log("inside UID bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('getBillHidQueue', function (q) {
+     //   console.log("IN bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.getBillByHid(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+
+                });
+            });
+        });
+    });
+
+    cnn.queue('BillIDQueue', function (q) {
+     //   console.log("IN Bill ID queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.getByBillId(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('BillDateQueue', function (q) {
+        //   console.log("IN Bill ID queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.searchByDate(message, function (err, res) {
+             //   console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('deleteBillQueue', function (q) {
+   //     console.log("Delete bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            bill.deleteBill(message, function (err, res) {
+                console.log("inside create bill queue");
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('approve_trips', function (q) {
+        //     console.log("Delete bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.approvetrips(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('reject_trips', function (q) {
+       q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.rejecttrips(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+       });
     });
 });

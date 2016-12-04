@@ -89,19 +89,40 @@ function user_profile_image_queue(msg, callback) {
     console.log(JSON.stringify(msg));
     var mongoconnection = connectionpool.getdbconnection();
     mongoconnection.collection('users').update({ id: msg.hostid }, { $set: { profile_image: msg.profile_image } }, { upsert: true }, function (err, result) {
-        //connection.collection('properties').insertOne(post, function(err, result) {
+
         if (err) {
             console.log(err);
             res.code = 400;
             res.value = err;
-            connectionpool.releaseSQLConnection(connection);
             callback(null, res);
             return;
         }
-        res.code = 200;
-        res.value = "profile image updated";
-        //connectionpool.releaseSQLConnection(connection);
-        callback(null, res);
+        connectionpool.getConnection(function(err,connection) {
+            if (err) {
+                connectionpool.releaseSQLConnection(connection);
+                console.log('Error connecting to Db');
+                console.log(err);
+                res.code = 400;
+                res.value = err;
+                callback(null, res);
+                return;
+            }
+            connection.query(
+                'UPDATE users SET profileimage = ? Where id = ?',
+                [msg.profile_image,  msg.hostid],
+                function (err, result) {
+                    if (err) {
+                        connectionpool.releaseSQLConnection(connection);
+                        throw err;
+                    }
+                    res.code = 200;
+                    res.value = "profile image updated";
+                    connectionpool.releaseSQLConnection(connection);
+                    callback(null, res);
+                    //--
+                });
+        });
+
     });
 }
 

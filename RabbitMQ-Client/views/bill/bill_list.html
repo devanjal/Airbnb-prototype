@@ -1,80 +1,97 @@
-<!DOCTYPE html>
+<style type="text/css">
+    #panel-border {
+        margin-bottom: 24px;
+        border: 1px solid #dce0e0;
+        background-color: #fff;
+        border-radius: 0;
+        margin-left: 20px;
+    }
+    
+    .panel-body {
+        border-top: none !important;
+    }
+</style>
 
-<html lang="en">
 
-<!-- head tag -->
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="shortcut icon" href="../../public/airbnb-favicon.ico" type="image/png">
-    <title>Bills - Airbnb</title>
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">-->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../public/css/airbnb.css">
-    <link rel="stylesheet" type="text/css" href="../../public/css/airbnb2.css">
-
-    <style type="text/css">
-        #panel-border {
-            margin-bottom: 24px;
-            border: 1px solid #dce0e0;
-            background-color: #fff;
-            border-radius: 0;
-            margin-left: 20px;
-        }
-
-        .panel-body {
-            border-top: none !important;
-        }
-    </style>
-
-</head>
-
-<!-- body tag -->
-
-<body ng-app="billListApp" ng-controller="billListController" class="with-new-header has-epcot-header touch">
-
-<div class="page-container-responsive space-top-4 space-4">
+<div class="page-container-responsive space-top-4 space-4" ng-controller="billController">
     <div class="row" id="dashboard-content">
 
-        <div class="col-md-3 space-sm-4">
-            <div class="sidenav">
-                <a href="bill_list.html" class="btn btn-block space-top-4">Bill List</a>
-            </div>
+        <div class="col-md-3">
+
+            <ul class="sidenav-list">
+                <li>
+                    <a href="#" aria-selected="false" class="sidenav-item">Payment
+                        Methods</a>
+                </li>
+                <li>
+                    <a ui-sref="users.account" href="#" aria-selected="true" class="sidenav-item">Bill
+                        History</a>
+                </li>
+            </ul>
+
         </div>
 
         <div class="col-sm-9">
-
-            <!-- Bill List -->
-            <div class="panel space-4">
-                <div class="panel-header">Your Bills</div>
-                <br>
-                <div class="panel-body photos-section">
-                    <table class="table">
-                        <tr ng-repeat="billDetail in billDetails">
-                            <th>{{billDetail.propertyName}}</th>
-                        </tr>
-                        <tr>
-                            <td >
-                                <br>Bill id :{{billDetail.bill_id}}
-                                <br>Duration : {{billDetail.duration}}
-                                <br>Total trip cost -  $ {{billDetail.finalAmount}}
-                                <br><br>
-                                <button type="button" id="btn-save" class="btn btn-primary btn-large" >View</button>
-                                <button type="button" class="btn btn-default-white-border btn-large" style="margin-left:20px">Delete</button>
-                            </td>
-                        </tr>
-                    </table>
-
+            <div ui-view>
+                <!-- Bill List -->
+                <div class="panel space-4">
+                    <div class="panel-header">Your Bills</div>
+                    <br>
+                    <ul class="list-unstyled list-layout">
+                        <li class="listing panel-body" ng-repeat="bill in billDetails">
+                            <div class="row row-table">
+                                <div class="col-middle space-sm-2 space-top-sm-4 col-md-5 listing-photo">
+                                    <!--<div id="map" style="width: 270px; height: 180px;"></div>-->
+                                    <a href="#">
+                                        <div class="media-photo media-photo-block-lg">
+                                            <div class="media-cover text-center">
+                                                <img class="img-responsive-height" src="https://a2.muscache.com/im/pictures/24e0d819-a747-447f-95ab-6fb5ff2eec2d.jpg?aki_policy=small">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-10 col-lg-7 col-middle">
+                                    <div class="row row-table">
+                                        <div class="col-lg-10">
+                                            <span class="h4">                                                
+                                                <span style="font-weight: bold; font-size: larger">{{bill.title}}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-table space-top-1">
+                                        <div class="text-grey col-lg-2 col-md-2">
+                                            <span style="font-weight: bold">Bill id:</span>
+                                        </div>
+                                        <div class="text-grey last-modified-date col-lg-8 col-lg-offset-2 col-md-offset-2">
+                                            <span>{{bill.bill_id}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-table space-top-1">
+                                        <div class="text-grey col-lg-4 col-md-4">
+                                            <span style="font-weight: bold">Duration:</span>
+                                        </div>
+                                        <div class="text-grey last-modified-date col-lg-8">
+                                            <span>{{bill.duration}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-table space-top-1">
+                                        <div class="text-grey col-lg-4 col-md-4">
+                                            <span style="font-weight: bold">Total trip cost:</span>
+                                        </div>
+                                        <div class="text-grey last-modified-date col-lg-8">
+                                            <span>$ {{bill.amount}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-top-4">
+                                        <button ui-sref=".bill({id : {{bill.bill_id}}})" type="button" id="btn-save" class="btn btn-primary btn-large">View</button>
+                                        <button type="button" class="btn btn-default-white-border btn-large" style="margin-left:20px">Delete</button>
+                                    </div>                    
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <br>
-
             </div>
-
         </div>
 
     </div>

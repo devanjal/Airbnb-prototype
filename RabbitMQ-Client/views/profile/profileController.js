@@ -25,7 +25,7 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
         {
             name: "Account",
             id: "account-item",
-            link: "users"
+            link: "users.account"
         }
     ];
 
