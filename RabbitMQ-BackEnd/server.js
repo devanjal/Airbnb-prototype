@@ -10,6 +10,7 @@ var user = require("./services/user");
 var admin = require('./services/admin');
 var bill = require('./services/bill');
 var review = require('./services/review');
+var scheduler = require('./services/scheduler');
 var cnn = amqp.createConnection({ host: '127.0.0.1' });
 
 var connectionpool = require("./config/connectionpool");
@@ -340,5 +341,28 @@ cnn.on('ready', function () {
                 });
             });
         });
+    });
+    cnn.queue('approve_trips', function (q) {
+        //     console.log("Delete bill queue");
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.approvetrips(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('reject_trips', function (q) {
+       q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.rejecttrips(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+       });
     });
 });

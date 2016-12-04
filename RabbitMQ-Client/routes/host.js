@@ -41,4 +41,37 @@ router.post('/gethostbyarea', function (req, res) {
     });
 });
 
+router.post('/approvetrips', function (req, res) {
+    var msg_payload = { tripid: req.body.tripid };
+    mq_client.make_request('approve_trips', msg_payload, function (err, results) {
+        if (err) {
+            res.send({status:'error'});
+            return;
+        }
+        if(results.code == 200){
+            res.send({status:'success'});
+        }
+        else {
+            res.send({status:'error',error:results.error});
+        }
+    });
+});
+
+router.post('/rejecttrips', function (req, res) {
+    var msg_payload = { tripid: req.body.tripid };
+    mq_client.make_request('reject_trips', msg_payload, function (err, results) {
+        if (err) {
+            res.send({status:'error'});
+            return;
+        }
+        if(results.code == 200){
+            res.send({status:'success'});
+        }
+        else {
+            res.send({status:'error',error:results.error});
+        }
+    });
+});
+
+
 module.exports = router;

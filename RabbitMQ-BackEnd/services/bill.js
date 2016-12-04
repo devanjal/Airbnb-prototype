@@ -18,7 +18,7 @@ function createBill(msg, callback){
             return;
         }
         var post = { user_id: msg.user_id, host_id: msg.b.host_id, property_id: msg.b.property_id, from_date: date1, to_date: date2, duration:duration, category:msg.b.category, no_of_guest:msg.b.no_of_guest,security_deposite:msg.b.security_deposite, amount:total, date:new Date() ,user_flag:1,host_flag: 1 };
-        var query = connection.query('INSERT INTO bill SET ?', post, function (err, result) {
+            var query = connection.query('INSERT INTO bill SET ?', post, function (err, result) {
             if (err) {
                 res.code = 401;
                 res.value = "Error in bill Generation";
