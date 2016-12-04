@@ -44,9 +44,7 @@
                         </div>
                     </div>
                 </div>
-
-
-
+                
                 <div class="main-panel__actions-wrapper">
                     <div class="centered-content clearfix">
                         <div class="bg-white main-panel-outer-half clearfix shadowed">
@@ -68,7 +66,7 @@
                                                     </h5>
                                                 </span>
                                             </a>
-                                            <a ui-sref="become-a-host.choose-pricing-mode" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
+                                            <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.availability_from || !property.availability_to}" ng-disabled="!property.availability_from || !property.availability_to" ui-sref="become-a-host.choose-pricing-mode" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
                                                 <div class="btn-progress-next__text">
                                                     <span>Next</span>
                                                 </div>

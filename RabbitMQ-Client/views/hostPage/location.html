@@ -117,7 +117,7 @@
                                                     </h5>
                                                     </span>
                                                 </a>
-                                                <a ui-sref="become-a-host.bedrooms" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
+                                                <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.address || !property.city || !property.state || !property.address2 || !property.zip }" ng-disabled="!property.address || !property.city || !property.state || !property.address2 || !property.zip" ui-sref="become-a-host.bedrooms" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
                                                     href="#">
                                                     <div class="btn-progress-next__text">
                                                         <span>Next</span>

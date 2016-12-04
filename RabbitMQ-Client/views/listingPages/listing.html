@@ -60,7 +60,7 @@
                                                 <span>Last updated on {{property.posting_date}}</span>
                                             </div>-->
                                             <div class="space-top-4">
-                                                <a class="btn btn__first-btn btn-primary" href="#">
+                                                <a ng-click="finish_listing($index)" class="btn btn__first-btn btn-primary" href="#">
                                                     <span>Finish the Listing</span>
                                                 </a>
                                                 <a ui-sref="users.trips.preview({id:{{property.propertyid}}})" class="btn btn__second-btn" href="#">

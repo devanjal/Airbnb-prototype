@@ -83,34 +83,42 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
     };
 
     $scope.getUser = function () {
-        debugger
-        $http.get("/users/profile")
-            .success(function (data) {
-                debugger
-                if (data.code === 200) {
-                    console.log(data.user);
-                    $scope.user_info = data.user;
-                    $scope.birthday = $scope.user_info.birthdate.split("/");
-                    $scope.user_info.currency = "USD";
-                    $scope.user_info.language = "en";
-                    $scope.profileImage = data.user.profile_image;
-                    $scope.$parent.$parent.profileImage_icon = data.user.profile_image;
-                } else if (data.code === 401) {
-                    if (data.value.code) {
-                        Notification.error(data.value.code);
-                    } else {
-                        Notification.error(data.value);
-                    }
+        // debugger
+        if(sessionStorage.user){
+            $scope.user_info = JSON.parse(sessionStorage.user);
+            $scope.birthday = $scope.user_info.birthdate.split("/");
+            $scope.user_info.currency = "USD";
+            $scope.user_info.language = "en";
+            $scope.profileImage = $scope.user_info.profile_image;
+            $scope.$parent.$parent.profileImage_icon = $scope.user_info.profile_image;
+        }
+        // $http.get("/users/profile")
+        //     .success(function (data) {
+        //         debugger
+        //         if (data.code === 200) {
+        //             console.log(data.user);
+        //             $scope.user_info = data.user;
+        //             $scope.birthday = $scope.user_info.birthdate.split("/");
+        //             $scope.user_info.currency = "USD";
+        //             $scope.user_info.language = "en";
+        //             $scope.profileImage = data.user.profile_image;
+        //             $scope.$parent.$parent.profileImage_icon = data.user.profile_image;
+        //         } else if (data.code === 401) {
+        //             if (data.value.code) {
+        //                 Notification.error(data.value.code);
+        //             } else {
+        //                 Notification.error(data.value);
+        //             }
 
-                }
-            })
-            .error(function (err) {
+        //         }
+        //     })
+        //     .error(function (err) {
 
-            })
+        //     })
     };
 
     $scope.upload_profile_pic = function (file) {
-        debugger
+        // debugger
         if (file && file.length) {
             $scope.profileImage = file[0];
             Upload.upload({
@@ -136,7 +144,7 @@ app.controller('profileController', ['$scope', '$http', 'ngProgress', '$state', 
         $scope.user_info.birthdate = $scope.birthday.join("/");
         $http.post("/users/update_profile", $scope.user_info)
             .success(function (data) {
-                debugger
+                // debugger
                 if (data.code === 200) {
                     Notification.success("Profile Updated Successfully.");
                 } else if (data.code === 401) {

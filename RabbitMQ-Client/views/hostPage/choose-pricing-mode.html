@@ -1,4 +1,4 @@
-<div class="list-your-space__progress">
+<div class="list-your-space__progress" ng-controller="hostController">
     <div class="left-backdrop"></div>
     <div class="right-backdrop hide-sm bg-white right-backdrop--with-bg"></div>
 
@@ -33,7 +33,7 @@
                                             <span>Recommended</span>
                                         </div>
                                     </div>
-                                    <input ng-model="property.price_mode" class="mode-chooser__input pointer-input" name="list_your_space_pricing_mode" id="list_your_space_pricing_mode-2" value="bid" type="radio">
+                                    <input ng-model="priceMode" class="mode-chooser__input pointer-input" value="bid" type="radio">
                                 </label>
                                 <label for="list_your_space_pricing_mode-1" class="clearfix mode-chooser__option mode-chooser__option--with-icon">
                                     <div class="mode-chooser__icon">
@@ -50,7 +50,7 @@
                                             <span>Set a base price. Airbnb gives you price tips that you can accept or ignore.</span>
                                         </p>
                                     </div>
-                                    <input ng-model="property.price_mode" class="mode-chooser__input pointer-input" name="list_your_space_pricing_mode" id="list_your_space_pricing_mode-1" value="fixed" type="radio">
+                                    <input ng-model="priceMode" class="mode-chooser__input pointer-input" value="fixed" type="radio">
                                 </label>
                             </fieldset>
                         </div>
@@ -77,7 +77,13 @@
                                             </h5>
                                             </span>
                                         </a>
-                                        <a ui-sref="become-a-host.price" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
+                                        <a ng-hide="priceMode === 'bid'" style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !priceMode}" ng-disabled="!priceMode" ui-sref="become-a-host.price" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
+                                            href="#">
+                                            <div class="btn-progress-next__text">
+                                                <span>Next</span>
+                                            </div>
+                                        </a>
+                                        <a ng-show="priceMode === 'bid'" style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !priceMode}" ng-disabled="!priceMode" ui-sref="become-a-host.bid" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
                                             href="#">
                                             <div class="btn-progress-next__text">
                                                 <span>Next</span>

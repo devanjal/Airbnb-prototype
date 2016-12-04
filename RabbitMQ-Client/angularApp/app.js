@@ -67,6 +67,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             templateUrl: 'hostPage/choose-pricing-mode.html',
             controllerUrl: "hostPage/hostController"
         })
+        .state("become-a-host.bid", {
+            url: '/biding',
+            templateUrl: 'hostPage/bidPrice.html',
+            controllerUrl: "hostPage/hostController"
+        })
         .state("become-a-host.price", {
             url: '/price',
             templateUrl: 'hostPage/fixedPrice.html',
@@ -141,7 +146,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
             url: '/preview?id',
             templateUrl: 'tripsPage/previewTrips.html',
             controllerUrl: "tripsPage/tripController"
+
         });
+
 
     $urlRouterProvider.otherwise("/");
 
@@ -153,25 +160,25 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
     $scope.user = {};
     $scope.loginStatus = false;
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        debugger
         if (toState.name.search("become-a-host.") > -1) {
             $scope.hideFooter = true;
         } else {
             $scope.hideFooter = false;
         }
+
     });
     $scope.profileImage_icon = "https://a2.muscache.com/defaults/user_pic-50x50.png?v=2";
     $scope.checkStatus = function() {
-        debugger
+        
+
         $http.get("users/profile")
             .success(function(data) {
-                debugger
                 if (data.code === 200) {
                     // $scope.loginStatus = true;
                     $scope.loginStatus = true;
                     $scope.user = data.user;
                     $scope.profileImage_icon = data.user.profile_image;
-                    // sessionStorage.user = JSON.stringify(data.user);
+                    sessionStorage.user = JSON.stringify(data.user);
                 } else if (data.error) {
                     $scope.loginStatus = false;
                 } else if (data.code === 401) {
@@ -182,6 +189,7 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
 
             })
     };
+
 
     $scope.openSignup = function() {
         var modalInstance = $uibModal.open({
@@ -209,7 +217,6 @@ app.controller('indexController', ['$scope', '$http', 'ngProgress', '$state', '$
 
     $scope.logout = function() {
         window.sessionStorage.login_status = "false";
-        console
         $http.get("/users/logout")
             .success(function(data) {
                 debugger

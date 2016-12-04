@@ -1,4 +1,4 @@
-<div class="list-your-space__progress">
+<div class="list-your-space__progress" ng-controller="hostController">
     <div class="left-backdrop">
 
     </div>
@@ -13,10 +13,16 @@
                         <h3 class="no-margin-padding">
                             <span>Base price</span>
                         </h3>
+                        <!--<h3 ng-show="price_mode==='bid'" class="no-margin-padding">
+                            <span>Smart Pricing</span>
+                        </h3>-->
                     </div>
                     <p class="text-muted">
                         <span>Your base price is your default nightly rate.</span>
                     </p>
+                    <!--<p ng-show="price_mode==='bid'" class="text-muted">
+                        <span>Your price will automatically adjust as your guests will start bidding.</span>
+                    </p>-->
                     <div>
                         <div class="space-top-4">
                             <div>
@@ -29,7 +35,8 @@
                                     <div class="text-gray btn increment-btn__label increment-jumbo" tabindex="0" role="textbox" style="font-weight: normal;    opacity: 1;    text-align: left;    cursor: default;    height: 62px;    width: 100%;    padding: 5px 0;">
                                         <div class="increment-btn__border-container-label text-truncated">
                                             <span>$</span>
-                                            <input placeholder="per night" ng-model="property.price" class="increment-btn__input" id="price-stepper" style="width: 200px; display: inline;border: 0;outline: 0 transparent;padding: 0;-moz-appearance: textfield;">
+                                            <input placeholder="per night" ng-model="property.price" class="increment-btn__input" id="price-stepper"
+                                                style="width: 200px; display: inline;border: 0;outline: 0 transparent;padding: 0;-moz-appearance: textfield;">
                                             <!--<span>per night</span>-->
                                         </div>
                                     </div>
@@ -86,7 +93,8 @@
                                 <div class="row no-margin-padding__sm">
                                     <div class="main-panel__actions col-sm-12 no-margin-padding__sm">
                                         <div>
-                                            <a ui-sref="become-a-host.choose-pricing-mode" class="btn-progress-back link-icon va-container va-container-v pull-left text-gray link--accessibility-outline" href="/become-a-host/16090080/choose-pricing-mode">
+                                            <a ui-sref="become-a-host.choose-pricing-mode" class="btn-progress-back link-icon va-container va-container-v pull-left text-gray link--accessibility-outline"
+                                                href="#">
                                                 <span class="icon hide-sm"></span>
                                                 <span class="va-middle">
                                                 <h5 class="text-normal">
@@ -94,7 +102,7 @@
                                                 </h5>
                                                 </span>
                                             </a>
-                                            <a ng-click="thirdstepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
+                                            <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.price}" ng-disabled="!property.price" ng-click="thirdstepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
                                                 <div class="btn-progress-next__text">
                                                     <span>Finish</span>
                                                 </div>
@@ -114,7 +122,7 @@
 
                         </div>
                         <div class="help-panel__text">
-                            <div>
+                            <div >
                                 <span class="help-panel__title">
                                     <span>Base nightly price</span>
                                 </span>
@@ -125,6 +133,7 @@
                                     <span>You can always change your price in response to demand. For example: a higher price may help you earn more during busy travel seasons, while a lower price may get you more reservations when it’s slow.</span>
                                 </p>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

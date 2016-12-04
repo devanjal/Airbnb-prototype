@@ -160,7 +160,6 @@ cnn.on('ready', function () {
         });
     });
 
-
     cnn.queue('approve_host', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             admin.approvehost(message, function (err, res) {
@@ -172,7 +171,6 @@ cnn.on('ready', function () {
             });
         });
     });
-
 
     cnn.queue('tripEditQueue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {

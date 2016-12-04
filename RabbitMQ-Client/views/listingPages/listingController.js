@@ -89,6 +89,11 @@ app.controller('listingController', ['$scope', '$http', 'ngProgress', '$state', 
         .error(function(err) {
             Notification.error("Error unknown. Please try again.");
         })
+    };
+
+    $scope.finish_listing = function(index){
+        sessionStorage.inProgress_property = JSON.stringify($scope.inProgress_property[index]);
+        $state.go("become-a-host");
     }
 
 

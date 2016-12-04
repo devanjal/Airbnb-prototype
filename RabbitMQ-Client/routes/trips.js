@@ -38,7 +38,7 @@ router.post('/create', function (req, res) {
         if(err){
             console.log("Error in inserting trip data"+ err);
         }else {
-            if (result.code == 200){
+            if (result.code == 200) {
                 console.log("trip created successfully");
                 res.send(result);
             }else if(result.code === 401) {

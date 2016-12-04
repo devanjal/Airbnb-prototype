@@ -34,45 +34,54 @@
                                     <li class="listing panel-body" ng-repeat="trip in pendingtrips">
                                         <div class="row row-table">
                                             <div class="col-middle space-sm-2 space-top-sm-4 col-md-5 listing-photo">
-                                                <!--<div id="map" style="width: 270px; height: 180px;"></div>-->
-                                                <a href="#">
-                                                    <div class="media-photo media-photo-block-lg">
-                                                        <div class="media-cover text-center">
-                                                            <img class="img-responsive-height" src="https://a2.muscache.com/im/pictures/24e0d819-a747-447f-95ab-6fb5ff2eec2d.jpg?aki_policy=small" >
-                                                        </div>
+                                                <div class="media-photo media-photo-block-lg">
+                                                    <div class="media-cover text-center" style="position: relative;">
+                                                        <img style="height:130px;width:130px" class="img-responsive-height" src="{{trip.images[0]}}" alt="Image">
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                             <div class="col-sm-10 col-lg-7 col-middle">
                                                 <div class="row row-table">
                                                     <div class="col-lg-10">
                                                         <span class="h4">
-                                                            <a href="#" class="text-normal">
-                                                                <span>{{trip.title}}</span>
-                                                            </a>
-                                                            <!--<input type="number" ng-model="tripid" style="display: none" value={{trip.tripid}} readonly/>-->
+                                                            <span style="font-weight: bold; font-size: larger">{{trip.title}}</span>
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="text-grey space-top-1 last-modified-date">
-                                                    <span>Location: {{trip.address}}, {{trip.city}} {{trip.state}} {{trip.zipcode}}</span>
-                                                </div>
-                                                <div class="text-grey space-top-1 last-modified-date">
-                                                    <span>Number of guests: {{trip.quantity}}</span>
-                                                </div>
-                                                <div class="row row-table">
-                                                    <div class="col-sm-10 col-md-5 col-lg-5 text-grey space-top-1 last-modified-date">
-                                                        <span>From: {{trip.fromdate.split("T")[0]}}</span>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="text-grey col-lg-2 col-md-2">
+                                                        <span style="font-weight: bold">Location:</span>
                                                     </div>
-                                                    <div class="col-sm-10 col-md-5 col-lg-5 text-grey space-top-1 last-modified-date">
-                                                        <span>To: {{trip.todate.split("T")[0]}}</span>
+                                                    <div class="text-grey last-modified-date col-lg-8 col-lg-offset-2 col-md-offset-2">
+                                                        <span>{{trip.address}}, {{trip.city}} {{trip.state}}-{{trip.zipcode}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="text-grey space-top-1 last-modified-date">
-                                                    <span>Price: $ {{trip.price}}</span>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="text-grey col-lg-4 col-md-4">
+                                                        <span style="font-weight: bold">Number of guests:</span>
+                                                    </div>
+                                                    <div class="text-grey last-modified-date col-lg-8">
+                                                        <span>{{trip.quantity}}</span>
+                                                    </div>
                                                 </div>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="text-grey col-lg-4 col-md-4">
+                                                        <span style="font-weight: bold">Price:</span>
+                                                    </div>
+                                                    <div class="text-grey last-modified-date col-lg-8">
+                                                        <span>$ {{trip.price}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="col-sm-10 col-md-5 col-lg-5 text-grey space-top-1 last-modified-date">
+                                                        <span style="font-weight: bold">From:</span> <span>{{trip.fromdate.split("T")[0]}}</span>
+                                                    </div>
+                                                    <div class="col-sm-10 col-md-5 col-lg-5 text-grey space-top-1 last-modified-date">
+                                                        <span style="font-weight: bold">To: </span><span>{{trip.todate.split("T")[0]}}</span>
+                                                    </div>
+                                                </div>
+
                                                 <div class="space-top-4">
-                                                    <!--ng-click="goToEditTrip()"-->
                                                     <a ui-sref="users.trips.edit({id:{{trip.tripid}}})" class="btn btn__first-btn btn-primary" href="#">
                                                         <span>Edit</span>
                                                     </a>
@@ -94,45 +103,53 @@
                                     <li class="listing panel-body" ng-repeat="trip in usertrips">
                                         <div class="row row-table">
                                             <div class="col-middle space-sm-2 space-top-sm-4 col-md-5 listing-photo">
-                                                <!--<div id="map2" style="width: 270px; height: 180px;"></div>-->
-                                                <a href="#">
-                                                    <div class="media-photo media-photo-block-lg">
-                                                        <div class="media-cover text-center">
-                                                            <img class="img-responsive-height" src="">
-                                                        </div>
+                                                <div class="media-photo media-photo-block-lg">
+                                                    <div class="media-cover text-center" style="position:relative">
+                                                        <img style="height: 130px;width: 130px;" class="img-responsive-height" src="{{trip.images[0]}}">
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                             <div class="col-sm-10 col-lg-7 col-middle">
                                                 <div class="row row-table">
                                                     <div class="col-lg-10">
                                                         <span class="h4">
-                                                            <a href="#" class="text-normal">
-                                                                <span>{{trip.title}}</span>
-                                                            </a>
-                                                            <!--<input type="number" ng-model="tripid" style="display: none" value={{trip.tripid}} readonly/>-->
-
-                                                           <!--<input type="number" style="" ng-model="tripid" value=/>-->
+                                                            <span style="font-weight: bold; font-size: larger">{{trip.title}}</span>
                                                         </span>
-
                                                     </div>
                                                 </div>
-                                                <div class="text-normal space-top-2">Location: {{trip.address}}, {{trip.city}} {{trip.state}} {{trip.zipcode}}</div>
-                                                <div class="text-grey space-top-1 last-modified-date">
-                                                    <span>Number of guests: {{trip.quantity}}</span>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="text-grey col-lg-2 col-md-2">
+                                                        <span style="font-weight: bold">Location:</span>
+                                                    </div>
+                                                    <div class="text-grey last-modified-date col-lg-8 col-lg-offset-2 col-md-offset-2">
+                                                        <span>{{trip.address}}, {{trip.city}} {{trip.state}}-{{trip.zipcode}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="text-grey col-lg-4 col-md-4">
+                                                        <span style="font-weight: bold">Number of guests:</span>
+                                                    </div>
+                                                    <div class="text-grey last-modified-date col-lg-8">
+                                                        <span>{{trip.quantity}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-table space-top-1">
+                                                    <div class="text-grey col-lg-4 col-md-4">
+                                                        <span style="font-weight: bold">Price:</span>
+                                                    </div>
+                                                    <div class="text-grey last-modified-date col-lg-8">
+                                                        <span>$ {{trip.price}}</span>
+                                                    </div>
                                                 </div>
                                                 <div class="row row-table">
                                                     <div class="col-sm-10 col-md-5 col-lg-5 text-grey space-top-1 last-modified-date">
-                                                        <span>From: </span>
-                                                        <span id="from">{{trip.fromdate.split("T")[0]}}</span>
+                                                        <span style="font-weight: bold">From: </span>
+                                                        <span>{{trip.fromdate.split("T")[0]}}</span>
                                                     </div>
                                                     <div class="col-sm-10 col-md-5 col-lg-5 text-grey space-top-1 last-modified-date">
-                                                        <span>To: </span>
-                                                        <span id="to">{{trip.todate.split("T")[0]}}</span>
+                                                        <span style="font-weight: bold">To: </span>
+                                                        <span>{{trip.todate.split("T")[0]}}</span>
                                                     </div>
-                                                </div>
-                                                <div class="text-grey space-top-1 last-modified-date">
-                                                    <span>Price: $ {{trip.price}}</span>
                                                 </div>
                                                 <div class="space-top-4">
                                                     <a ng-click="cancelTrip()" class="btn btn__first-btn btn-primary" href="#">
