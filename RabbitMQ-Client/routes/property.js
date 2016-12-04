@@ -35,7 +35,7 @@ router.post('/searchbypropertyid', function(req, res, next) {
 
     var payload = {};
     //payload.userid = req.session.user.id;
-    payload.propertyid = req.body.id;
+    payload.propertyid = parseInt(req.body.id);
 
     mq_client.make_request('searchbypropertyid',payload, function(err,results){
         if(err){
@@ -136,6 +136,8 @@ router.post('/searchbycity', function(req, res, next) {
     //payload.userid = req.session.user.id;
     payload.city = req.body.city;
     payload.state=req.body.state;
+    payload.checkin=req.body.checkin;
+    payload.checkout=req.body.checkout;
 
     mq_client.make_request('searchbycity',payload, function(err,results){
         if(err){

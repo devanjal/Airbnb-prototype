@@ -544,7 +544,7 @@ font-weight: 700 !important;
                             <div class="host-profile-md-lg ">
                               <div class="media-photo-badge">
                                 <a href="#host-profile"class="media-photo media-round">
-                                  <img alt="User Profile Image" title="{{propertyDetails.firstname}}" height="75" width="75" data-pin-nopin="true" src="">
+                                  <img ng-src="{{propertyDetails.profileimage}}" alt="User Profile Image" title="{{propertyDetails.firstname}}" height="75" width="75" data-pin-nopin="true" >
                                 </a>
                               </div>
                             </div>
@@ -893,7 +893,100 @@ font-weight: 700 !important;
                           </p>
                         </div>
                         <div class="col-md-9"><!--Here goes the data from the angular coming from database. format needs to be figured out -->
-                          <div ></div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Accomodates:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>2</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Bathrooms:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>1</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Bed Type:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>Real Bed</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Beds:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>1</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Check in:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>Anytime after 3PM</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Check out:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>12PM(noon)</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Property Type:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>Apartment</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Room Type:</span>
+                                    <span></span>
+                                  </span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>{{propertyDetails.category}}</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -914,7 +1007,77 @@ font-weight: 700 !important;
                         </div>
                       </div>
                       <div style="margin-top:24px;margin-bottom:8px;">
-                        <div class="col-md-9 expandable"></div>
+                        <div class="col-md-9 expandable">
+                          <div class="expandable-content-summary">
+                            <div class="row">
+                              <div class="col-sm-12 col-md-6">
+                                <div style="margin-bottom:16px;">
+                                  <div>
+                                    <div class="space-1">
+                                      <span>
+                                        <i class="icon h3 icon-meal"></i>
+                                        <span>   </span>
+                                      </span>
+                                      <span>
+                                        <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                          <span>Kitchen</span>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                  <div>
+                                    <div class="space-1">
+                                      <span>
+                                        <i class="icon h3 icon-shampoo"></i>
+                                        <span>   </span>
+                                      </span>
+                                      <span>
+                                        <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                          <span>Shampoo</span>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-6">
+                                <div style="margin-bottom:16px;">
+                                  <div>
+                                    <div class="space-1">
+                                      <span>
+                                        <i class="icon h3 icon-tv"></i>
+                                        <span>   </span>
+                                      </span>
+                                      <span>
+                                        <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                          <span>TV</span>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                  <div>
+                                    <div class="space-1">
+                                      <span>
+                                        <i class="icon h3 icon-essentials"></i>
+                                        <span>   </span>
+                                      </span>
+                                      <span>
+                                        <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                          <span>Essentials</span>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <hr class="col-md-9 col-md-offset-3">
@@ -922,21 +1085,72 @@ font-weight: 700 !important;
                       <div>
                         <div class="col-md-3 hide-md hide-lg">
                           <div style="margin-top:8px;margin-bottom:24px;">
-                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                            <div class="text_1chds16-o_O-size_regular_1aunhvg" style="font-weight: normal !important; font-size: 19px !important;">
                               <span>Prices</span>
-                            </p>
+                            </div>
                           </div>
                         </div>
                         <div class="col-md-3 hide-sm">
                           <div class="margin-top:8px;">
-                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                            <div class="text_1chds16-o_O-size_regular_1aunhvg" style="font-weight: normal !important; font-size: 19px !important;">
                               <span>Prices</span>
-                            </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-9">
-                        <div class="margin-top:8px;margin-bottom:-8px;"></div>
+                        <div class="margin-top:8px;margin-bottom:-8px;">
+                          <div class="row">
+                            <div class="col-md-6">
+                            <div style="margin-bottom:16px;">
+                              <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Extra people:</span>
+                                  </span>
+                                <span></span>
+                                <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>No Charge</span>
+                                  </span>
+                              </div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                              <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Cleaning Fee:</span>
+                                  </span>
+                                <span></span>
+                                <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>$20</span>
+                                  </span>
+                              </div>
+                            </div>
+                          </div>
+                            <div class="col-md-6">
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Weekly Discount:</span>
+                                  </span>
+                                  <span></span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>20%</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Cancellation:</span>
+                                  </span>
+                                  <span></span>
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-inline_10f0ge3" style="font-weight: normal !important; font-size: 19px !important;">
+                                    <span>Moderate</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <hr class="col-md-9 col-md-offset-3">
@@ -958,7 +1172,22 @@ font-weight: 700 !important;
                         </div>
                       </div>
                       <div class="col-md-9">
-                        <div class="margin-top:8px;margin-bottom:-8px;"></div>
+                        <div style="margin-top:8px;">
+                          <div>
+                            <div class="react-expandable expanded">
+                              <div class="expandable-content expandable-content-longs">
+                                <div>
+                                  <p>
+                                    <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                      <span>{{propertyDetails.propertydescription}}</span>
+                                    </span>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
                       </div>
                     </div>
                     <hr class="col-md-9 col-md-offset-3">
@@ -966,21 +1195,55 @@ font-weight: 700 !important;
                       <div>
                         <div class="col-md-3 hide-md hide-lg">
                           <div style="margin-top:8px;margin-bottom:24px;">
-                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                            <div class="text_1chds16-o_O-size_regular_1aunhvg" style="font-weight: normal !important; font-size: 19px !important;">
                               <span>House Rules</span>
-                            </p>
+                            </div>
                           </div>
                         </div>
                         <div class="col-md-3 hide-sm">
                           <div class="margin-top:8px;">
-                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                            <p class="text_1chds16-o_O-size_regular_1aunhvg" style="font-weight: normal !important; font-size: 19px !important;">
                               <span>House Rules</span>
                             </p>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-9">
-                        <div class="margin-top:8px;margin-bottom:-8px;"></div>
+                        <div>
+                          <div style="margin-top:8px;margin-bottom:-8px;display:inline-block;">
+                            <div class="structured_house_rules">
+                              <div class="row col-sm-12">
+                                <div style="margin-bottom:16px;">
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>No Smoking</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="row col-sm-12 space-top-1">
+                              <div style="margin-bottom:16px;">
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Not suitable for pets</span>
+                                  </span>
+                              </div>
+                            </div>
+                              <div class="row col-sm-12 space-top-1">
+                                <div style="margin-bottom:16px;">
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Not parties or events</span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="row col-sm-12 space-top-1">
+                                <div style="margin-bottom:16px;">
+                                  <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                    <span>Not suitable for infants</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                     <hr class="col-md-9 col-md-offset-3">
@@ -988,21 +1251,46 @@ font-weight: 700 !important;
                       <div>
                         <div class="col-md-3 hide-md hide-lg">
                           <div style="margin-top:8px;margin-bottom:24px;">
-                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                            <p class="text_1lobov3-o_O-size_regular_1n7tijc" style="font-weight: normal !important; font-size: 19px !important;">
                               <span>Safety features</span>
                             </p>
                           </div>
                         </div>
                         <div class="col-md-3 hide-sm">
                           <div class="margin-top:8px;">
-                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                            <p class="text_1lobov3-o_O-size_regular_1n7tijc" style="font-weight: normal !important; font-size: 19px !important;">
                               <span>Safety features</span>
                             </p>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-9">
-                        <div class="margin-top:8px;margin-bottom:-8px;"></div>
+                        <div style="margin-top:8px;margin-bottom:-8px;">
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <div class="space-1">
+                                    <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                      <span>Smoke Detector</span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <div style="margin-bottom:16px;">
+                                <div>
+                                  <div class="space-1">
+                                    <span class="text_1chds16-o_O-size_regular_1aunhvg-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3" style="font-weight: 200 !important;font-size: 19px !important;">
+                                      <span>Carbon Monoxide Detector</span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1023,7 +1311,7 @@ font-weight: 700 !important;
                               <div class="va-bottom review-header-text">
                                 <h4 class="col-middle">
                                   <span class="title_n9n61p">
-                                    <span>{{je}}</span>
+                                    <span>Reviews</span>
                                   </span>
                                   <div class="" style="display:inline-block;">
                                     <!-- div for the review stars -->
@@ -1065,7 +1353,7 @@ font-weight: 700 !important;
                                     <span>Accuracy</span>
                                   </span>
                                 </div>
-                                <div class="col-sm-6"><!-- for stars --></div>
+                                <div class="col-sm-6"><span uib-rating ng-model="rate1" max="max" read-only="isReadonly"></span></div>
                               </div>
                               <div class="row space-2 col-sm-12">
                                 <div class="col-sm-6 review-category-label__dls">
@@ -1073,7 +1361,7 @@ font-weight: 700 !important;
                                     <span>Communication</span>
                                   </span>
                                 </div>
-                                <div class="col-sm-6"><!-- for stars --></div>
+                                <div class="col-sm-6"><span uib-rating ng-model="rate2" max="max" read-only="isReadonly"></div>
                               </div>
                               <div class="row space-2 col-sm-12">
                                 <div class="col-sm-6 review-category-label__dls">
@@ -1081,7 +1369,7 @@ font-weight: 700 !important;
                                     <span>Cleanliness</span>
                                   </span>
                                 </div>
-                                <div class="col-sm-6"><!-- for stars --></div>
+                                <div class="col-sm-6"><span uib-rating ng-model="rate3" max="max" read-only="isReadonly"></div>
                               </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -1091,7 +1379,7 @@ font-weight: 700 !important;
                                     <span>Location</span>
                                   </span>
                                 </div>
-                                <div class="col-sm-6"><!-- for stars --></div>
+                                <div class="col-sm-6"><span uib-rating ng-model="rate4" max="max" read-only="isReadonly"></div>
                               </div>
                               <div class="row space-2 col-sm-12">
                                 <div class="col-sm-6 review-category-label__dls">
@@ -1099,7 +1387,7 @@ font-weight: 700 !important;
                                     <span>Check in</span>
                                   </span>
                                 </div>
-                                <div class="col-sm-6"><!-- for stars --></div>
+                                <div class="col-sm-6"><span uib-rating ng-model="rate5" max="max" read-only="isReadonly"></div>
                               </div>
                               <div class="row space-2 col-sm-12">
                                 <div class="col-sm-6 review-category-label__dls">
@@ -1107,7 +1395,7 @@ font-weight: 700 !important;
                                     <span>Value</span>
                                   </span>
                                 </div>
-                                <div class="col-sm-6"><!-- for stars --></div>
+                                <div class="col-sm-6"><span uib-rating ng-model="rate6" max="max" read-only="isReadonly"></div>
                               </div>
                             </div>
                           </div>
@@ -1115,7 +1403,7 @@ font-weight: 700 !important;
                         <div class="review-content">
                           <div class="">
                             <div>
-                              <div class="row review">
+                              <div class="row review"ng-repeat="review in propertyreviews">
                                 <div class="space-2">
                                   <div class="col-12">
                                     <div class="pull-left">
@@ -1132,7 +1420,7 @@ font-weight: 700 !important;
                                             <div class="name">
                                               <a class="text-muted link-reset">
                                                 <p class="text_1lobov3-o_O-size_regular_1n7tijc">
-                                                  <span>{{propertyDetails.firstname}}</span>
+                                                  <span>{{review.username}}</span>
                                                 </p>
                                               </a>
                                             </div>
@@ -1149,13 +1437,13 @@ font-weight: 700 !important;
                                   </div>
                                 </div>
                                 <div class="space-2">
-                                  <div class="col-sm-12">
+                                  <div class="col-sm-12" >
                                     <div class="space-2">
                                       <div class="review-text space-top-2 space-2">
                                         <div class="react-expandable expanded">
                                           <div class="expandable-content">
                                             <p class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff">
-                                              <span>Suzana and David were fantastic hosts and the location was amazing. Everything was perfect. No issues at all</span>
+                                              <span>{{review.review}}</span>
                                             </p>
                                             <div></div>
                                           </div>
@@ -1205,10 +1493,22 @@ font-weight: 700 !important;
                                     </div>
                                   </div>
                                 </div>
+
                                 <div class="col-sm-12">
                                   <hr>
                                 </div>
                               </div>
+                              <span class="title_n9n61p">Want to post a review?</span><br><br>
+                              <!--<input type="textarea" placeholder="Write a review.. Share your experience"/>-->
+                              <textarea rows="4" cols="50"> </textarea><br>
+                              <div class="row">
+                                <div class="col-md-3 col-md-offset-9">
+                                <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="postPropertyReview()" name="Submit">
+                                  <span>Submit</span>
+                                </button>
+                                </div>
+                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -1245,7 +1545,7 @@ font-weight: 700 !important;
                                 <a class="link-reset" href="/users/show/51871069#reviews">
                                   <div class="text-center text-wrap">
                                     <div class="badge-pill h3">
-                                      <span class="badge-pill-count">70</span>
+                                      <span class="badge-pill-count">{{netpropertyrating}}</span>
                                     </div>
                                     <div class="va-middle show-inline-block">
                                       <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">

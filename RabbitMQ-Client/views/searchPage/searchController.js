@@ -29,44 +29,23 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
         opened: false
     };
 
-    /*$scope.initMap= function(){
-        //debugger
-        //console.log("I came here in init angular");
-        var uluru = {lat: 36.9741, lng: -122.0308};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: uluru,
-            mapTypeId: 'roadmap'
-        });
-
-        var infoWindow = new google.maps.InfoWindow();
-
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
-            clickable:true,
-        });
-        google.maps.event.addListener(marker, 'click', function() {
-            infoWindow.setContent("hi");
-            infoWindow.open(map,this);
-        });
-        google.maps.event.addListener(map, 'click', function() {
-            infoWindow.close();
-
-        });
-    }*/
-
     $scope.dropdown1=["1 guest","2 guests","3 guests","4 guests","5 guests","6 guests","7 guests","8 guests","9 guests","10 guests","11 guests","12 guests","13 guests","14 guests","15 guests","16+ guests"];
     $scope.dropdownDefault=$stateParams.guests;
 
-    /*$scope.checkin=$stateParams.checkin;
-    $scope.checkout=$stateParams.checkout;*/
+    //Price Slider
+    $scope.slider = {
+        min: 100,
+        max: 180,
+        options: {
+            floor: 10,
+            ceil: 500
+        }
+    };
 
     debugger
     console.log($stateParams.location);
     console.log($stateParams.checkout);
     console.log($stateParams.checkin);
-    console.log(new Date($stateParams.checkin));
     console.log($stateParams.guests);
 
     var locationarr=new Array();
@@ -74,29 +53,38 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
     $scope.fetchData=function(){
         debugger
 
-        var uluru = {lat: 36.9741, lng: -122.0308};
+        var myCenter = new google.maps.LatLng(37.3382, -121.8863);
+        var geocoder = new google.maps.Geocoder();
+
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
-            center: uluru,
+            cemter:myCenter,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
         var infoWindow = new google.maps.InfoWindow();
 
         var marker = new google.maps.Marker({
-            position: uluru,
+                position: myCenter,
+                map: map,
+                clickable: true,
+        });
+
+        var circle = new google.maps.Circle({
             map: map,
-            clickable:true,
+            radius: 16093    // 10 miles in metres
+            //fillColor: '#000000'
         });
-        google.maps.event.addListener(marker, 'click', function() {
-            infoWindow.setContent("hi");
-            infoWindow.open(map,this);
-        });
-        google.maps.event.addListener(map, 'click', function() {
+        circle.bindTo('center', marker, 'position');
+
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.setContent("hi");
+                infoWindow.open(map, this);
+            });
+            google.maps.event.addListener(map, 'click', function () {
             infoWindow.close();
-
         });
-
         if($stateParams.location==undefined && $stateParams.checkout == undefined && $stateParams.checkin == undefined){
 
             $http({
@@ -108,12 +96,20 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
             }).success(function(data){
                 console.log("I m in success of searchAllProperties angular");
                 $scope.propertyList=data.value;
-                //console.log(data.value[0].propertyid);
+                console.log(data);
+                console.log(data.value.length);
+                var tempaddress= [];
+                for(var i=0;i<data.value.length;i++){
+                    tempaddress[i]=data.value[i].propertyaddress + ", " + data.value[i].city + ", " + data.value[i].state + ", " + data.value[i].country;
+                }
+                console.log("This is value of tempaddress:" + tempaddress);
+                initMap(tempaddress);
+
 
 
             })
         }
-        else if($stateParams.location !== undefined && $stateParams.checkout == undefined && $stateParams.checkin == undefined){
+        else if($stateParams.location !== undefined && $stateParams.checkout !== undefined && $stateParams.checkin !== undefined){
 
             locationarr=$stateParams.location.split(", ");
 
@@ -122,14 +118,42 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
                 method:"post",
                 data:{
                     city:locationarr[0],
-                    state:locationarr[1]
+                    state:locationarr[1],
+                    checkin:$stateParams.checkin,
+                    checkout:$stateParams.checkout
                 }
             }).success(function(data){
                 console.log("I m in success of searchbycity angular");
                 $scope.propertyList=data.value;
+                $scope.addresses= [];
 
 
-            })
+                for(var i=0;i<data.value.length;i++){
+                    $scope.addresses[i]=data.value[i].propertyaddress + ", " + data.value[i].city + ", " + data.value[i].state + ", " + data.value[i].country;
+                }
+                debugger
+                geocoder = new google.maps.Geocoder();
+                angular.forEach($scope.addresses, function (value, key) {
+                    geocoder.geocode({ 'address': $scope.addresses[key] }, function (results, status) {
+                        console.log(results);
+                        if (status == 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                            marker.addListener('click',function(){
+                                infoWindow.setContent("$"+($scope.propertyList[key].price).toString());
+                                infoWindow.open(map,marker);
+                            })
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                            }
+                    });
+                })
+            });
+
+
         }
     };
     $scope.entirehome=false;

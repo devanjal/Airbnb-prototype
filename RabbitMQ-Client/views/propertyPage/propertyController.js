@@ -19,10 +19,8 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
             $scope.prevImg = function(){
                 $scope.methods.prev();
             };
-            //rating functions
-            $scope.rate = 5;
-            $scope.max = 5;
-            $scope.isReadonly = true;
+
+
 //calender functions
     $scope.format='MM-dd-yyyy';
     $scope.dateOptions = {
@@ -75,7 +73,12 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
                         //console.log(data.value.title);
                         console.log(data.value[0].title);
                        $scope.propertyDetails = data.value[0];
-                       console.log(data.value[0].images);
+                        console.log(data.mongoval[0]);
+                        console.log(data.mongoval[0].images);
+                        console.log( data.mongoval[0].propertyreviews);
+                        //$scope.netpropertyrating= data.mongoval[0].netpropertyrating;
+                        $scope.rate =data.mongoval[0].netpropertyrating;
+                        $scope.propertyreviews = data.mongoval[0].propertyreviews;
                        //console.log("this is value of tempImages:"+tempimages);
 
                       for(var i=0;i<data.value[0].images.length;i++){
@@ -83,28 +86,27 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
                            temp.push(data.value[0].images[i]);
 
                        }
-
-                      // $scope.images=data.value[0].images;
                         $scope.images = [
                             {
-
-                                url : temp[0]
-                                // url : 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793_960_720.jpg',
-
-                                //
+                                url: temp[0]
                             },
                             {
                                 url : temp[1]
                             }
 
                         ];
-
-
-
                     });
-
-
             };
+
+    //rating functions
+    $scope.rate1=3;
+    $scope.rate2=4;
+    $scope.rate3=5;
+    $scope.rate4=5;
+    $scope.rate5=4;
+    $scope.rate6=3;
+    $scope.max = 5;
+    $scope.isReadonly = true;
 }]);
 
 

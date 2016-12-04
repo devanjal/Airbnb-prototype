@@ -112,6 +112,7 @@ router.post('/step3', function(req, res) {
     payload.price = parseFloat(req.body.price);
     payload.availability_from = new Date(req.body.availability_from);
     payload.availability_to = new Date(req.body.availability_to);
+
     mq_client.make_request('becomehost3',payload, function(err,results){
         if(err){
             return done(err);

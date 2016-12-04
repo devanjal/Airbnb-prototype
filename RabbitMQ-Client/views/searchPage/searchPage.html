@@ -1,7 +1,7 @@
 
 <div class="container-fluid" ng-controller="searchController" ng-init="fetchData()">
-    <div class="row" style="margin-top:50px">
-      <div class="col-md-7" style="overflow-y: auto !important;">
+    <div class="row" >
+      <div class="col-md-7" >
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
 
                     <div class="col-md-3 text-center-sm text-center-md space-sm-1 sectionLabel_rcr7sj" style="padding: 10px 0px;">
@@ -90,7 +90,11 @@
                 <div class="col-md-3 filter-section-header-price" style="padding: 10px 0px;">
                   <span>Price Range</span>
                 </div>
-                <div class="p2-slider-new">
+                <div class="p2-slider-new col-md-9"><!--<input type="range" name="range" ng-model="value" ng-min="min" ng-max="max">-->
+                    <rzslider
+                            rz-slider-model="slider.min"
+                            rz-slider-high="slider.max"
+                            rz-slider-options="slider.options"></rzslider>
                 </div>
               </div>
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
@@ -127,7 +131,7 @@
                           </button>
                       </div>
                       <div class="col-md-6"></div>
-                      <div class="col-md-5">Some dynamic text</div>
+                      <div class="col-md-5"></div>
                   </div>
                   <div class="row">
                       <div class="col-md-12 pricing-disclaimer text-muted">
@@ -146,7 +150,7 @@
                                       <div>
                                           <a href="/rooms/9996469" class="media-photo media-cover" target="">
                                               <div class="listing-img-container media-cover text-center">
-                                                  <img class="img-responsive-height" src="images/upload_5a0641f031acebfe76f478dd2ac75929" alt="Cozy bedroom in Santa Clara CA">
+                                                  <img class="img-responsive-height" src="{{property.images[0]}}" alt="Cozy bedroom in Santa Clara CA">
                                               </div>
                                           </a>
                                           <div class="slideshow-controls">
@@ -183,12 +187,7 @@
                                   </div>
                                   <div class="panel-body panel-card-section">
                                       <div class="media">
-                                          <a href="#" class="pull-right media-photo-badge card-profile-picture card-profile-picture-offset" rel="nofollow">
-                                              <div class="media-photo media-round">
-                                                  <img src="images/upload_5a0641f031acebfe76f478dd2ac75929" alt="Carlos">
-                                              </div>
 
-                                          </a>
                                           <h3 title="{{property.title}}" class="h5 listing-name text-truncate space-top-1">
                                               <a ui-sref="individualProperty({id : {{property.propertyid}}})" class="text-normal">
                                                   <span class="listing-name--display">{{property.title}}</span>
@@ -228,16 +227,8 @@
           </div>
       </div>
         <div class="col-md-5 map">
-            <div style="height:100%;" class="search-results-map">
-                <div class="map-canvas">
+            <div id="map" style="height:600px; position:fixed;"></div>
 
-
-                            <div id="map"></div>
-
-
-                </div>
-
-            </div>
         </div>
 
 

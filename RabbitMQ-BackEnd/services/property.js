@@ -28,9 +28,9 @@ function searchbypropertyid(msg, callback){
                 }
                 // res.code = 200;
                 res.value = rows;
-                console.log("This is value of rows:--" + rows);
+                console.log("This is value of rows:--" + JSON.stringify(rows));
                 var mongoconnection = connectionpool.getdbconnection();
-                mongoconnection.collection('properties').find({propertyid:parseInt(msg.propertyid)}).toArray(function(err, result) {
+                mongoconnection.collection('properties').find({propertyid:msg.propertyid}).toArray(function(err, result) {
 
                     if(err) {
                         console.log(err);
@@ -43,7 +43,7 @@ function searchbypropertyid(msg, callback){
                     console.log('test');
                     console.log(JSON.stringify(result));
                     res.code = 200;
-                    //res.mongoval = result;
+                    res.mongoval = result;
                     //res.value = result;
                     connectionpool.releaseSQLConnection(connection);
                     for(var i=0;i<rows.length;i++){
@@ -133,7 +133,7 @@ function searchAllProperties(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties as p, users as u where u.id=p.hostid and p.published="true"', function(err, rows, fields) {
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true"', function(err, rows, fields) {
 
                 if (err)
                 {
@@ -253,7 +253,7 @@ function searchbycity(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties as p, users as u where u.id=p.hostid and p.published="true" and p.city=? and p.state=?',[msg.city, msg.state], function(err, rows, fields) {
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true" and properties.city=? and properties.state=? and properties.availability_from = ? and properties.availability_to >= ?',[msg.city, msg.state,msg.checkin, msg.checkout], function(err, rows, fields) {
 
                 if (err)
                 {
