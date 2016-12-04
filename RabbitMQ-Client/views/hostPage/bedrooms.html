@@ -1,17 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="../public/css/airbnb.css">
-    <link rel="stylesheet" href="../public/css/airbnb2.css">
-    <link rel="stylesheet" href="../public/css/airbnb3.css">
-    <link rel="stylesheet" href="../public/css/airbnb4.css">
-
-    <title>Edit Bedrooms for your Airbnb Listing</title>
-</head>
-<body>-->
-<!--<div id="lys-redesign-div">-->
 <div class="list-your-space__progress">
 
     <div class="left-backdrop"></div>
@@ -34,18 +20,18 @@
                                         <div class="text-gray btn increment-btn__label increment-jumbo increment-btn__label--with-increment-btns" tabindex="0" role="textbox">
                                             <div class="increment-btn__border-container-label text-truncated">
                                                 <span class="text-muted">
-                                                            <span>3 beds</span>
+                                                    <span>3 beds</span>
                                                 </span>
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-jumbo increment-btn__decrementer" aria-label="minus 1">
-                                                    <div class="increment-btn__border-container-decrementer">
+                                            <div class="increment-btn__border-container-decrementer">
 
-                                                    </div>
-                                                </button>
+                                            </div>
+                                        </button>
                                         <button type="button" class="btn btn-jumbo increment-btn__incrementer increment-btn__incrementer" aria-label="plus 1">
 
-                                                </button>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -101,18 +87,20 @@
                                     <div class="text-gray btn increment-btn__label increment-jumbo increment-btn__label--with-increment-btns" tabindex="0" role="textbox">
                                         <div class="increment-btn__border-container-label text-truncated">
                                             <span class="text-muted">
-                                                        <span>{{quantity + ' guest'}}</span>
+                                                <span>{{quantity + ' guest'}}</span>
                                             </span>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-jumbo increment-btn__decrementer" ng-click="decrementQuantity()" ng-disabled="!activeDecrement" aria-label="minus 1">
+                                    <button type="button" class="btn btn-jumbo increment-btn__decrementer" ng-click="decrementQuantity()" ng-disabled="!activeDecrement"
+                                        aria-label="minus 1">
                                         <div class="increment-btn__border-container-decrementer">
 
                                         </div>
                                     </button>
 
-                                    <button type="button" ng-click="incrementQuantity()" class="btn btn-jumbo increment-btn__incrementer increment-btn__incrementer" aria-label="plus 1">
+                                    <button type="button" ng-click="incrementQuantity()" class="btn btn-jumbo increment-btn__incrementer increment-btn__incrementer"
+                                        aria-label="plus 1">
 
                                     </button>
 
@@ -128,8 +116,7 @@
                 <div class="main-panel__actions-wrapper">
                     <div class="centered-content clearfix" data-reactid=".k4dqbfueio.1.4.0.0.2.0">
                         <div class="bg-white main-panel-outer-half clearfix" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0">
-                            <div class="no-margin-padding__sm main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8"
-                                data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0">
+                            <div class="no-margin-padding__sm main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0">
                                 <div class="divider hide-sm" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.0"></div>
                                 <div class="row no-margin-padding__sm" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1">
                                     <div class="main-panel__actions col-sm-12 no-margin-padding__sm" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1.0">
@@ -141,10 +128,9 @@
                                                     <h5 class="text-normal" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1.0.0.0.1.0"><span data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1.0.0.0.1.0.0">Back</span></h5>
                                                     </span>
                                             </a>
-                                            <a ng-click="firststepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
-                                                href="#" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1.0.0.1">
-                                                <div class="btn-progress-next__text" data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1.0.0.1.0">
-                                                    <span data-reactid=".k4dqbfueio.1.4.0.0.2.0.0.0.1.0.0.1.0.0">
+                                            <a ng-click="firststepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
+                                                <div class="btn-progress-next__text">
+                                                    <span>
                                                         Finish
                                                     </span>
                                                 </div>
@@ -157,29 +143,29 @@
                     </div>
                 </div>
 
-                <div class="waypoint-container" data-reactid=".k4dqbfueio.1.4.0.0.3"><span style="font-size:0;" data-reactid=".k4dqbfueio.1.4.0.0.3.0"></span></div>
+                <div class="waypoint-container">
+                    <span style="font-size:0;">
+                    </span>
+                </div>
 
             </div>
 
             <div class="help-panel-container">
-                <div class="hide-sm help-panel panel" data-reactid=".k4dqbfueio.1.4.0.1.0">
-                    <div class="panel-body" data-reactid=".k4dqbfueio.1.4.0.1.0.0">
-                        <div class="help-panel__bulb-img space-2" data-reactid=".k4dqbfueio.1.4.0.1.0.0.0"></div>
-                        <div class="help-panel__text" data-reactid=".k4dqbfueio.1.4.0.1.0.0.1">
-                            <p data-reactid=".k4dqbfueio.1.4.0.1.0.0.1.0"><span data-reactid=".k4dqbfueio.1.4.0.1.0.0.1.0.0">The number and type of beds you have determines how many guests can stay comfortably.</span></p>
+                <div class="hide-sm help-panel panel">
+                    <div class="panel-body">
+                        <div class="help-panel__bulb-img space-2"></div>
+                        <div class="help-panel__text">
+                            <p>
+                                <span>
+                                    The number and type of beds you have determines how many guests can stay comfortably.
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="show-sm help-panel__floating-container" data-reactid=".k4dqbfueio.1.4.0.1.1">
-                    <noscript data-reactid=".k4dqbfueio.1.4.0.1.1.0"></noscript><span class="tooltip-popup__transition-container" data-reactid=".k4dqbfueio.1.4.0.1.1.1"><div class="help-panel--collapsed help-panel__bulb-img-bubble" data-reactid=".k4dqbfueio.1.4.0.1.1.1.$=1$collapsed"><div class="help-panel__bulb-img img-center" data-reactid=".k4dqbfueio.1.4.0.1.1.1.$=1$collapsed.0"></div></div></span></div>
+                <div class="show-sm help-panel__floating-container">
+                    <noscript></noscript><span class="tooltip-popup__transition-container"><div class="help-panel--collapsed help-panel__bulb-img-bubble"><div class="help-panel__bulb-img img-center" data-reactid=".k4dqbfueio.1.4.0.1.1.1.$=1$collapsed.0"></div></div></span></div>
             </div>
-
         </div>
     </div>
-
-
-
 </div>
-<!--</div>-->
-<!--</body>
-</html>-->

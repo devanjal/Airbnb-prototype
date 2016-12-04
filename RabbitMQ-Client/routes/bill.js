@@ -2,11 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mq_client = require('../rpc/client');
 router.post('/createBill',function(req,res){
-
-
     var payload = {};
     payload.b=req.body;
-    payload.user_id=req.session.user_id;// session
+    payload.user_id=req.session.user.id;// session
     console.log("before que");
 
     mq_client.make_request('createBillQueue', payload, function(err,results){
@@ -27,9 +25,8 @@ router.post('/createBill',function(req,res){
 router.get('/getBillByUid',function (req,res) {
 
     var payload={};
-    payload.user_id=req.session.user_id;
-    //payload.user_id=10;
-   // console.log("Getting the bills"+payload.user_id);
+    payload.user_id=req.session.user.id;
+
     mq_client.make_request('getBillUidQueue', payload, function(err,results){
         if(err){
             return done(err);
@@ -50,8 +47,7 @@ router.get('/getBillByUid',function (req,res) {
 router.get('/getBillByHid',function (req,res) {
 
     var payload={};
-    payload.user_id=req.session.user_id;
-  //  payload.user_id=11;
+    payload.user_id=req.session.user.id;
     console.log("Getting the bills For host");
     mq_client.make_request('getBillHidQueue', payload, function(err,results){
         if(err){
@@ -64,7 +60,7 @@ router.get('/getBillByHid',function (req,res) {
                 res.send({status:'success', result:results.result});
             }
             else {
-                res.send({status:'error',error:"Get bills Failed"});
+                res.send({status:'error',error:"Get bills Failed."});
             }
         }
     });

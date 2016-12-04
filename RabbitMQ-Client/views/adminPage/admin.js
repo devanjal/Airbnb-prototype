@@ -95,7 +95,7 @@ app.controller('adminDashboardController', function ($scope, $http, $window) {
     ];
 
     $scope.hostsearchresults = [];
-    $scope.searchdate = new Date();
+    // $scope.searchdate = new Date();
 
     $scope.visithostpage = function(id)
     {

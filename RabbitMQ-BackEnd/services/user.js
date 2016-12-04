@@ -89,10 +89,7 @@ function user_profile_image_queue(msg, callback) {
     console.log(JSON.stringify(msg));
     var mongoconnection = connectionpool.getdbconnection();
     mongoconnection.collection('users').update({ id: msg.hostid }, { $set: { profile_image: msg.profile_image } }, { upsert: true }, function (err, result) {
-        //connection.collection('properties').insertOne(post, function(err, result) {
-        //update sql image--
 
-        //--
         if (err) {
             console.log(err);
             res.code = 400;

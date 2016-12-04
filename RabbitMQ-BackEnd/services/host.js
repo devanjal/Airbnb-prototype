@@ -19,6 +19,7 @@ function becomehost_step1(msg, callback){
                     res.value = "Step1 failed";
                     callback(null, res);
                     connectionpool.releaseSQLConnection(connection);
+
                     return;
                 }
 
@@ -28,26 +29,6 @@ function becomehost_step1(msg, callback){
                 res.code = 200;
                 res.value = "Step1 succeeded";
                 callback(null, res);
-                /*connection.query('select max(propertyid) as propertyid from properties',[], function(err, rows, fields) {
-             if (!err)
-             {
-             console.log('The solution is: '+ rows.length + ' ' + JSON.stringify(rows[0]));
-             connectionpool.releaseSQLConnection(connection);
-             res.code = 200;
-             res.property_id = rows[0].propertyid;
-             res.value = "Step1 succeeded";
-             callback(null, res);
-             //res.send(rows);
-             }
-             else
-             {
-             console.log('Error while performing Query.');
-             res.code = 401;
-             res.value = "Step1 failed";
-             callback(null, res);
-             connectionpool.releaseSQLConnection(connection);
-             }
-             });*/
             });
     });
 };
@@ -76,12 +57,11 @@ function becomehost_step2(msg, callback){
                     return;
                 }
                 var mongoconnection = connectionpool.getdbconnection();
-                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}},$set:{hostid:msg.hostid}}, {upsert:true},function(err, result) {
-                //connection.collection('properties').insertOne(post, function(err, result) {
+                mongoconnection.collection('properties').update({propertyid:msg.propertyid},{$push:{images:{$each:msg.filenames}}, $set:{hostid : msg.hostid}} , {upsert:true},function(err, result) {
                     if(err) {
                         console.log(err);
                         res.code = 400;
-                        res.value = err;
+                        res.value = err.name + " " + err.message;
                         connectionpool.releaseSQLConnection(connection);
                         callback(null, res);
                         return;
@@ -117,12 +97,10 @@ function becomehost_step3(msg, callback){
                     connectionpool.releaseSQLConnection(connection);
                     return;
                 }
-                //--
                 res.code = 200;
                 res.value = "Step3 succeeded";
                 callback(null, res);
                 connectionpool.releaseSQLConnection(connection);
-                //--
             });
     });
 };
@@ -155,10 +133,7 @@ function publishproperty(msg, callback){
                 res.code = 200;
                 res.value = "profile published";
                 callback(null, res);
-
-                //--
                 connectionpool.releaseSQLConnection(connection);
-                //--
             });
     });
 };

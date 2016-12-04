@@ -64,7 +64,7 @@
                                                         </span>
                                                     </a>
                                                     <!--disabled the button when text fields are empty-->
-                                                    <a ng-click="secondstepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md  btn-primary" href="#">
+                                                    <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.title || !property.description}" ng-disabled="!property.title || !property.description" ng-click="secondstepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md  btn-primary" href="#">
                                                         <div class="btn-progress-next__text">
                                                             <span>Finish</span>
                                                         </div>

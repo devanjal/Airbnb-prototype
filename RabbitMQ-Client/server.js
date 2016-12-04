@@ -6,21 +6,25 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var compression = require('compression');
-
+var mongodb = require('mongodb');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
-var http = require('http');
 
 var passport = require('passport');
 require('./routes/passport')(passport);
 
 var become_host = require('./routes/become_host');
+var property = require('./routes/property');
+var host = require('./routes/host');
+
 var admin = require('./routes/admin');
+
 var users = require('./routes/users');
 var host = require('./routes/host');
 var review = require('./routes/review');
 var bill = require('./routes/bill');
+
+var trips = require('./routes/trips');
 
 var app = express();
 
@@ -51,7 +55,6 @@ app.use(session({
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
     store: new MongoStore({ url: 'mongodb://root:cmpe273@ds113678.mlab.com:13678/airbnb_mongo' })
-
 }));
 
 //app.engine('html',require('html').renderFile);
@@ -60,10 +63,17 @@ app.set('views', __dirname + '\\views');
 
 app.use('/users', users);
 app.use('/become_host', become_host);
+
 app.use('/admin', admin);
-app.use('/review', review);
+
+app.use('/property', property);
 app.use('/host', host);
+app.use('/review', review);
+
 app.use('/bill',bill);
+
+app.use('/usertrips', trips);
+
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');

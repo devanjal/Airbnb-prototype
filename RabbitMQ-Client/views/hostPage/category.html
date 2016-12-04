@@ -22,7 +22,7 @@
                                         <span>Entire place</span>
                                     </div>
                                     <div class="pull-right">
-                                        <input ng-model="property.category" id="room-type-entire_home" class="pointer-input" name="roomType" value="entire_home" type="radio"/>
+                                        <input ng-model="property.category" id="room-type-entire_home" class="pointer-input" name="roomType" value="Entire Home" type="radio"/>
                                     </div>
                                 </div>
                             </label>
@@ -35,7 +35,7 @@
                                         <span>Private room</span>
                                     </div>
                                     <div class="pull-right">
-                                        <input ng-model="property.category" id="room-type-private_room" class="pointer-input" name="roomType" value="private_room" type="radio"/>
+                                        <input ng-model="property.category" id="room-type-private_room" class="pointer-input" name="roomType" value="Private Room" type="radio"/>
                                     </div>
                                 </div>
                             </label>
@@ -48,7 +48,7 @@
                                         <span>Shared room</span>
                                     </div>
                                     <div class="pull-right">
-                                        <input ng-model="property.category" id="room-type-shared_room" class="pointer-input" name="roomType" value="shared_room" type="radio"/>
+                                        <input ng-model="property.category" id="room-type-shared_room" class="pointer-input" name="roomType" value="Shared Room" type="radio"/>
                                     </div>
                                 </div>
                             </label>
@@ -128,7 +128,7 @@
                                                 </h5>
                                             </span>
                                         </a>
-                                        <a ui-sref="become-a-host.location" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
+                                        <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.category}" ng-disabled="!property.category" ui-sref="become-a-host.location" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"
                                             href="#">
                                             <div class="btn-progress-next__text">
                                                 <span>Next</span>

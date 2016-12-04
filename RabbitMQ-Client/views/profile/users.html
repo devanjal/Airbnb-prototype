@@ -3,7 +3,7 @@
         <div class="page-container-responsive">
             <ul class="subnav-list">
                 <li ng-repeat="menu in profile_menus">
-                    <a ng-click="selectMenu($index)" aria-selected="{{$index == selected}}" ng-class="{'active': $index == selected}" id="{{menu.id}}" class="subnav-item" href="#" aria-selected="false">{{menu.name}}</a>
+                    <a ng-click="selectMenu($index)" ui-sref="{{menu.link}}" aria-selected="{{$index == selected}}" ng-class="{'active': $index == selected}" id="{{menu.id}}" class="subnav-item" href="#" aria-selected="false">{{menu.name}}</a>
                 </li>
                 <!--<li>
                     <a id="rooms-item" class="subnav-item cohosting-ml-tooltip-trigger" href="#" aria-selected="false">Your Listing</a>
@@ -31,7 +31,7 @@
                                     <div class="slideshow-preload"></div>
                                     <ul class="slideshow-images">
                                         <li class="active media-photo media-photo-block">
-                                            <img alt="Nishank" class="img-responsive" height="225" src="https://a2.muscache.com/defaults/user_pic-225x225.png?v=2" title="Nishank"
+                                            <img style="height: 100%;" class="img-responsive" height="225" ngf-src="profileImage" title="Nishank"
                                                 width="225">
                                         </li>
                                         <li class="media-photo media-photo-block"></li>

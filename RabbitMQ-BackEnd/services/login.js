@@ -60,13 +60,14 @@ function handle_request(msg, callback) {
             else {
                 console.log("no user found");
                 res.code = 401;
-                res.value = 'Username does not exist.'
+                res.value = 'Username does not exist.';
                 callback(null, res);
                 connectionpool.releaseSQLConnection(connection);
             }
         });
     });
 }
+
 function handle_logout(msg, callback) {
     var res = {};
     console.log('handle_logout');

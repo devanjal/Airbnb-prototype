@@ -1,4 +1,4 @@
-<div class="list-your-space__progress">
+<div class="list-your-space__progress" ng-controller="hostController">
     <div class="left-backdrop">
 
     </div>
@@ -24,16 +24,16 @@
                         <div class="space-top-4">
                             <div>
                                 <label class="h4 text-muted text-normal" for="price-stepper">
-                                        <span>Base price</span>
-                                    </label>
+                                    <span>Base price</span>
+                                </label>
                             </div>
                             <div class="increment-btn no-padding">
                                 <div class="increment-btn btn-group no-padding">
                                     <div class="text-gray btn increment-btn__label increment-jumbo" tabindex="0" role="textbox" style="font-weight: normal;    opacity: 1;    text-align: left;    cursor: default;    height: 62px;    width: 100%;    padding: 5px 0;">
                                         <div class="increment-btn__border-container-label text-truncated">
                                             <span>$</span>
-                                            <input class="increment-btn__input" id="price-stepper" style="width: 200px; display: inline;    border: 0;    outline: 0 transparent;    padding: 0;    -moz-appearance: textfield;">
-                                            <span>per night</span>
+                                            <input placeholder="per night" ng-model="property.bid_price" class="increment-btn__input" id="price-stepper" style="width: 200px; display: inline;border: 0;    outline: 0 transparent;    padding: 0;    -moz-appearance: textfield;">
+                                            <!--<span>per night</span>-->
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                             <option value="KRW">KRW</option>
                                             <option value="MAD">MAD</option>
                                             <option value="MXN">MXN</option>
-                                            <option value="USD">USD</option>
+                                            <option value="USD" selected>USD</option>
                                             <option value="INR">INR</option>
                                         </select>
 
@@ -116,7 +116,7 @@
                                 <div class="row no-margin-padding__sm">
                                     <div class="main-panel__actions col-sm-12 no-margin-padding__sm">
                                         <div>
-                                            <a class="btn-progress-back link-icon va-container va-container-v pull-left text-gray link--accessibility-outline" href="/become-a-host/16090080/choose-pricing-mode">
+                                            <a ui-sref="become-a-host.choose-pricing-mode" class="btn-progress-back link-icon va-container va-container-v pull-left text-gray link--accessibility-outline" href="#">
                                                 <span class="icon hide-sm"></span>
                                                 <span class="va-middle">
                                                     <h5 class="text-normal">
@@ -124,9 +124,9 @@
                                                     </h5>
                                                 </span>
                                             </a>
-                                            <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md disabled btn-primary" href="#">
+                                            <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.bid_price}" ng-disabled="!property.bid_price" ng-click="thirdstepFinish()" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md disabled btn-primary" href="#">
                                                 <div class="btn-progress-next__text">
-                                                    <span>Next</span>
+                                                    <span>Finish</span>
                                                 </div>
                                             </a>
                                         </div>
