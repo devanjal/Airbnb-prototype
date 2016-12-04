@@ -123,6 +123,7 @@ cnn.on('ready', function () {
             });
         });
     });
+
     cnn.queue('tripEditQueue', function (q) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             trip.editTrip(message, function (err, res) {

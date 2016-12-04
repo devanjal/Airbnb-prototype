@@ -1,13 +1,12 @@
 app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$uibModal','Notification', function ($scope, $http, ngProgress, $state, $uibModal,Notification) {
-    // if($state)
+
     if($state.current.name==="users.trips"){
         $http.get("/usertrips").success(function (response) {
-            // alert(JSON.stringify(response));
             $scope.pendingtrips = [];
             $scope.usertrips = [];
             if(response.code == 200) {
                 debugger
-                var resArray = response.data;
+                var resArray = response.value;
                 for(var i=0; i<resArray.length; i++) {
                     if(resArray[i].tripstatus == "pending") {
                         $scope.pendingtrips.push(resArray[i]);
@@ -32,7 +31,36 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$u
                     $scope.editProperty = data.data[0];
                     $scope.checkinDate = new Date($scope.editProperty.fromdate.split("T")[0]);
                     $scope.checkoutDate = new Date($scope.editProperty.todate.split("T")[0]);
+                    $scope.addressString = data.data[0].address +", " + data.data[0].city + ", " + data.data[0].state + ", " + data.data[0].country;
                     sessionStorage.editProperty = JSON.stringify($scope.editProperty);
+                    var geocoder = new google.maps.Geocoder();
+
+                    var infoWindow = new google.maps.InfoWindow();
+
+                    geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'address': $scope.addressString }, function (results, status) {
+                        console.log(results);
+                        if (status == 'OK') {
+                            var map = new google.maps.Map(document.getElementById('map1'), {
+                                zoom: 12,
+                                center:results[0].geometry.location,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            });
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                            marker.addListener('click', function () {
+                                infoWindow.setContent($scope.addressString);
+                                infoWindow.open(map, marker);
+                            });
+                            google.maps.event.addListener(map, 'click', function () {
+                                infoWindow.close();
+                            });
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
                     $state.go("users.trips.edit");
                 }else if(data.code == 401){
 
@@ -48,10 +76,41 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$u
             .success(function(data){
                 debugger
                 if(data.code == 200){
-                    // console.log(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
                     $scope.property = data.data[0];
+                    $scope.addressString = data.data[0].address +", " + data.data[0].city + ", " + data.data[0].state + ", " + data.data[0].country;
                     sessionStorage.property = JSON.stringify($scope.property);
+
+                    var geocoder = new google.maps.Geocoder();
+
+                    var infoWindow = new google.maps.InfoWindow();
+
+                    geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'address': $scope.addressString }, function (results, status) {
+                        console.log(results);
+                        if (status == 'OK') {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 12,
+                                center:results[0].geometry.location,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            });
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                            marker.addListener('click', function () {
+                                infoWindow.setContent($scope.addressString);
+                                infoWindow.open(map, marker);
+                            });
+                            google.maps.event.addListener(map, 'click', function () {
+                                infoWindow.close();
+                            });
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
                     $state.go("users.trips.preview");
+
                 }else if(data.code == 401){
 
                 }
@@ -61,27 +120,7 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$u
 
             });
     }
-    // if(sessionStorage.property){
-    //     $scope.property = JSON.parse(sessionStorage.property);
-    // }
-    // if(sessionStorage.editProperty){
-    //     $scope.editProperty = JSON.parse(sessionStorage.editProperty);
-    // }
-    // $scope.getUserTrips = function () {
-    //
-    // };
-    // $scope.getElementById("from")
 
-    // $scope.getPreview = function () {
-    //     debugger
-    //     //console.log(this.trip.tripid);
-    //
-    //
-    // };
-    // $scope.goToEditTrip = function () {
-    //
-    // };
-    
     $scope.updateTrip = function () {
         var obj = {};
         debugger

@@ -162,6 +162,7 @@ function publishproperty(msg, callback){
             });
     });
 };
+
 exports.becomehost_queue1 = becomehost_step1;
 exports.becomehost_queue2 = becomehost_step2;
 exports.becomehost_queue3 = becomehost_step3;
