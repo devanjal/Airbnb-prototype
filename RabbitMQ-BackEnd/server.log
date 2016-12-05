@@ -1,0 +1,22 @@
+{"propertyid":10,"level":"info","message":"login user venkateshramanujam.rangarajan@sjsu.edu","timestamp":"2016-12-04T22:52:51.688Z"}
+{"anything":"This is metadata","level":"info","message":"login user venkateshramanujam.rangarajan@sjsu.edu","timestamp":"2016-12-04T22:57:40.490Z"}
+{"test":"test","level":"info","message":"login user venkateshramanujam.rangarajan@sjsu.edu { anything: 'This is metadata' }","timestamp":"2016-12-04T23:53:57.861Z"}
+
+
+CREATE FUNCTION `ssn_generator`() RETURNS varchar(45) CHARSET utf8
+BEGIN
+declare randomstring varchar(45);
+declare stringtoret varchar(45);
+declare i int;
+declare endcond int;
+declare j int;
+
+set endcond = 11;
+set j = 0;
+set i = 0;
+
+set randomstring = UUID();
+select concat(stringtoret,substring(randomstring,0,3));
+set randomstring = stringtoret;
+RETURN UUID();
+END

@@ -11,8 +11,9 @@ function becomehost_step1(msg, callback){
             callback(null, res);
             return;
         }
-
-        var query = connection.query('INSERT INTO properties SET ?', msg , function (err, result) {
+        if(msg.update == false) {
+            delete msg.update;
+            var query = connection.query('INSERT INTO properties SET ?', msg, function (err, result) {
                 if (err) {
                     console.log(err);
                     res.code = 401;
@@ -30,6 +31,31 @@ function becomehost_step1(msg, callback){
                 res.value = "Step1 succeeded";
                 callback(null, res);
             });
+        }
+        else
+        {
+
+//            delete msg.update;
+            connection.query(
+                'UPDATE properties SET category = ?,quantity = ?, address = ?, city = ?,state = ?,country = ?,zipcode = ? Where propertyid = ?',
+                [msg.category,msg.quantity,msg.address,msg.city,msg.state,msg.country,msg.zipcode,msg.propertyid],
+                function (err, result) {
+                    if (err)
+                    {
+                        res.code = 401;
+                        res.value = "Step1 failed";
+                        callback(null, res);
+                        console.log(err);
+                        connectionpool.releaseSQLConnection(connection);
+                        return;
+                    }
+                    res.code = 200;
+                    res.value = "Step1 succeeded";
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                });
+        }
+
     });
 };
 function becomehost_step2(msg, callback){
@@ -309,6 +335,99 @@ function rejecttrips(msg, callback){
     });
 };
 
+
+function getprofitableproperties(msg, callback){
+    var res = {};
+    console.log(JSON.stringify(msg));
+    //query = 'select  property_id,properties.city,properties.title,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid and properties.hostid = ? group by property_id order by netrevenue DESC limit 10';
+    query = 'select  property_id,properties.city,properties.title,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid group by property_id order by netrevenue DESC limit 10';
+    connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            query,
+            [msg.hostid],
+            function (err, rows,fields) {
+                if (err)
+                {
+                    res.code = 401;
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                res.code = 200;
+                res.value = rows;
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            });
+    });
+};
+function getleastprofitableproperties(msg, callback){
+    var res = {};
+    console.log(JSON.stringify(msg));
+    query = 'select  property_id,properties.city,properties.title,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid where hostid = ? group by property_id order by netrevenue ASC limit 3';
+    connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            query,
+            [msg.hostid],
+            function (err, rows,fields) {
+                if (err)
+                {
+                    res.code = 401;
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                res.code = 200;
+                res.value = rows;
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            });
+    });
+};
+
+function getmostvisitedproperties(msg, callback){
+    var res = {};
+    console.log(JSON.stringify(msg));
+    query = 'select  property_id,properties.city,properties.title,sum(amount) as netrevenue from bill inner join properties on bill.property_id = properties.propertyid where hostid = ? and netrevenue < 2000 group by property_id order by netrevenue ASC limit 10';
+    connectionpool.getConnection(function(err,connection){
+        if(err){
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            query,
+            [msg.hostid],
+            function (err, rows,fields) {
+                if (err)
+                {
+                    res.code = 401;
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                res.code = 200;
+                res.value = rows;
+                callback(null, res);
+                connectionpool.releaseSQLConnection(connection);
+            });
+    });
+};
 exports.becomehost_queue1 = becomehost_step1;
 exports.becomehost_queue2 = becomehost_step2;
 exports.becomehost_queue3 = becomehost_step3;
@@ -316,3 +435,5 @@ exports.publishproperty = publishproperty;
 exports.gethostbyarea = gethostbyarea;
 exports.rejecttrips = rejecttrips;
 exports.approvetrips = approvetrips;
+exports.getprofitableproperties = getprofitableproperties;
+exports.getleastprofitableproperties = getleastprofitableproperties;

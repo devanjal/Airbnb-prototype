@@ -104,6 +104,36 @@ router.post('/rejecttrips', function (req, res) {
     });
 });
 
+router.post('/getprofitableproperties', function (req, res) {
+    var msg_payload = { hostid: 15 };
+    mq_client.make_request('getprofitableproperties', msg_payload, function (err, results) {
+        if (err) {
+            res.send({status:'error'});
+            return;
+        }
+        if(results.code == 200){
+            res.send({status:'success',value:results.value});
+        }
+        else {
+            res.send({status:'error',error:"query failed"});
+        }
+    });
+});
+router.post('/getleastprofitableproperties', function (req, res) {
+    var msg_payload = { hostid: 15 };
+    mq_client.make_request('getleastprofitableproperties', msg_payload, function (err, results) {
+        if (err) {
+            res.send({status:'error'});
+            return;
+        }
+        if(results.code == 200){
+            res.send({status:'success',value:results.value});
+        }
+        else {
+            res.send({status:'error',error:"query failed"});
+        }
+    });
+});
 
 module.exports = router;
 

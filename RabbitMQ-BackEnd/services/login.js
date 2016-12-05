@@ -1,5 +1,5 @@
 var connectionpool = require('../config/connectionpool');
-
+var log = require('../config/logger');
 var bcrypt = require('bcryptjs');
 
 function handle_request(msg, callback) {
@@ -8,7 +8,8 @@ function handle_request(msg, callback) {
     var username = msg.username;
     var password = msg.password;
     var res = {};
-
+    log.insertlog("login user " + username);
+    log.mostuserpropertyvisited(10,null);
     connectionpool.getConnection(function (err, connection) {
         // console.log("inside connection");
         if (err) {

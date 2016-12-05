@@ -534,4 +534,27 @@ cnn.on('ready', function () {
             });
        });
     });
+
+    cnn.queue('getprofitableproperties', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.getprofitableproperties(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
+    cnn.queue('getleastprofitableproperties', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            host.getleastprofitableproperties(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });
 });
