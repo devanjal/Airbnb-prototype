@@ -20,7 +20,7 @@
             <ul class="list-unstyled list-layout">
                 <li class="listing panel-body" ng-repeat="propertyRequests in requestedPropertyList">
                     <h3>{{propertyRequests.title}}</h3>
-                    User name: {{propertyRequests.user_name}}
+                    User name: {{propertyRequests.firstname+" "+propertyRequests.lastname}}
                     <br>Location: {{propertyRequests.address}}<br> {{propertyRequests.city+" "+propertyRequests.state+" "+propertyRequests.zipcode}}
                     <br>Number of guests requested: {{propertyRequests.quantity}}
                     <br>From: {{propertyRequests.fromdate.split("T")[0]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,11 +40,11 @@
         <div class="panel-header">Property Accepted</div>
         <br>
         <div class="panel-body photos-section">
-            <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="acceptedPropertyList.length>0">No Property Listed. <br><br> Please click on "Add New Listings" to list your property.</h5>
+            <h5 style="margin-left: 20px;font-weight: normal;" ng-hide="acceptedPropertyList.length>0">No Property Accepted.</h5>
             <ul class="list-unstyled list-layout">
                 <li class="listing panel-body" ng-repeat="propertyRequests in acceptedPropertyList">
                     <h3>{{propertyRequests.title}}</h3>
-                    <br>User name: {{propertyRequests.user_name}}
+                    <br>User name: {{propertyRequests.firstname+" "+propertyRequests.lastname}}
                     <br>Location: {{propertyRequests.address}}<br> {{propertyRequests.city+" "+propertyRequests.state+" "+propertyRequests.zipcode}}
                     <br>Number of guests: {{propertyRequests.quantity}}
                     <br>From: {{propertyRequests.fromdate.split("T")[0]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

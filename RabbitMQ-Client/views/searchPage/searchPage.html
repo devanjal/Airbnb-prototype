@@ -2,6 +2,7 @@
 
     <div class="row" style="margin-top:50px">
       <div class="col-md-7" style="overflow-y: auto !important;">
+
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
 
                     <div class="col-md-3 text-center-sm text-center-md space-sm-1 sectionLabel_rcr7sj" style="padding: 10px 0px;">
@@ -47,7 +48,7 @@
                             <span>Entire Home</span>
                           </div>
                           <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                              <input type="checkbox" ng-model="entirehome" ng-changed="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
+                              <input type="checkbox" ng-model="entirehome" ng-click="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
                           </div>
                       </div>
                   </label>
@@ -63,7 +64,7 @@
                         </div>
                         
                         <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                          <input type="checkbox" ng-model="privateRoom"  ng-changed="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
+                          <input type="checkbox" ng-model="privateroom" ng-click="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
@@ -79,7 +80,7 @@
                         </div>
                         
                         <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                          <input type="checkbox" ng-model="shared_room_checkbox" ng-changed="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
+                          <input type="checkbox" ng-model="shared_room_checkbox" ng-click="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
@@ -90,7 +91,11 @@
                 <div class="col-md-3 filter-section-header-price" style="padding: 10px 0px;">
                   <span>Price Range</span>
                 </div>
-                <div class="p2-slider-new">
+                <div class="p2-slider-new col-md-9"><!--<input type="range" name="range" ng-model="value" ng-min="min" ng-max="max">-->
+                    <rzslider
+                            rz-slider-model="slider.min"
+                            rz-slider-high="slider.max"
+                            rz-slider-options="slider.options"></rzslider>
                 </div>
               </div>
               <div class="col-md-12 filters-section panel-body panel-light intro-filter" style="border-bottom: 1px solid lightgray; padding: 10px 0px;">
@@ -184,12 +189,6 @@
                                   </div>
                                   <div class="panel-body panel-card-section">
                                       <div class="media">
-                                          <!--<a href="#" class="pull-right media-photo-badge card-profile-picture card-profile-picture-offset" rel="nofollow">
-                                              <div class="media-photo media-round">
-                                                  <img src="images/upload_5a0641f031acebfe76f478dd2ac75929" alt="Carlos">
-                                              </div>
-
-                                          </a>-->
                                           <h3 title="{{property.title}}" class="h5 listing-name text-truncate space-top-1">
                                               <a ui-sref="individualProperty({id : {{property.propertyid}}})" class="text-normal">
                                                   <span class="listing-name--display">{{property.title}}</span>
@@ -230,6 +229,7 @@
       </div>
         <div class="col-md-5 map">
             <div id="map" style="height:600px"></div>
+
         </div>
     </div>
 </div>

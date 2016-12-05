@@ -1,5 +1,6 @@
-var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification', 'ngFileUpload', 'thatisuday.ng-image-gallery', 'ngAutocomplete']);
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider', 'ngImageGalleryOptsProvider', function($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
+
+var app = angular.module("airbnb", ['ui.router', 'ngProgress', 'ui.bootstrap', 'ui-notification','ngFileUpload', 'thatisuday.ng-image-gallery', 'ngAutocomplete','rzModule']);
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'NotificationProvider','ngImageGalleryOptsProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, NotificationProvider, ngImageGalleryOptsProvider) {
 
     NotificationProvider.setOptions({
         delay: 2000,
@@ -135,6 +136,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'Notifi
         .state("users.account.bill", {
             url: '/bill?id',
             templateUrl: 'bill/customer_receipt.html',
+            controllerUrl: "bill/billController"
+        })
+        .state("users.account.payment_method", {
+            url: '/payment_method',
+            templateUrl: 'bill/payment_method.html',
             controllerUrl: "bill/billController"
         })
         .state("users.trips.edit", {

@@ -507,10 +507,23 @@ cnn.on('ready', function () {
                     contentType: 'application/json',
                     contentEncoding: 'utf-8',
                     correlationId: m.correlationId
+                    });
+            });
+        });
+    });
+
+    cnn.queue('searchbycategory', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            property.searchbycategory(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
                 });
             });
         });
     });
+
     cnn.queue('approve_trips', function (q) {
         //     console.log("Delete bill queue");
         q.subscribe(function (message, headers, deliveryInfo, m) {
@@ -534,4 +547,5 @@ cnn.on('ready', function () {
             });
        });
     });
+
 });

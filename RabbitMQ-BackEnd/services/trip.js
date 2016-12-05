@@ -130,7 +130,7 @@ function getAllTripsByHostId(msg, callback) {
             connectionpool.releaseSQLConnection(connection);
             return;
         }
-        connection.query('select t.tripid, t.quantity, t.fromdate, t.todate, t.tripstatus, p.category, p.address, p.city, p.state, p.country, p.zipcode, p.title, p.price, u.firstname, u.lastname from trips as t inner join properties as p inner join users as u on t.propertyid = p.propertyid and t.userid = u.userid where t.hostid = ?',
+        connection.query('select t.tripid, t.quantity, t.fromdate, t.todate, t.tripstatus, p.category, p.address, p.city, p.state, p.country, p.zipcode, p.title, p.price, u.firstname, u.lastname from trips as t inner join properties as p inner join users as u on t.propertyid = p.propertyid and t.userid = u.id where t.hostid = ?',
                         [msg.hostid],
             function (err, result) {
 

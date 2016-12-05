@@ -17,8 +17,10 @@
                         <div class="col-md-12" style="padding-left:0px">
                             <h4>Available From</h4>
                             <p class="input-group" style="width: 80%;">
-                                <input ng-model="property.availability_from" style="height: 40px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
-                                    datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+
+                                <input style="height:40px" ng-model="fromDate" type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened"
+                                    datepicker-options="dateOptions" ng-required="true" close-text="Close" 
+                                    placeholder="MM/dd/yyyy" ng-change="getFromDate(fromDate)"/>
                                 <span class="input-group-btn">
                                     <button style="height: 40px;" type="button" class="btn btn-default" ng-click="open1()">
                                         <i class="fa fa-calendar">
@@ -31,8 +33,9 @@
                         <div class="col-md-12" style="padding-left:0px">
                             <h4>Available To</h4>
                             <p class="input-group" style="width: 80%;">
-                                <input ng-model="property.availability_to" style="height: 40px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened"
-                                    datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                <input style="height:40px" ng-model="toDate" ng-click="open2()" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened"
+                                    datepicker-options="dateOptions" ng-required="true" close-text="Close"
+                                    placeholder="MM/dd/yyyy" ng-change="getToDate(toDate)" />
                                 <span class="input-group-btn">
                                     <button style="height: 40px;" type="button" class="btn btn-default" ng-click="open2()">
                                         <i class="fa fa-calendar">
@@ -66,7 +69,7 @@
                                                     </h5>
                                                 </span>
                                             </a>
-                                            <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !property.availability_from || !property.availability_to}" ng-disabled="!property.availability_from || !property.availability_to" ui-sref="become-a-host.choose-pricing-mode" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
+                                            <a style="border-color: #ff5a5f;background-color: #ff5a5f;" ng-class="{'disabled' : !fromDate || !toDate}" ng-disabled="!fromDate || !toDate" ui-sref="become-a-host.choose-pricing-mode" class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" href="#">
                                                 <div class="btn-progress-next__text">
                                                     <span>Next</span>
                                                 </div>

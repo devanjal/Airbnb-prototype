@@ -28,9 +28,9 @@ function searchbypropertyid(msg, callback){
                 }
                 // res.code = 200;
                 res.value = rows;
-                console.log("This is value of rows:--" + rows);
+                console.log("This is value of rows:--" + JSON.stringify(rows));
                 var mongoconnection = connectionpool.getdbconnection();
-                mongoconnection.collection('properties').find({propertyid:parseInt(msg.propertyid)}).toArray(function(err, result) {
+                mongoconnection.collection('properties').find({propertyid:msg.propertyid}).toArray(function(err, result) {
 
                     if(err) {
                         console.log(err);
@@ -43,7 +43,7 @@ function searchbypropertyid(msg, callback){
                     console.log('test');
                     console.log(JSON.stringify(result));
                     res.code = 200;
-                    //res.mongoval = result;
+                    res.mongoval = result;
                     //res.value = result;
                     connectionpool.releaseSQLConnection(connection);
                     for(var i=0;i<rows.length;i++){
@@ -141,7 +141,7 @@ function searchAllProperties(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties as p, users as u where u.id=p.hostid and p.published="true"', function(err, rows, fields) {
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true"', function(err, rows, fields) {
 
                 if (err)
                 {
@@ -199,7 +199,7 @@ function searchbyquery(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties as p, users as u WHERE u.id=p.hostid and p.published="true" and p.city=? and p.availability_from =? and p.availability_to =? and p.quantity =?',[msg.city, msg.dateFrom, msg.dateTo, msg.guests],
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true" and properties.city=? and properties.state=? and properties.availability_from = ? and properties.availability_to <= ? and properties.quantity=?',[msg.city, msg.state,new Date(msg.checkin), new Date(msg.checkout), msg.guests],
             function(err, rows, fields) {
                 if (err)
                 {
@@ -237,11 +237,7 @@ function searchbyquery(msg, callback){
                         }
                     }
                     callback(null, res);
-
                 });
-
-
-
             });
 
     });
@@ -261,7 +257,64 @@ function searchbycity(msg, callback){
         }
 
         connection.query(
-            'SELECT * from properties as p, users as u where u.id=p.hostid and p.published="true" and p.city=? and p.state=?',[msg.city, msg.state], function(err, rows, fields) {
+            'SELECT *,properties.address as propertyaddress from properties, users where users.id=properties.hostid and properties.published="true" and properties.city=? and properties.state=?',[msg.city, msg.state], function(err, rows, fields) {
+
+                if (err)
+                {
+                    console.log(err);
+                    res.code = 401;
+                    res.value = "searching by text string failed";
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                    return;
+                }
+                res.code = 200;
+                res.value = rows;
+                for(var i=0;i<rows.length;i++) {
+                    arr.push(rows[i].propertyid);
+                }
+                var mongoconnection = connectionpool.getdbconnection();
+                mongoconnection.collection('properties').find({propertyid:{$in:arr}}).toArray(function(err, result) {
+                    if (err) {
+                        console.log(err);
+                        res.code = 400;
+                        res.value = err;
+                        connectionpool.releaseSQLConnection(connection);
+                        callback(null, res);
+                        return;
+                    }
+                    res.mongoval = result;
+                    connectionpool.releaseSQLConnection(connection);
+                    for(var i=0;i<rows.length;i++){
+                        rows[i].images = [];
+                        for(var j=0;j<result.length; j++){
+                            if(rows[i].propertyid==result[j].propertyid){
+                                rows[i].images=result[j].images;
+                            }
+                        }
+                    }
+                    callback(null, res);
+                });
+            });
+    });
+}
+
+function searchbycategory(msg, callback){
+    var res = {};
+    var arr= new Array();
+    console.log(JSON.stringify(msg));
+
+    connectionpool.getConnection(function(err,connection) {
+        if (err) {
+            connectionpool.releaseSQLConnection(connection);
+            res.code = 401;
+            res.value = "Error connecting to Db";
+            callback(null, res);
+            return;
+        }
+
+        connection.query(
+            'SELECT * from properties as p, users as u where u.id=p.hostid and p.published="true" and p.city=? and p.state=? and p.category=?',[msg.city, msg.state, msg.category], function(err, rows, fields) {
 
                 if (err)
                 {
@@ -307,3 +360,4 @@ exports.searchAllProperties=searchAllProperties;
 exports.searchbyquery= searchbyquery;
 exports.searchbyuserid = searchbyuserid;
 exports.searchbypropertyid = searchbypropertyid;
+exports.searchbycategory=searchbycategory;

@@ -1,9 +1,9 @@
 var connectionpool = require('../config/connectionpool');
 
-function becomehost_step1(msg, callback){
+function becomehost_step1(msg, callback) {
     var res = {};
     console.log(JSON.stringify(msg));
-    connectionpool.getConnection(function(err,connection) {
+    connectionpool.getConnection(function (err, connection) {
         if (err) {
             connectionpool.releaseSQLConnection(connection);
             res.code = 401;
@@ -11,8 +11,9 @@ function becomehost_step1(msg, callback){
             callback(null, res);
             return;
         }
-
-        var query = connection.query('INSERT INTO properties SET ?', msg , function (err, result) {
+        if (msg.update == false) {
+            delete msg.update;
+            var query = connection.query('INSERT INTO properties SET ?', msg, function (err, result) {
                 if (err) {
                     console.log(err);
                     res.code = 401;
@@ -30,6 +31,27 @@ function becomehost_step1(msg, callback){
                 res.value = "Step1 succeeded";
                 callback(null, res);
             });
+        }
+        else {
+            connection.query(
+                'UPDATE properties SET category = ?, quantity = ?, address = ?, city = ?,state = ?,country = ?,zipcode = ? Where propertyid = ?',
+                [msg.category, msg.quantity, msg.address, msg.city, msg.state, msg.country, msg.zipcode, msg.propertyid],
+                function (err, result) {
+                    if (err) {
+                        res.code = 401;
+                        res.value = "Step1 failed";
+                        callback(null, res);
+                        console.log(err);
+                        connectionpool.releaseSQLConnection(connection);
+                        return;
+                    }
+                    res.code = 200;
+                    res.value = "Step1 succeeded";
+                    callback(null, res);
+                    connectionpool.releaseSQLConnection(connection);
+                });
+        }
+
     });
 };
 function becomehost_step2(msg, callback){
@@ -44,6 +66,7 @@ function becomehost_step2(msg, callback){
             return;
         }
         connection.query(
+
             'UPDATE properties SET title = ?, propertydescription = ?,published = ? where propertyid = ?',
             [msg.title,msg.description,'step2',msg.propertyid],
             function (err, result) {
@@ -85,8 +108,10 @@ function becomehost_step3(msg, callback){
             return;
         }
         connection.query(
+
             'UPDATE properties SET bid_price = ?, price = ?, availability_from = ?,availability_to = ?,published = ? Where propertyid = ?',
             [msg.bid_price,msg.price,new Date(msg.availability_from),new Date(msg.availability_to),'step3',msg.propertyid],
+
             function (err, result) {
                 if (err)
                 {

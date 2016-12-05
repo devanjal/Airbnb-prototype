@@ -143,7 +143,8 @@ app.controller('tripController', ['$scope', '$http', 'ngProgress', '$state', '$u
             .success(function (data) {
                 if(data.code === 200){
                     Notification.success("Successfully cancelled your trip.");
-                    $state.go("users.trips");
+                    // $state.go("users.trips");
+                    window.location.reload();
                 }
             })
             .error(function (err) {

@@ -19,14 +19,20 @@
         <div class="col-md-3">
 
             <ul class="sidenav-list">
-                <li>
-                    <a href="#" aria-selected="false" class="sidenav-item">Payment
-                        Methods</a>
+                <li ng-repeat="menu in accountMenus">
+                    <a ng-click="selectAccountMenu($index)" aria-selected="{{$index == selectedAccountMenu}}" ng-class="{'active': $index == selectedAccountMenu}" href="#" ui-sref="{{menu.link}}" aria-selected="true" class="sidenav-item">
+                        {{menu.name}}
+                    </a>
+                </li>
+                <!--<li>
+                    
+                    <a ui-sref="users.account.payment_method" aria-selected="{{$index == selectedListingMenu}}" ng-class="{'active': $index == selectedListingMenu}" href="#" ui-sref="{{menu.link}}" href="#" aria-selected="false" class="sidenav-item">
+                        Payment Methods</a>
                 </li>
                 <li>
-                    <a ui-sref="users.account" href="#" aria-selected="true" class="sidenav-item">Bill
-                        History</a>
-                </li>
+                    <a ui-sref="users.account" href="#" aria-selected="true" class="sidenav-item">
+                        Bill History</a>
+                </li>-->
             </ul>
 
         </div>
