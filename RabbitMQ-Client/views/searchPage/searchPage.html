@@ -48,7 +48,7 @@
                             <span>Entire Home</span>
                           </div>
                           <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                              <input type="checkbox" ng-model="entirehome" ng-click="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
+                              <input type="checkbox" ng-model="entirehome" ng-change="entireHome()" class="form-control" name="entire_home_checkbox" style="margin-left: -15px;margin-top: -10px;" />
                           </div>
                       </div>
                   </label>
@@ -64,7 +64,7 @@
                         </div>
                         
                         <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                          <input type="checkbox" ng-model="privateroom" ng-click="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
+                          <input type="checkbox" ng-model="privateroom" ng-change="privateRoom()" class="form-control" name="private_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
@@ -80,7 +80,7 @@
                         </div>
                         
                         <div class="col-md-2 facet-checkbox__input-col" style="padding: 11px;">
-                          <input type="checkbox" ng-model="shared_room_checkbox" ng-click="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
+                          <input type="checkbox" ng-model="sharedroom" ng-change="sharedRoom()" class="form-control" name="shared_room_checkbox" style="margin-left: -15px;margin-top: -10px;"/>
                         </div>
                     </div>
                   </label>
@@ -149,10 +149,10 @@
                               <div class="listing">
                                   <div class="panel-image listing-img listing-img-hide-carousel-controls">
                                       <div>
-                                          <a href="#" class="media-photo media-cover" target="">
+                                          <a ui-sref="individualProperty({id : {{property.propertyid}}})" href="#" class="media-photo media-cover" target="">
                                               <!--src="images/upload_5a0641f031acebfe76f478dd2ac75929"-->
                                               <div class="listing-img-container media-cover text-center">
-                                                  <img ui-sref="individualProperty({id : {{property.propertyid}}})" ng-src="{{property.images[0]}}" class="img-responsive-height" alt="Cozy bedroom in Santa Clara CA">
+                                                  <img ui-sref="individualProperty({id : {{property.propertyid}}})" ng-src="{{property.images[0]}}" class="img-responsive-height">
                                               </div>
                                           </a>
                                           <div class="slideshow-controls">

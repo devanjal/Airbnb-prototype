@@ -28,6 +28,9 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
     $scope.rate = 5;
     $scope.max = 5;
     $scope.isReadonly = true;
+
+    $scope.rate7=0;
+    $scope.isReadonly1=false;
     //calender functions
     $scope.format = 'MM/dd/yyyy';
     $scope.dateOptions = {
@@ -95,6 +98,11 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
             for (var i = 2; i <= $scope.propertyDetails.quantity; i++) {
                 $scope.guests.push(i + " guest");
             }
+            if(data.mongoval[0].netpropertyrating){
+                $scope.rate = data.mongoval[0].netpropertyrating;
+            }
+            
+            $scope.propertyreviews = data.mongoval[0].propertyreviews;
 
             var images = data.value[0].images;
             var tmpObj = {};
@@ -140,7 +148,27 @@ app.controller('propertyController', ['$scope', '$http', 'ngProgress', '$state',
     $scope.rate6 = 3;
     $scope.max = 5;
     $scope.isReadonly = true;
-    // >>>>>>> origin/anushka
+    $scope.saveReviews = function(){
+        var review_data = {
+            starrating:$scope.rate7,
+            review:$scope.property_review,
+            property_id:$stateParams.id
+        }
+        $http.post("/review/makepropertyreview",review_data)
+        .success(function (data) {
+            debugger
+            
+            if (data.status === 'success') {
+                Notification.success("Your reviews has been successfully posted.");
+                // $state.go("users.trips");
+            } else if(data.status === 'error'){
+                Notification.error(data.error);
+            }
+        })
+        .error(function (err) {
+
+        })
+    }
 }]);
 
 

@@ -81,7 +81,7 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
                 }
             });
         }
-        
+
         var infoWindow = new google.maps.InfoWindow();
         google.maps.event.addListener(map, 'click', function() {
             infoWindow.close();
@@ -220,59 +220,67 @@ app.controller('searchController', ['$scope', '$http', 'ngProgress', '$state', '
 
         }
     };
+
     $scope.entirehome = false;
     $scope.entireHome = function() {
-        $scope.entirehome = true;
-        $http({
-            url: "/property/searchbycategory",
-            method: "post",
-            data: {
-                city: locationarr[0],
-                state: locationarr[1],
-                category: "entire_home"
-            }
-        }).success(function(data) {
-            console.log("I m in success of searchbycategory angular");
-            $scope.propertyList = data.value;
-        });
+        if (this.entirehome) {
+            $http({
+                url: "/property/searchbycategory",
+                method: "post",
+                data: {
+                    city: locationarr[0],
+                    state: locationarr[1],
+                    category: "entire_home"
+                }
+            }).success(function(data) {
+                console.log("I m in success of searchbycategory angular");
+                $scope.propertyList = data.value;
+            });
+        }
 
         console.log("entire home is selected");
 
     }
     $scope.privateroom = false;
     $scope.privateRoom = function() {
-        $scope.privateroom = true;
-        $http({
-            url: "/property/searchbycategory",
-            method: "post",
-            data: {
-                city: locationarr[0],
-                state: locationarr[1],
-                category: "private_room"
-            }
-        }).success(function(data) {
-            console.log("I m in success of searchbycategory angular");
-            $scope.propertyList = data.value;
-        });
+        debugger
+        // $scope.privateroom = true;
+        if (this.privateroom) {
+            $http({
+                url: "/property/searchbycategory",
+                method: "post",
+                data: {
+                    city: locationarr[0],
+                    state: locationarr[1],
+                    category: "private_room"
+                }
+            }).success(function(data) {
+                console.log("I m in success of searchbycategory angular");
+                $scope.propertyList = data.value;
+            });
+        }
 
         console.log("privateRoom is selected");
     }
+
     $scope.shared_room_checkbox = false;
     $scope.sharedRoom = function() {
-        $scope.shared_room_checkbox = true;
-        $http({
-            url: "/property/searchbycategory",
-            method: "post",
-            data: {
-                city: locationarr[0],
-                state: locationarr[1],
-                category: "shared_room"
-            }
-        }).success(function(data) {
-            console.log("I m in success of searchbycategory angular");
-            $scope.propertyList = data.value;
-        });
+        if (this.sharedroom) {
+            $http({
+                url: "/property/searchbycategory",
+                method: "post",
+                data: {
+                    city: locationarr[0],
+                    state: locationarr[1],
+                    category: "shared_room"
+                }
+            }).success(function(data) {
+                console.log("I m in success of searchbycategory angular");
+                $scope.propertyList = data.value;
+            });
+        }
         console.log("shared_room_checkbox is selected");
     }
+
     // >>>>>>> origin/anushka
 }]);

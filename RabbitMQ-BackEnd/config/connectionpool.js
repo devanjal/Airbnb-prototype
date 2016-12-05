@@ -31,6 +31,10 @@ function createConnection()
 		  user     : 'airbnbdb',
 		  password : 'airbnbdb',
 		  database : 'airbnbDb'
+		//   host     : 'localhost',
+		//   user     : 'root',
+		//   password : 'root',
+		//   database : 'airbnb'
 	});
 	return connection;
 };

@@ -465,7 +465,9 @@ font-weight: 700 !important;
           <span class="cover-photo">
             <img class="hide" alt width="0" src="{{propertyDetails.images[0]}}">
             <span class="cover-img-container">
-              <div class="cover-img" style="background-image:url({{propertyDetails.images[0]}});">
+              <!--style="background-image:url({{propertyDetails.images[0]}});"-->
+              <div class="cover-img">
+                <img ng-src="{{propertyDetails.images[0]}}" style="height: inherit;width: 100%;">
                 <div class="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label show-sm">
                   <div>
                     <span class="h3 text-contrast price-amount">
@@ -1416,7 +1418,7 @@ font-weight: 700 !important;
                                       <div class="show-inline-block">
                                         <div class="show-inline-block va-middle space-top-2 space-2">
                                           <div class="media-photo-badge">
-                                            <a class="media-photo media-round" href="/users/show/102123136">
+                                            <a class="media-photo media-round" href="#">
                                               <img alt="User Profile Image" src="" title="{{propertyDetails.firstname}}" width="48" height="48">
                                             </a>
                                           </div>
@@ -1426,7 +1428,8 @@ font-weight: 700 !important;
                                             <div class="name">
                                               <a class="text-muted link-reset">
                                                 <p class="text_1lobov3-o_O-size_regular_1n7tijc">
-                                                  <span>{{review.username}}</span>
+                                                  <span>{{review.username}}</span><br><br>
+                                                  <span uib-rating ng-model="review.starrating" max="max" read-only="isReadonly"></span>
                                                 </p>
                                               </a>
                                             </div>
@@ -1505,11 +1508,19 @@ font-weight: 700 !important;
                                 </div>
                               </div>
                               <span class="title_n9n61p">Want to post a review?</span><br><br>
+                              Provide your property experience:<span uib-rating ng-model="rate7" max="max" read-only="isReadonly1"></span><br><br>
                               <!--<input type="textarea" placeholder="Write a review.. Share your experience"/>-->
-                              <textarea rows="4" cols="50"> </textarea><br>
+                              <textarea rows="4" cols="50" ng-model="property_review"> </textarea><br>
                               <div class="row">
-                                <div class="col-md-3 col-md-offset-9">
+                                <!--<div class="col-md-3 col-md-offset-9">
                                 <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="postPropertyReview()" name="Submit">
+                                  <span>Submit</span>
+                                </button>
+                                </div>-->
+                                <div class="col-md-4"></div>
+                                <div class="col-md-5"></div>
+                                <div class="col-md-3">
+                                <button ng-click="saveReviews()" type="submit" class="btn btn-primary btn-large btn-block" ng-click="postPropertyReview()" name="Submit">
                                   <span>Submit</span>
                                 </button>
                                 </div>

@@ -62,7 +62,7 @@ router.post('/makepropertyreview', function(req, res) {
     var payload = {};
     console.log(JSON.stringify(req.body));
     payload.propertyid = parseInt(req.body.property_id);
-    payload.userid = req.session.user.id;//12 ;//req.session.user.id;
+    payload.userid = req.session.user.id;
     payload.starrating = parseInt(req.body.starrating);
     payload.review = req.body.review;
     payload.username = req.session.user.firstname + ' ' +req.session.user.lastname ;//'Anushka';//req.body.review;
@@ -77,7 +77,7 @@ router.post('/makepropertyreview', function(req, res) {
                 res.send({status:'success'});
             }
             else {
-                res.send({status:'error',error:"unable to insert reviews"});
+                res.send({status:'error',error:"Unable to post the review. Please try again."});
             }
         }
     });

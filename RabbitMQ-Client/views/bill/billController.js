@@ -53,6 +53,10 @@ app.controller('billController', ['$scope', '$http', 'ngProgress', '$state', '$r
 
             })
     }
+    if($state.current.name === "users.account.payment_method"){
+        $scope.userData = JSON.parse(sessionStorage.user);
+
+    }
     $scope.open = function() {
         var modalInstance = $uibModal.open({
             animation: true,
@@ -66,8 +70,21 @@ app.controller('billController', ['$scope', '$http', 'ngProgress', '$state', '$r
     };
 }]);
 
-app.controller('paymentController', function($scope, $uibModalInstance, $http, $uibModal) {
+app.controller('paymentController', function($scope, $uibModalInstance, $http, $uibModal,Notification) {
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
+    $scope.addcard = function(){
+        console.log($scope.card);
+        $http.post("/users/addCard",$scope.card)
+        .success(function(data){
+            if(data.code===200){
+                $uibModalInstance.dismiss('cancel');
+                Notification.success("Payment updated successfully.");
+            }
+        })
+        .error(function(err){
+
+        })
+    }
 });
