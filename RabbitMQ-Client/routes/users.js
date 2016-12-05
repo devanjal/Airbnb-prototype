@@ -132,4 +132,23 @@ router.get('/logout', function (req, res, next) {
 		
 	});
 });
+
+router.post('/payment', function (req, res) {
+	var msg_payload = {creditcard: req.body.creditcard, expirydate:req.body.expirydate, userid: req.session.user.id};
+	mq_client.make_request('paymentQueue', msg_payload, function (err, result) {
+		if(err){
+			console.log("Error in adding payment details "+err);
+			return;
+		}else {
+			if(result.code == 200) {
+				console.log("Payment updated successfully.");
+				res.send(result);
+			}else if(result.code == 401){
+				console.log("No payments to add");
+				res.send(result);
+			}
+		}
+	});
+});
+
 module.exports = router;

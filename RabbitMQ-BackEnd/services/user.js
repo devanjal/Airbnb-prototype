@@ -102,7 +102,7 @@ function user_profile_image_queue(msg, callback) {
                 connectionpool.releaseSQLConnection(connection);
                 console.log('Error connecting to Db');
                 console.log(err);
-                res.code = 400;
+                res.code = 401;
                 res.value = err;
                 callback(null, res);
                 return;
@@ -125,9 +125,40 @@ function user_profile_image_queue(msg, callback) {
 
     });
 }
+function add_payment (msg, callback) {
+    var res = {};
+    console.log(JSON.stringify(msg));
+    connectionpool.getConnection(function (err, connection) {
+        if (err) {
+            connectionpool.releaseSQLConnection(connection);
+            console.log('Error connecting to Db');
+            console.log(err);
+            res.code = 400;
+            res.value = err;
+            callback(null, res);
+            return;
+        }
+        connection.query(
+            'UPDATE users SET creditcard = ? Where id = ?',
+            [msg.creditcard,  msg.userid],
+            function (err, result) {
+                if (err) {
+                    connectionpool.releaseSQLConnection(connection);
+                    throw err;
+                }
+                res.code = 200;
+                res.value = "success";
+                connectionpool.releaseSQLConnection(connection);
+                callback(null, res);
+                //--
+            });
+    });
+}
 
 exports.get_profile_request = get_profile_request;
 
 exports.update_profile_request = update_profile_request;
 
 exports.user_profile_image_queue = user_profile_image_queue;
+
+exports.add_payment = add_payment;
